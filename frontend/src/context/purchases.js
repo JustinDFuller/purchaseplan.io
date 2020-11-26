@@ -58,54 +58,7 @@ export function Purchase(data = purchaseDefaults) {
 }
 
 const defaults = {
-  purchases: [
-    Purchase({
-      name: "grill cover",
-      price: 35,
-      url:
-        "https://www.lowes.com/pd/Char-Broil-Performance-62-in-Black-Fits-Most-Cover/1000115081"
-    }),
-    Purchase({
-      name: "meat thermometer",
-      price: 34,
-      url: "https://www.thermoworks.com/ThermoPop?tw=WIRECUTTER"
-    }),
-    Purchase({
-      name: "Path lights",
-      price: 30,
-      url:
-        "https://www.target.com/p/6pk-charleston-led-solar-lights-antique-bronze-smart-solar/-/A-53184703"
-    }),
-    Purchase({
-      name: "Back Yard Cabinet",
-      price: 80,
-      url:
-        "https://www.ikea.com/us/en/p/kolbjoern-cabinet-indoor-outdoor-green-00450347/"
-    }),
-    Purchase({
-      name: "Living Room",
-      price: 270,
-      url: ""
-    }),
-    Purchase({
-      name: "Lawn Mower Blade",
-      price: 15,
-      url:
-        "https://www.homedepot.com/p/MTD-Genuine-Factory-Parts-21-in-Mulching-Walk-Behind-Mower-Blade-490-100-M084/202970675#product-overview"
-    }),
-    Purchase({
-      name: "Refridgerator",
-      price: 3250,
-      url:
-        "https://www.lowes.com/pd/KitchenAid-23-8-cu-ft-Counter-depth-French-Door-Refrigerator-with-Ice-Maker-Stainless-Steel-ENERGY-STAR/1000140499"
-    }),
-    Purchase({
-      name: "Faucet",
-      price: 150,
-      url:
-        "https://www.lowes.com/pd/AKDY-Matte-Black-1-Handle-Deck-Mount-Pre-Rinse-Handle-Lever-Residential-Kitchen-Faucet/1002393568"
-    })
-  ]
+  purchases: []
 };
 
 export function New(data = defaults) {

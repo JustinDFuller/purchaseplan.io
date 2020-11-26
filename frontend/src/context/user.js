@@ -3,11 +3,11 @@ import React from "react";
 import * as availabilities from './availabilities';
 
 const defaults = {
-  email: "justindanielfuller@gmail.com",
-  saved: 2340,
-  frequency: "Every 2 Weeks",
-  contributions: 1000,
-  lastPaycheck: new Date("2020-11-12")
+  email: "",
+  saved: 0,
+  frequency: "",
+  contributions: 0,
+  lastPaycheck: null
 };
 
 export function New(data = defaults) {

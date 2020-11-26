@@ -21,7 +21,7 @@ export default function App() {
     <User.Context.Provider value={{ user, setUser }}>
       <Purchases.Context.Provider value={{ purchases, setPurchases }}>
         <Header />
-        <Stepper start={5}>
+        <Stepper>
           <EmailForm />
           <SavedForm />
           <FrequencyForm />

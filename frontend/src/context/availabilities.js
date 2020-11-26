@@ -1,9 +1,16 @@
 const types = {
+  "": nullFrequency,
   "Every 2 Weeks": every2Weeks
 };
 
 export function get(user) {
   return types[user.frequency](user);
+}
+
+function nullFrequency() {
+  return {
+    calculate() {}
+  }
 }
 
 function every2Weeks({ lastPaycheck, saved, contributions }) {
