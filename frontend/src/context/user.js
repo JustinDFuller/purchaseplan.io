@@ -3,6 +3,7 @@ import React from "react";
 import * as availabilities from './availabilities';
 
 const defaults = {
+  id: null,
   email: "",
   saved: 0,
   frequency: "",
@@ -12,6 +13,15 @@ const defaults = {
 
 export function New(data = defaults) {
   return {
+    id() {
+      return data.id
+    },
+    setId(id) {
+      return New({
+        ...data,
+        id
+      })
+    },
     frequency() {
       return data.frequency;
     },
