@@ -1,21 +1,33 @@
 import React, { useContext, useState } from "react";
 
 import * as Purchases from "../../context/purchases";
+import * as User from "../../context/user";
+import * as userapi from "../../api/user";
 
 export function PurchaseForm({ next }) {
   const [purchase, setPurchase] = useState(Purchases.Purchase());
-  const { purchases, setPurchases } = useContext(Purchases.Context);
+  const { user, setUser } = useContext(User.Context);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const u = user.setPurchases(user.purchases().addPurchase(purchase))
+    setUser(u);
+    setPurchase(purchase.clear());
+    await userapi.put(u)
+  }
+
+  async function handleDone(e) {
+    if (purchase.isNotEmpty()) {
+      await handleSubmit(e)
+    }
+    next(e);
+  }
 
   return (
     <form
       id="purchase-form"
       class="card"
-      onSubmit={e => {
-        e.preventDefault();
-        setPurchases(purchases.addPurchase(purchase));
-        setPurchase(purchase.clear());
-      }}
-    >
+      onSubmit={handleSubmit} >
       <label>Now for the fun part! What do you want to buy?</label>
       <br />
       <label>Name</label>
@@ -40,16 +52,10 @@ export function PurchaseForm({ next }) {
         onChange={e => setPurchase(purchase.setUrl(e.target.value))}
       />
       <button type="submit">Next</button>
-      {purchases.hasAtLeastOne() && (
+      {user.purchases().hasAtLeastOne() && (
         <button
           type="button"
-          onClick={e => {
-            if (purchase.isNotEmpty()) {
-              setPurchases(purchases.addPurchase(purchase));
-              setPurchase(purchase.clear());
-            }
-            next(e);
-          }}
+          onClick={handleDone}
         >
           Done Adding Purchases
         </button>

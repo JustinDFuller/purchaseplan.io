@@ -1,13 +1,15 @@
 import React from "react";
 
 import * as availabilities from './availabilities';
+import * as purchases from './purchases';``
 
 const defaults = {
   email: "",
   saved: 0,
   frequency: "",
   contributions: 0,
-  lastPaycheck: null
+  lastPaycheck: null,
+  purchases: purchases.New()
 };
 
 export function New(data = defaults) {
@@ -19,7 +21,7 @@ export function New(data = defaults) {
       })
     },
     toJSON() {
-      return JSON.stringify(data)
+      return data
     },
     frequency() {
       return data.frequency;
@@ -68,6 +70,15 @@ export function New(data = defaults) {
     },
     availabilityCalculator() {
       return availabilities.get(data)
+    },
+    purchases() {
+      return data.purchases
+    },
+    setPurchases(purchases) {
+      return New({
+        ...data,
+        purchases
+      })
     }
   };
 }

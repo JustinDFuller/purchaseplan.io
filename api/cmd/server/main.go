@@ -105,5 +105,12 @@ type (
 		Contributions int64      `json:"contributions"`
 		Frequency     string     `json:"frequency"`
 		LastPaycheck  *time.Time `json:"lastPaycheck"`
+		Purchases     []Purchase
+	}
+
+	Purchase struct {
+		Name  string `json:"name"`
+		Price int64  `json:"price"`
+		URL   string `json:"url"`
 	}
 )

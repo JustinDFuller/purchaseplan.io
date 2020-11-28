@@ -1,17 +1,15 @@
 import React, { useContext } from "react";
 
-import * as Purchases from "../../context/purchases";
 import * as User from "../../context/user";
 
 export function PurchaseList() {
-  const { purchases, setPurchases } = useContext(Purchases.Context);
-  const { user } = useContext(User.Context);
+  const { user, setUser } = useContext(User.Context);
 
   return (
     <div id="purchase-container">
       <strong>Purchases</strong>
       <ul id="purchases">
-        {purchases.withAvailability(user.availabilityCalculator()).map(p => (
+        {user.purchases().withAvailability(user.availabilityCalculator()).map(p => (
           <li class="card" key={p.name()}>
             <div>
               <strong>Name: </strong>
@@ -32,18 +30,18 @@ export function PurchaseList() {
               <span class="availablity">{p.availability()}</span>
             </div>
             <div class="order-buttons">
-              {purchases.isNotFirst(p) && (
+              {user.purchases().isNotFirst(p) && (
                 <button
                   type="button"
-                  onClick={() => setPurchases(purchases.up(p))}
+                  onClick={() => setUser(user.setPurchases(user.purchases().up(p)))}
                 >
                   Buy Sooner
                 </button>
               )}
-              {purchases.isNotLast(p) && (
+              {user.purchases().isNotLast(p) && (
                 <button
                   type="button"
-                  onClick={() => setPurchases(purchases.down(p))}
+                  onClick={() => setUser(user.setPurchases(user.purchases().down(p)))}
                 >
                   Buy Later
                 </button>

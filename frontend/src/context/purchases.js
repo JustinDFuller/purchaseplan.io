@@ -1,5 +1,3 @@
-import React from "react";
-
 const purchaseDefaults = {
   name: "",
   price: 0,
@@ -30,7 +28,7 @@ export function Purchase(data = purchaseDefaults) {
     setPrice(price) {
       return Purchase({
         ...data,
-        price
+        price: Number(price)
       });
     },
     setUrl(url) {
@@ -53,6 +51,9 @@ export function Purchase(data = purchaseDefaults) {
     },
     is(purchase) {
       return purchase.name() === data.name; // switch to ID later
+    },
+    toJSON() {
+      return data
     }
   };
 }
@@ -104,11 +105,10 @@ export function New(data = defaults) {
     },
     withAvailability(frequency) {
       return data.purchases.map((p, i, purchases) => p.setAvailability(frequency.calculate(p, purchases)));
+    },
+    toJSON() {
+      return data.purchases
     }
   };
 }
 
-export const Context = React.createContext({
-  purchases: null,
-  setPurchases: null
-});

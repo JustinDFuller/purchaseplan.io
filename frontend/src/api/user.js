@@ -1,7 +1,7 @@
 export async function put(user) {
   const res = await fetch('http://localhost:8080/users', {
     method: 'PUT',
-    body: user.toJSON(),
+    body: JSON.stringify(user),
   }).then(r => r.json())
 
   return res

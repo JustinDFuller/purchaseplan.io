@@ -11,26 +11,22 @@ import { PurchaseList } from "./components/purchase/List";
 import { Stepper } from "./components/forms/Stepper";
 
 import * as User from "./context/user";
-import * as Purchases from "./context/purchases";
 
 export default function App() {
   const [user, setUser] = useState(User.New());
-  const [purchases, setPurchases] = useState(Purchases.New());
 
   return (
     <User.Context.Provider value={{ user, setUser }}>
-      <Purchases.Context.Provider value={{ purchases, setPurchases }}>
-        <Header />
-        <Stepper>
-          <EmailForm />
-          <SavedForm />
-          <FrequencyForm />
-          <ContributionsForm />
-          <PurchaseForm />
-          <PurchaseList />
-        </Stepper>
-        <UserInfo />
-      </Purchases.Context.Provider>
+      <Header />
+      <Stepper>
+        <EmailForm />
+        <SavedForm />
+        <FrequencyForm />
+        <ContributionsForm />
+        <PurchaseForm />
+        <PurchaseList />
+      </Stepper>
+      <UserInfo />
     </User.Context.Provider>
   );
 }
