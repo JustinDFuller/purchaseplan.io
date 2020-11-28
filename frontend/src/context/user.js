@@ -17,7 +17,9 @@ export function New(data = defaults) {
     from(user) {
       return New({
         ...defaults,
-        ...user
+        ...user,
+        lastPaycheck: user.lastPaycheck ? new Date(user.lastPaycheck) : null,
+        purchases: data.purchases.from(user.purchases)
       })
     },
     toJSON() {

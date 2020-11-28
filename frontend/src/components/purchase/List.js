@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 
 import * as User from "../../context/user";
+import * as userapi from "../../api/user";
 
 export function PurchaseList() {
   const { user, setUser } = useContext(User.Context);
@@ -33,7 +34,11 @@ export function PurchaseList() {
               {user.purchases().isNotFirst(p) && (
                 <button
                   type="button"
-                  onClick={() => setUser(user.setPurchases(user.purchases().up(p)))}
+                  onClick={() => {
+                    const u = user.setPurchases(user.purchases().up(p))
+                    setUser(u)
+                    userapi.put(u);
+                  }}
                 >
                   Buy Sooner
                 </button>
@@ -41,7 +46,11 @@ export function PurchaseList() {
               {user.purchases().isNotLast(p) && (
                 <button
                   type="button"
-                  onClick={() => setUser(user.setPurchases(user.purchases().down(p)))}
+                  onClick={() => {
+                    const u = user.setPurchases(user.purchases().down(p))
+                    setUser(u)
+                    userapi.put(u)
+                  }}
                 >
                   Buy Later
                 </button>

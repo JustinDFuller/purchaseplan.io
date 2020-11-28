@@ -1,12 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import * as Purchases from "../../context/purchases";
 import * as User from "../../context/user";
 import * as userapi from "../../api/user";
 
 export function PurchaseForm({ next }) {
-  const [purchase, setPurchase] = useState(Purchases.Purchase());
   const { user, setUser } = useContext(User.Context);
+  const [purchase, setPurchase] = useState(Purchases.Purchase());
+  const [init, setInit] = useState(false);
+
+  useEffect(function() {
+    if (!init && user.purchases().hasAtLeastOne()) {
+      next()
+    }
+    setInit(true)
+  }, [init, user, next])
+
 
   async function handleSubmit(e) {
     e.preventDefault();

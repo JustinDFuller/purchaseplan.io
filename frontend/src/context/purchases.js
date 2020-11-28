@@ -108,6 +108,11 @@ export function New(data = defaults) {
     },
     toJSON() {
       return data.purchases
+    },
+    from(purchases) {
+      return New({
+        purchases: purchases.map(Purchase)
+      })
     }
   };
 }
