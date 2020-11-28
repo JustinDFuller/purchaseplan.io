@@ -3,7 +3,6 @@ import React from "react";
 import * as availabilities from './availabilities';
 
 const defaults = {
-  id: null,
   email: "",
   saved: 0,
   frequency: "",
@@ -13,14 +12,14 @@ const defaults = {
 
 export function New(data = defaults) {
   return {
-    id() {
-      return data.id
-    },
-    setId(id) {
+    from(user) {
       return New({
-        ...data,
-        id
+        ...defaults,
+        ...user
       })
+    },
+    toJSON() {
+      return JSON.stringify(data)
     },
     frequency() {
       return data.frequency;
@@ -37,7 +36,7 @@ export function New(data = defaults) {
     setSaved(saved) {
       return New({
         ...data,
-        saved
+        saved: Number(saved)
       });
     },
     email() {
@@ -55,7 +54,7 @@ export function New(data = defaults) {
     setContributions(contributions) {
       return New({
         ...data,
-        contributions
+        contributions: Number(contributions)
       });
     },
     lastPaycheck() {

@@ -1,12 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import * as User from "../../context/user";
+import * as userapi from "../../api/user";
 
 export function FrequencyForm({ next }) {
   const { user, setUser } = useContext(User.Context);
+  const [init, setInit] = useState(false);
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    await userapi.put(user)
+    next(e)
+  }
+
+  useEffect(function() {
+    if (!init && user.frequency() !== "") {
+      next()
+    }
+    setInit(true)
+  }, [init, user, next])
 
   return (
-    <form id="frequency-form" class="card" onSubmit={next}>
+    <form id="frequency-form" class="card" onSubmit={handleSubmit}>
       <label>How often do you save?</label>
       <select
         name="frequency"
@@ -27,7 +42,7 @@ export function FrequencyForm({ next }) {
         type="date"
         name="lastPaycheck"
         value={user.lastPaycheck()}
-        onChange={e => setUser(user.setLastPaycheck(e.target.value))}
+        onChange={e => console.log(e.target.value) || setUser(user.setLastPaycheck(e.target.value))}
       />
       <button type="submit">Next</button>
     </form>

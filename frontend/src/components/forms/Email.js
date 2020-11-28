@@ -8,8 +8,17 @@ export function EmailForm({ next }) {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    const { id } = await userapi.post({ email: user.email() })
-    setUser(user.setId(id))
+
+    try {
+      const u = await userapi.get(user)
+      setUser(user.from(u))
+      next(e)
+      return
+    } catch (e) {
+      console.error(e)
+    }
+
+    await userapi.put(user)
     next(e)
   }
 

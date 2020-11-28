@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import * as Purchases from "../../context/purchases";
 import * as User from "../../context/user";

@@ -2,6 +2,7 @@ package main
 
 import (
 	"cloud.google.com/go/datastore"
+	"context"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
@@ -9,6 +10,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 type config struct {
@@ -24,19 +26,24 @@ func main() {
 		log.Fatalf("Error processing config: %s", err)
 	}
 
-	// Create a datastore client. In a typical application, you would create
-	// a single client which is reused for every datastore operation.
 	ds, err := datastore.NewClient(ctx, c.GOOGLE_CLOUD_PROJECT)
 	if err != nil {
-		log.Fatalf("Error connecting to datastore: %s".err)
+		log.Fatalf("Error connecting to datastore: %s", err)
 	}
 	defer ds.Close()
 
 	r := mux.NewRouter()
+	r.Use(mux.CORSMethodMiddleware(r))
 
 	r.Use(func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Add("Access-Control-Allow-Origin", "http://localhost:3000")
+
+			if r.Method == http.MethodOptions {
+				w.WriteHeader(http.StatusOK)
+				return
+			}
+
 			next.ServeHTTP(w, r)
 		})
 	})
@@ -57,7 +64,7 @@ func main() {
 		}
 
 		k := datastore.NameKey("Users", u.Email, nil)
-		if _, err := ds.Put(ctx, k, u); err != nil {
+		if _, err := ds.Put(ctx, k, &u); err != nil {
 			log.Printf("Error storing user: %s", err)
 			w.WriteHeader(http.StatusBadRequest)
 			return
@@ -68,25 +75,12 @@ func main() {
 			log.Printf("Error encoding json to response: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
 		}
-	}).Methods("PUT")
+	}).Methods(http.MethodPut, http.MethodOptions)
 
-	r.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
-		b, err := ioutil.ReadAll(r.Body)
-		if err != nil {
-			log.Printf("Error reading body: %s", err)
-			w.WriteHeader(http.StatusBadRequest)
-			return
-		}
-
+	r.HandleFunc("/users/{id}", func(w http.ResponseWriter, r *http.Request) {
 		var u User
-		if err := json.Unmarshal(b, &u); err != nil {
-			log.Printf("Error unmarshaling json: %s", err)
-			w.WriteHeader(http.StatusBadRequest)
-			return
-		}
-
-		k := datastore.NameKey("Users", u.Email, nil)
-		if err := dsClient.Get(ctx, k, &u); err != nil {
+		k := datastore.NameKey("Users", mux.Vars(r)["id"], nil)
+		if err := ds.Get(ctx, k, &u); err != nil {
 			log.Printf("Error retrieving user: %s", err)
 			w.WriteHeader(http.StatusNotFound)
 			return
@@ -97,7 +91,7 @@ func main() {
 			log.Printf("Error encoding json to response: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
 		}
-	}).Methods("GET")
+	}).Methods(http.MethodGet, http.MethodOptions)
 
 	http.Handle("/", r)
 	log.Printf("Listening on port %d", c.PORT)
@@ -106,6 +100,10 @@ func main() {
 
 type (
 	User struct {
-		Email string
+		Email         string     `json:"email"`
+		Saved         int64      `json:"saved"`
+		Contributions int64      `json:"contributions"`
+		Frequency     string     `json:"frequency"`
+		LastPaycheck  *time.Time `json:"lastPaycheck"`
 	}
 )

@@ -7,7 +7,10 @@ export function Stepper({ children, start = 0 }) {
   const [step, setStep] = useState(start);
 
   function next(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
+
     setStep(step + 1);
   }
 

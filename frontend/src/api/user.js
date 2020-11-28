@@ -1,16 +1,12 @@
-export async function post({ email }) {
-  let res = await fetch('http://localhost:8080/users', {
-    method: 'POST',
-    body: JSON.stringify({
-      email
-    })
-  })
+export async function put(user) {
+  const res = await fetch('http://localhost:8080/users', {
+    method: 'PUT',
+    body: user.toJSON(),
+  }).then(r => r.json())
 
-  if (!res.ok && res.status !== 200) {
-    console.error("Response error", res)
-    return {}
-  }
+  return res
+}
 
-  res = await res.json()
-  return { id: res.id }
+export async function get(user) {
+  return fetch(`http://localhost:8080/users/${user.email()}`).then(r => r.json())
 }
