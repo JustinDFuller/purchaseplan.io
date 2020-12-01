@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import * as Purchases from "../../context/purchases";
 import * as User from "../../context/user";
 import * as userapi from "../../api/user";
+import * as productapi from "../../api/product";
 
 export function PurchaseForm({ next }) {
   const { user, setUser } = useContext(User.Context);
@@ -19,6 +20,7 @@ export function PurchaseForm({ next }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    productapi.get(purchase.url())
     const u = user.setPurchases(user.purchases().addPurchase(purchase))
     setUser(u);
     setPurchase(purchase.clear());

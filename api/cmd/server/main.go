@@ -1,16 +1,19 @@
 package main
 
 import (
-	"cloud.google.com/go/datastore"
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
-	"github.com/kelseyhightower/envconfig"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"time"
+
+	"cloud.google.com/go/datastore"
+	"github.com/PuerkitoBio/goquery"
+	"github.com/gorilla/mux"
+	"github.com/kelseyhightower/envconfig"
 )
 
 type config struct {
@@ -93,6 +96,61 @@ func main() {
 		}
 	}).Methods(http.MethodGet, http.MethodOptions)
 
+	r.HandleFunc("/products", func(w http.ResponseWriter, r *http.Request) {
+		url, err := url.QueryUnescape(r.URL.Query().Get("url"))
+		if err != nil {
+			log.Printf("Error unescaping query: %s", err)
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
+		req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+		if err != nil {
+			log.Printf("Error creating request: %s", err)
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
+		req.Header.Add("user-agent", "Mozilla/5.0 (X11; CrOS x86_64 13421.89.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36")
+
+		c := http.Client{}
+		res, err := c.Do(req)
+		if err != nil {
+			log.Printf("Error during GET %s: %s", url, err)
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+		defer res.Body.Close()
+
+		doc, err := goquery.NewDocumentFromReader(res.Body)
+		if err != nil {
+			log.Printf("Error parsing document: %s", err)
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
+		doc.Find(`script[type="application/ld+json"]`).Each(func(i int, s *goquery.Selection) {
+			var schemas []SchemaOrg
+
+			if err := json.Unmarshal([]byte(s.Text()), &schemas); err != nil {
+				log.Printf("Found invalid SchemaOrg JSON/LD: %s", err)
+				return
+			}
+
+			for _, s := range schemas {
+				if s.Type == "Product" {
+					if err := json.NewEncoder(w).Encode(s); err != nil {
+						log.Printf("Error encoding schema to response: %s", err)
+						w.WriteHeader(http.StatusInternalServerError)
+						return
+					}
+					return
+				}
+			}
+
+		})
+	}).Methods(http.MethodGet, http.MethodOptions)
+
 	http.Handle("/", r)
 	log.Printf("Listening on port %d", c.PORT)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", c.PORT), nil))
@@ -112,5 +170,17 @@ type (
 		Name  string `json:"name"`
 		Price int64  `json:"price"`
 		URL   string `json:"url"`
+	}
+
+	SchemaOrg struct {
+		Context     string `json:"@context"`
+		Type        string `json:"@type"`
+		Description string `json:"description"`
+		Image       string `json:"image"`
+		Name        string `json:"name"`
+		Offers      struct {
+			Price         float64 `json:"price"`
+			PriceCurrency string  `json:"priceCurrency"`
+		} `json:"offers"`
 	}
 )
