@@ -17,6 +17,7 @@ import (
 
 // S is a service.
 type S struct {
+	Config    config.C
 	Router    *mux.Router
 	datastore datastore.Client
 }
@@ -27,8 +28,16 @@ func (s S) Close() {
 }
 
 // New creates a service.
-func New(ctx context.Context, c config.C) (S, error) {
+func New() (S, error) {
 	var s S
+
+	ctx := context.Background()
+
+	c, err := config.New()
+	if err != nil {
+		return s, err
+	}
+	s.Config = c
 
 	ds, err := datastore.New(ctx, c.GoogleCloudProject)
 	if err != nil {

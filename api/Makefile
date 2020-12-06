@@ -2,6 +2,9 @@ export PORT=8080
 export DATASTORE_EMULATOR_HOST=localhost:8081
 export GOOGLE_CLOUD_PROJECT=purchase-saving-planner
 
+test:
+	@go test -race ./...;
+
 dev-watch:
 	@rerun "$(MAKE) dev";
 

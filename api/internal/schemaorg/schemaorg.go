@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/url"
+	"strconv"
+	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	planner "github.com/justindfuller/purchase-saving-planner/api"
@@ -22,24 +24,45 @@ type (
 	// context is one of many schema contexts that a website can have.
 	// TODO: Change to contextContext
 	context struct {
-		Context     string `json:"@context"`
-		Type        string `json:"@type"`
-		Description string `json:"description"`
-		Image       string `json:"image"`
-		Name        string `json:"name"`
+		Context     string      `json:"@context"`
+		Type        string      `json:"@type"`
+		Description string      `json:"description"`
+		Image       interface{} `json:"image"`
+		Name        string      `json:"name"`
+		URL         string      `json:"url"`
 		Offers      struct {
-			Price         float64 `json:"price"`
-			PriceCurrency string  `json:"priceCurrency"`
+			Price         interface{} `json:"price"`
+			PriceCurrency string      `json:"priceCurrency"`
 		} `json:"offers"`
 	}
 )
 
 func (c context) ToProduct() planner.Product {
+	var price int64
+	switch p := c.Offers.Price.(type) {
+	case string:
+		price, _ = strconv.ParseInt(p, 10, 64)
+	}
+
+	var image string
+	switch i := c.Image.(type) {
+	case string:
+		image = i
+	case []interface{}:
+		for _, i := range i {
+			if i, ok := i.(string); ok {
+				image = i
+				break
+			}
+		}
+	}
+
 	return planner.Product{
-		Name:        c.Name,
-		Description: c.Description,
-		Price:       int64(c.Offers.Price),
-		Image:       c.Image,
+		Name:        strings.TrimSpace(c.Name),
+		Description: strings.TrimSpace(c.Description),
+		Price:       price,
+		Image:       image,
+		URL:         c.URL,
 	}
 }
 
