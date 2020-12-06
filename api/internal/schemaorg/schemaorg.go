@@ -31,8 +31,8 @@ type (
 		Name        string      `json:"name"`
 		URL         string      `json:"url"`
 		Offers      struct {
-			Price         interface{} `json:"price"`
-			PriceCurrency string      `json:"priceCurrency"`
+			Price interface{} `json:"price"`
+			URL   string      `json:"url"`
 		} `json:"offers"`
 	}
 )
@@ -42,6 +42,8 @@ func (c context) ToProduct() planner.Product {
 	switch p := c.Offers.Price.(type) {
 	case string:
 		price, _ = strconv.ParseInt(p, 10, 64)
+	case float64:
+		price = int64(p)
 	}
 
 	var image string
@@ -57,12 +59,17 @@ func (c context) ToProduct() planner.Product {
 		}
 	}
 
+	url := c.URL
+	if url == "" {
+		url = c.Offers.URL
+	}
+
 	return planner.Product{
 		Name:        strings.TrimSpace(c.Name),
 		Description: strings.TrimSpace(c.Description),
 		Price:       price,
 		Image:       image,
-		URL:         c.URL,
+		URL:         url,
 	}
 }
 

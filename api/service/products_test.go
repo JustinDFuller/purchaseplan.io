@@ -29,6 +29,16 @@ func TestService(t *testing.T) {
 				Image:       "https://www.ikea.com/us/en/images/products/kolbjoern-cabinet-indoor-outdoor-green__0762731_PE752182_S5.JPG",
 			},
 		},
+		{
+			url: "https://www.lowes.com/pd/Char-Broil-Performance-62-in-Black-Fits-Most-Cover/1000115081",
+			product: planner.Product{
+				Name:        `Char-Broil Performance 62-in Black Fits Most Cover`,
+				Description: `Performance 62-in Black Fits Most Cover`,
+				Price:       34,
+				Image:       "//mobileimages.lowes.com/product/converted/047362/047362763273.jpg",
+				URL:         "https://www.lowes.com/pd/Char-Broil-Performance-62-in-Black-Fits-Most-Cover/1000115081",
+			},
+		},
 	}
 
 	s, err := New()
