@@ -39,6 +39,9 @@ type (
 
 func (c context) ToProduct() planner.Product {
 	var price int64
+
+	log.Printf("Price type %T", c.Offers.Price)
+
 	switch p := c.Offers.Price.(type) {
 	case string:
 		price, _ = strconv.ParseInt(p, 10, 64)

@@ -1,7 +1,7 @@
 import React from "react";
 
 import * as availabilities from './availabilities';
-import * as purchases from './purchases';``
+import * as purchases from './purchases';
 
 const defaults = {
   email: "",

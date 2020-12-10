@@ -1,47 +1,68 @@
-const purchaseDefaults = {
+const productDefaults = {
   name: "",
   price: 0,
   url: "",
-  availability: null // calculated at display time
-};
+  description: "",
+  image: "",
+}
 
-export function Purchase(data = purchaseDefaults) {
+function Product(data = productDefaults) {
   return {
-    name() {
-      return data.name;
-    },
-    price() {
-      return data.price;
-    },
-    url() {
-      return data.url;
-    },
-    availability() {
-      return data.availability;
-    },
+    data, 
     setName(name) {
-      return Purchase({
+      return Product({
         ...data,
         name
       });
     },
     setPrice(price) {
-      return Purchase({
+      return Product({
         ...data,
         price: Number(price)
       });
     },
     setUrl(url) {
-      return Purchase({
+      return Product({
         ...data,
         url
       });
     },
-    setAvailability(availability) {
+    setDescription(description) {
+      return Product({
+        ...data,
+        description
+      })
+    },
+    setImage(image) {
+      return Product({
+        ...data,
+        image
+      })
+    },
+    toJSON() {
+      return data
+    },
+  }
+}
+const purchaseDefaults = {
+  date: null, // calculated at display time
+  product: Product(),
+};
+
+export function Purchase(data = purchaseDefaults) {
+  return {
+    data,
+    setDate(date) {
       return Purchase({
         ...data,
-        availability
+        date
       });
+    },
+    setProduct(product) {
+      return Purchase({
+        ...data,
+        product
+      })
     },
     clear() {
       return Purchase();
@@ -50,7 +71,7 @@ export function Purchase(data = purchaseDefaults) {
       return data !== purchaseDefaults;
     },
     is(purchase) {
-      return purchase.name() === data.name; // switch to ID later
+      return purchase.product.name() === data.product.name; // switch to ID later
     },
     toJSON() {
       return data

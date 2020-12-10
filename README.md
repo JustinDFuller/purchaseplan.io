@@ -34,3 +34,12 @@ When it's time for you to be able to make a purchase the app will let you know!
   <img src="/docs/purchasesavingplannerdesignd-page-005.jpg" width=400 />
   <img src="/docs/purchasesavingplannerdesignd-page-006.jpg" width=400 />
 </div>
+
+## Usage
+
+To start the frontend and backend.
+
+```
+make run
+```
+
