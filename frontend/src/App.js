@@ -6,6 +6,7 @@ import { SavedForm } from "./components/forms/Saved";
 import { FrequencyForm } from "./components/forms/Frequency";
 import { ContributionsForm } from "./components/forms/Contributions";
 import { PurchaseForm } from "./components/forms/Purchase";
+import { ProductForm } from "./components/forms/Product";
 import { UserInfo } from "./components/user/Info";
 import { PurchaseList } from "./components/purchase/List";
 import { Stepper } from "./components/forms/Stepper";
@@ -17,17 +18,19 @@ export default function App() {
 
   return (
     <User.Context.Provider value={{ user, setUser }}>
-      <Header />
-      <Stepper>
-        <EmailForm />
-        <SavedForm />
-        <FrequencyForm />
-        <ContributionsForm />
-        <PurchaseForm />
-        <PurchaseList />
-      </Stepper>
-      <UserInfo />
+      <div className="container">
+        <Header />
+        <Stepper>
+          <EmailForm />
+          <SavedForm />
+          <FrequencyForm />
+          <ContributionsForm />
+          <ProductForm />
+          <PurchaseForm />
+          <PurchaseList />
+        </Stepper>
+        <UserInfo />
+      </div>
     </User.Context.Provider>
   );
 }
-

@@ -2,9 +2,9 @@
 /* called by your view template */
 
 :root {
-  --primary-color: #FFDE03;
-  --secondary-color: #0336FF;
-  --alternate-color: #FF0266;
+  --primary-color: #ffde03;
+  --secondary-color: #0336ff;
+  --alternate-color: #ff0266;
 }
 
 * {
@@ -21,13 +21,18 @@ body {
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
 .hidden {
   display: none;
 }
 
 .card {
   background: #fff;
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 1rem;
   border: 1px solid lightgrey;
   width: 100%;
@@ -56,4 +61,5 @@ button {
 
 p {
   display: inline-block;
+  margin: 0;
 }

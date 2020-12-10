@@ -1,7 +1,7 @@
 import React from "react";
 
-import * as availabilities from './availabilities';
-import * as purchases from './purchases';
+import * as availabilities from "./availabilities";
+import * as purchases from "./purchases";
 
 const defaults = {
   email: "",
@@ -9,7 +9,7 @@ const defaults = {
   frequency: "",
   contributions: 0,
   lastPaycheck: null,
-  purchases: purchases.New()
+  purchases: purchases.New(),
 };
 
 export function New(data = defaults) {
@@ -19,11 +19,11 @@ export function New(data = defaults) {
         ...defaults,
         ...user,
         lastPaycheck: user.lastPaycheck ? new Date(user.lastPaycheck) : null,
-        purchases: data.purchases.from(user.purchases)
-      })
+        purchases: data.purchases.from(user.purchases),
+      });
     },
     toJSON() {
-      return data
+      return data;
     },
     frequency() {
       return data.frequency;
@@ -31,7 +31,7 @@ export function New(data = defaults) {
     setFrequency(frequency) {
       return New({
         ...data,
-        frequency
+        frequency,
       });
     },
     saved() {
@@ -40,7 +40,7 @@ export function New(data = defaults) {
     setSaved(saved) {
       return New({
         ...data,
-        saved: Number(saved)
+        saved: Number(saved),
       });
     },
     email() {
@@ -49,7 +49,7 @@ export function New(data = defaults) {
     setEmail(email) {
       return New({
         ...data,
-        email
+        email,
       });
     },
     contributions() {
@@ -58,7 +58,7 @@ export function New(data = defaults) {
     setContributions(contributions) {
       return New({
         ...data,
-        contributions: Number(contributions)
+        contributions: Number(contributions),
       });
     },
     lastPaycheck() {
@@ -67,25 +67,25 @@ export function New(data = defaults) {
     setLastPaycheck(lastPaycheck) {
       return New({
         ...data,
-        lastPaycheck: new Date(lastPaycheck)
+        lastPaycheck: new Date(lastPaycheck),
       });
     },
     availabilityCalculator() {
-      return availabilities.get(data)
+      return availabilities.get(data);
     },
     purchases() {
-      return data.purchases
+      return data.purchases;
     },
     setPurchases(purchases) {
       return New({
         ...data,
-        purchases
-      })
-    }
+        purchases,
+      });
+    },
   };
 }
 
 export const Context = React.createContext({
   user: null,
-  setUser: null
+  setUser: null,
 });

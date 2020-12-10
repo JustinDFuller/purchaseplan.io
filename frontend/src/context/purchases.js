@@ -4,45 +4,45 @@ const productDefaults = {
   url: "",
   description: "",
   image: "",
-}
+};
 
 function Product(data = productDefaults) {
   return {
-    data, 
+    data,
     setName(name) {
       return Product({
         ...data,
-        name
+        name,
       });
     },
     setPrice(price) {
       return Product({
         ...data,
-        price: Number(price)
+        price: Number(price),
       });
     },
     setUrl(url) {
       return Product({
         ...data,
-        url
+        url,
       });
     },
     setDescription(description) {
       return Product({
         ...data,
-        description
-      })
+        description,
+      });
     },
     setImage(image) {
       return Product({
         ...data,
-        image
-      })
+        image,
+      });
     },
     toJSON() {
-      return data
+      return data;
     },
-  }
+  };
 }
 const purchaseDefaults = {
   date: null, // calculated at display time
@@ -55,14 +55,14 @@ export function Purchase(data = purchaseDefaults) {
     setDate(date) {
       return Purchase({
         ...data,
-        date
+        date,
       });
     },
     setProduct(product) {
       return Purchase({
         ...data,
-        product
-      })
+        product,
+      });
     },
     clear() {
       return Purchase();
@@ -74,13 +74,13 @@ export function Purchase(data = purchaseDefaults) {
       return purchase.product.name() === data.product.name; // switch to ID later
     },
     toJSON() {
-      return data
-    }
+      return data;
+    },
   };
 }
 
 const defaults = {
-  purchases: []
+  purchases: [],
 };
 
 export function New(data = defaults) {
@@ -90,32 +90,32 @@ export function New(data = defaults) {
     },
     addPurchase(purchase) {
       return New({
-        purchases: [...data.purchases, purchase]
+        purchases: [...data.purchases, purchase],
       });
     },
     hasAtLeastOne() {
       return data.purchases.length >= 1;
     },
     up(purchase) {
-      const i = data.purchases.findIndex(p => p.is(purchase));
+      const i = data.purchases.findIndex((p) => p.is(purchase));
       const a = data.purchases[i];
       const b = data.purchases[i - 1];
       const purchases = data.purchases.slice();
       purchases[i - 1] = a;
       purchases[i] = b;
       return New({
-        purchases
+        purchases,
       });
     },
     down(purchase) {
-      const i = data.purchases.findIndex(p => p.is(purchase));
+      const i = data.purchases.findIndex((p) => p.is(purchase));
       const a = data.purchases[i];
       const b = data.purchases[i + 1];
       const purchases = data.purchases.slice();
       purchases[i + 1] = a;
       purchases[i] = b;
       return New({
-        purchases
+        purchases,
       });
     },
     isNotFirst(p) {
@@ -125,16 +125,17 @@ export function New(data = defaults) {
       return !p.is(data.purchases[data.purchases.length - 1]);
     },
     withAvailability(frequency) {
-      return data.purchases.map((p, i, purchases) => p.setAvailability(frequency.calculate(p, purchases)));
+      return data.purchases.map((p, i, purchases) =>
+        p.setAvailability(frequency.calculate(p, purchases))
+      );
     },
     toJSON() {
-      return data.purchases
+      return data.purchases;
     },
     from(purchases) {
       return New({
-        purchases: purchases.map(Purchase)
-      })
-    }
+        purchases: purchases?.map(Purchase),
+      });
+    },
   };
 }
-

@@ -1,12 +1,14 @@
 export async function put(user) {
-  const res = await fetch('http://localhost:8080/users', {
-    method: 'PUT',
+  const res = await fetch("http://localhost:8080/users", {
+    method: "PUT",
     body: JSON.stringify(user),
-  }).then(r => r.json())
+  }).then((r) => r.json());
 
-  return res
+  return res;
 }
 
 export async function get(user) {
-  return fetch(`http://localhost:8080/users/${user.email()}`).then(r => r.json())
+  return fetch(`http://localhost:8080/users/${user.email()}`).then((r) =>
+    r.json()
+  );
 }

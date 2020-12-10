@@ -1,6 +1,6 @@
 const types = {
   "": nullFrequency,
-  "Every 2 Weeks": every2Weeks
+  "Every 2 Weeks": every2Weeks,
 };
 
 export function get(user) {
@@ -9,8 +9,8 @@ export function get(user) {
 
 function nullFrequency() {
   return {
-    calculate() {}
-  }
+    calculate() {},
+  };
 }
 
 function every2Weeks({ lastPaycheck, saved, contributions }) {
@@ -38,6 +38,6 @@ function every2Weeks({ lastPaycheck, saved, contributions }) {
       }
 
       return date.toLocaleDateString("en-US");
-    }
+    },
   };
 }

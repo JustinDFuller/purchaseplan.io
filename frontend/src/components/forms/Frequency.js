@@ -8,27 +8,30 @@ export function FrequencyForm({ next }) {
   const [init, setInit] = useState(false);
 
   async function handleSubmit(e) {
-    e.preventDefault()
-    await userapi.put(user)
-    next(e)
+    e.preventDefault();
+    await userapi.put(user);
+    next(e);
   }
 
-  useEffect(function() {
-    if (!init && user.frequency() !== "") {
-      next()
-    }
-    setInit(true)
-  }, [init, user, next])
+  useEffect(
+    function () {
+      if (!init && user.frequency() !== "") {
+        next();
+      }
+      setInit(true);
+    },
+    [init, user, next]
+  );
 
   return (
-    <form id="frequency-form" class="card" onSubmit={handleSubmit}>
+    <form id="frequency-form" className="card" onSubmit={handleSubmit}>
       <label>How often do you save?</label>
       <select
         name="frequency"
         value={user.frequency()}
-        onChange={e => setUser(user.setFrequency(e.target.value))}
+        onChange={(e) => setUser(user.setFrequency(e.target.value))}
       >
-        <option selected disabled value="">
+        <option disabled value="">
           Choose A Frequency
         </option>
         <option>Weekly</option>
@@ -41,8 +44,16 @@ export function FrequencyForm({ next }) {
       <input
         type="date"
         name="lastPaycheck"
-        value={user.lastPaycheck()}
-        onChange={e => console.log(e.target.value) || setUser(user.setLastPaycheck(e.target.value))}
+        value={
+          user.lastPaycheck()
+            ? `${user
+                .lastPaycheck()
+                .getFullYear()}-${user.lastPaycheck().getMonth()}-${(
+                "0" + user.lastPaycheck().getDate()
+              ).slice(-2)}`
+            : ""
+        }
+        onChange={(e) => setUser(user.setLastPaycheck(e.target.value))}
       />
       <button type="submit">Next</button>
     </form>
