@@ -63,3 +63,11 @@ p {
   display: inline-block;
   margin: 0;
 }
+
+.form-group {
+  margin-top: 0.5rem;
+}
+
+.form-group label {
+  font-weight: bold;
+}

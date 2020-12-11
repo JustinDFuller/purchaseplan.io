@@ -18,17 +18,17 @@ type (
 	// Purchase is something a User wants to buy.
 	// TODO: Link it more appropriately with Product.
 	Purchase struct {
-		Date    *time.Time
-		Product Product
+		Date    *time.Time `json:"date"`
+		Product Product    `json:"product"`
 	}
 
 	// Product contains information about the thing a User wants to buy.
 	Product struct {
-		Name        string
-		Description string
-		Price       int64
-		URL         string
-		Image       string
+		Name        string `json:"name"`
+		Description string `json:"description"`
+		Price       int64  `json:"price"`
+		URL         string `json:"url"`
+		Image       string `json:"image"`
 	}
 )
 
