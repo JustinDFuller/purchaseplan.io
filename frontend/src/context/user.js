@@ -1,5 +1,6 @@
 import React from "react";
 
+import { getterSetters } from './getterSetters';
 import * as availabilities from "./availabilities";
 import * as Purchases from './purchases';
 
@@ -14,6 +15,7 @@ const defaults = {
 
 export function New(data = defaults) {
   return {
+    ...getterSetters(data, New),
     from(user) {
       return New({
         ...defaults,
@@ -22,47 +24,12 @@ export function New(data = defaults) {
         purchases: data.purchases.from(user.purchases),
       });
     },
-    toJSON() {
-      return data;
-    },
-    frequency() {
-      return data.frequency;
-    },
     setFrequency(frequency) {
       return New({
         ...data,
         frequency,
+        purchases: data.purchases.setFrequency(frequency),
       });
-    },
-    saved() {
-      return data.saved;
-    },
-    setSaved(saved) {
-      return New({
-        ...data,
-        saved: Number(saved),
-      });
-    },
-    email() {
-      return data.email;
-    },
-    setEmail(email) {
-      return New({
-        ...data,
-        email,
-      });
-    },
-    contributions() {
-      return data.contributions;
-    },
-    setContributions(contributions) {
-      return New({
-        ...data,
-        contributions: Number(contributions),
-      });
-    },
-    lastPaycheck() {
-      return data.lastPaycheck;
     },
     setLastPaycheck(lastPaycheck) {
       return New({
@@ -72,9 +39,6 @@ export function New(data = defaults) {
     },
     availabilityCalculator() {
       return availabilities.get(data);
-    },
-    purchases() {
-      return data.purchases;
     },
     addPurchase(purchase) {
       return New({

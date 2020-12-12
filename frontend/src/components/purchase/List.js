@@ -6,11 +6,11 @@ import * as userapi from "../../api/user";
 export function PurchaseList() {
   const { user, setUser } = useContext(User.Context);
 
+  console.log(user)
+
   return (
     <div id="purchase-container">
-        {user
-          .purchases()
-          .withAvailability(user.availabilityCalculator())
+        {user.purchases()
           .map((purchase) => (
             <div className="card">
                 <div style={{ width: "20%", display: "inline-block" }}>

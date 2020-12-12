@@ -1,3 +1,5 @@
+import { getterSetters } from './getterSetters';
+
 const purchaseDefaults = {
   date: null, // calculated at display time
   product: null,
@@ -5,19 +7,7 @@ const purchaseDefaults = {
 
 export function Purchase(data = purchaseDefaults) {
   return {
-    data,
-    setDate(date) {
-      return Purchase({
-        ...data,
-        date,
-      });
-    },
-    setProduct(product) {
-      return Purchase({
-        ...data,
-        product,
-      });
-    },
+    ...getterSetters(data, Purchase),
     clear() {
       return Purchase();
     },
@@ -26,9 +16,6 @@ export function Purchase(data = purchaseDefaults) {
     },
     is(purchase) {
       return purchase.data.product.name === data.product.name; // switch to ID later
-    },
-    toJSON() {
-      return data;
     },
   };
 }
@@ -39,8 +26,9 @@ const defaults = {
 
 export function New(data = defaults) {
   return {
-    purchases() {
-      return data.purchases;
+    ...getterSetters(data, New),
+    map(...args) {
+      return data.purchases.map(...args);
     },
     addPurchase(purchase) {
       return New({
@@ -90,6 +78,6 @@ export function New(data = defaults) {
       return New({
         purchases: purchases?.map(Purchase) || [],
       })
-    }
+    },
   };
 }
