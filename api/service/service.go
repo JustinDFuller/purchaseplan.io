@@ -13,6 +13,7 @@ import (
 	"github.com/justindfuller/purchase-saving-planner/api/internal/config"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/datastore"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/schemaorg"
+	"github.com/justindfuller/purchase-saving-planner/api/internal/storage"
 )
 
 // S is a service.
@@ -20,6 +21,7 @@ type S struct {
 	Config    config.C
 	Router    *mux.Router
 	datastore datastore.Client
+	storage   storage.Client
 }
 
 // Close will run any cleanup needed for a service to close.
@@ -44,6 +46,12 @@ func New() (S, error) {
 		return s, err
 	}
 	s.datastore = ds
+
+	st, err := storage.New(ctx, c.GoogleCloudProject)
+	if err != nil {
+		return s, err
+	}
+	s.storage = st
 
 	r := mux.NewRouter()
 	r.Use(mux.CORSMethodMiddleware(r))
@@ -142,9 +150,15 @@ func New() (S, error) {
 		p, err := schemaorg.ParseHTML(u, b)
 		if err != nil {
 			log.Printf("Error finding product from html: %s", err)
-			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
+
+		hash, err := st.PutImage(r.Context(), p.Image)
+		if err != nil {
+			log.Printf("Unable to save image: %s", err)
+		}
+		p.OriginalImage = p.Image
+		p.Image = hash
 
 		json.NewEncoder(w).Encode(p)
 	}).Methods(http.MethodGet, http.MethodOptions)

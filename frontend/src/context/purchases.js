@@ -1,8 +1,6 @@
-import { Product } from './product';
-
 const purchaseDefaults = {
   date: null, // calculated at display time
-  product: Product(),
+  product: null,
 };
 
 export function Purchase(data = purchaseDefaults) {
@@ -27,7 +25,7 @@ export function Purchase(data = purchaseDefaults) {
       return data !== purchaseDefaults;
     },
     is(purchase) {
-      return purchase.product.name() === data.product.name; // switch to ID later
+      return purchase.data.product.name === data.product.name; // switch to ID later
     },
     toJSON() {
       return data;
@@ -81,8 +79,8 @@ export function New(data = defaults) {
       return !p.is(data.purchases[data.purchases.length - 1]);
     },
     withAvailability(frequency) {
-      return data.purchases.map((p, i, purchases) =>
-        p.setAvailability(frequency.calculate(p, purchases))
+      return data.purchases?.map((p, i, purchases) =>
+        p.setDate(frequency.calculate(p, purchases))
       );
     },
     toJSON() {
@@ -90,8 +88,8 @@ export function New(data = defaults) {
     },
     from(purchases) {
       return New({
-        purchases: purchases?.map(Purchase),
-      });
-    },
+        purchases: purchases?.map(Purchase) || [],
+      })
+    }
   };
 }

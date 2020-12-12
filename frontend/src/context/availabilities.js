@@ -21,7 +21,7 @@ function every2Weeks({ lastPaycheck, saved, contributions }) {
     calculate(purchase, purchases) {
       let total = 0;
       for (let i = 0; i < purchases.length; i++) {
-        total += purchases[i].price();
+        total += purchases[i].data.product.price;
 
         if (purchases[i].is(purchase)) {
           break;

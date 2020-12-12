@@ -4,6 +4,7 @@ go 1.15
 
 require (
 	cloud.google.com/go/datastore v1.3.0
+	cloud.google.com/go/storage v1.10.0
 	github.com/PuerkitoBio/goquery v1.6.0
 	github.com/gorilla/mux v1.8.0
 	github.com/kelseyhightower/envconfig v1.4.0

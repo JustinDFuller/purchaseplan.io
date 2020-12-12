@@ -1,6 +1,7 @@
 export PORT=8080
 export DATASTORE_EMULATOR_HOST=localhost:8081
 export GOOGLE_CLOUD_PROJECT=purchase-saving-planner
+export GOOGLE_APPLICATION_CREDENTIALS=$(HOME)/.config/gcloud/application_default_credentials.json
 
 test:
 	@go test -race ./...;
@@ -26,3 +27,5 @@ install:
 	@gcloud components install cloud-datastore-emulator;
 	@sudo apt update;
 	@sudo apt install default-jre;
+	@gcloud auth application-default login;
+	@config/gcloud/application_default_credentials.jsono

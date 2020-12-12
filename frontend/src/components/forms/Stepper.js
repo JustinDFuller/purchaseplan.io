@@ -14,5 +14,13 @@ export function Stepper({ children, start = 0 }) {
     setStep(step + 1);
   }
 
-  return React.cloneElement(children[step], { next });
+  function previous(e) {
+    if (e) {
+      e.preventDefault();
+    }
+
+    setStep(step - 1);
+  }
+
+  return React.cloneElement(children[step], { next, previous });
 }

@@ -8,60 +8,57 @@ export function PurchaseList() {
 
   return (
     <div id="purchase-container">
-      <strong>Purchases</strong>
-      <ul id="purchases">
         {user
           .purchases()
           .withAvailability(user.availabilityCalculator())
-          .map((p) => (
-            <li className="card" key={p.name()}>
-              <div>
-                <strong>Name: </strong>
-                <span className="name">{p.name()}</span>
-              </div>
-              <div>
-                <strong>Price: </strong>
-                <span className="price">{p.price()}</span>
-              </div>
-              <div>
-                <strong>URL: </strong>
-                <a className="url" href={p.url()}>
-                  {p.url()}
-                </a>
-              </div>
-              <div>
-                <strong>Available On: </strong>
-                <span className="availablity">{p.availability()}</span>
-              </div>
-              <div className="order-buttons">
-                {user.purchases().isNotFirst(p) && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const u = user.setPurchases(user.purchases().up(p));
-                      setUser(u);
-                      userapi.put(u);
-                    }}
-                  >
-                    Buy Sooner
-                  </button>
-                )}
-                {user.purchases().isNotLast(p) && (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const u = user.setPurchases(user.purchases().down(p));
-                      setUser(u);
-                      userapi.put(u);
-                    }}
-                  >
-                    Buy Later
-                  </button>
-                )}
-              </div>
-            </li>
+          .map((purchase) => (
+            <div className="card">
+                <div style={{ width: "20%", display: "inline-block" }}>
+                  <img src={purchase.data.product.image} alt={purchase.data.product.description} style={{ width: "90%", height: "auto" }}/>
+                </div>
+                <div style={{ width: "80%", display: "inline-block" }}>
+                  <a href={purchase.data.product.url}>
+                    <h3>
+                        {purchase.data.product.name}
+                    </h3>
+                  </a>
+                  <p className="form-group">
+                    <strong style={{ marginRight: 3 }}>${purchase.data.product.price}</strong>
+                    {purchase.data.product.description}
+                  </p>
+                  <div style={{ marginTop: 10 }}>
+                    <strong style={{ marginRight: 3 }}>Available</strong>
+                    <span className="availablity">{purchase.data.date}</span>
+                  </div>
+                </div>
+                <div className="order-buttons">
+                  {user.purchases().isNotFirst(purchase) && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const u = user.setPurchases(user.purchases().up(purchase));
+                        setUser(u);
+                        userapi.put(u);
+                      }}
+                    >
+                      Buy Sooner
+                    </button>
+                  )}
+                  {user.purchases().isNotLast(purchase) && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const u = user.setPurchases(user.purchases().down(purchase));
+                        setUser(u);
+                        userapi.put(u);
+                      }}
+                    >
+                      Buy Later
+                    </button>
+                  )}
+                </div>
+            </div>
           ))}
-      </ul>
     </div>
   );
 }

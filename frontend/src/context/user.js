@@ -1,7 +1,7 @@
 import React from "react";
 
 import * as availabilities from "./availabilities";
-import * as purchases from "./purchases";
+import * as Purchases from './purchases';
 
 const defaults = {
   email: "",
@@ -9,7 +9,7 @@ const defaults = {
   frequency: "",
   contributions: 0,
   lastPaycheck: null,
-  purchases: purchases.New(),
+  purchases: Purchases.New(),
 };
 
 export function New(data = defaults) {
@@ -76,10 +76,10 @@ export function New(data = defaults) {
     purchases() {
       return data.purchases;
     },
-    setPurchases(purchases) {
+    addPurchase(purchase) {
       return New({
         ...data,
-        purchases,
+        purchases: data.purchases.addPurchase(purchase),
       });
     },
   };

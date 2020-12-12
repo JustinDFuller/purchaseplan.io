@@ -5,13 +5,11 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
-	"net/url"
 	"strconv"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	planner "github.com/justindfuller/purchase-saving-planner/api"
-	"github.com/namsral/microdata"
 )
 
 type (
@@ -111,22 +109,6 @@ func ParseHTML(URL string, b []byte) (planner.Product, error) {
 			}
 		}
 	})
-
-	parsedURL, err := url.Parse(URL)
-	if err != nil {
-		return p, err
-	}
-
-	data, err := microdata.ParseHTML(ioutil.NopCloser(bytes.NewBuffer(b)), "", parsedURL)
-	if err != nil {
-		return p, err
-	}
-
-	for _, i := range data.Items {
-		if isProduct(i.Types) {
-			log.Printf("Convert to product? %s", i)
-		}
-	}
 
 	return p, nil
 }
