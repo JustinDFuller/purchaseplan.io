@@ -1,8 +1,8 @@
 import React from "react";
 
-import { getterSetters } from './getterSetters';
+import { getterSetters } from "./getterSetters";
 import * as availabilities from "./availabilities";
-import * as Purchases from './purchases';
+import * as Purchases from "./purchases";
 
 const defaults = {
   email: "",

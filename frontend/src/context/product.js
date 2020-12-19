@@ -1,4 +1,4 @@
-import { getterSetters } from './getterSetters';
+import { getterSetters } from "./getterSetters";
 
 const productDefaults = {
   name: "",

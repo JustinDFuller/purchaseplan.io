@@ -6,7 +6,7 @@ import { ProductForm } from "./forms/Product";
 import { UserInfo } from "./user/Info";
 import { PurchaseList } from "./purchase/List";
 
-export function Dashboard({ }) {
+export function Dashboard({}) {
   return (
     <>
       <UserInfo />
@@ -16,5 +16,5 @@ export function Dashboard({ }) {
       <ProductForm />
       <PurchaseList />
     </>
-  )
+  );
 }

@@ -10,31 +10,33 @@ export function getterSetters(data, constructor) {
     toJSON() {
       return data;
     },
-  }
+  };
 
   // ex: name
   for (const key in data) {
     // ex: "Jusin Fuller"
-    const val = data[key]
+    const val = data[key];
 
     // name() === "Justin Fuller"
-    obj[key] = function() {
-      return val
-    }
+    obj[key] = function () {
+      return val;
+    };
 
     // setName("Luke Skywalker") === User { name: "Luke Skywalker" }
-    obj[`set${key.charAt(0).toUpperCase() + key.slice(1)}`] = function(newVal) {
+    obj[`set${key.charAt(0).toUpperCase() + key.slice(1)}`] = function (
+      newVal
+    ) {
       // Keep numbers as a number
       if (typeof val === "number") {
-        newVal = Number(newVal)
+        newVal = Number(newVal);
       }
 
       return constructor({
         ...data,
         [key]: newVal,
-      })
-    }
+      });
+    };
   }
 
-  return Object.freeze(obj)
+  return Object.freeze(obj);
 }

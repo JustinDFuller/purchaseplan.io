@@ -1,12 +1,12 @@
 const styles = {
   nav: {
-    background: '#fff',
-    padding: '5px 20px'
+    background: "#fff",
+    padding: "5px 20px",
   },
   img: {
-    height: '30px',
-  }
-}
+    height: "30px",
+  },
+};
 
 export function Header() {
   return (

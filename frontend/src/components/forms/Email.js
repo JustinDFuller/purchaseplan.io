@@ -6,12 +6,7 @@ import * as userapi from "../../api/user";
 export function EmailForm({ next }) {
   const { user, setUser } = useContext(User.Context);
 
-  async function onSuccess(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  async function onSuccess() {
     /*
      e.preventDefault();
 
@@ -32,8 +27,6 @@ export function EmailForm({ next }) {
   return (
     <div className="card">
       <div className="card-body">
-        <div className="g-signin2" data-onsuccess={onSuccess}></div>
-
         <form>
           <label>What's Your Email Address?</label>
           <input

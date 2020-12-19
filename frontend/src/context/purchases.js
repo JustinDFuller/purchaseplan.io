@@ -1,4 +1,4 @@
-import { getterSetters } from './getterSetters';
+import { getterSetters } from "./getterSetters";
 
 const purchaseDefaults = {
   date: null, // calculated at display time
@@ -77,7 +77,7 @@ export function New(data = defaults) {
     from(purchases) {
       return New({
         purchases: purchases?.map(Purchase) || [],
-      })
+      });
     },
   };
 }
