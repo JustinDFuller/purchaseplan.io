@@ -3,6 +3,9 @@ export DATASTORE_EMULATOR_HOST=localhost:8081
 export GOOGLE_CLOUD_PROJECT=purchase-saving-planner
 export GOOGLE_APPLICATION_CREDENTIALS=$(HOME)/.config/gcloud/application_default_credentials.json
 
+build:
+	@go build ./cmd/server/main.go;
+
 test:
 	@go test -race ./...;
 

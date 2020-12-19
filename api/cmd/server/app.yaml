@@ -1,0 +1,16 @@
+runtime: go114
+service: default
+
+handlers:
+- url: /
+  static_files: build/index.html
+  upload: build/index.html
+  secure: always
+
+- url: /static
+  static_dir: build/static
+  secure: always
+
+- url: /.*
+  script: auto
+  secure: always

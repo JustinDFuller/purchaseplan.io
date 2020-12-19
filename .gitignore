@@ -16,3 +16,6 @@
 
 *.swp
 *.eslintcache
+build
+main
+.gcloudignore
