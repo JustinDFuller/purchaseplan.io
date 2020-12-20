@@ -37,7 +37,6 @@ steps:
       dir: api/cmd/server
       app_file: app.yaml
       max_versions: 10
-      service: default
     when:
       event: push
       branch: [main]
