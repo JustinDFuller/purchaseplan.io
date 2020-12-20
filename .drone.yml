@@ -1,0 +1,50 @@
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: test
+    image: golang
+    commands: 
+      - cd api
+      - make install-drone
+      - make test-drone
+    
+  - name: build-backend
+    image: golang
+    commands:
+      - cd api
+      - make build
+    depends_on:
+      - test
+
+  - name: build-frontend
+    image: node
+    commands:
+      - cd frontend
+      - npm ci
+      - npm run build
+      - mkdir ../api/cmd/server/frontend/
+      - cp ./build/ ../api/cmd/server/frontend/
+
+  - name: deploy
+    image: nytimes/drone-gae
+    environment:
+      GAE_CREDENTIALS:
+        from_secret: GAE_CREDENTIALS_DEV
+    settings:
+      action: deploy
+      project: purchase-saving-planner
+      dir: api/cmd/server
+      app_file: app.yaml
+      max_versions: 10
+      service: default
+    when:
+      event: push
+      branch: [main]
+    depends_on:
+      - build-backend
+      - build-frontend

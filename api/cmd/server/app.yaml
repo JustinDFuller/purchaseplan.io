@@ -3,12 +3,12 @@ service: default
 
 handlers:
   - url: /
-    static_files: build/index.html
-    upload: build/index.html
+    static_files: frontend/build/index.html
+    upload: frontend/build/index.html
     secure: always
 
   - url: /static
-    static_dir: build/static
+    static_dir: frontend/build/static
     secure: always
 
   - url: /.*
