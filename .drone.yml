@@ -6,11 +6,18 @@ platform:
   arch: amd64
 
 steps:
-  - name: test
+  - name: init-backend
+    image: nytimes/golang-gcloud-sdk:latest
+    commands:
+      - gcloud auth application-default login 
+
+  - name: test-backend
     image: golang
     commands: 
       - cd api
       - make test
+    depends_on:
+      - init-backend
     
   - name: build-backend
     image: golang
@@ -18,7 +25,7 @@ steps:
       - cd api
       - make build
     depends_on:
-      - test
+      - init-backend
 
   - name: build-frontend
     image: node

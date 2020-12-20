@@ -31,4 +31,4 @@ install:
 	@sudo apt update;
 	@sudo apt install default-jre;
 	@gcloud auth application-default login;
-	@config/gcloud/application_default_credentials.jsono
+	@config/gcloud/application_default_credentials.json;

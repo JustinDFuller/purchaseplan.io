@@ -23,7 +23,7 @@ export default function App() {
       }
     }
     init();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <Auth.Context.Provider value={{ auth, setAuth }}>
