@@ -9,5 +9,5 @@ const productDefaults = {
 };
 
 export function New(data = productDefaults) {
-  return getterSetters(data, Product);
+  return getterSetters(data, New);
 }

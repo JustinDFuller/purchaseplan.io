@@ -10,8 +10,7 @@ steps:
     image: golang
     commands: 
       - cd api
-      - make install-drone
-      - make test-drone
+      - make test
     
   - name: build-backend
     image: golang
