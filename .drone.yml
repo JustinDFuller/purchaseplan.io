@@ -6,28 +6,21 @@ platform:
   arch: amd64
 
 steps:
-  - name: init-backend
+  - name: backend
     image: nytimes/golang-gcloud-sdk:latest
+    environment:
+      GAE_CREDENTIALS_DEV:
+        from_secret: GAE_CREDENTIALS_DEV
+      SERVICE_ACCOUNT_NAME:
+        from_secret: SERVICE_ACCOUNT_NAME
     commands:
-      - gcloud auth application-default login 
-
-  - name: test-backend
-    image: golang
-    commands: 
+      - echo $GAE_CREDENTIALS_DEV > service_account.json
+      - gcloud auth activate-service-account $SERVICE_ACCOUNT_NAME --key-file=service_account.json
       - cd api
       - make test
-    depends_on:
-      - init-backend
-    
-  - name: build-backend
-    image: golang
-    commands:
-      - cd api
       - make build
-    depends_on:
-      - init-backend
 
-  - name: build-frontend
+  - name: frontend
     image: node
     commands:
       - cd frontend
@@ -52,5 +45,5 @@ steps:
       event: push
       branch: [main]
     depends_on:
-      - build-backend
-      - build-frontend
+      - backend
+      - frontend
