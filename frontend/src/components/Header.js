@@ -1,20 +1,21 @@
-const styles = {
-  nav: {
-    background: "#fff",
-    padding: "5px 20px",
-  },
-  img: {
-    height: "30px",
-  },
-};
+import { styles } from "../styles";
 
 export function Header() {
   return (
-    <nav className="navbar navbark-light bg-light">
-      <div className="container">
+    <nav className="navbar navbark-dark mb-3 pt-3" styles={styles.dark}>
+      <div className="container-fluid">
         <a className="navbard-brand" href="/">
-          <img src="/logo.png" alt="logo" style={styles.img} />
+          <img src="/logo.png" alt="logo" style={styles.logo} />
         </a>
+        <div className="d-flex">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <button className="btn btn-link nav-link" style={styles.text}>
+                Log Out
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

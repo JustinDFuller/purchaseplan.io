@@ -1,27 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import * as User from "../../context/user";
 import * as userapi from "../../api/user";
 
 export function SavedForm({ next }) {
   const { user, setUser } = useContext(User.Context);
-  const [init, setInit] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
     await userapi.put(user);
-    next(e);
   }
-
-  useEffect(
-    function () {
-      if (!init && user.saved() !== 0) {
-        next();
-      }
-      setInit(true);
-    },
-    [init, user, next]
-  );
 
   return (
     <form id="saved-form" className="card" onSubmit={handleSubmit}>

@@ -1,27 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 
 import * as User from "../../context/user";
 import * as userapi from "../../api/user";
 
-export function FrequencyForm({ next }) {
+export function FrequencyForm() {
   const { user, setUser } = useContext(User.Context);
-  const [init, setInit] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
     await userapi.put(user);
-    next(e);
   }
-
-  useEffect(
-    function () {
-      if (!init && user.frequency() !== "") {
-        next();
-      }
-      setInit(true);
-    },
-    [init, user, next]
-  );
 
   return (
     <form id="frequency-form" className="card" onSubmit={handleSubmit}>

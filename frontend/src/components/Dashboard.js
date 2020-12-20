@@ -6,15 +6,16 @@ import { ProductForm } from "./forms/Product";
 import { UserInfo } from "./user/Info";
 import { PurchaseList } from "./purchase/List";
 
-export function Dashboard({}) {
+export function Dashboard() {
   return (
-    <>
-      <UserInfo />
-      <SavedForm />
-      <FrequencyForm />
-      <ContributionsForm />
-      <ProductForm />
-      <PurchaseList />
-    </>
+    <div className="row">
+      <div className="col-4">
+        <UserInfo />
+      </div>
+      <div className="col-8">
+        <PurchaseList />
+        <ProductForm />
+      </div>
+    </div>
   );
 }

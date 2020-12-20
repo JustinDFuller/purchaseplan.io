@@ -1,23 +1,41 @@
 import React, { useContext } from "react";
+import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil.svg";
 
 import * as User from "../../context/user";
+import { styles } from "../../styles";
 
 export function UserInfo() {
   const { user } = useContext(User.Context);
 
   return (
-    <div id="userinfo" className="card">
-      <strong>Email: </strong>
-      <p id="email">{user.email()}</p>
-      <br />
-      <strong>Saved: </strong>
-      <p id="saved">{user.saved()}</p>
-      <br />
-      <strong>Frequency: </strong>
-      <p id="frequency">{user.frequency()}</p>
-      <br />
-      <strong>Saved each time: </strong>
-      <p id="savings">{user.contributions()}</p>
+    <div className="card text-white" style={styles.darkAlt}>
+      <div className="card-body">
+        <div className="row">
+          <div className="col-5">
+            <h5 className="card-title d-inline">Savings Overview</h5>
+            <Pencil
+              style={{
+                position: "relative",
+                left: 9,
+                bottom: 2,
+                ...styles.pointer,
+              }}
+            />
+          </div>
+        </div>
+        <div className="row mt-3">
+          <div className="col-8">
+            <strong style={styles.textDark}>Saved So Far</strong>
+            <p>${user.saved()}</p>
+          </div>
+          <div className="col-4">
+            <strong style={styles.textDark}>Planned Savings</strong>
+            <p>
+              ${user.contributions()}/{user.frequency()}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

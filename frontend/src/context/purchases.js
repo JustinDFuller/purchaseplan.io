@@ -21,6 +21,7 @@ export function Purchase(data = purchaseDefaults) {
 }
 
 const defaults = {
+  frequency: null,
   purchases: [],
 };
 

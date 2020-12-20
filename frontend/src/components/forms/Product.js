@@ -1,10 +1,13 @@
 import React, { useState, useContext } from "react";
+import { ReactComponent as CheckCircle } from "bootstrap-icons/icons/check-circle.svg";
 
 import { Purchase } from "../../context/purchases";
 import { Product } from "../../context/product";
 import * as productapi from "../../api/product";
 import * as userapi from "../../api/user";
 import * as User from "../../context/user";
+import { Card } from "../Card";
+import { styles } from "../../styles";
 
 export function ProductForm({ previous, next }) {
   const [url, setUrl] = useState("");
@@ -32,27 +35,40 @@ export function ProductForm({ previous, next }) {
 
   function ProductGet() {
     return (
-      <div className="card">
+      <Card>
         <form onSubmit={handleSubmit}>
-          <label>Enter the URL to the product you want to buy</label>
-          <br />
-          <input
-            type="url"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <button type="submit">Add this product</button>
-          <button type="button" onClick={handleDone}>
-            That's all for now
-          </button>
+          <div className="form-group">
+            <label className="form-label">
+              Enter the URL to the product you want to buy
+            </label>
+            <div className="row">
+              <div className="col-11">
+                <input
+                  type="url"
+                  className="form-control"
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
+                />
+              </div>
+              <div className="col-1">
+                <CheckCircle
+                  onClick={handleSubmit}
+                  className="mt-2"
+                  style={{ ...styles.success, ...styles.pointer }}
+                  width={24}
+                  height={24}
+                />
+              </div>
+            </div>
+          </div>
         </form>
-      </div>
+      </Card>
     );
   }
 
   function ProductEdit() {
     return (
-      <div className="card">
+      <div className="card" style={styles.darkAlt}>
         <form onSubmit={handleSubmitEdit}>
           <h3>Feel free to fix anything that doesn't look right.</h3>
           <div style={{ width: "20%", display: "inline-block" }}>
