@@ -23,12 +23,12 @@ export function ProductForm({ previous, next }) {
     previous();
   }
 
-  function handleDone(e) {
+  /* function handleDone(e) {
     e.preventDefault();
     User.api.put(user);
     next();
     next();
-  }
+  } */
 
   function ProductGet() {
     return (

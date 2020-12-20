@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 
 import * as Auth from "./context";
 import * as User from "../user";
-import * as styles from "../styles";
 import { Card } from "../layout/Card";
 
 export function EmailForm({ next }) {
@@ -15,7 +14,7 @@ export function EmailForm({ next }) {
         next();
       }
     },
-    [auth]
+    [auth, next]
   );
 
   async function handleSubmit(e) {

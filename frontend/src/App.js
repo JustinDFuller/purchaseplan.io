@@ -14,12 +14,12 @@ export default function App() {
 
   useEffect(function () {
     async function init() {
-      setAuth(auth.setState(Auth.state.LOGGING_IN));
+      setAuth(a => a.setState(Auth.state.LOGGING_IN));
       const a = await auth.init();
       setAuth(a);
 
       if (a.data.user) {
-        setUser(user.setEmail(a.data.user.email));
+        setUser(u => u.setEmail(a.data.user.email));
       }
     }
     init();
