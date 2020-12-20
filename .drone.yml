@@ -14,7 +14,7 @@ steps:
     commands:
       - ./scripts/setup
       - cd api
-      - make test
+        # - make test
       - make build
 
   - name: frontend
