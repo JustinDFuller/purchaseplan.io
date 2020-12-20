@@ -1,13 +1,10 @@
 import React, { useState, useContext } from "react";
 import { ReactComponent as CheckCircle } from "bootstrap-icons/icons/check-circle.svg";
 
-import { Purchase } from "../../context/purchases";
-import { Product } from "../../context/product";
-import * as productapi from "../../api/product";
-import * as userapi from "../../api/user";
-import * as User from "../../context/user";
-import { Card } from "../Card";
-import { styles } from "../../styles";
+import * as User from "../user";
+import * as Product from "../product";
+import { Card } from "../layout/Card";
+import * as styles from "../styles";
 
 export function ProductForm({ previous, next }) {
   const [url, setUrl] = useState("");
@@ -16,19 +13,19 @@ export function ProductForm({ previous, next }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const result = await productapi.get(url);
-    setProduct(Product(result));
+    const result = await Product.api.get(url);
+    setProduct(Product.context.New(result));
   }
 
   function handleSubmitEdit(e) {
     e.preventDefault();
-    setUser(user.addPurchase(Purchase().setProduct(product)));
+    setUser(user.addUser.Purchase(User.Purchase().setProduct(product)));
     previous();
   }
 
   function handleDone(e) {
     e.preventDefault();
-    userapi.put(user);
+    User.api.put(user);
     next();
     next();
   }

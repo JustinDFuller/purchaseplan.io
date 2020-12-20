@@ -1,10 +1,9 @@
 import React, { useContext, useEffect } from "react";
 
-import * as Auth from "../../context/auth";
-import * as User from "../../context/user";
-import * as userapi from "../../api/user";
-import { styles } from "../../styles";
-import { Card } from "../Card";
+import * as Auth from "./context";
+import * as User from "../user";
+import * as styles from "../styles";
+import { Card } from "../layout/Card";
 
 export function EmailForm({ next }) {
   const { user, setUser } = useContext(User.Context);
@@ -29,14 +28,14 @@ export function EmailForm({ next }) {
       const u = user.setEmail(a.data.user.email);
 
       try {
-        const existingUser = await userapi.get(u);
+        const existingUser = await User.api.get(u);
         setUser(user.from(existingUser));
         return;
       } catch (e) {
         console.error(e);
       }
 
-      await userapi.put(u);
+      await User.api.put(u);
     }
   }
 

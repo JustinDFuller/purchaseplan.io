@@ -1,6 +1,6 @@
 import React from "react";
 import { Magic } from "magic-sdk";
-import { getterSetters } from "./getterSetters";
+import { getterSetters } from "../object/getterSetters";
 
 export const state = {
   LOGGED_OUT: 0,

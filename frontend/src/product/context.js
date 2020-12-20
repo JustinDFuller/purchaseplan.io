@@ -1,4 +1,4 @@
-import { getterSetters } from "./getterSetters";
+import { getterSetters } from "../object/getterSetters";
 
 const productDefaults = {
   name: "",
@@ -8,6 +8,6 @@ const productDefaults = {
   image: "",
 };
 
-export function Product(data = productDefaults) {
+export function New(data = productDefaults) {
   return getterSetters(data, Product);
 }

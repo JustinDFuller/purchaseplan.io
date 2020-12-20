@@ -1,4 +1,4 @@
-import { styles } from "../styles";
+import * as styles from "../styles";
 
 export function Header() {
   return (

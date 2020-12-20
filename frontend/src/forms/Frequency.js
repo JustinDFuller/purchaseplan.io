@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 
-import * as User from "../../context/user";
-import * as userapi from "../../api/user";
+import * as User from "../user";
 
 export function FrequencyForm() {
   const { user, setUser } = useContext(User.Context);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await userapi.put(user);
+    await User.api.put(user);
   }
 
   return (

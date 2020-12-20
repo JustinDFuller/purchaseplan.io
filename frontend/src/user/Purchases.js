@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
-import * as User from "../../context/user";
-import * as userapi from "../../api/user";
+import * as User from "./context";
+import * as userapi from "./api";
 
 export function PurchaseList() {
   const { user, setUser } = useContext(User.Context);

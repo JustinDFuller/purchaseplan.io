@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 
-import * as Purchases from "../../context/purchases";
-import * as User from "../../context/user";
-import * as userapi from "../../api/user";
-import * as productapi from "../../api/product";
-import { styles } from "../../styles";
+import * as Purchases from "../user/context/purchases";
+import * as User from "../user/context";
+import * as userapi from "../user/api";
+import * as productapi from "../product/api";
+import * as styles from "../styles";
 
 export function PurchaseForm({ next }) {
   const { user, setUser } = useContext(User.Context);
@@ -27,7 +27,7 @@ export function PurchaseForm({ next }) {
   }
 
   return (
-    <div className="card" style={styles.backgroundAlt}>
+    <div className="card" style={styles.darkAlt}>
       <div className="card-body">
         <form id="purchase-form" className="card" onSubmit={handleSubmit}>
           <label>Now for the fun part! What do you want to buy?</label>

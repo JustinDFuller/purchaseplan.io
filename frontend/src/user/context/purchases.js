@@ -1,4 +1,4 @@
-import { getterSetters } from "./getterSetters";
+import { getterSetters } from "../../object/getterSetters";
 
 const purchaseDefaults = {
   date: null, // calculated at display time

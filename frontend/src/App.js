@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { Header } from "./components/Header";
-import { EmailForm } from "./components/forms/Email";
-import { Dashboard } from "./components/Dashboard";
-import { Stepper } from "./components/forms/Stepper";
+import { Header } from "./layout/Header";
+import { EmailForm } from "./auth/Login";
+import { Dashboard } from "./layout/Dashboard";
+import { Stepper } from "./layout/Stepper";
 
-import * as User from "./context/user";
-import * as Auth from "./context/auth";
+import * as User from "./user/context";
+import * as Auth from "./auth/context";
 
 export default function App() {
   const [user, setUser] = useState(User.New());

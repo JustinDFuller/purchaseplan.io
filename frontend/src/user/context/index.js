@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getterSetters } from "./getterSetters";
+import { getterSetters } from "../../object/getterSetters";
 import * as availabilities from "./availabilities";
 import * as Purchases from "./purchases";
 

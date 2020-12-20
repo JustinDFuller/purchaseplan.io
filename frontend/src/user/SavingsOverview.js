@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil.svg";
 
-import * as User from "../../context/user";
-import { styles } from "../../styles";
+import * as User from "./context";
+import * as styles from "../styles";
 
 export function UserInfo() {
   const { user } = useContext(User.Context);
