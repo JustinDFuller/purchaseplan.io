@@ -14,7 +14,7 @@ steps:
       SERVICE_ACCOUNT_NAME:
         from_secret: SERVICE_ACCOUNT_NAME
     commands:
-      - echo -n $GAE_CREDENTIALS_DEV > ./service_account.json
+      - ./scripts/setup
       - gcloud auth activate-service-account $SERVICE_ACCOUNT_NAME --key-file=./service_account.json
       - cd api
       - make test

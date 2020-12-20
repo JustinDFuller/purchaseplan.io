@@ -1,0 +1,2 @@
+#!/bin/bash
+echo -n $GAE_CREDENTIALS_DEV > ./service_account.json
