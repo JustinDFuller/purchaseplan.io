@@ -21,3 +21,7 @@ export const styles = {
     cursor: "pointer",
   },
 };
+
+export function combine(...styles) {
+  return Object.assign({}, ...styles);
+}

@@ -68,7 +68,7 @@ export function ProductForm({ previous, next }) {
 
   function ProductEdit() {
     return (
-      <div className="card" style={styles.darkAlt}>
+      <div className="card text-white" style={styles.darkAlt}>
         <form onSubmit={handleSubmitEdit}>
           <h3>Feel free to fix anything that doesn't look right.</h3>
           <div style={{ width: "20%", display: "inline-block" }}>

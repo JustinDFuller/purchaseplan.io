@@ -6,8 +6,6 @@ import * as userapi from "../../api/user";
 export function PurchaseList() {
   const { user, setUser } = useContext(User.Context);
 
-  console.log(user);
-
   return (
     <div id="purchase-container">
       {user.purchases().map((purchase) => (

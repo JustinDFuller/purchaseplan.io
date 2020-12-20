@@ -6,9 +6,9 @@ import * as Purchases from "./purchases";
 
 const defaults = {
   email: "",
-  saved: 0,
-  frequency: "",
-  contributions: 0,
+  saved: 100,
+  frequency: "Every 2 Weeks",
+  contributions: 100,
   lastPaycheck: null,
   purchases: Purchases.New(),
 };

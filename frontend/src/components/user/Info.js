@@ -11,24 +11,16 @@ export function UserInfo() {
     <div className="card text-white" style={styles.darkAlt}>
       <div className="card-body">
         <div className="row">
-          <div className="col-5">
+          <div className="col-12">
             <h5 className="card-title d-inline">Savings Overview</h5>
-            <Pencil
-              style={{
-                position: "relative",
-                left: 9,
-                bottom: 2,
-                ...styles.pointer,
-              }}
-            />
           </div>
         </div>
         <div className="row mt-3">
-          <div className="col-8">
+          <div className="col-7">
             <strong style={styles.textDark}>Saved So Far</strong>
             <p>${user.saved()}</p>
           </div>
-          <div className="col-4">
+          <div className="col-5">
             <strong style={styles.textDark}>Planned Savings</strong>
             <p>
               ${user.contributions()}/{user.frequency()}
