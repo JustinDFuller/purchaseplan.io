@@ -30,7 +30,7 @@ steps:
     image: nytimes/drone-gae
     environment:
       GAE_CREDENTIALS:
-        from_secret: GAE_CREDENTIALS_DEV
+        from_secret: GAE_DEPLOY_CREDENTIALS_DEV
     settings:
       action: deploy
       project: purchase-saving-planner
