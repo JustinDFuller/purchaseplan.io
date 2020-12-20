@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -n $GAE_CREDENTIALS_DEV > ./service_account.json
+echo -n $GAE_CREDENTIALS_DEV > $(HOME)/.config/gcloud/application_default_credentials.json

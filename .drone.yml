@@ -11,11 +11,8 @@ steps:
     environment:
       GAE_CREDENTIALS_DEV:
         from_secret: GAE_CREDENTIALS_DEV
-      SERVICE_ACCOUNT_NAME:
-        from_secret: SERVICE_ACCOUNT_NAME
     commands:
       - ./scripts/setup
-      - gcloud auth activate-service-account $SERVICE_ACCOUNT_NAME --key-file=./service_account.json
       - cd api
       - make test
       - make build
