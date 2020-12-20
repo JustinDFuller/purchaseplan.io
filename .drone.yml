@@ -14,8 +14,8 @@ steps:
       SERVICE_ACCOUNT_NAME:
         from_secret: SERVICE_ACCOUNT_NAME
     commands:
-      - echo $GAE_CREDENTIALS_DEV > service_account.json
-      - gcloud auth activate-service-account $SERVICE_ACCOUNT_NAME --key-file=service_account.json
+      - echo $GAE_CREDENTIALS_DEV > ./service_account.json
+      - gcloud auth activate-service-account $SERVICE_ACCOUNT_NAME --key-file=./service_account.json
       - cd api
       - make test
       - make build
@@ -27,7 +27,7 @@ steps:
       - npm ci
       - npm run build
       - mkdir ../api/cmd/server/frontend/
-      - cp ./build/ ../api/cmd/server/frontend/
+      - cp -r ./build/ ../api/cmd/server/frontend/
 
   - name: deploy
     image: nytimes/drone-gae
