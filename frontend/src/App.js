@@ -12,12 +12,12 @@ export default function App() {
 
   useEffect(function () {
     async function init() {
-      setAuth(a => a.setState(Auth.state.LOGGING_IN));
+      setAuth((a) => a.setState(Auth.state.LOGGING_IN));
       const a = await auth.init();
       setAuth(a);
 
       if (a.data.user) {
-        setUser(u => u.setEmail(a.data.user.email));
+        setUser((u) => u.setEmail(a.data.user.email));
       }
     }
     init();
@@ -28,11 +28,11 @@ export default function App() {
       <User.Context.Provider value={{ user, setUser }}>
         <Header />
         <div className="container-fluid">
-        {
-          auth.state() === Auth.state.LOGGED_IN
-            ? <Dashboard />
-            :  <EmailForm />
-        }
+          {auth.state() === Auth.state.LOGGED_IN ? (
+            <Dashboard />
+          ) : (
+            <EmailForm />
+          )}
         </div>
       </User.Context.Provider>
     </Auth.Context.Provider>

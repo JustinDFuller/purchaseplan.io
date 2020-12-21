@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import * as Auth from "./context";
 import * as User from "../user";
 import { Card } from "../layout/Card";
-import { Submit } from '../forms/Submit';
+import { Submit } from "../forms/Submit";
 
 export function EmailForm({ next }) {
   const { user, setUser } = useContext(User.Context);
@@ -44,17 +44,21 @@ export function EmailForm({ next }) {
       <Card style={{ maxWidth: 400, margin: "auto" }}>
         <div style={{ textAlign: "center" }}>
           <div className="spinner-border" role="status" />
-          <h5 className="card-header">Hang tight, I'm fetching your data from the vault.</h5>
+          <h5 className="card-header">
+            Hang tight, I'm fetching your data from the vault.
+          </h5>
         </div>
       </Card>
     );
   }
 
   return (
-    <Card style={{ maxWidth: 400, margin: 'auto' }}>
+    <Card style={{ maxWidth: 400, margin: "auto" }}>
       <form onSubmit={handleSubmit}>
         <div className="form-group margin-auto">
-          <label className="form-label">To get started, log in with your email address.</label>
+          <label className="form-label">
+            To get started, log in with your email address.
+          </label>
           <div className="row">
             <div className="col-10">
               <input

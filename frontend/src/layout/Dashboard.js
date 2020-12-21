@@ -1,4 +1,4 @@
-import * as Product from '../product';
+import * as Product from "../product";
 import { UserInfo } from "../user/SavingsOverview";
 import { PurchaseList } from "../user/Purchases";
 
@@ -9,8 +9,8 @@ export function Dashboard() {
         <UserInfo />
       </div>
       <div className="col-12 col-lg-8">
-        <PurchaseList />
         <Product.Form />
+        <PurchaseList />
       </div>
     </div>
   );

@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 
 import { Card } from "../layout/Card";
-import { Submit } from '../forms/Submit';
+import { Submit } from "../forms/Submit";
 
 export function URL({ onSubmit }) {
   const [url, setUrl] = useState("");
-  
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(url);
+  }
+
   return (
     <Card>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="form-label">
             Enter the URL to the product you want to buy
@@ -23,7 +28,7 @@ export function URL({ onSubmit }) {
               />
             </div>
             <div className="col col-2 col-md-1">
-              <Submit onClick={onSubmit} />
+              <Submit onClick={handleSubmit} />
             </div>
           </div>
         </div>

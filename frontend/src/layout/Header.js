@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from "react";
 import * as styles from "../styles";
 import * as Auth from "../auth";
 
@@ -14,7 +14,11 @@ export function Header() {
         <div className="d-flex">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <button className="btn btn-link nav-link" style={styles.text} onClick={() => setAuth(auth.logout())}>
+              <button
+                className="btn btn-link nav-link"
+                style={styles.text}
+                onClick={() => setAuth(auth.logout())}
+              >
                 Log Out
               </button>
             </li>

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import * as User from "./context";
 import * as styles from "../styles";
-import { Card } from '../layout/Card';
+import { Card } from "../layout/Card";
 
 export function UserInfo() {
   const { user } = useContext(User.Context);
