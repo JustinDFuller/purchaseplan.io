@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-import { Header } from "./layout/Header";
-import { EmailForm } from "./auth/Login";
-import { Dashboard } from "./layout/Dashboard";
-import * as User from "./user/context";
-import * as Auth from "./auth/context";
+import * as Layout from "./layout";
+import * as User from "./user";
+import * as Auth from "./auth";
 
 export default function App() {
-  const [user, setUser] = useState(User.New());
-  const [auth, setAuth] = useState(Auth.New());
+  const [user, setUser] = useState(User.Context.New());
+  const [auth, setAuth] = useState(Auth.Context.New());
 
   useEffect(function () {
     async function init() {
-      setAuth((a) => a.setState(Auth.state.LOGGING_IN));
+      setAuth(auth.setState(Auth.Context.state.LOGGING_IN));
       const a = await auth.init();
       setAuth(a);
 
@@ -26,12 +24,12 @@ export default function App() {
   return (
     <Auth.Context.Provider value={{ auth, setAuth }}>
       <User.Context.Provider value={{ user, setUser }}>
-        <Header />
+        <Layout.Header />
         <div className="container-fluid">
-          {auth.state() === Auth.state.LOGGED_IN ? (
-            <Dashboard />
+          {auth.state() === Auth.Context.state.LOGGED_IN ? (
+            <Layout.Dashboard />
           ) : (
-            <EmailForm />
+            <Auth.Login />
           )}
         </div>
       </User.Context.Provider>

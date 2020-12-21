@@ -5,7 +5,7 @@ import * as User from "../user";
 import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
 
-export function EmailForm({ next }) {
+export function Login({ next }) {
   const { user, setUser } = useContext(User.Context);
   const { auth, setAuth } = useContext(Auth.Context);
 
