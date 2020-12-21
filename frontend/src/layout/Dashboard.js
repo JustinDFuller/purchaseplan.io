@@ -1,16 +1,15 @@
 import * as Product from "../product";
-import { UserInfo } from "../user/SavingsOverview";
-import { PurchaseList } from "../user/Purchases";
+import * as User from "../user";
 
 export function Dashboard() {
   return (
     <div className="row">
       <div className="col-12 col-lg-4 mb-4">
-        <UserInfo />
+        <User.SavingsOverview />
       </div>
       <div className="col-12 col-lg-8">
         <Product.Form />
-        <PurchaseList />
+        <User.Purchases />
       </div>
     </div>
   );

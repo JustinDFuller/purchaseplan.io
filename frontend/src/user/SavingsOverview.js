@@ -4,7 +4,7 @@ import * as User from "./context";
 import * as styles from "../styles";
 import { Card } from "../layout/Card";
 
-export function UserInfo() {
+export function SavingsOverview() {
   const { user } = useContext(User.Context);
 
   return (

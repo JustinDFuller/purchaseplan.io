@@ -4,7 +4,7 @@ import * as User from "./context";
 import * as userapi from "./api";
 import { Card } from "../layout/Card";
 
-export function PurchaseList() {
+export function Purchases() {
   const { user, setUser } = useContext(User.Context);
 
   return (
