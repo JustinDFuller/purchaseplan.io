@@ -23,8 +23,8 @@ steps:
       - cd frontend
       - npm ci
       - npm run build
-      - mkdir ../api/cmd/server/frontend/
-      - cp -r ./build/ ../api/cmd/server/frontend/
+      - mkdir ../api/frontend/
+      - cp -r ./build/ ../api/frontend/
 
   - name: deploy
     image: nytimes/drone-gae

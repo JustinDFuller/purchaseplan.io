@@ -2,14 +2,20 @@ runtime: go114
 service: default
 
 handlers:
+  - url: /favicon\.ico
+    static_files: frontend/build/favicon.ico
+    upload: frontend/build/favicon\.ico
+
+  - url: /logo\.png
+    static_files: frontend/build/logo.png
+    upload: frontend/build/logo\.png
+
   - url: /
     static_files: frontend/build/index.html
-    upload: frontend/build/index.html
-    secure: always
+    upload: frontend/build/index\.html
 
   - url: /static
     static_dir: frontend/build/static
-    secure: always
 
   - url: /.*
     script: auto
