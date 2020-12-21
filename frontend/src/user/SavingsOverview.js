@@ -15,11 +15,11 @@ export function UserInfo() {
           </div>
         </div>
         <div className="row mt-3">
-          <div className="col-7">
+          <div className="col-12 col-md-7">
             <strong style={styles.textDark}>Saved So Far</strong>
             <p>${user.saved()}</p>
           </div>
-          <div className="col-5">
+          <div className="col-12 col-md-5">
             <strong style={styles.textDark}>Planned Savings</strong>
             <p>
               ${user.contributions()}/{user.frequency()}

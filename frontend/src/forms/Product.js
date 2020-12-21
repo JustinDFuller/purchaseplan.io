@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { ReactComponent as CheckCircle } from "bootstrap-icons/icons/check-circle.svg";
 
 import * as User from "../user";
 import * as Product from "../product";
 import { Card } from "../layout/Card";
 import * as styles from "../styles";
+import { Submit } from './Submit';
 
 export function ProductForm({ previous, next }) {
   const [url, setUrl] = useState("");
@@ -39,7 +39,7 @@ export function ProductForm({ previous, next }) {
               Enter the URL to the product you want to buy
             </label>
             <div className="row">
-              <div className="col-11">
+              <div className="col col-10 col-md-11">
                 <input
                   type="url"
                   className="form-control"
@@ -47,14 +47,8 @@ export function ProductForm({ previous, next }) {
                   onChange={(e) => setUrl(e.target.value)}
                 />
               </div>
-              <div className="col-1">
-                <CheckCircle
-                  onClick={handleSubmit}
-                  className="mt-2"
-                  style={{ ...styles.success, ...styles.pointer }}
-                  width={24}
-                  height={24}
-                />
+              <div className="col col-2 col-md-1">
+                <Submit onClick={handleSubmit} />
               </div>
             </div>
           </div>
@@ -65,55 +59,71 @@ export function ProductForm({ previous, next }) {
 
   function ProductEdit() {
     return (
-      <div className="card text-white" style={styles.darkAlt}>
-        <form onSubmit={handleSubmitEdit}>
-          <h3>Feel free to fix anything that doesn't look right.</h3>
-          <div style={{ width: "20%", display: "inline-block" }}>
+      <Card>
+        <div className="row">
+          <div className="col-12 col-md-4 mb-4">
             <img
+              className="card-img-top"
               src={product.data.image}
               alt={product.data.description}
-              style={{ width: "90%", height: "auto" }}
             />
           </div>
-          <div style={{ width: "80%", display: "inline-block" }}>
-            <div className="form-group">
-              <label>Name</label>
-              <input
-                type="text"
-                value={product.data.name}
-                onChange={(e) => setProduct(product.setName(e.target.value))}
-              />
-            </div>
-            <div className="form-group">
-              <label>Description</label>
-              <input
-                type="text"
-                value={product.data.description}
-                onChange={(e) =>
-                  setProduct(product.setDescription(e.target.value))
-                }
-              />
-            </div>
-            <div className="form-group">
-              <label>URL</label>
-              <input
-                type="url"
-                value={product.data.url}
-                onChange={(e) => setProduct(product.setUrl(e.target.value))}
-              />
-            </div>
-            <div className="form-group">
-              <label>Price</label>
-              <input
-                type="number"
-                value={product.data.price}
-                onChange={(e) => setProduct(product.setPrice(e.target.value))}
-              />
-            </div>
+          <div className="col-12 col-md-8">
+            <form onSubmit={handleSubmitEdit}>
+              <h5 className="card-title">Feel free to fix anything that doesn't look right.</h5>
+              <div className="row">
+                <div className="form-group col-12 col-md-6">
+                  <label className="form-label">Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={product.data.name}
+                    onChange={(e) => setProduct(product.setName(e.target.value))}
+                  />
+                </div>
+                <div className="form-group col-12 col-md-6">
+                  <label className="form-label">Description</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={product.data.description}
+                    onChange={(e) =>
+                      setProduct(product.setDescription(e.target.value))
+                    }
+                  />
+                </div>
+                <div className="form-group col-12">
+                  <label className="form-label">URL</label>
+                  <input
+                    type="url"
+                    className="form-control"
+                    value={product.data.url}
+                    onChange={(e) => setProduct(product.setUrl(e.target.value))}
+                  />
+                </div>
+              </div>
+              <div className="form-group col-12">
+                <div className="row">
+                  <label className="form-label">Price</label>
+                </div>
+                <div className="row align-items-center">
+                  <div className="col-5 p-0">
+                    <input
+                      type="number"
+                      className="form-control"
+                      value={product.data.price}
+                      onChange={(e) => setProduct(product.setPrice(e.target.value))}
+                    />
+                  </div>
+                  <div className="col-7 text-right">
+                    <Submit onClick={handleSubmitEdit} />
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
-          <button type="submit">Looks Good</button>
-        </form>
-      </div>
+        </div>
+      </Card>
     );
   }
 

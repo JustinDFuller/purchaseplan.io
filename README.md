@@ -1,5 +1,7 @@
 # Purchase Saving Planner
 
+[![Build Status](https://cloud.drone.io/api/badges/JustinDFuller/purchase-saving-planner/status.svg)](https://cloud.drone.io/JustinDFuller/purchase-saving-planner)
+
 An app that helps you plan and save for your purchases.
 
 ## What?
