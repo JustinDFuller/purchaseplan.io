@@ -3,13 +3,11 @@ import React, { useState, useContext } from "react";
 import * as User from "../user";
 import * as Product from "../product";
 import { Card } from "../layout/Card";
-import * as styles from "../styles";
-import { Submit } from './Submit';
+import { Submit } from '../forms/Submit';
+import { URL } from './URL';
 
-export function ProductForm({ previous, next }) {
-  const [url, setUrl] = useState("");
+export function Form() {
   const [product, setProduct] = useState(null);
-  const { user, setUser } = useContext(User.Context);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -17,47 +15,17 @@ export function ProductForm({ previous, next }) {
     setProduct(Product.context.New(result));
   }
 
-  function handleSubmitEdit(e) {
-    e.preventDefault();
-    setUser(user.addUser.Purchase(User.Purchase().setProduct(product)));
-    previous();
-  }
-
-  /* function handleDone(e) {
-    e.preventDefault();
-    User.api.put(user);
-    next();
-    next();
-  } */
-
-  function ProductGet() {
-    return (
-      <Card>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label className="form-label">
-              Enter the URL to the product you want to buy
-            </label>
-            <div className="row">
-              <div className="col col-10 col-md-11">
-                <input
-                  type="url"
-                  className="form-control"
-                  value={url}
-                  onChange={(e) => setUrl(e.target.value)}
-                />
-              </div>
-              <div className="col col-2 col-md-1">
-                <Submit onClick={handleSubmit} />
-              </div>
-            </div>
-          </div>
-        </form>
-      </Card>
-    );
-  }
-
   function ProductEdit() {
+    const { user, setUser } = useContext(User.Context);
+
+    function handleSubmitEdit(e) {
+      e.preventDefault();
+      const u = user.addPurchase(User.Purchase().setProduct(product))
+      setUser(u);
+      User.api.put(u);
+      setProduct(null)
+    }
+
     return (
       <Card>
         <div className="row">
@@ -127,5 +95,5 @@ export function ProductForm({ previous, next }) {
     );
   }
 
-  return product ? <ProductEdit /> : <ProductGet />;
+  return product ? <ProductEdit /> : <URL onSubmit={handleSubmit} />;
 }

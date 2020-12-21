@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 
 import * as User from "./context";
 import * as userapi from "./api";
+import { Card } from '../layout/Card';
 
 export function PurchaseList() {
   const { user, setUser } = useContext(User.Context);
@@ -9,7 +10,7 @@ export function PurchaseList() {
   return (
     <div id="purchase-container">
       {user.purchases().map((purchase) => (
-        <div className="card">
+        <Card>
           <div style={{ width: "20%", display: "inline-block" }}>
             <img
               src={purchase.data.product.image}
@@ -58,7 +59,7 @@ export function PurchaseList() {
               </button>
             )}
           </div>
-        </div>
+        </Card>
       ))}
     </div>
   );

@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from "react";
 import * as Auth from "./context";
 import * as User from "../user";
 import { Card } from "../layout/Card";
+import { Submit } from '../forms/Submit';
 
 export function EmailForm({ next }) {
   const { user, setUser } = useContext(User.Context);
@@ -19,8 +20,8 @@ export function EmailForm({ next }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const form = new FormData(e.target);
-    const a = await auth.login({ email: form.get("email") });
+
+    const a = await auth.login({ email: user.email() });
     setAuth(a);
 
     if (a.data.user) {
@@ -40,22 +41,22 @@ export function EmailForm({ next }) {
 
   if (auth.state() === Auth.state.LOGGING_IN) {
     return (
-      <Card style={{ width: 400, margin: "auto" }}>
+      <Card style={{ maxWidth: 400, margin: "auto" }}>
         <div style={{ textAlign: "center" }}>
           <div className="spinner-border" role="status" />
-          <h5 className="card-header">Hang tight, we're signing you in.</h5>
+          <h5 className="card-header">Hang tight, I'm fetching your data from the vault.</h5>
         </div>
       </Card>
     );
   }
 
   return (
-    <Card>
+    <Card style={{ maxWidth: 400, margin: 'auto' }}>
       <form onSubmit={handleSubmit}>
         <div className="form-group margin-auto">
-          <label className="ford-label">What's Your Email Address?</label>
+          <label className="form-label">To get started, log in with your email address.</label>
           <div className="row">
-            <div className="col-9">
+            <div className="col-10">
               <input
                 className="form-control"
                 type="email"
@@ -64,10 +65,8 @@ export function EmailForm({ next }) {
                 onChange={(e) => setUser(user.setEmail(e.target.value))}
               />
             </div>
-            <div className="col-3">
-              <button className="btn btn-primary" type="submit">
-                Next
-              </button>
+            <div className="col-2">
+              <Submit onClick={handleSubmit} />
             </div>
           </div>
         </div>
