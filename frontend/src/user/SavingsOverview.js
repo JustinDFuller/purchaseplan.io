@@ -1,12 +1,8 @@
-import React, { useContext } from "react";
-
-import * as User from "./context";
 import * as styles from "../styles";
 import { Card } from "../layout/Card";
+import { withContext } from './context/with';
 
-export function SavingsOverview() {
-  const { user } = useContext(User.Context);
-
+export const SavingsOverview = withContext(function ({ user }) {
   return (
     <Card>
       <div className="row">
@@ -28,4 +24,4 @@ export function SavingsOverview() {
       </div>
     </Card>
   );
-}
+})

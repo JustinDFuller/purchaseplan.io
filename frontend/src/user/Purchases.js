@@ -1,12 +1,8 @@
-import React, { useContext } from "react";
-
-import * as User from "./context";
 import * as userapi from "./api";
 import { Card } from "../layout/Card";
+import { withContext } from './context/with';
 
-export function Purchases() {
-  const { user, setUser } = useContext(User.Context);
-
+export const Purchases = withContext(function ({ user, setUser }) {
   return (
     <div id="purchase-container">
       {user.purchases().map((purchase) => (
@@ -63,4 +59,4 @@ export function Purchases() {
       ))}
     </div>
   );
-}
+})

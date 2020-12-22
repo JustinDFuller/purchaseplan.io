@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import * as User from "../user";
 import * as Product from "../product";
@@ -6,8 +6,7 @@ import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
 import { URL } from "./URL";
 
-export function Form({ productDefaults = null }) {
-  const { user, setUser } = useContext(User.Context);
+export const Form = User.withContext(function ({ user, setUser, productDefaults = null }) {
   const [product, setProduct] = useState(productDefaults);
 
   async function handleSubmit(url) {
@@ -98,4 +97,4 @@ export function Form({ productDefaults = null }) {
       </div>
     </Card>
   );
-}
+})

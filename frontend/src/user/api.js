@@ -1,5 +1,7 @@
+import * as api from '../api';
+
 export async function put(user) {
-  const res = await fetch("http://localhost:8080/users", {
+  const res = await fetch(api.withHost("/users"), {
     method: "PUT",
     body: JSON.stringify(user),
   }).then((r) => r.json());
@@ -8,7 +10,7 @@ export async function put(user) {
 }
 
 export async function get(user) {
-  return fetch(`http://localhost:8080/users/${user.email()}`).then((r) =>
+  return fetch(api.withHost(`/users/${user.email()}`)).then((r) =>
     r.json()
   );
 }

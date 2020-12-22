@@ -1,23 +1,10 @@
-import React, { useContext, useEffect } from "react";
-
 import * as Auth from "./context";
+import { withContext } from './with';
 import * as User from "../user";
 import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
 
-export function Login({ next }) {
-  const { user, setUser } = useContext(User.Context);
-  const { auth, setAuth } = useContext(Auth.Context);
-
-  useEffect(
-    function () {
-      if (auth.state() === Auth.state.LOGGED_IN) {
-        next();
-      }
-    },
-    [auth, next]
-  );
-
+export const Login = withContext(User.withContext(function ({ user, setUser, auth, setAuth }) {
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -77,4 +64,4 @@ export function Login({ next }) {
       </form>
     </Card>
   );
-}
+}))

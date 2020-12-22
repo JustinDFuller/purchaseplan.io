@@ -1,5 +1,7 @@
+import * as api from '../api';
+
 export async function get(url) {
   return fetch(
-    `http://localhost:8080/products?url=${encodeURIComponent(url)}`
+    api.withHost(`/products?url=${encodeURIComponent(url)}`)
   ).then((r) => r.json());
 }
