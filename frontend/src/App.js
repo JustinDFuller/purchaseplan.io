@@ -5,12 +5,12 @@ import * as User from "./user";
 import * as Auth from "./auth";
 
 export default function App() {
-  const [user, setUser] = useState(User.Context.New());
-  const [auth, setAuth] = useState(Auth.Context.New());
+  const [user, setUser] = useState(User.New());
+  const [auth, setAuth] = useState(Auth.New());
 
   useEffect(function () {
     async function init() {
-      setAuth(auth.setState(Auth.Context.state.LOGGING_IN));
+      setAuth(auth.setState(Auth.state.LOGGING_IN));
       const a = await auth.init();
       setAuth(a);
 
@@ -26,7 +26,7 @@ export default function App() {
       <User.Context.Provider value={{ user, setUser }}>
         <Layout.Header />
         <div className="container-fluid">
-          {auth.state() === Auth.Context.state.LOGGED_IN ? (
+          {auth.state() === Auth.state.LOGGED_IN ? (
             <Layout.Dashboard />
           ) : (
             <Auth.Login />
