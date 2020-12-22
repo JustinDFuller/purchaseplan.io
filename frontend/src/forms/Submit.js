@@ -2,7 +2,11 @@ import { ReactComponent as CheckCircle } from "bootstrap-icons/icons/check-circl
 
 import * as styles from "../styles";
 
-export function Submit({ onClick }) {
+export function Submit({ onClick, loading }) {
+  if (loading) {
+    return <div className="spinner-border mt-1" role="status" />
+  }
+
   return (
     <CheckCircle
       onClick={onClick}

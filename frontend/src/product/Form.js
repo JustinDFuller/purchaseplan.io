@@ -7,11 +7,14 @@ import { Submit } from "../forms/Submit";
 import { URL } from "./URL";
 
 export const Form = User.withContext(function ({ user, setUser, productDefaults = null }) {
+  const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState(productDefaults);
 
   async function handleSubmit(url) {
+    setLoading(true);
     const result = await Product.api.get(url);
-    setProduct(Product.context.New(result));
+    setProduct(Product.data.New(result));
+    setLoading(false);
   }
 
   function handleSubmitEdit(e) {
@@ -23,7 +26,7 @@ export const Form = User.withContext(function ({ user, setUser, productDefaults 
   }
 
   if (!product) {
-    return <URL onSubmit={handleSubmit} />;
+    return <URL onSubmit={handleSubmit} loading={loading} />;
   }
 
   return (
@@ -37,7 +40,7 @@ export const Form = User.withContext(function ({ user, setUser, productDefaults 
           />
         </div>
         <div className="col-12 col-md-8">
-          <form onSubmit={handleSubmitEdit}>
+          <form onSubmit={handleSubmitEdit} disabled={loading}>
             <h5 className="card-title">
               Feel free to fix anything that doesn't look right.
             </h5>
@@ -88,7 +91,7 @@ export const Form = User.withContext(function ({ user, setUser, productDefaults 
                   />
                 </div>
                 <div className="col-7 text-right">
-                  <Submit onClick={handleSubmitEdit} />
+                  <Submit onClick={handleSubmitEdit} loading={loading} />
                 </div>
               </div>
             </div>

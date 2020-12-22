@@ -12,11 +12,13 @@ export default function App() {
     async function init() {
       setAuth(auth.setState(Auth.state.LOGGING_IN));
       const a = await auth.init();
-      setAuth(a);
 
       if (a.data.user) {
-        setUser((u) => u.setEmail(a.data.user.email));
+        const u = await User.api.get(user.setEmail(a.data.user.email));
+        setUser(user.from(u));
       }
+
+      setAuth(a);
     }
     init();
   }, []); // eslint-disable-line

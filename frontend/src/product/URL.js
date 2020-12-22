@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
 
-export function URL({ onSubmit }) {
+export function URL({ onSubmit, loading }) {
   const [url, setUrl] = useState("");
 
   function handleSubmit(e) {
@@ -24,11 +24,12 @@ export function URL({ onSubmit }) {
                 type="url"
                 className="form-control"
                 value={url}
+                disabled={loading}
                 onChange={(e) => setUrl(e.target.value)}
               />
             </div>
             <div className="col col-2 col-md-1">
-              <Submit onClick={handleSubmit} />
+              <Submit onClick={handleSubmit} loading={loading} />
             </div>
           </div>
         </div>

@@ -14,13 +14,16 @@ export function Header() {
         <div className="d-flex">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <button
-                className="btn btn-link nav-link"
-                style={styles.text}
-                onClick={() => setAuth(auth.logout())}
-              >
-                Log Out
-              </button>
+            {
+              auth.state() === Auth.state.LOGGED_IN &&
+                <button
+                  className="btn btn-link nav-link"
+                  style={styles.text}
+                  onClick={async () => setAuth(await auth.logout())}
+                >
+                  Log Out
+                </button>
+            }
             </li>
           </ul>
         </div>

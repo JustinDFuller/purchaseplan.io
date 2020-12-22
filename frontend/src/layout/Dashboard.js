@@ -4,7 +4,7 @@ import * as User from "../user";
 export function Dashboard() {
   return (
     <div className="row">
-      <div className="col-12 col-lg-4 mb-4">
+      <div className="col-12 col-lg-4">
         <User.SavingsOverview />
       </div>
       <div className="col-12 col-lg-8">

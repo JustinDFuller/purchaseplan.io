@@ -53,11 +53,12 @@ export const Login = withContext(User.withContext(function ({ user, setUser, aut
                 type="email"
                 name="email"
                 value={user.email()}
+                disabled={auth.state() === Auth.state.LOGGING_IN}
                 onChange={(e) => setUser(user.setEmail(e.target.value))}
               />
             </div>
             <div className="col-2">
-              <Submit onClick={handleSubmit} />
+              <Submit onClick={handleSubmit} loading={auth.state() === Auth.state.LOGGING_IN} />
             </div>
           </div>
         </div>
