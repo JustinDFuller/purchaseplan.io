@@ -11,6 +11,11 @@ export const darkAlt = {
   borderTop: "1px solid rgb(10 10 36)",
 };
 
+export const darkLight = {
+  background: '#26264e',
+  borderRadius: '5px',
+}
+
 export const logo = {
   height: "40px",
 };
@@ -30,6 +35,12 @@ export const success = {
 export const pointer = {
   cursor: "pointer",
 };
+
+export const bubble = {
+  background: '#4E2ECF',
+  padding: '8px 20px',
+  borderRadius: 4,
+}
 
 export function combine(...styles) {
   return Object.assign({}, ...styles);

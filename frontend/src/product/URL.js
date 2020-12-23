@@ -25,6 +25,7 @@ export function URL({ onSubmit, loading }) {
                 className="form-control"
                 value={url}
                 disabled={loading}
+                placeholder="https://smile.amazon.com/cool-new-fitbit"
                 onChange={(e) => setUrl(e.target.value)}
               />
             </div>
