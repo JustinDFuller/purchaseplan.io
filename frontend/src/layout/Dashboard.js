@@ -1,7 +1,7 @@
 import * as Product from "../product";
 import * as User from "../user";
 
-import { HowItWorks } from './HowItWorks'
+import { HowItWorks } from "./HowItWorks";
 
 export function Dashboard() {
   return (

@@ -1,5 +1,5 @@
 import { getterSetters } from "../../object/getterSetters";
-import * as Product from '../../product';
+import * as Product from "../../product";
 
 const purchaseDefaults = {
   date: null, // calculated at display time
@@ -22,7 +22,7 @@ export function Purchase(data = purchaseDefaults) {
       return Purchase({
         ...purchase,
         product: Product.data.New(purchase.product),
-      })
+      });
     },
   };
 }
@@ -84,7 +84,7 @@ export function New(data = defaults) {
     },
     from(purchases) {
       return New({
-        purchases: purchases?.map(p => Purchase().from(p)) || [],
+        purchases: purchases?.map((p) => Purchase().from(p)) || [],
       });
     },
   };

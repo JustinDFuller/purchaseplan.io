@@ -1,4 +1,4 @@
-import * as api from '../api';
+import * as api from "../api";
 
 export async function put(user) {
   const res = await fetch(api.withHost("/users"), {
@@ -10,7 +10,5 @@ export async function put(user) {
 }
 
 export async function get(user) {
-  return fetch(api.withHost(`/users/${user.email()}`)).then((r) =>
-    r.json()
-  );
+  return fetch(api.withHost(`/users/${user.email()}`)).then((r) => r.json());
 }

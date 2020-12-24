@@ -12,9 +12,9 @@ export const darkAlt = {
 };
 
 export const darkLight = {
-  background: '#26264e',
-  borderRadius: '5px',
-}
+  background: "#26264e",
+  borderRadius: "5px",
+};
 
 export const logo = {
   height: "40px",
@@ -37,10 +37,10 @@ export const pointer = {
 };
 
 export const bubble = {
-  background: '#4E2ECF',
-  padding: '8px 20px',
+  background: "#4E2ECF",
+  padding: "8px 20px",
   borderRadius: 4,
-}
+};
 
 export function combine(...styles) {
   return Object.assign({}, ...styles);

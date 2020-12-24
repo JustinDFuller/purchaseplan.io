@@ -4,7 +4,7 @@ import * as styles from "../styles";
 
 export function Submit({ onClick, loading }) {
   if (loading) {
-    return <div className="spinner-border mt-1" role="status" />
+    return <div className="spinner-border mt-1" role="status" />;
   }
 
   return (

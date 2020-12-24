@@ -1,4 +1,4 @@
-import * as api from '../api';
+import * as api from "../api";
 
 export async function get(url) {
   return fetch(

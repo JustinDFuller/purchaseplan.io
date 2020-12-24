@@ -52,4 +52,4 @@ export function New(data = defaults) {
 export const Context = React.createContext({
   user: null,
   setUser: null,
-})
+});

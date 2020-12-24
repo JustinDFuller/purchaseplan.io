@@ -1,6 +1,6 @@
 import * as styles from "../styles";
 import { Card } from "../layout/Card";
-import { withContext } from './context/with';
+import { withContext } from "./context/with";
 
 export const SavingsOverview = withContext(function ({ user }) {
   return (
@@ -24,4 +24,4 @@ export const SavingsOverview = withContext(function ({ user }) {
       </div>
     </Card>
   );
-})
+});

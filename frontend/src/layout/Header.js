@@ -14,8 +14,7 @@ export function Header() {
         <div className="d-flex">
           <ul className="navbar-nav">
             <li className="nav-item">
-            {
-              auth.state() === Auth.state.LOGGED_IN &&
+              {auth.state() === Auth.state.LOGGED_IN && (
                 <button
                   className="btn btn-link nav-link"
                   style={styles.text}
@@ -23,7 +22,7 @@ export function Header() {
                 >
                   Log Out
                 </button>
-            }
+              )}
             </li>
           </ul>
         </div>

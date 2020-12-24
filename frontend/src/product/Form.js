@@ -6,7 +6,11 @@ import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
 import { URL } from "./URL";
 
-export const Form = User.withContext(function ({ user, setUser, productDefaults = null }) {
+export const Form = User.withContext(function ({
+  user,
+  setUser,
+  productDefaults = null,
+}) {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState(productDefaults);
 
@@ -100,4 +104,4 @@ export const Form = User.withContext(function ({ user, setUser, productDefaults 
       </div>
     </Card>
   );
-})
+});
