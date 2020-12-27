@@ -1,4 +1,3 @@
-import * as userapi from "./api";
 import { Card } from "../layout/Card";
 import { withContext } from "./context/with";
 import * as styles from "../styles";
@@ -13,7 +12,11 @@ export const Purchases = withContext(function ({ user, setUser }) {
               className="card-img-top"
               src={purchase.data.product.data.image}
               alt={purchase.data.product.data.description}
-              onError={(e) => console.log("Image not found", e)}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src =
+                  "https://cdn.dribbble.com/users/2046015/screenshots/6015680/08_404.gif"; // TODO: Find another image.
+              }}
             />
             <div className="card-body" style={{ position: "relative" }}>
               <strong
