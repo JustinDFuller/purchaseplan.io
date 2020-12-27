@@ -9,7 +9,7 @@ const defaults = {
   saved: 100,
   frequency: "Every 2 Weeks",
   contributions: 100,
-  lastPaycheck: null,
+  lastPaycheck: new Date(),
   purchases: Purchases.New(),
 };
 
