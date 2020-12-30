@@ -1,0 +1,22 @@
+/* 
+$secondary:     $gray-600;
+$info:          $cyan;
+$warning:       $yellow;
+$danger:        $red;
+$light:         $gray-100;
+$dark:          $gray-800; */
+
+$primary:       #4e2ecf;
+$success:       #6fcf97;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #cac8cf;
+}
+
+.list-group-item {
+  background: transparent;
+  border: 1px solid rgba(190, 184, 203, 0.25);
+}

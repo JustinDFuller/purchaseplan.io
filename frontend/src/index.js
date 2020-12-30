@@ -1,5 +1,4 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./bootstrap-overrides.css";
+import "./bootstrap-overrides.scss";
 
 import React from "react";
 import ReactDOM from "react-dom";
