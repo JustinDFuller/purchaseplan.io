@@ -37,7 +37,7 @@ export const pointer = {
 };
 
 export const bubble = {
-  background: "#4E2ECF",
+  background: "#4e2ecf",
   padding: "8px 20px",
   borderRadius: 4,
 };

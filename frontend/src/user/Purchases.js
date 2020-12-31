@@ -9,7 +9,7 @@ export const Purchases = withContext(function ({ user, setUser }) {
         <div className="col-12" key={purchase.data.product.data.name}>
           <Card noBody>
             <div className="row">
-              <div className="col-4">
+              <div className="col-12 col-lg-4">
                 <img
                   className="card-img-top"
                   src={purchase.data.product.data.image}
@@ -21,22 +21,16 @@ export const Purchases = withContext(function ({ user, setUser }) {
                   }}
                 />
               </div>
-              <div className="col-8">
+              <div className="col-12 col-lg-8">
                 <div className="card-body" style={{ position: "relative" }}>
-                  <strong
-                    style={styles.combine(styles.bubble, {
-                      position: "absolute",
-                      top: 15,
-                      left: -70,
-                    })}
-                  >
+                  <strong className="price-bubble" style={styles.bubble}>
                     ${purchase.data.product.data.price}
                   </strong>
                   <a
                     href={purchase.data.product.data.url}
                     className="text-white"
                   >
-                    <h5 className="card-title">
+                    <h5 className="card-title mt-3 mt-lg-0">
                       {purchase.data.product.data.name}
                     </h5>
                   </a>
@@ -46,21 +40,11 @@ export const Purchases = withContext(function ({ user, setUser }) {
                       "..."}
                   </p>
                   <div style={{ marginTop: 10 }}>
-                    <strong style={{ marginRight: 3 }}>Ready to buy on:</strong>
-                    <span className="availablity">{purchase.data.date}</span>
+                    <strong style={{ marginRight: 3 }}>Ready to buy</strong>
+                    <span className="availablity">
+                      {purchase.displayDate()}
+                    </span>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <div
-                  className="d-flex flex-row align-items-center justify-content-end px-2 py-2"
-                  style={{ borderTop: "1px solid rgba(190, 184, 203, 0.25)" }}
-                >
-                  <button type="button" className="btn btn-primary">
-                    Buy Now
-                  </button>
                 </div>
               </div>
             </div>

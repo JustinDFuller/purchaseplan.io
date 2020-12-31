@@ -9,35 +9,39 @@ export function get(user) {
 
 function nullFrequency() {
   return {
-    calculate() {},
+    new() {
+      return {
+        calculate() {},
+      };
+    },
   };
 }
 
 function every2Weeks({ lastPaycheck, saved, contributions }) {
-  const date = new Date(lastPaycheck.getTime());
-  let s = saved;
-
   return {
-    calculate(purchase, purchases) {
-      let total = 0;
-      for (let i = 0; i < purchases.length; i++) {
-        total += purchases[i].data.product.price;
+    new() {
+      const date = new Date(lastPaycheck.getTime());
+      let s = saved;
 
-        if (purchases[i].is(purchase)) {
-          break;
-        }
-      }
+      return {
+        calculate(purchase, purchases) {
+          let total = 0;
+          for (let i = 0; i < purchases.length; i++) {
+            total += purchases[i].data.product.price();
 
-      while (s < total) {
-        date.setDate(date.getDate() + 14);
-        s += contributions;
-      }
+            if (purchases[i].is(purchase)) {
+              break;
+            }
+          }
 
-      if (date <= new Date()) {
-        return "Today";
-      }
+          while (s < total) {
+            date.setDate(date.getDate() + 14);
+            s += contributions;
+          }
 
-      return date.toLocaleDateString("en-US");
+          return date;
+        },
+      };
     },
   };
 }

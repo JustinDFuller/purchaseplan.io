@@ -1,5 +1,4 @@
 /* 
-$secondary:     $gray-600;
 $info:          $cyan;
 $warning:       $yellow;
 $danger:        $red;
@@ -8,8 +7,10 @@ $dark:          $gray-800; */
 
 $primary:       #4e2ecf;
 $success:       #6fcf97;
+$secondary:     #26264e;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+@import "./styles.scss";
 
 .form-control:disabled,
 .form-control[readonly] {
@@ -20,3 +21,5 @@ $success:       #6fcf97;
   background: transparent;
   border: 1px solid rgba(190, 184, 203, 0.25);
 }
+
+

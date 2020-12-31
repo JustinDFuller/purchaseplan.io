@@ -17,18 +17,26 @@ export function New(data = defaults) {
   return {
     ...getterSetters(data, New),
     from(user) {
-      return New({
+      const d = {
         ...defaults,
         ...user,
-        lastPaycheck: user.lastPaycheck ? new Date(user.lastPaycheck) : null,
-        purchases: data.purchases.from(user.purchases),
+        lastPaycheck: user.lastPaycheck
+          ? new Date(user.lastPaycheck)
+          : new Date(),
+      };
+
+      return New({
+        ...d,
+        purchases: data.purchases.from(user.purchases, availabilities.get(d)),
       });
     },
     setFrequency(frequency) {
       return New({
         ...data,
         frequency,
-        purchases: data.purchases.setFrequency(frequency),
+        purchases: data.purchases.setAvailability(
+          availabilities.get(frequency)
+        ),
       });
     },
     setLastPaycheck(lastPaycheck) {
@@ -37,14 +45,25 @@ export function New(data = defaults) {
         lastPaycheck: new Date(lastPaycheck),
       });
     },
-    availabilityCalculator() {
-      return availabilities.get(data);
-    },
     addPurchase(purchase) {
       return New({
         ...data,
         purchases: data.purchases.addPurchase(purchase),
       });
+    },
+    lastPaycheckDisplay() {
+      const t = new Date();
+      const l = data.lastPaycheck;
+
+      if (
+        l.getYear() === t.getYear() &&
+        l.getMonth() === t.getMonth() &&
+        l.getDate() === t.getDate()
+      ) {
+        return "Today";
+      }
+
+      return data.lastPaycheck.toLocaleDateString("en-US");
     },
   };
 }

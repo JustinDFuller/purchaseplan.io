@@ -1,0 +1,11 @@
+.price-bubble {
+  position: absolute;
+  top: -20px;
+}
+
+@include media-breakpoint-up(lg) {
+  .price-bubble {
+    top: 15px;
+    left: -70px;
+  }
+}

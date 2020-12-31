@@ -24,15 +24,32 @@ export function Purchase(data = purchaseDefaults) {
         product: Product.data.New(purchase.product),
       });
     },
+    displayDate() {
+      if (data.date <= new Date()) {
+        return "today";
+      }
+
+      return data.date?.toLocaleDateString("en-US") ?? "";
+    },
   };
 }
 
 const defaults = {
-  frequency: null,
+  availability: null,
   purchases: [],
 };
 
 export function New(data = defaults) {
+  function withAvailability(purchases, availability = data.availability) {
+    if (!purchases || !availability) {
+      return purchases;
+    }
+
+    return purchases.map((p, i, purchases) =>
+      p.setDate(availability.new().calculate(p, purchases))
+    );
+  }
+
   return {
     ...getterSetters(data, New),
     map(...args) {
@@ -40,7 +57,7 @@ export function New(data = defaults) {
     },
     addPurchase(purchase) {
       return New({
-        purchases: [...data.purchases, purchase],
+        purchases: withAvailability([...data.purchases, purchase]),
       });
     },
     hasAtLeastOne() {
@@ -54,7 +71,7 @@ export function New(data = defaults) {
       purchases[i - 1] = a;
       purchases[i] = b;
       return New({
-        purchases,
+        purchases: withAvailability(purchases),
       });
     },
     down(purchase) {
@@ -65,7 +82,7 @@ export function New(data = defaults) {
       purchases[i + 1] = a;
       purchases[i] = b;
       return New({
-        purchases,
+        purchases: withAvailability(purchases),
       });
     },
     isNotFirst(p) {
@@ -74,17 +91,16 @@ export function New(data = defaults) {
     isNotLast(p) {
       return !p.is(data.purchases[data.purchases.length - 1]);
     },
-    withAvailability(frequency) {
-      return data.purchases?.map((p, i, purchases) =>
-        p.setDate(frequency.calculate(p, purchases))
-      );
-    },
     toJSON() {
       return data.purchases;
     },
-    from(purchases) {
+    from(purchases, availability) {
       return New({
-        purchases: purchases?.map((p) => Purchase().from(p)) || [],
+        purchases: withAvailability(
+          purchases?.map((p) => Purchase().from(p)) || [],
+          availability
+        ),
+        availability,
       });
     },
   };

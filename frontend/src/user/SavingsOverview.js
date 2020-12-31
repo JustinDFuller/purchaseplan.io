@@ -21,6 +21,10 @@ export const SavingsOverview = withContext(function ({ user }) {
             ${user.contributions()}/{user.frequency()}
           </p>
         </div>
+        <div className="col-12">
+          <strong style={styles.textDark}>Last Paycheck</strong>
+          <p>{user.lastPaycheckDisplay()}</p>
+        </div>
       </div>
     </Card>
   );
