@@ -153,12 +153,12 @@ func New() (S, error) {
 			return
 		}
 
-		hash, err := st.PutImage(r.Context(), p.Image)
+		image, err := st.PutImage(r.Context(), p.Image)
 		if err != nil {
 			log.Printf("Unable to save image: %s", err)
 		}
 		p.OriginalImage = p.Image
-		p.Image = hash
+		p.Image = image
 
 		json.NewEncoder(w).Encode(p)
 	}).Methods(http.MethodGet, http.MethodOptions)

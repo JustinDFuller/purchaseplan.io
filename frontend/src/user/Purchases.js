@@ -39,6 +39,7 @@ export const Purchases = withContext(function ({ user, setUser }) {
               ref={provided.innerRef}
               className="row"
             >
+              {provided.placeholder}
               {user.purchases().map((purchase, index) => (
                 <Draggable
                   key={purchase.id()}

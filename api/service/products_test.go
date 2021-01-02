@@ -28,7 +28,7 @@ func TestService(t *testing.T) {
 				Price:         79,
 				URL:           "https://www.ikea.com/us/en/p/kolbjoern-cabinet-indoor-outdoor-green-00450347/",
 				OriginalImage: "https://www.ikea.com/us/en/images/products/kolbjoern-cabinet-indoor-outdoor-green__0762731_PE752182_S5.JPG",
-				Image:         "81d08b11c66d4a8c9edcc0cefaf2b7ec",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/81d08b11c66d4a8c9edcc0cefaf2b7ec?alt=media",
 			},
 		},
 		{
@@ -40,7 +40,7 @@ func TestService(t *testing.T) {
 				Price:         34,
 				URL:           "https://www.lowes.com/pd/Char-Broil-Performance-62-in-Black-Fits-Most-Cover/1000115081",
 				OriginalImage: "//mobileimages.lowes.com/product/converted/047362/047362763273.jpg",
-				Image:         "c0abf724f113eb41f2a05dc4cdff6226",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/c0abf724f113eb41f2a05dc4cdff6226?alt=media",
 			},
 		},
 		{
@@ -51,7 +51,7 @@ func TestService(t *testing.T) {
 				Description:   "The Ellis Tripod Floor Lamp from Project 62™ will add effortless elegance to any space. Three brass posts topped with a simple white drum shade combine to create a tall, sleek look you’ll love to use in any room. This graceful, modern free-standing lamp will fill any nook with a welcoming glow. Use this minimalistic floor lamp alongside farmhouse or modern decor, and shed a little more light on your lovely home. <br><br>1962 was a big year. Modernist design hit its peak and moved into homes across the country. And in Minnesota, Target was born — with the revolutionary idea to celebrate design for all. Project 62 embodies this legacy with a collection of modern pieces made for everyday living.",
 				URL:           "https://www.target.com/p/ellis-tripod-floor-lamp-brass-includes-led-light-bulb-project-62-8482/-/A-17299858",
 				OriginalImage: "https://target.scene7.com/is/image/Target/GUEST_51ec9b9d-ece7-4b45-b699-590cabd2c2ba",
-				Image:         "0f73da3fb97709464fa9da98ec98b087",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/0f73da3fb97709464fa9da98ec98b087?alt=media",
 			},
 		},
 		{
@@ -64,7 +64,7 @@ func TestService(t *testing.T) {
 				URL:           "https://www.homedepot.com/p/MTD-Genuine-Factory-Parts-21-in-Mulching-Walk-Behind-Mower-Blade-490-100-M084/202970675",
 				Description:   "Use the parts your machine was born with, use the OEM factory blade. These blades have been specifically designed by the manufacturer to keep your machine running at its peak level. OEM blades offer the premium cutting benefits and safety as the blades that were installed at the factory.",
 				OriginalImage: "https://images.homedepot-static.com/productImages/f8e07aab-9335-405b-b595-d3843cb2625d/svn/mtd-genuine-factory-parts-outdoor-power-blades-490-100-m084-64_100.jpg",
-				Image:         "1633bf9ffc17aeee8c230f600925e7cb",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/1633bf9ffc17aeee8c230f600925e7cb?alt=media",
 			},
 		},
 		{
@@ -76,7 +76,7 @@ func TestService(t *testing.T) {
 				URL:           "https://www.lowes.com/pd/Weber-Master-Touch-22-in-Kettle-Charcoal-Grill/50450060",
 				Description:   "Master Touch 22-in Black Kettle Charcoal Grill",
 				OriginalImage: "//mobileimages.lowes.com/product/converted/077924/077924032264.jpg",
-				Image:         "7fbf5056f3cfa16839571aac3a2bac93",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/7fbf5056f3cfa16839571aac3a2bac93?alt=media",
 			},
 		},
 	}

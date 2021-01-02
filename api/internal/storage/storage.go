@@ -92,5 +92,13 @@ func (c Client) PutImage(ctx context.Context, u string) (string, error) {
 		return "", err
 	}
 
-	return attrs.MediaLink, nil
+	ml, err := url.Parse(attrs.MediaLink)
+	if err != nil {
+		return "", err
+	}
+	q := ml.Query()
+	q.Del("generation")
+	ml.RawQuery = q.Encode()
+
+	return ml.String(), nil
 }
