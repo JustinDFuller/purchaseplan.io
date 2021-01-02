@@ -16,7 +16,7 @@ export function Purchase(data = purchaseDefaults) {
       return data !== purchaseDefaults;
     },
     is(purchase) {
-      return purchase.data.product.name === data.product.name; // switch to ID later
+      return purchase.product().name() === data.product.name(); // switch to ID later
     },
     from(purchase) {
       return Purchase({
@@ -49,7 +49,7 @@ export function New(data = defaults) {
     }
 
     return purchases.map((p, i, purchases) =>
-      p.setDate(availability.new().calculate(p, purchases))
+      p.setDate(availability.calculate(p, purchases))
     );
   }
 
@@ -60,6 +60,7 @@ export function New(data = defaults) {
     },
     addPurchase(purchase) {
       return New({
+        ...data,
         purchases: withAvailability([...data.purchases, purchase]),
       });
     },
@@ -72,6 +73,7 @@ export function New(data = defaults) {
       purchases.splice(end, 0, removed);
 
       return New({
+        ...data,
         purchases: withAvailability(purchases),
       });
     },

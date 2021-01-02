@@ -9,39 +9,30 @@ export function get(user) {
 
 function nullFrequency() {
   return {
-    new() {
-      return {
-        calculate() {},
-      };
-    },
+    calculate() {},
   };
 }
 
 function every2Weeks({ lastPaycheck, saved, contributions }) {
   return {
-    new() {
+    calculate(purchase, purchases) {
       const date = new Date(lastPaycheck.getTime());
       let s = saved;
+      let total = 0;
+      for (let i = 0; i < purchases.length; i++) {
+        total += purchases[i].data.product.price();
 
-      return {
-        calculate(purchase, purchases) {
-          let total = 0;
-          for (let i = 0; i < purchases.length; i++) {
-            total += purchases[i].data.product.price();
+        if (purchases[i].is(purchase)) {
+          break;
+        }
+      }
 
-            if (purchases[i].is(purchase)) {
-              break;
-            }
-          }
+      while (s < total) {
+        date.setDate(date.getDate() + 14);
+        s += contributions;
+      }
 
-          while (s < total) {
-            date.setDate(date.getDate() + 14);
-            s += contributions;
-          }
-
-          return date;
-        },
-      };
+      return date;
     },
   };
 }

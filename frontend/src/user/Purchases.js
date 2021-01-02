@@ -1,6 +1,6 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import { put } from "./api";
+import * as api from "./api";
 import { withContext } from "./context/with";
 import * as styles from "../styles";
 import { Card } from "../layout/Card";
@@ -26,7 +26,7 @@ export const Purchases = withContext(function ({ user, setUser }) {
 
     const u = user.setPurchases(purchases);
     setUser(u);
-    put(u);
+    api.put(u);
   }
 
   return (
