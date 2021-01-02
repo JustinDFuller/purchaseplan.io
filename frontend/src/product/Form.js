@@ -22,7 +22,6 @@ export const Form = User.withContext(function ({
   }
 
   function handleSubmitEdit(e) {
-    console.log("submit edit");
     e.preventDefault();
     const u = user.addPurchase(User.Purchase().setProduct(product));
     setUser(u);
@@ -89,7 +88,10 @@ export const Form = User.withContext(function ({
                   <input
                     type="number"
                     className="form-control"
-                    value={product.data.price}
+                    placeholder="0"
+                    value={
+                      product.data.price ? product.data.price.toString() : ""
+                    }
                     onChange={(e) =>
                       setProduct(product.setPrice(e.target.value))
                     }
