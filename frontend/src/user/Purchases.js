@@ -9,7 +9,7 @@ export const Purchases = withContext(function ({ user, setUser }) {
         <div className="col-12" key={purchase.data.product.data.name}>
           <Card noBody>
             <div className="row">
-              <div className="col-12 col-lg-4">
+              <div className="col-12 col-lg-3">
                 <img
                   className="card-img-top"
                   src={purchase.data.product.data.image}
@@ -21,7 +21,7 @@ export const Purchases = withContext(function ({ user, setUser }) {
                   }}
                 />
               </div>
-              <div className="col-12 col-lg-8">
+              <div className="col-12 col-lg-9">
                 <div className="card-body" style={{ position: "relative" }}>
                   <strong className="price-bubble" style={styles.bubble}>
                     ${purchase.data.product.data.price}
