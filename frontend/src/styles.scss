@@ -3,7 +3,7 @@
   top: -20px;
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(sm) {
   .price-bubble {
     top: 15px;
     left: -70px;

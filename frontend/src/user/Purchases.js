@@ -56,10 +56,18 @@ export const Purchases = withContext(function ({ user, setUser }) {
                       >
                         <Card noBody>
                           <div className="row">
-                            <div className="col-12 col-sm-5 col-xl-3">
-                              <img
+                            <div className="col-12 col-sm-5 col-md-3">
+                              <div
                                 className="card-img-top"
-                                src={purchase.data.product.data.image}
+                                style={{
+                                  backgroundImage: `url('${purchase.data.product.data.image}')`,
+                                  minHeight: "200px",
+                                  height: "100%",
+                                  width: "100%",
+                                  backgroundPosition: "top",
+                                  backgroundSize: "cover",
+                                  backgroundRepeat: "no-repeat",
+                                }}
                                 alt={purchase.data.product.data.description}
                                 onError={(e) => {
                                   e.target.onerror = null;
@@ -68,7 +76,7 @@ export const Purchases = withContext(function ({ user, setUser }) {
                                 }}
                               />
                             </div>
-                            <div className="col-12 col-sm-7 col-xl-9">
+                            <div className="col-12 col-sm-7 col-md-9">
                               <div
                                 className="card-body"
                                 style={{ position: "relative" }}
@@ -83,7 +91,15 @@ export const Purchases = withContext(function ({ user, setUser }) {
                                   href={purchase.data.product.data.url}
                                   className="text-white"
                                 >
-                                  <h5 className="card-title mt-3 mt-lg-0">
+                                  <h5
+                                    className="card-title mt-3 mt-sm-0"
+                                    style={{
+                                      height: "1.4rem",
+                                      textOverflow: "ellipsis",
+                                      overflow: "hidden",
+                                      whiteSpace: "nowrap",
+                                    }}
+                                  >
                                     {purchase.data.product.data.name}
                                   </h5>
                                 </a>
