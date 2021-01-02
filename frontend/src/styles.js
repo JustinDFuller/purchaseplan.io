@@ -45,3 +45,11 @@ export const bubble = {
 export function combine(...styles) {
   return Object.assign({}, ...styles);
 }
+
+export function on(bool, style) {
+  if (bool) {
+    return style;
+  }
+
+  return {};
+}

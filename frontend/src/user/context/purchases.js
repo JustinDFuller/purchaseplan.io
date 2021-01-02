@@ -31,6 +31,9 @@ export function Purchase(data = purchaseDefaults) {
 
       return data.date?.toLocaleDateString("en-US") ?? "";
     },
+    id() {
+      return data.product?.url();
+    },
   };
 }
 
@@ -63,24 +66,11 @@ export function New(data = defaults) {
     hasAtLeastOne() {
       return data.purchases.length >= 1;
     },
-    up(purchase) {
-      const i = data.purchases.findIndex((p) => p.is(purchase));
-      const a = data.purchases[i];
-      const b = data.purchases[i - 1];
+    reorder(start, end) {
       const purchases = data.purchases.slice();
-      purchases[i - 1] = a;
-      purchases[i] = b;
-      return New({
-        purchases: withAvailability(purchases),
-      });
-    },
-    down(purchase) {
-      const i = data.purchases.findIndex((p) => p.is(purchase));
-      const a = data.purchases[i];
-      const b = data.purchases[i + 1];
-      const purchases = data.purchases.slice();
-      purchases[i + 1] = a;
-      purchases[i] = b;
+      const [removed] = purchases.splice(start, 1);
+      purchases.splice(end, 0, removed);
+
       return New({
         purchases: withAvailability(purchases),
       });
