@@ -15,12 +15,12 @@ dev-watch:
 dev: datastore-start
 	@go run ./cmd/server/main.go;
 
-datastore-start: datastore-stop
+datastore-start:
 	@gcloud beta emulators datastore start --no-store-on-disk --quiet > /dev/null 2>&1 &
 	@gcloud beta emulators datastore env-init --quiet > /dev/null 2>&1;
 
 datastore-stop:
-	@(kill `ps ax | grep 'CloudDatastore.jar' | grep -v grep | awk '{print $1}' | head -n 1`) > /dev/null 2>&1;
+	@kill `ps ax | grep 'CloudDatastore.jar' | grep -v grep | awk '{print $1}' | head -n 1`;
 
 install:
 	@curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-319.0.0-linux-x86_64.tar.gz;

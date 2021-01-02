@@ -22,6 +22,7 @@ export const Form = User.withContext(function ({
   }
 
   function handleSubmitEdit(e) {
+    console.log("submit edit");
     e.preventDefault();
     const u = user.addPurchase(User.Purchase().setProduct(product));
     setUser(u);
@@ -44,7 +45,7 @@ export const Form = User.withContext(function ({
           />
         </div>
         <div className="col-12 col-md-8">
-          <form onSubmit={handleSubmitEdit} disabled={loading}>
+          <form onSubmit={handleSubmitEdit}>
             <h5 className="card-title">
               Feel free to fix anything that doesn't look right.
             </h5>

@@ -14,8 +14,12 @@ export default function App() {
       const a = await auth.init();
 
       if (a.data.user) {
-        const u = await User.api.get(user.setEmail(a.data.user.email));
-        setUser(user.from(u));
+        try {
+          const u = await User.api.get(user.setEmail(a.data.user.email));
+          setUser(user.from(u));
+        } catch (e) {
+          setUser(user.setEmail(a.data.user.email));
+        }
       }
 
       setAuth(a);

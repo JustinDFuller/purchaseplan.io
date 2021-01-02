@@ -22,7 +22,7 @@ export function New(data = defaults) {
         ...user,
         lastPaycheck: user.lastPaycheck
           ? new Date(user.lastPaycheck)
-          : new Date(),
+          : data.lastPaycheck,
       };
 
       return New({
