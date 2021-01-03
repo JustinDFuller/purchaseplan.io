@@ -42,7 +42,7 @@ export function New(data = defaults) {
     setLastPaycheck(lastPaycheck) {
       return New({
         ...data,
-        lastPaycheck: new Date(lastPaycheck),
+        lastPaycheck: new Date(lastPaycheck + "T00:00:00"),
       });
     },
     addPurchase(purchase) {
