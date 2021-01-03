@@ -1,13 +1,24 @@
 const types = {
-  "": nullFrequency,
+  "Every Week": everyWeek,
   "Every 2 Weeks": every2Weeks,
+  "Once A Month": onceAMonth,
 };
+
+export function map(cb) {
+  const res = [];
+
+  for (const key in types) {
+    res.push(cb(key));
+  }
+
+  return res;
+}
 
 export function get(user) {
   return types[user.frequency](user);
 }
 
-function nullFrequency() {
+function everyWeek() {
   return {
     calculate() {},
   };
@@ -34,5 +45,11 @@ function every2Weeks({ lastPaycheck, saved, contributions }) {
 
       return date;
     },
+  };
+}
+
+function onceAMonth() {
+  return {
+    calculate() {},
   };
 }
