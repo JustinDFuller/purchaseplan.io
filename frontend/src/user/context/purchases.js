@@ -42,8 +42,8 @@ const defaults = {
   purchases: [],
 };
 
-export function New(data = defaults) {
-  function withAvailability(purchases, availability = data.availability) {
+export function New(input = defaults) {
+  function withAvailability(purchases, availability = input.availability) {
     if (!purchases || !availability) {
       return purchases;
     }
@@ -53,6 +53,11 @@ export function New(data = defaults) {
     );
   }
 
+  const data = {
+    ...input,
+    purchases: withAvailability(input.purchases),
+  };
+
   return {
     ...getterSetters(data, New),
     map(...args) {
@@ -61,7 +66,7 @@ export function New(data = defaults) {
     addPurchase(purchase) {
       return New({
         ...data,
-        purchases: withAvailability([...data.purchases, purchase]),
+        purchases: [...data.purchases, purchase],
       });
     },
     hasAtLeastOne() {
@@ -74,7 +79,7 @@ export function New(data = defaults) {
 
       return New({
         ...data,
-        purchases: withAvailability(purchases),
+        purchases: purchases,
       });
     },
     isNotFirst(p) {
@@ -88,10 +93,7 @@ export function New(data = defaults) {
     },
     from(purchases, availability) {
       return New({
-        purchases: withAvailability(
-          purchases?.map((p) => Purchase().from(p)) || [],
-          availability
-        ),
+        purchases: purchases?.map((p) => Purchase().from(p)) || [],
         availability,
       });
     },

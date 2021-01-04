@@ -13,7 +13,12 @@ const defaults = {
   purchases: Purchases.New(),
 };
 
-export function New(data = defaults) {
+export function New(input = defaults) {
+  const data = {
+    ...input,
+    purchases: input.purchases.setAvailability(availabilities.get(input)),
+  };
+
   return {
     ...getterSetters(data, New),
     from(user) {
@@ -28,15 +33,6 @@ export function New(data = defaults) {
       return New({
         ...d,
         purchases: data.purchases.from(user.purchases, availabilities.get(d)),
-      });
-    },
-    setFrequency(frequency) {
-      return New({
-        ...data,
-        frequency,
-        purchases: data.purchases.setAvailability(
-          availabilities.get(frequency)
-        ),
       });
     },
     setLastPaycheck(lastPaycheck) {
