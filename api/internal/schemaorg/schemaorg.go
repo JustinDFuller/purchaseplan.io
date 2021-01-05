@@ -38,13 +38,21 @@ type (
 func (c context) ToProduct() planner.Product {
 	var price int64
 
-	log.Printf("Price type %T", c.Offers.Price)
-
 	switch p := c.Offers.Price.(type) {
 	case string:
-		price, _ = strconv.ParseInt(p, 10, 64)
+		var err error
+		price, err = strconv.ParseInt(p, 10, 64)
+		if err != nil {
+			p, err := strconv.ParseFloat(p, 64)
+			if err != nil {
+				log.Printf("Error parsing price: %s", err)
+			}
+			price = int64(p)
+		}
 	case float64:
 		price = int64(p)
+	default:
+		log.Printf("Price type %T", c.Offers.Price)
 	}
 
 	var image string
@@ -58,6 +66,13 @@ func (c context) ToProduct() planner.Product {
 				break
 			}
 		}
+	case map[string]interface{}:
+		url, ok := i["url"].(string)
+		if ok {
+			image = url
+		}
+	default:
+		log.Printf("Image type %T", c.Image)
 	}
 
 	url := c.URL
