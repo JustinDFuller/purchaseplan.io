@@ -90,6 +90,15 @@ func TestService(t *testing.T) {
 				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/f435d1913f87b52f3d5e05231b095c9f?alt=media",
 			},
 		},
+		{
+			// Meta tags/amazon
+			url: "https://www.amazon.com/gp/product/B0166R5ZEQ",
+			product: planner.Product{
+				Name:        "Amazon.com: Suncast Commercial Black Blow Molded Tall 2 Shelf Storage Shed Cabinet for Indoor or Outdoor Use: Home & Kitchen",
+				Description: "Buy Suncast Commercial Black Blow Molded Tall 2 Shelf Storage Shed Cabinet for Indoor or Outdoor Use: Storage Cabinets - Amazon.com ✓ FREE DELIVERY possible on eligible purchases",
+				URL:         "https://www.amazon.com/Suncast-Commercial-Blow-Molded-Cabinet/dp/B0166R5ZEQ",
+			},
+		},
 	}
 
 	s, err := New()
