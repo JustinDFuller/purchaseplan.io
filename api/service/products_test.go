@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"reflect"
 	"testing"
 
 	planner "github.com/justindfuller/purchase-saving-planner/api"
@@ -94,9 +95,12 @@ func TestService(t *testing.T) {
 			// Meta tags/amazon
 			url: "https://www.amazon.com/gp/product/B0166R5ZEQ",
 			product: planner.Product{
-				Name:        "Amazon.com: Suncast Commercial Black Blow Molded Tall 2 Shelf Storage Shed Cabinet for Indoor or Outdoor Use: Home & Kitchen",
-				Description: "Buy Suncast Commercial Black Blow Molded Tall 2 Shelf Storage Shed Cabinet for Indoor or Outdoor Use: Storage Cabinets - Amazon.com ✓ FREE DELIVERY possible on eligible purchases",
-				URL:         "https://www.amazon.com/Suncast-Commercial-Blow-Molded-Cabinet/dp/B0166R5ZEQ",
+				Name:          "Amazon.com: Suncast Commercial Black Blow Molded Tall 2 Shelf Storage Shed Cabinet for Indoor or Outdoor Use: Home & Kitchen",
+				Description:   "Buy Suncast Commercial Black Blow Molded Tall 2 Shelf Storage Shed Cabinet for Indoor or Outdoor Use: Storage Cabinets - Amazon.com ✓ FREE DELIVERY possible on eligible purchases",
+				URL:           "https://www.amazon.com/Suncast-Commercial-Blow-Molded-Cabinet/dp/B0166R5ZEQ",
+				OriginalImage: "https://images-na.ssl-images-amazon.com/images/I/91eS8zD0K5L._AC_UL115_.jpg",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/5ab223b7317fe1ca9deaad833332d52a?alt=media",
+				Price:         96,
 			},
 		},
 	}
@@ -130,7 +134,7 @@ func TestService(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if p != test.product {
+			if !reflect.DeepEqual(p, test.product) {
 				for _, d := range pretty.Diff(p, test.product) {
 					t.Log(d)
 				}

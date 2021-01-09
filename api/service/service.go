@@ -13,6 +13,7 @@ import (
 	planner "github.com/justindfuller/purchase-saving-planner/api"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/config"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/datastore"
+	"github.com/justindfuller/purchase-saving-planner/api/internal/html"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/metatags"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/opengraph"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/schemaorg"
@@ -154,8 +155,9 @@ func New() (S, error) {
 		var p planner.Product
 		var p2 planner.Product
 		var p3 planner.Product
+		var p4 planner.Product
 
-		wg.Add(3)
+		wg.Add(4)
 
 		go func() {
 			defer wg.Done()
@@ -187,10 +189,21 @@ func New() (S, error) {
 			}
 		}()
 
+		go func() {
+			defer wg.Done()
+
+			var err error
+			p4, err = html.ParseHTML(u, b)
+			if err != nil {
+				log.Printf("Error finding metatags from html: %s", err)
+			}
+		}()
+
 		wg.Wait()
 
 		p = p.Merge(p2)
 		p = p.Merge(p3)
+		p = p.Merge(p4)
 
 		image, err := st.PutImage(r.Context(), p.Image)
 		if err != nil {

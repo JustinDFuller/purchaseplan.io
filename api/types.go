@@ -24,19 +24,15 @@ type (
 
 	// Product contains information about the thing a User wants to buy.
 	Product struct {
-		Name          string `json:"name"`
-		Description   string `json:"description"`
-		Price         int64  `json:"price"`
-		URL           string `json:"url"`
-		Image         string `json:"image"`
-		OriginalImage string `json:"originalImage"`
+		Name           string   `json:"name"`
+		Description    string   `json:"description"`
+		Price          int64    `json:"price"`
+		URL            string   `json:"url"`
+		Image          string   `json:"image"`
+		OriginalImage  string   `json:"originalImage"`
+		PossibleImages []string `json:"possibleImages"`
 	}
 )
-
-// IsEmpty can be used to determine if a Product is empty.
-func (p Product) IsEmpty() bool {
-	return p == Product{}
-}
 
 // Merge takes another product and replaces zero values.
 func (p Product) Merge(p2 Product) Product {
@@ -70,6 +66,11 @@ func (p Product) Merge(p2 Product) Product {
 	merged.OriginalImage = p.OriginalImage
 	if merged.OriginalImage == "" {
 		merged.OriginalImage = p2.OriginalImage
+	}
+
+	merged.PossibleImages = p.PossibleImages
+	if merged.PossibleImages == nil {
+		merged.PossibleImages = p2.PossibleImages
 	}
 
 	return merged
