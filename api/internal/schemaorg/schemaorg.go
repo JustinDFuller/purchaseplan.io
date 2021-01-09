@@ -107,15 +107,11 @@ func ParseHTML(URL string, b []byte) (planner.Product, error) {
 
 		var g graph
 		if err := json.Unmarshal([]byte(s.Text()), &g.Contexts); err != nil {
-			log.Printf("Found invalid context array, trying graph: %s", err)
-
 			if err := json.Unmarshal([]byte(s.Text()), &g); err != nil {
 				log.Printf("Found invalid graph, looking for microdata instead: %s", err)
 				return
 			}
 		}
-
-		log.Printf("Found valid schema from application/ld+json: %v", g)
 
 		for _, c := range g.Contexts {
 			if c.Type == "Product" {

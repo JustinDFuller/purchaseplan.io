@@ -37,3 +37,40 @@ type (
 func (p Product) IsEmpty() bool {
 	return p == Product{}
 }
+
+// Merge takes another product and replaces zero values.
+func (p Product) Merge(p2 Product) Product {
+	var merged Product
+
+	merged.Name = p.Name
+	if merged.Name == "" {
+		merged.Name = p2.Name
+	}
+
+	merged.Description = p.Description
+	if merged.Description == "" {
+		merged.Description = p2.Description
+	}
+
+	merged.Price = p.Price
+	if merged.Price == 0 {
+		merged.Price = p2.Price
+	}
+
+	merged.URL = p.URL
+	if merged.URL == "" {
+		merged.URL = p2.URL
+	}
+
+	merged.Image = p.Image
+	if merged.Image == "" {
+		merged.Image = p2.Image
+	}
+
+	merged.OriginalImage = p.OriginalImage
+	if merged.OriginalImage == "" {
+		merged.OriginalImage = p2.OriginalImage
+	}
+
+	return merged
+}

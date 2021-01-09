@@ -79,6 +79,17 @@ func TestService(t *testing.T) {
 				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/7fbf5056f3cfa16839571aac3a2bac93?alt=media",
 			},
 		},
+		{
+			// Open Graph meta tags
+			url: "https://egopowerplus.com/21-inch-self-propelled-mower-select-cut/",
+			product: planner.Product{
+				Name:          "Power+ 21",
+				URL:           "https://egopowerplus.com/21-inch-self-propelled-mower-select-cut/",
+				Description:   " The Select Cut™ multi-blade cutting system is equipped with two, interchangeable lower blades; the Premium Mulching Blade and the Premium Bagging Blade. ",
+				OriginalImage: "https://egopowerplus.com/media/catalog/product/cache/02995e5077dda5c77697ad23ef8c2836/l/m/lm2130sp_v2_2.png",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/f435d1913f87b52f3d5e05231b095c9f?alt=media",
+			},
+		},
 	}
 
 	s, err := New()
@@ -86,11 +97,14 @@ func TestService(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	ts := httptest.NewServer(s.Router)
-	defer ts.Close()
-
 	for _, test := range tests {
+		test := test
 		t.Run(test.url, func(t *testing.T) {
+			t.Parallel()
+
+			ts := httptest.NewServer(s.Router)
+			defer ts.Close()
+
 			res, err := http.Get(ts.URL + "/products?url=" + url.QueryEscape(test.url))
 			if err != nil {
 				t.Fatal(err)

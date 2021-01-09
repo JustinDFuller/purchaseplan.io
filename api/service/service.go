@@ -12,6 +12,7 @@ import (
 	planner "github.com/justindfuller/purchase-saving-planner/api"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/config"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/datastore"
+	"github.com/justindfuller/purchase-saving-planner/api/internal/opengraph"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/schemaorg"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/storage"
 )
@@ -152,6 +153,13 @@ func New() (S, error) {
 			log.Printf("Error finding product from html: %s", err)
 			return
 		}
+
+		p2, err := opengraph.ParseHTML(u, b)
+		if err != nil {
+			log.Printf("Error finding opengraph from html: %s", err)
+			return
+		}
+		p = p.Merge(p2)
 
 		image, err := st.PutImage(r.Context(), p.Image)
 		if err != nil {
