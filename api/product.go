@@ -1,0 +1,95 @@
+package planner
+
+import "sync"
+
+// Producter is an interface for retrieving products.
+type Producter interface {
+	// Product returns a Product and an error.
+	Product() (Product, error)
+}
+
+func mergeProducts(producters ...Producter) (Product, error) {
+	var wg sync.WaitGroup
+	var m sync.Mutex
+
+	errors := make([]error, len(producters))
+	products := make([]Product, len(producters))
+
+	for i, p := range producters {
+		wg.Add(1)
+
+		i := i
+		p := p
+
+		go func() {
+			defer wg.Done()
+			defer m.Unlock()
+
+			p, err := p.Product()
+			m.Lock()
+			if err != nil {
+				errors[i] = err
+				return
+			}
+			products[i] = p
+		}()
+	}
+
+	wg.Wait()
+
+	var p Product
+
+	for _, err := range errors {
+		if err != nil {
+			return p, err
+		}
+	}
+
+	for _, product := range products {
+		p = p.Merge(product)
+	}
+
+	return p, nil
+}
+
+// Merge takes another product and replaces zero values.
+func (p Product) Merge(p2 Product) Product {
+	var merged Product
+
+	merged.Name = p.Name
+	if merged.Name == "" {
+		merged.Name = p2.Name
+	}
+
+	merged.Description = p.Description
+	if merged.Description == "" {
+		merged.Description = p2.Description
+	}
+
+	merged.Price = p.Price
+	if merged.Price == 0 {
+		merged.Price = p2.Price
+	}
+
+	merged.URL = p.URL
+	if merged.URL == "" {
+		merged.URL = p2.URL
+	}
+
+	merged.Image = p.Image
+	if merged.Image == "" {
+		merged.Image = p2.Image
+	}
+
+	merged.OriginalImage = p.OriginalImage
+	if merged.OriginalImage == "" {
+		merged.OriginalImage = p2.OriginalImage
+	}
+
+	merged.PossibleImages = p.PossibleImages
+	if merged.PossibleImages == nil {
+		merged.PossibleImages = p2.PossibleImages
+	}
+
+	return merged
+}

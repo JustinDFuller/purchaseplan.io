@@ -7,16 +7,11 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-	"sync"
 
 	"github.com/gorilla/mux"
 	planner "github.com/justindfuller/purchase-saving-planner/api"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/config"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/datastore"
-	"github.com/justindfuller/purchase-saving-planner/api/internal/html"
-	"github.com/justindfuller/purchase-saving-planner/api/internal/metatags"
-	"github.com/justindfuller/purchase-saving-planner/api/internal/opengraph"
-	"github.com/justindfuller/purchase-saving-planner/api/internal/schemaorg"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/storage"
 )
 
@@ -151,59 +146,12 @@ func New() (S, error) {
 			return
 		}
 
-		var wg sync.WaitGroup
-		var p planner.Product
-		var p2 planner.Product
-		var p3 planner.Product
-		var p4 planner.Product
-
-		wg.Add(4)
-
-		go func() {
-			defer wg.Done()
-
-			var err error
-			p, err = schemaorg.ParseHTML(u, b)
-			if err != nil {
-				log.Printf("Error finding schemaorg from html: %s", err)
-			}
-		}()
-
-		go func() {
-			defer wg.Done()
-
-			var err error
-			p2, err = opengraph.ParseHTML(u, b)
-			if err != nil {
-				log.Printf("Error finding opengraph from html: %s", err)
-			}
-		}()
-
-		go func() {
-			defer wg.Done()
-
-			var err error
-			p3, err = metatags.ParseHTML(u, b)
-			if err != nil {
-				log.Printf("Error finding metatags from html: %s", err)
-			}
-		}()
-
-		go func() {
-			defer wg.Done()
-
-			var err error
-			p4, err = html.ParseHTML(u, b)
-			if err != nil {
-				log.Printf("Error finding metatags from html: %s", err)
-			}
-		}()
-
-		wg.Wait()
-
-		p = p.Merge(p2)
-		p = p.Merge(p3)
-		p = p.Merge(p4)
+		p, err := planner.NewDefaultParser(u, b).Product()
+		if err != nil {
+			log.Printf("Error parsing product: %s", err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
 
 		image, err := st.PutImage(r.Context(), p.Image)
 		if err != nil {
