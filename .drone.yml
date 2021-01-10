@@ -13,7 +13,7 @@ steps:
         from_secret: GAE_CREDENTIALS_DEV
     commands:
       - ./scripts/setup
-      - cd api
+      - cd backend
         # - make test
       - make build
 
@@ -23,8 +23,8 @@ steps:
       - cd frontend
       - npm ci
       - npm run build
-      - mkdir ../api/frontend/
-      - cp -r ./build/ ../api/frontend/
+      - mkdir ../backend/frontend/
+      - cp -r ./build/ ../backend/frontend/
 
   - name: deploy
     image: nytimes/drone-gae
@@ -34,7 +34,7 @@ steps:
     settings:
       action: deploy
       project: purchase-saving-planner
-      dir: api/cmd/server
+      dir: backend/cmd/server
       app_file: app.yaml
       max_versions: 10
     when:

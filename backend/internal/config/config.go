@@ -18,8 +18,11 @@ func New() (C, error) {
 	var c C
 
 	// It's expected the .env is in the root dir of the project.
-	if err := godotenv.Load("../../.env"); err != nil {
-		return c, err
+	if err := godotenv.Load("../.env"); err != nil {
+		// Retry one more dir up.
+		if err := godotenv.Load("../../.env"); err != nil {
+			return c, err
+		}
 	}
 
 	if err := envconfig.Process("", &c); err != nil {

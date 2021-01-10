@@ -46,14 +46,14 @@ func mergeProducts(producters ...Producter) (Product, error) {
 	}
 
 	for _, product := range products {
-		p = p.Merge(product)
+		p = p.merge(product)
 	}
 
 	return p, nil
 }
 
-// Merge takes another product and replaces zero values.
-func (p Product) Merge(p2 Product) Product {
+// merge takes another product and replaces zero values.
+func (p Product) merge(p2 Product) Product {
 	var merged Product
 
 	merged.Name = p.Name

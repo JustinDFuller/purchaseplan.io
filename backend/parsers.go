@@ -3,6 +3,7 @@ package planner
 import (
 	"bytes"
 	"encoding/json"
+	"html"
 	"io/ioutil"
 	"log"
 	"regexp"
@@ -42,16 +43,24 @@ type (
 
 	// DefaultParser combines the above parsers in a single convenient parser.
 	DefaultParser struct {
+		AmazonParser    AmazonParser
+		SchemaOrgParser SchemaOrgParser
+		OpenGraphParser OpenGraphParser
 		HTMLParser      HTMLParser
 		MetaTagParser   MetaTagParser
-		OpenGraphParser OpenGraphParser
-		SchemaOrgParser SchemaOrgParser
+	}
+
+	// AmazonParser is made specifically for parsing Amazon.com
+	AmazonParser struct {
+		URL  string
+		Body []byte
 	}
 )
 
 // NewDefaultParser creates a new parser than combines other parsers.
 func NewDefaultParser(url string, body []byte) DefaultParser {
 	return DefaultParser{
+		AmazonParser:    AmazonParser{url, body},
 		SchemaOrgParser: SchemaOrgParser{url, body},
 		OpenGraphParser: OpenGraphParser{url, body},
 		MetaTagParser:   MetaTagParser{url, body},
@@ -64,6 +73,7 @@ func (parser DefaultParser) Product() (Product, error) {
 	// the order here is important. Top takes precedence,
 	// so the more accurate parsers should go first.
 	return mergeProducts(
+		parser.AmazonParser,
 		parser.SchemaOrgParser,
 		parser.OpenGraphParser,
 		parser.MetaTagParser,
@@ -296,6 +306,47 @@ func (parser SchemaOrgParser) Product() (Product, error) {
 				p = c.toProduct()
 				break
 			}
+		}
+	})
+
+	return p, nil
+}
+
+// Product parses amazon.com html for product information.
+func (parser AmazonParser) Product() (Product, error) {
+	var p Product
+
+	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
+	if err != nil {
+		return p, err
+	}
+
+	doc.Find("#productDescription > p").Each(func(i int, s *goquery.Selection) {
+		if t := s.Text(); t != "" {
+			p.Description = strings.TrimSpace(html.UnescapeString(t))
+		}
+	})
+
+	doc.Find("#priceblock_ourprice").Each(func(i int, s *goquery.Selection) {
+		if t := s.Text(); t != "" {
+			t := strings.ReplaceAll(t, "$", "")
+			if f, err := strconv.ParseFloat(t, 64); err != nil {
+				p.Price = int64(f)
+			}
+		}
+	})
+
+	doc.Find("#productTitle").Each(func(i int, s *goquery.Selection) {
+		if t := s.Text(); t != "" {
+			p.Name = strings.TrimSpace(t)
+		}
+	})
+
+	doc.Find("#landingImage").Each(func(i int, s *goquery.Selection) {
+		src, ok := s.Attr("data-old-hires")
+		log.Printf("#landingImage: %s", src)
+		if ok && src != "" && len(src) < 1500 {
+			p.Image = src
 		}
 	})
 
