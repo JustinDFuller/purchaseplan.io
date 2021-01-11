@@ -23,10 +23,10 @@ func mergeProducts(producters ...Producter) (Product, error) {
 
 		go func() {
 			defer wg.Done()
-			defer m.Unlock()
 
 			p, err := p.Product()
 			m.Lock()
+			defer m.Unlock()
 			if err != nil {
 				errors[i] = err
 				return
@@ -84,11 +84,6 @@ func (p Product) merge(p2 Product) Product {
 	merged.OriginalImage = p.OriginalImage
 	if merged.OriginalImage == "" {
 		merged.OriginalImage = p2.OriginalImage
-	}
-
-	merged.PossibleImages = p.PossibleImages
-	if merged.PossibleImages == nil {
-		merged.PossibleImages = p2.PossibleImages
 	}
 
 	return merged

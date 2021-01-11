@@ -24,12 +24,11 @@ type (
 
 	// Product contains information about the thing a User wants to buy.
 	Product struct {
-		Name           string   `json:"name"`
-		Description    string   `json:"description"`
-		Price          int64    `json:"price"`
-		URL            string   `json:"url"`
-		Image          string   `json:"image"`
-		OriginalImage  string   `json:"originalImage"`
-		PossibleImages []string `json:"possibleImages"`
+		Name          string `datastore:",noindex" json:"name"`
+		Description   string `datastore:",noindex" json:"description"`
+		Price         int64  `json:"price"`
+		URL           string `json:"url"`
+		Image         string `json:"image"`
+		OriginalImage string `datastore:",noindex" json:"originalImage"`
 	}
 )

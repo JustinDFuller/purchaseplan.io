@@ -329,8 +329,8 @@ func (parser AmazonParser) Product() (Product, error) {
 
 	doc.Find("#priceblock_ourprice").Each(func(i int, s *goquery.Selection) {
 		if t := s.Text(); t != "" {
-			t := strings.ReplaceAll(t, "$", "")
-			if f, err := strconv.ParseFloat(t, 64); err != nil {
+			t := strings.TrimSpace(strings.ReplaceAll(t, "$", ""))
+			if f, err := strconv.ParseFloat(t, 64); err == nil {
 				p.Price = int64(f)
 			}
 		}
@@ -344,7 +344,6 @@ func (parser AmazonParser) Product() (Product, error) {
 
 	doc.Find("#landingImage").Each(func(i int, s *goquery.Selection) {
 		src, ok := s.Attr("data-old-hires")
-		log.Printf("#landingImage: %s", src)
 		if ok && src != "" && len(src) < 1500 {
 			p.Image = src
 		}
