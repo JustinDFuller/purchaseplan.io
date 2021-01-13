@@ -20,7 +20,7 @@ datastore-start:
 	@gcloud beta emulators datastore env-init --quiet > /dev/null 2>&1;
 
 datastore-stop:
-	@kill `ps ax | grep 'CloudDatastore.jar' | grep -v grep | awk '{print $1}' | head -n 1`;
+	@kill -9 `ps ax | grep 'CloudDatastore.jar' | grep -v grep | awk '{print $1}' | head -n 1`;
 
 install:
 	@curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-319.0.0-linux-x86_64.tar.gz;

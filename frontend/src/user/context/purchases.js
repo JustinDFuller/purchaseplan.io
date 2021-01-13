@@ -16,7 +16,7 @@ export function Purchase(data = purchaseDefaults) {
       return data !== purchaseDefaults;
     },
     is(purchase) {
-      return purchase.product().name() === data.product.name(); // switch to ID later
+      return purchase.product().name() === data.product.name(); // unique name is enforced
     },
     from(purchase) {
       return Purchase({
@@ -96,6 +96,11 @@ export function New(input = defaults) {
         purchases: purchases?.map((p) => Purchase().from(p)) || [],
         availability,
       });
+    },
+    findProduct(product) {
+      return data.purchases.find(
+        (purchase) => purchase.product().name() === product.name()
+      );
     },
   };
 }

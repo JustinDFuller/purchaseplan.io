@@ -61,6 +61,9 @@ export function New(input = defaults) {
 
       return data.lastPaycheck.toLocaleDateString("en-US");
     },
+    isDuplicateName(product) {
+      return data.purchases.findProduct(product);
+    },
   };
 }
 

@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import cn from "classnames";
 
 import * as User from "../user";
 import * as Product from "../product";
 import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
 import { URL } from "./URL";
+
+const NO_ERROR = 0;
+const INVALID_SEARCH = 1;
+const DUPLICATE_NAME = 2;
 
 export const Form = User.withContext(function ({
   user,
@@ -20,11 +25,11 @@ export const Form = User.withContext(function ({
     try {
       const result = await Product.api.get(url);
       setProduct(Product.data.New(result));
-      setError(false);
+      setError(NO_ERROR);
     } catch (e) {
       console.error(e);
       setProduct(productDefaults);
-      setError(true);
+      setError(INVALID_SEARCH);
     } finally {
       setLoading(false);
     }
@@ -32,6 +37,13 @@ export const Form = User.withContext(function ({
 
   function handleSubmitEdit(e) {
     e.preventDefault();
+
+    if (user.isDuplicateName(product)) {
+      setError(DUPLICATE_NAME);
+      return;
+    }
+
+    setError(NO_ERROR);
     const u = user.addPurchase(User.Purchase().setProduct(product));
     setUser(u);
     User.api.put(u);
@@ -39,7 +51,13 @@ export const Form = User.withContext(function ({
   }
 
   if (!product) {
-    return <URL onSubmit={handleSubmit} loading={loading} error={error} />;
+    return (
+      <URL
+        onSubmit={handleSubmit}
+        loading={loading}
+        error={error === INVALID_SEARCH}
+      />
+    );
   }
 
   return (
@@ -62,10 +80,18 @@ export const Form = User.withContext(function ({
                 <label className="form-label">Name</label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={cn("form-control", {
+                    "is-invalid": error === DUPLICATE_NAME,
+                  })}
                   value={product.data.name}
                   onChange={(e) => setProduct(product.setName(e.target.value))}
+                  required
                 />
+                {error === DUPLICATE_NAME && (
+                  <div className="invalid-feedback">
+                    Please choose a unique name.
+                  </div>
+                )}
               </div>
               <div className="form-group col-12 col-md-6">
                 <label className="form-label">Description</label>
@@ -76,6 +102,7 @@ export const Form = User.withContext(function ({
                   onChange={(e) =>
                     setProduct(product.setDescription(e.target.value))
                   }
+                  required
                 />
               </div>
               <div className="form-group col-12">
@@ -85,6 +112,7 @@ export const Form = User.withContext(function ({
                   className="form-control"
                   value={product.data.url}
                   onChange={(e) => setProduct(product.setUrl(e.target.value))}
+                  required
                 />
               </div>
             </div>
@@ -104,6 +132,7 @@ export const Form = User.withContext(function ({
                     onChange={(e) =>
                       setProduct(product.setPrice(e.target.value))
                     }
+                    required
                   />
                 </div>
                 <div className="col-7 text-right">
