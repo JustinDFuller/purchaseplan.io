@@ -60,6 +60,7 @@ export const Purchases = withContext(function ({ user, setUser }) {
                               <div
                                 className="card-img-top"
                                 style={{
+                                  backgroundColor: "white",
                                   backgroundImage: `url('${purchase.data.product.data.image}')`,
                                   minHeight: "200px",
                                   height: "100%",

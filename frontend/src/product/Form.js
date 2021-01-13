@@ -13,12 +13,21 @@ export const Form = User.withContext(function ({
 }) {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState(productDefaults);
+  const [error, setError] = useState(false);
 
   async function handleSubmit(url) {
     setLoading(true);
-    const result = await Product.api.get(url);
-    setProduct(Product.data.New(result));
-    setLoading(false);
+    try {
+      const result = await Product.api.get(url);
+      setProduct(Product.data.New(result));
+      setError(false);
+    } catch (e) {
+      console.error(e);
+      setProduct(productDefaults);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   }
 
   function handleSubmitEdit(e) {
@@ -30,7 +39,7 @@ export const Form = User.withContext(function ({
   }
 
   if (!product) {
-    return <URL onSubmit={handleSubmit} loading={loading} />;
+    return <URL onSubmit={handleSubmit} loading={loading} error={error} />;
   }
 
   return (

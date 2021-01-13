@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
 
-export function URL({ onSubmit, loading }) {
+export function URL({ onSubmit, loading, error }) {
   const [url, setUrl] = useState("");
 
   function handleSubmit(e) {
@@ -13,6 +13,11 @@ export function URL({ onSubmit, loading }) {
 
   return (
     <Card>
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          Please make sure the URL is correct and try again.
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="form-label">
