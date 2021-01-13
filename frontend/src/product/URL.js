@@ -19,12 +19,12 @@ export function URL({ onSubmit, loading, error }) {
         </div>
       )}
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group mb-0">
           <label className="form-label">
             Enter the URL to the product you want to buy
           </label>
           <div className="row">
-            <div className="col col-10 col-md-11">
+            <div className="col-12 col-md-10">
               <input
                 type="url"
                 className="form-control"
@@ -34,8 +34,8 @@ export function URL({ onSubmit, loading, error }) {
                 onChange={(e) => setUrl(e.target.value)}
               />
             </div>
-            <div className="col col-2 col-md-1">
-              <Submit onClick={handleSubmit} loading={loading} />
+            <div className="col-12 col-md-2 text-right mt-3 mt-md-0">
+              <Submit onClick={handleSubmit} loading={loading} text="Search" />
             </div>
           </div>
         </div>

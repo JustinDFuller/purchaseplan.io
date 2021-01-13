@@ -32,6 +32,14 @@ export const success = {
   color: "#6fcf97",
 };
 
+export const danger = {
+  color: "#dc3545",
+};
+
+export const transparent = {
+  background: "transparent",
+};
+
 export const pointer = {
   cursor: "pointer",
 };

@@ -89,7 +89,7 @@ export const SavingsOverview = withContext(function ({ user, setUser }) {
             />
           </div>
           <div className="text-right">
-            <Submit />
+            <Submit text="Save" />
           </div>
         </form>
       </div>

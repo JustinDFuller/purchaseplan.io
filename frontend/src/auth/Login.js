@@ -41,14 +41,14 @@ export const Login = withContext(
     }
 
     return (
-      <Card style={{ maxWidth: 400, margin: "auto" }}>
+      <Card style={{ maxWidth: 500, margin: "auto" }}>
         <form onSubmit={handleSubmit}>
           <div className="form-group margin-auto">
             <label className="form-label">
               To get started, log in with your email address.
             </label>
             <div className="row">
-              <div className="col-10">
+              <div className="col-9">
                 <input
                   className="form-control"
                   type="email"
@@ -58,10 +58,11 @@ export const Login = withContext(
                   onChange={(e) => setUser(user.setEmail(e.target.value))}
                 />
               </div>
-              <div className="col-2">
+              <div className="col-3">
                 <Submit
                   onClick={handleSubmit}
                   loading={auth.state() === Auth.state.LOGGING_IN}
+                  text="Log in"
                 />
               </div>
             </div>

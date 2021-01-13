@@ -3,6 +3,7 @@ import cn from "classnames";
 
 import * as User from "../user";
 import * as Product from "../product";
+import * as styles from "../styles";
 import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
 import { URL } from "./URL";
@@ -136,7 +137,19 @@ export const Form = User.withContext(function ({
                   />
                 </div>
                 <div className="col-7 text-right">
-                  <Submit onClick={handleSubmitEdit} loading={loading} />
+                  <button
+                    type="button"
+                    className="btn btn-danger mr-2"
+                    style={styles.combine(styles.danger, styles.transparent)}
+                    onClick={() => setProduct(productDefaults)}
+                  >
+                    Cancel
+                  </button>
+                  <Submit
+                    onClick={handleSubmitEdit}
+                    loading={loading}
+                    text="Save"
+                  />
                 </div>
               </div>
             </div>
