@@ -32,7 +32,7 @@ export function Purchase(data = purchaseDefaults) {
       return data.date?.toLocaleDateString("en-US") ?? "";
     },
     id() {
-      return data.product?.url();
+      return data.product?.name(); // name is unique
     },
   };
 }
