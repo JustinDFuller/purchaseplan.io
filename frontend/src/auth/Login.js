@@ -48,7 +48,7 @@ export const Login = withContext(
               To get started, log in with your email address.
             </label>
             <div className="row">
-              <div className="col-9">
+              <div className="col-12 col-md-9">
                 <input
                   className="form-control"
                   type="email"
@@ -58,7 +58,7 @@ export const Login = withContext(
                   onChange={(e) => setUser(user.setEmail(e.target.value))}
                 />
               </div>
-              <div className="col-3">
+              <div className="col-12 col-md-3 text-right mt-3 mt-md-0">
                 <Submit
                   onClick={handleSubmit}
                   loading={auth.state() === Auth.state.LOGGING_IN}
