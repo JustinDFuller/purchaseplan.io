@@ -17,11 +17,14 @@ type C struct {
 func New() (C, error) {
 	var c C
 
-	// It's expected the .env is in the root dir of the project.
-	if err := godotenv.Load("../.env"); err != nil {
-		// Retry one more dir up.
-		if err := godotenv.Load("../../.env"); err != nil {
-			return c, err
+	// Same dir in app engine
+	if err := godotenv.Load("./.env"); err != nil {
+		// Up one dir when running locally
+		if err := godotenv.Load("../.env"); err != nil {
+			// Up two dirs when running tests
+			if err := godotenv.Load("../../.env"); err != nil {
+				return c, err
+			}
 		}
 	}
 
