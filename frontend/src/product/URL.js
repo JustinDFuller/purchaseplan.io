@@ -26,6 +26,7 @@ export function URL({ onSubmit, loading, error }) {
           <div className="row">
             <div className="col-12 col-md-10">
               <input
+                required
                 type="url"
                 className="form-control"
                 value={url}
