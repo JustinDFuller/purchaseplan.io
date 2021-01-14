@@ -11,6 +11,8 @@ steps:
     environment:
       GAE_CREDENTIALS_DEV:
         from_secret: GAE_CREDENTIALS_DEV
+      ENV:
+        from_secret: ENV
     commands:
       - ./scripts/setup
       - cd backend
