@@ -1,4 +1,5 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { ReactComponent as X } from "bootstrap-icons/icons/x.svg";
 
 import * as api from "./api";
 import { withContext } from "./context/with";
@@ -24,6 +25,13 @@ export const Purchases = withContext(function ({ user, setUser }) {
       .purchases()
       .reorder(result.source.index, result.destination.index);
 
+    const u = user.setPurchases(purchases);
+    setUser(u);
+    api.put(u);
+  }
+
+  function remove(purchase) {
+    const purchases = user.purchases().remove(purchase);
     const u = user.setPurchases(purchases);
     setUser(u);
     api.put(u);
@@ -88,6 +96,13 @@ export const Purchases = withContext(function ({ user, setUser }) {
                                 >
                                   ${purchase.data.product.data.price}
                                 </strong>
+                                <X
+                                  className="float-right mt-1"
+                                  style={styles.pointer}
+                                  height={21}
+                                  width={21}
+                                  onClick={() => remove(purchase)}
+                                />
                                 <a
                                   href={purchase.data.product.data.url}
                                   className="text-white"

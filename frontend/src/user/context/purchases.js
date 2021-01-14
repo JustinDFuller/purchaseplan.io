@@ -102,5 +102,14 @@ export function New(input = defaults) {
         (purchase) => purchase.product().name() === product.name()
       );
     },
+    remove(purchase) {
+      const i = data.purchases.findIndex((p) => p.is(purchase));
+      const purchases = data.purchases.slice();
+      purchases.splice(i, 1);
+      return New({
+        ...data,
+        purchases,
+      });
+    },
   };
 }
