@@ -1,6 +1,8 @@
 package config
 
 import (
+	"log"
+
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 )
@@ -23,7 +25,7 @@ func New() (C, error) {
 		if err := godotenv.Load("../.env"); err != nil {
 			// Up two dirs when running tests
 			if err := godotenv.Load("../../.env"); err != nil {
-				return c, err
+				log.Printf("Error loading .env file: %s", err)
 			}
 		}
 	}
