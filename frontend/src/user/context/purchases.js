@@ -19,7 +19,6 @@ export function Purchase(data = purchaseDefaults) {
       return data !== purchaseDefaults;
     },
     is(purchase) {
-      console.log("Is", purchase.product().name(), data.product.name());
       return purchase.product().name() === data.product.name(); // unique name is enforced
     },
     from(purchase) {

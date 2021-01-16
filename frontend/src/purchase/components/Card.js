@@ -1,7 +1,9 @@
-import { ReactComponent as X } from "bootstrap-icons/icons/x.svg";
-import { ReactComponent as Bag } from "bootstrap-icons/icons/bag-check.svg";
+import React from "react";
+
+import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil.svg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import * as User from "../../user";
 import * as styles from "../../styles";
@@ -10,6 +12,14 @@ import * as notifications from "../../notifications";
 
 import { UndoPurchase } from "./UndoPurchase";
 import { UndoRemove } from "./UndoRemove";
+
+export const Edit = React.forwardRef(function ({ children, onClick }, ref) {
+  return (
+    <Pencil ref={ref} onClick={onClick} style={styles.pointer}>
+      {children}
+    </Pencil>
+  );
+});
 
 export const Card = User.withContext(function ({ purchase, user, setUser }) {
   function onRemove(purchase) {
@@ -53,7 +63,7 @@ export const Card = User.withContext(function ({ purchase, user, setUser }) {
             }}
           />
         </Col>
-        <Col xs={12} sm={6} md={8}>
+        <Col xs={12} sm={7} md={9}>
           <div className="card-body" style={{ position: "relative" }}>
             <strong className="price-bubble" style={styles.bubble}>
               ${purchase.data.product.data.price}
@@ -61,18 +71,34 @@ export const Card = User.withContext(function ({ purchase, user, setUser }) {
 
             <a href={purchase.data.product.data.url} className="text-white">
               <h5
-                className="card-title mt-3 mt-sm-0"
+                className="card-title mt-3 mt-sm-0 d-inline-block"
                 style={{
                   height: "1.4rem",
                   textOverflow: "ellipsis",
                   overflow: "hidden",
                   whiteSpace: "nowrap",
+                  maxWidth: "90%",
                 }}
               >
                 {purchase.data.product.data.name}
               </h5>
             </a>
-            <p>
+
+            <Dropdown className="float-right mt-3 mt-sm-0">
+              <Dropdown.Toggle variant="primary" as={Edit}>
+                Edit
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item as="button" onClick={() => onRemove(purchase)}>
+                  Remove this product
+                </Dropdown.Item>
+                <Dropdown.Item as="button" onClick={() => onPurchase(purchase)}>
+                  I purchased this product
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
+            <p style={{ maxWidth: "90%" }}>
               {purchase.data.product.data.description.slice(0, 150)}
               {purchase.data.product.data.description.length > 150 && "..."}
             </p>
@@ -81,26 +107,6 @@ export const Card = User.withContext(function ({ purchase, user, setUser }) {
               <span className="availablity">{purchase.displayDate()}</span>
             </div>
           </div>
-        </Col>
-        <Col
-          xs={12}
-          sm={1}
-          className="d-flex flex-column pt-3 pl-4"
-          style={{ borderLeft: "1px solid #9999a8" }}
-        >
-          <X
-            className="mb-3"
-            style={styles.pointer}
-            height={21}
-            width={21}
-            onClick={() => onRemove(purchase)}
-          />
-          <Bag
-            style={styles.pointer}
-            height={21}
-            width={21}
-            onClick={() => onPurchase(purchase)}
-          />
         </Col>
       </Row>
     </Layout.Card>
