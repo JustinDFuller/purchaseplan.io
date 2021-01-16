@@ -30,10 +30,18 @@ function every2Weeks({ lastPaycheck, saved, contributions }) {
       const date = new Date(lastPaycheck.getTime());
       let s = saved;
       let total = 0;
-      for (let i = 0; i < purchases.length; i++) {
-        total += purchases[i].data.product.price();
 
-        if (purchases[i].is(purchase)) {
+      for (let i = 0; i < purchases.length; i++) {
+        const purchase = purchases[i];
+        const product = purchase.product();
+
+        if (purchase.shouldSkip()) {
+          continue;
+        }
+
+        total += product.price();
+
+        if (purchase.is(purchase)) {
           break;
         }
       }

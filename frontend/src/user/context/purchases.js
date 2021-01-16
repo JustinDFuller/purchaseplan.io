@@ -2,7 +2,10 @@ import { getterSetters } from "../../object/getterSetters";
 import * as Product from "../../product";
 
 const purchaseDefaults = {
-  date: null, // calculated at display time
+  date: null,
+  deleted: false,
+  purchased: false,
+  purchasedAt: null,
   product: Product.data.New(),
 };
 
@@ -20,9 +23,13 @@ export function Purchase(data = purchaseDefaults) {
     },
     from(purchase) {
       return Purchase({
+        ...purchaseDefaults,
         ...purchase,
         product: Product.data.New(purchase.product),
       });
+    },
+    shouldSkip() {
+      return data.purchased || data.deleted;
     },
     displayDate() {
       if (data.date <= new Date()) {
@@ -102,10 +109,42 @@ export function New(input = defaults) {
         (purchase) => purchase.product().name() === product.name()
       );
     },
+    undoRemove(purchase) {
+      const i = data.purchases.findIndex((p) => p.is(purchase));
+      const purchases = data.purchases.slice();
+      purchases[i] = purchases[i].setDeleted(false);
+
+      return New({
+        ...data,
+        purchases,
+      });
+    },
     remove(purchase) {
       const i = data.purchases.findIndex((p) => p.is(purchase));
       const purchases = data.purchases.slice();
-      purchases.splice(i, 1);
+      purchases[i] = purchases[i].setDeleted(true);
+
+      return New({
+        ...data,
+        purchases,
+      });
+    },
+    undoPurchase(purchase) {
+      const i = data.purchases.findIndex((p) => p.is(purchase));
+      const purchases = data.purchases.slice();
+      purchases[i] = purchases[i].setPurchased(false).setPurchasedAt(null);
+
+      return New({
+        ...data,
+        purchases,
+      });
+    },
+
+    purchase(purchase) {
+      const i = data.purchases.findIndex((p) => p.is(purchase));
+      const purchases = data.purchases.slice();
+      purchases[i] = purchases[i].setPurchased(true).setPurchasedAt(new Date());
+
       return New({
         ...data,
         purchases,
