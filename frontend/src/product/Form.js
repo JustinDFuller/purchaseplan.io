@@ -80,6 +80,7 @@ export const Form = User.withContext(function ({
               <div className="form-group col-12 col-md-6">
                 <label className="form-label">Name</label>
                 <input
+                  autoFocus
                   type="text"
                   className={cn("form-control", {
                     "is-invalid": error === DUPLICATE_NAME,

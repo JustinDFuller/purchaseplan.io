@@ -32,16 +32,16 @@ function every2Weeks({ lastPaycheck, saved, contributions }) {
       let total = 0;
 
       for (let i = 0; i < purchases.length; i++) {
-        const purchase = purchases[i];
-        const product = purchase.product();
+        const p = purchases[i];
+        const product = p.product();
 
-        if (purchase.shouldSkip()) {
+        if (p.shouldSkip()) {
           continue;
         }
 
         total += product.price();
 
-        if (purchase.is(purchase)) {
+        if (p.is(purchase)) {
           break;
         }
       }

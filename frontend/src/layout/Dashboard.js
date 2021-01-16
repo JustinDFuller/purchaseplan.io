@@ -1,6 +1,7 @@
 import * as Product from "../product";
 import * as User from "../user";
 import * as Notifications from "../notifications";
+import * as Purchase from "../purchase";
 
 import { HowItWorks } from "./HowItWorks";
 
@@ -13,7 +14,7 @@ export function Dashboard() {
       </div>
       <div className="col-12 col-lg-8 order-1 order-lg-2">
         <Product.Form />
-        <User.Purchases />
+        <Purchase.components.List />
         <Notifications.components.Toasts />
       </div>
     </div>
