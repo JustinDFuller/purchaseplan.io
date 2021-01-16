@@ -18,46 +18,82 @@ export function get(user) {
   return types[user.frequency](user);
 }
 
-function everyWeek() {
+function everyWeek({ lastPaycheck, saved, contributions }) {
   return {
-    calculate() {},
+    calculate(purchase, purchases) {
+      return interval({
+        lastPaycheck,
+        saved,
+        contributions,
+        purchase,
+        purchases,
+        interval: 7,
+      });
+    },
   };
 }
 
 function every2Weeks({ lastPaycheck, saved, contributions }) {
   return {
     calculate(purchase, purchases) {
-      const date = new Date(lastPaycheck.getTime());
-      let s = saved;
-      let total = 0;
-
-      for (let i = 0; i < purchases.length; i++) {
-        const p = purchases[i];
-        const product = p.product();
-
-        if (p.shouldSkip()) {
-          continue;
-        }
-
-        total += product.price();
-
-        if (p.is(purchase)) {
-          break;
-        }
-      }
-
-      while (s < total) {
-        date.setDate(date.getDate() + 14);
-        s += contributions;
-      }
-
-      return date;
+      return interval({
+        lastPaycheck,
+        saved,
+        contributions,
+        purchase,
+        purchases,
+        interval: 14,
+      });
     },
   };
 }
 
-function onceAMonth() {
+function onceAMonth({ lastPaycheck, saved, contributions }) {
   return {
-    calculate() {},
+    calculate(purchase, purchases) {
+      return interval({
+        lastPaycheck,
+        saved,
+        contributions,
+        purchase,
+        purchases,
+        interval: 30, // This isn't right
+      });
+    },
   };
+}
+
+function interval({
+  lastPaycheck,
+  saved,
+  purchases,
+  purchase,
+  contributions,
+  interval,
+}) {
+  const date = new Date(lastPaycheck.getTime());
+  let s = saved;
+  let total = 0;
+
+  for (let i = 0; i < purchases.length; i++) {
+    const p = purchases[i];
+    const product = p.product();
+
+    if (p.shouldSkip()) {
+      continue;
+    }
+
+    total += product.price();
+
+    if (p.is(purchase)) {
+      break;
+    }
+  }
+
+  while (s < total) {
+    date.setDate(date.getDate() + interval);
+    s += contributions;
+  }
+
+  return date;
 }
