@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
@@ -12,7 +13,8 @@ const messages = [
 
 export function URL({ onSubmit, loading, error }) {
   const [url, setUrl] = useState("");
-  const [message, setMessage] = useState(-1);
+  const [message, setMessage] = useState(0);
+  const [progress, setProgress] = useState(40);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -25,6 +27,7 @@ export function URL({ onSubmit, loading, error }) {
         const i = setInterval(function () {
           if (message < messages.length - 1) {
             setMessage((m) => m + 1);
+            setProgress((p) => p + 18.5);
           } else {
             clearInterval(i);
           }
@@ -50,22 +53,38 @@ export function URL({ onSubmit, loading, error }) {
             Enter the URL to the product you want to buy
           </label>
           <div className="row">
-            <div className="col-12 col-md-10">
-              <input
-                autoFocus
-                required
-                type="url"
-                className="form-control"
-                value={url}
-                disabled={loading}
-                placeholder="https://smile.amazon.com/cool-new-fitbit"
-                onChange={(e) => setUrl(e.target.value)}
-              />
-            </div>
-            <div className="col-12 col-md-2 text-right mt-3 mt-md-0">
-              <Submit onClick={handleSubmit} loading={loading} text="Search" />
-            </div>
-            {loading && <div className="col-12">{messages[message]}</div>}
+            {loading ? (
+              <div className="col-12">
+                <ProgressBar
+                  variant="primary"
+                  now={progress}
+                  label={messages[message]}
+                  style={{ height: "calc(1.5em + 0.75rem + 2px)" }}
+                />
+              </div>
+            ) : (
+              <>
+                <div className="col-12 col-md-10">
+                  <input
+                    autoFocus
+                    required
+                    type="url"
+                    className="form-control"
+                    value={url}
+                    disabled={loading}
+                    placeholder="https://smile.amazon.com/cool-new-fitbit"
+                    onChange={(e) => setUrl(e.target.value)}
+                  />
+                </div>
+                <div className="col-12 col-md-2 text-right mt-3 mt-md-0">
+                  <Submit
+                    onClick={handleSubmit}
+                    loading={loading}
+                    text="Search"
+                  />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </form>
