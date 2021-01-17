@@ -5,16 +5,16 @@ import { Card } from "../layout/Card";
 import { Submit } from "../forms/Submit";
 
 const messages = [
-  "Trying to find the best image",
-  "Looking for the right price",
-  "While you wait, why not update your savings overview?",
-  "Are your purchases in the right order? Drag and drop them to rearrange.",
+  "Trying to find the best image.",
+  "Looking for the right price.",
+  "Click on the pencil to edit your savings overview.",
+  "Drag and drop purchases to rearrange them.",
 ];
 
 export function URL({ onSubmit, loading, error }) {
   const [url, setUrl] = useState("");
   const [message, setMessage] = useState(0);
-  const [progress, setProgress] = useState(40);
+  const [progress, setProgress] = useState(60);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -27,7 +27,7 @@ export function URL({ onSubmit, loading, error }) {
         const i = setInterval(function () {
           if (message < messages.length - 1) {
             setMessage((m) => m + 1);
-            setProgress((p) => p + 18.5);
+            setProgress((p) => p + 12);
           } else {
             clearInterval(i);
           }
