@@ -100,7 +100,19 @@ func TestService(t *testing.T) {
 				URL:           "https://www.amazon.com/Suncast-Commercial-Blow-Molded-Cabinet/dp/B0166R5ZEQ",
 				OriginalImage: "https://images-na.ssl-images-amazon.com/images/I/91eS8zD0K5L._AC_SL1500_.jpg",
 				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/28ea694a682ca80a10e39fa0b8d79e96?alt=media",
-				Price:         150,
+				Price:         177,
+			},
+		},
+		{
+			// Slightly different Open Graph tags
+			url: "https://www.electroluxappliances.com/Kitchen-Appliances/Wall-Ovens/Wall-Oven_Microwave-Combination/EW30MC65PS/",
+			product: planner.Product{
+				Name:          "30'' Wall Oven and Microwave Combination with Wave-Touch® Controls",
+				Description:   "Compare microwave and convection oven combinations to find the best set for your kitchen. Get a microwave/convection oven combo to meet your cooking needs.",
+				URL:           "https://www.electroluxappliances.com/Kitchen-Appliances/Wall-Ovens/Wall-Oven_Microwave-Combination/EW30MC65PS/",
+				OriginalImage: "https://na2.electroluxmedia.com/Transparent/Electrolux/Electrolux%20Assets/Images/Product%20Photography/EW30MC65PS-HOV_531.png?impolicy=EA-PLP",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-saving-planner-images-local/o/92a4b4272738fec930c223cfe07f910e?alt=media",
+				Price:         4399,
 			},
 		},
 	}

@@ -87,19 +87,24 @@ func (parser HTMLParser) Product() (Product, error) {
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
 	if err != nil {
-		log.Printf("OpenGraph error reading document: %s", err)
+		log.Printf("HTMLParser error reading document: %s", err)
 		return p, err
 	}
 
+	var withAlt string
+	var withoutAlt string
+
 	doc.Find("img").Each(func(i int, s *goquery.Selection) {
+		var foundAlt bool
+
 		src, ok := s.Attr("src")
 		if !ok || src == "" {
 			return
 		}
 
 		alt, ok := s.Attr("alt")
-		if !ok || alt == "" {
-			return
+		if ok && alt != "" {
+			foundAlt = true
 		}
 
 		if p.Description == "" {
@@ -107,9 +112,21 @@ func (parser HTMLParser) Product() (Product, error) {
 		}
 
 		if p.Image == "" && len(src) < 1500 {
-			p.Image = src
+			if foundAlt && withAlt == "" {
+				withAlt = src
+			} else if !foundAlt && withoutAlt == "" {
+				withoutAlt = src
+			}
 		}
 	})
+
+	if p.Image == "" {
+		if withAlt != "" {
+			p.Image = withAlt
+		} else {
+			p.Image = withoutAlt
+		}
+	}
 
 	doc.Find(`*`).Each(func(i int, s *goquery.Selection) {
 		if p.Price != 0 {
@@ -137,7 +154,7 @@ func (parser MetaTagParser) Product() (Product, error) {
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
 	if err != nil {
-		log.Printf("OpenGraph error reading document: %s", err)
+		log.Printf("MetaTagParser error reading document: %s", err)
 		return p, err
 	}
 
@@ -177,6 +194,9 @@ func (parser OpenGraphParser) Product() (Product, error) {
 	doc.Find("meta").Each(func(i int, s *goquery.Selection) {
 
 		attr, ok := s.Attr("property")
+		if !ok {
+			attr, ok = s.Attr("name")
+		}
 		content, _ := s.Attr("content")
 		if ok {
 			switch attr {
@@ -188,7 +208,7 @@ func (parser OpenGraphParser) Product() (Product, error) {
 				p.Description = content
 			case "og:url":
 				p.URL = content
-			case "product:price:amount":
+			case "product:price:amount", "PriceValue", "MSRPValue", "SalePriceValue":
 				f, err := strconv.ParseFloat(content, 64)
 				if err == nil {
 					p.Price = int64(f)
