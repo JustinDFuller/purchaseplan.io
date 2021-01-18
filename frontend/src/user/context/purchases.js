@@ -1,12 +1,12 @@
 import { getterSetters } from "../../object/getterSetters";
-import * as Product from "../../product";
+import * as ProductData from "../../product/data";
 
 const purchaseDefaults = {
   date: null,
   deleted: false,
   purchased: false,
   purchasedAt: null,
-  product: Product.data.New(),
+  product: ProductData.New(),
 };
 
 export function Purchase(data = purchaseDefaults) {
@@ -25,7 +25,7 @@ export function Purchase(data = purchaseDefaults) {
       return Purchase({
         ...purchaseDefaults,
         ...purchase,
-        product: Product.data.New(purchase.product),
+        product: ProductData.New(purchase.product),
       });
     },
     shouldSkip() {

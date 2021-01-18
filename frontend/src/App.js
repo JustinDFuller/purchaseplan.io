@@ -35,7 +35,7 @@ export default function App() {
           {auth.state() === Auth.state.LOGGED_IN ? (
             <Layout.Dashboard />
           ) : (
-            <Auth.Login />
+            <Layout.Landing />
           )}
         </div>
       </User.Context.Provider>

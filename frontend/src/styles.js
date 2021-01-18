@@ -5,15 +5,17 @@ export const dark = {
 export const darkAlt = {
   background: "#141432",
   borderRight: "3px solid rgb(10 10 36)",
-  borderRadius: "5px",
   borderBottom: "3px solid rgb(10 10 36)",
   borderLeft: "1px solid rgb(10 10 36)",
   borderTop: "1px solid rgb(10 10 36)",
 };
 
+export const roundBorder = {
+  borderRadius: "5px",
+};
+
 export const darkLight = {
   background: "#26264e",
-  borderRadius: "5px",
 };
 
 export const logo = {
