@@ -10,6 +10,14 @@ workspace:
   path: src/github.com/justindfuller/purchase-plan
 
 steps:
+  - name: setup
+    image: alpine
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: TERRAFORM_CREDENTIALS_PURCHASE_PLAN_CENTRAL_DEV
+    commands:
+      - /bin/bash ./scripts/setup
+
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
     commands:
@@ -29,25 +37,20 @@ steps:
 
   - name: terraform-central-dev
     image: hashicorp/terraform:light
-    environment:
-      GOOGLE_APPLICATION_CREDENTIALS:
-        from_secret: TERRAFORM_CREDENTIALS_PURCHASE_PLAN_CENTRAL_DEV
-    commands:
-      - /bin/bash scripts/setup
+        commands:
       - cd ./terraform/dev
       - terraform init
       - terraform fmt -check
       - terraform plan -input=false
       - terraform apply -input=false -auto-approve
     depends_on:
-      - frontend
-      - backend
+      - setup
 
   - name: deploy-central-dev
     image: nytimes/drone-gae
     environment:
       GAE_CREDENTIALS:
-        from_secret: GAE_DEPLOY_CREDENTIALS_DEV
+        from_secret: DRONE_CREDENTIALS_CENTRAL_DEV
     settings:
       action: deploy
       project: purchase-plan-central-dev
@@ -58,4 +61,6 @@ steps:
       event: push
       branch: [main]
     depends_on:
+      - frontend
+      - backend
       - terraform-central-dev
