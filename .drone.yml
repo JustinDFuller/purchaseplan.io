@@ -5,6 +5,10 @@ platform:
   os: linux
   arch: amd64
 
+workspace:
+  base: /drone
+  path: src/github.com/justindfuller/purchase-plan
+
 steps:
   - name: init
     image: bash
@@ -15,9 +19,6 @@ steps:
         from_secret: ENV
     commands:
       - ./scripts/setup
-    when:
-      event: push
-      branch: [main]
 
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
@@ -25,9 +26,6 @@ steps:
       - cd backend
       # - make test
       - make build
-    when:
-      event: push
-      branch: [main]
     depends_on:
       - init
 
@@ -39,9 +37,6 @@ steps:
       - npm run build
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
-    when:
-      event: push
-      branch: [main]
     depends_on:
       - init
 
@@ -52,9 +47,6 @@ steps:
       - terraform fmt -check
       - terraform plan -input=false
       - terraform apply -input=false -auto-approve
-    when:
-      event: push
-      branch: [main]
     depends_on:
       - frontend
       - backend
