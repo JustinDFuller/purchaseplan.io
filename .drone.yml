@@ -10,24 +10,13 @@ workspace:
   path: src/github.com/justindfuller/purchase-plan
 
 steps:
-  - name: init
-    image: bash
-    environment:
-      GAE_CREDENTIALS_DEV:
-        from_secret: GAE_CREDENTIALS_DEV
-      ENV:
-        from_secret: ENV
-    commands:
-      - /bin/bash scripts/setup
-
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
     commands:
+      - ./scripts/setup
       - cd backend
       # - make test
       - make build
-    depends_on:
-      - init
 
   - name: frontend
     image: node
@@ -37,8 +26,6 @@ steps:
       - npm run build
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
-    depends_on:
-      - init
 
   - name: terraform-central-dev
     image: hashicorp/terraform:light
