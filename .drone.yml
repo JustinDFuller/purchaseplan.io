@@ -18,7 +18,7 @@ steps:
       ENV:
         from_secret: ENV
     commands:
-      - ./scripts/setup
+      - /bin/bash scripts/setup
 
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
