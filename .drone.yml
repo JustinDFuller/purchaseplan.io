@@ -7,7 +7,7 @@ platform:
 
 steps:
   - name: init
-    image: alpine
+    image: bash
     environment:
       GAE_CREDENTIALS_DEV:
         from_secret: GAE_CREDENTIALS_DEV
