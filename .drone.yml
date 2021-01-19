@@ -29,7 +29,11 @@ steps:
 
   - name: terraform-central-dev
     image: hashicorp/terraform:light
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS:
+        from_secret: TERRAFORM_CREDENTIALS_PURCHASE_PLAN_CENTRAL_DEV
     commands:
+      - ./scripts/setup
       - cd ./terraform/dev
       - terraform init
       - terraform fmt -check
