@@ -31,6 +31,7 @@ steps:
     image: hashicorp/terraform:light
     commands:
       - cd ./terraform/dev
+      - terraform init
       - terraform fmt -check
       - terraform plan -input=false
       - terraform apply -input=false -auto-approve
