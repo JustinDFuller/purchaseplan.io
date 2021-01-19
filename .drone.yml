@@ -6,8 +6,8 @@ platform:
   arch: amd64
 
 steps:
-  - name: backend
-    image: nytimes/golang-gcloud-sdk:latest
+  - name: init
+    image: alpine
     environment:
       GAE_CREDENTIALS_DEV:
         from_secret: GAE_CREDENTIALS_DEV
@@ -15,8 +15,12 @@ steps:
         from_secret: ENV
     commands:
       - ./scripts/setup
+
+  - name: backend
+    image: nytimes/golang-gcloud-sdk:latest
+    commands:
       - cd backend
-        # - make test
+      # - make test
       - make build
 
   - name: frontend
@@ -28,14 +32,25 @@ steps:
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
 
-  - name: deploy
+  - name: terraform-central-dev
+    image: hashicorp/terraform:light
+    commands:
+      - cd ./terraform/dev
+      - terraform fmt -check
+      - terraform plan -input=false
+      - terraform apply -input=false -auto-approve
+    depends_on:
+      - frontend
+      - backend
+
+  - name: deploy-central-dev
     image: nytimes/drone-gae
     environment:
       GAE_CREDENTIALS:
         from_secret: GAE_DEPLOY_CREDENTIALS_DEV
     settings:
       action: deploy
-      project: purchase-plan-dev
+      project: purchase-plan-central-dev
       dir: backend/cmd/server
       app_file: app.yaml
       max_versions: 10
@@ -43,5 +58,4 @@ steps:
       event: push
       branch: [main]
     depends_on:
-      - backend
-      - frontend
+      - terraform-central-dev
