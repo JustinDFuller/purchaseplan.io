@@ -35,7 +35,7 @@ steps:
         from_secret: GAE_DEPLOY_CREDENTIALS_DEV
     settings:
       action: deploy
-      project: purchase-saving-planner
+      project: purchase-plan-dev
       dir: backend/cmd/server
       app_file: app.yaml
       max_versions: 10
