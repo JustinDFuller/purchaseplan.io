@@ -33,7 +33,7 @@ steps:
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: TERRAFORM_CREDENTIALS_PURCHASE_PLAN_CENTRAL_DEV
     commands:
-      - ./scripts/setup
+      - /bin/bash scripts/setup
       - cd ./terraform/dev
       - terraform init
       - terraform fmt -check
