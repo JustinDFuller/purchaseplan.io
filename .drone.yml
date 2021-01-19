@@ -37,7 +37,7 @@ steps:
 
   - name: terraform-central-dev
     image: hashicorp/terraform:light
-        commands:
+    commands:
       - cd ./terraform/dev
       - terraform init
       - terraform fmt -check
