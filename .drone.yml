@@ -99,4 +99,4 @@ steps:
     depends_on:
       - frontend
       - backend
-      - terraform-central-dev
+      - terraform-dev-central
