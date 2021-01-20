@@ -50,3 +50,9 @@ resource "google_project_iam_binding" "drone-central-dev-iam-binding-storageobje
   role    = "roles/storage.objectCreator"
   members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
 }
+
+resource "google_project_iam_binding" "drone-central-dev-iam-binding-storageobjectviewer" {
+  project = google_project.purchase-plan-central-dev.id
+  role    = "roles/storage.objectViewer"
+  members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
+}
