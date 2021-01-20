@@ -9,16 +9,6 @@ resource "google_service_account" "drone-central-dev" {
   description  = "This service account has permissions for drone in purchase-plan-central-dev"
 }
 
-resource "google_organization_iam_custom_role" "drone" {
-  role_id     = "drone"
-  org_id      = data.google_organization.purchaseplanio.org_id
-  title       = "drone"
-  description = "All roles needed by drone deployments"
-  permissions = [
-    "storage.objects.delete"
-  ]
-}
-
 data "google_iam_policy" "drone" {
   binding {
     role = "roles/iam.serviceAccountUser"
@@ -33,13 +23,25 @@ data "google_iam_policy" "drone" {
   }
 
   binding {
-    role = "roles/cloudbuild.builds.builder"
+    role = "roles/cloudbuild.builds.editor"
+
+    members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
+  }
+
+  binding {
+    role = "roles/appengine.appCreator"
 
     members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
   }
 
   binding {
     role = "roles/appengine.serviceAdmin"
+
+    members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
+  }
+
+  binding {
+    role = "roles/appengine.deployer"
 
     members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
   }
