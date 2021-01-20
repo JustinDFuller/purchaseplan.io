@@ -38,3 +38,10 @@ resource "google_project_service" "iam" {
 
   disable_dependent_services = true
 }
+
+resource "google_project_service" "appengine" {
+  project = "purchase-plan-central-dev"
+  service = "appengine.googleapis.com"
+
+  disable_dependent_services = true
+}
