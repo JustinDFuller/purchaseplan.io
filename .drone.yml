@@ -51,6 +51,18 @@ steps:
     depends_on:
       - setup
 
+  - name: terraform-remote
+    image: hashicorp/terraform:light
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: ../../application_default_credentials.json
+    commands:
+      - cd ./terraform/remote
+      - terraform init
+      - terraform fmt -check
+      - terraform apply -auto-approve
+    depends_on:
+      - terraform-org
+
   - name: terraform-dev-central
     image: hashicorp/terraform:light
     environment:
@@ -68,7 +80,7 @@ steps:
       - terraform fmt -check
       - terraform apply -auto-approve
     depends_on:
-      - terraform-org
+      - terraform-remote
 
   - name: deploy-dev-central
     image: nytimes/drone-gae

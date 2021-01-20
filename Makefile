@@ -13,7 +13,7 @@ terraform-dev-central:
 	@cd ./terraform/dev && \
 		terraform plan \
 		-var="environment=dev" \
-		-var="region=central" \
+		-var="region=us-central" \
 		-var="multiregion=US" \
 		-var="product_name=purchase-plan" \
 		-var="billing_account=Purchase Plan" \

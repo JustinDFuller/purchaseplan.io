@@ -4,34 +4,9 @@ resource "google_service_account" "terraform-central-dev" {
   description  = "This service account has permissions for terraform"
 }
 
-resource "google_organization_iam_custom_role" "terraform" {
-  role_id     = "terraform"
-  org_id      = data.google_organization.org.org_id
-  title       = "terraform"
-  description = "All roles needed by terraform"
-  permissions = [
-    ### Necessary permissions to work ###
-    "resourcemanager.folders.create",
-    "resourcemanager.projects.create",
-    "storage.objects.list",
-    "storage.objects.get",
-    "storage.objects.create",
-    "storage.objects.delete",
-    ### Needed to make service accounts and roles ###
-    "iam.roles.create",
-    "iam.roles.delete",
-    "iam.roles.get",
-    "iam.roles.list",
-    "iam.roles.undelete",
-    "iam.roles.update",
-    "resourcemanager.projects.get",
-    "resourcemanager.projects.getIamPolicy"
-  ]
-}
-
 data "google_iam_policy" "terraform" {
   binding {
-    role = google_organization_iam_custom_role.terraform.id
+    role = "organizations/${var.org_id}/roles/terraform"
 
     members = ["serviceAccount:${google_service_account.terraform-central-dev.email}"]
   }

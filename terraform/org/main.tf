@@ -8,10 +8,10 @@ terraform {
     }
   }
 
-  /* backend "gcs" {
-    bucket = "purchase-plan-central-dev-terraform-state"
-    prefix = "terraform/state"
-  }*/
+  backend "gcs" {
+    bucket = "purchaseplanio-terraform-state"
+    prefix = "org/state"
+  }
 }
 
 variable "org_id" {
@@ -95,4 +95,29 @@ resource "google_project" "product-environment-regions" {
   name            = each.key
   project_id      = each.key
   billing_account = data.google_billing_account.billing.id
+}
+
+resource "google_organization_iam_custom_role" "terraform" {
+  role_id     = "terraform"
+  org_id      = data.google_organization.org.org_id
+  title       = "terraform"
+  description = "All roles needed by terraform"
+  permissions = [
+    ### Necessary permissions to work ###
+    "resourcemanager.folders.create",
+    "resourcemanager.projects.create",
+    "storage.objects.list",
+    "storage.objects.get",
+    "storage.objects.create",
+    "storage.objects.delete",
+    ### Needed to make service accounts and roles ###
+    "iam.roles.create",
+    "iam.roles.delete",
+    "iam.roles.get",
+    "iam.roles.list",
+    "iam.roles.undelete",
+    "iam.roles.update",
+    "resourcemanager.projects.get",
+    "resourcemanager.projects.getIamPolicy"
+  ]
 }

@@ -7,14 +7,14 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "purchase-plan-central-dev-terraform-state"
-    prefix = "terraform/state"
+    bucket = "purchaseplanio-terraform-state"
+    prefix = "purchase-plan/dev/us-central/state"
   }
 }
 
 provider "google" {
   project = local.project_name
-  region  = "us-${var.region}"
+  region  = var.region
 }
 
 resource "google_project_service" "billing" {
