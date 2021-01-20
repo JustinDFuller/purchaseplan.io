@@ -10,8 +10,13 @@ resource "google_organization_iam_custom_role" "terraform" {
   title       = "terraform"
   description = "All roles needed by terraform"
   permissions = [
+    ### Necessary permissions to work ###
     "resourcemanager.folders.create",
-    "resourcemanager.projects.create"
+    "resourcemanager.projects.create",
+    "storage.objects.list",
+    "storage.objects.get",
+    "storage.objects.create",
+    "storage.objects.delete"
   ]
 }
 

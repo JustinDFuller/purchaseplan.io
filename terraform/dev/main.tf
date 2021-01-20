@@ -17,3 +17,24 @@ provider "google" {
   region  = "us-central1"
   zone    = "us-central1-a"
 }
+
+resource "google_project_service" "billing" {
+  project = "purchase-plan-central-dev"
+  service = "cloudbilling.googleapis.com"
+
+  disable_dependent_services = true
+}
+
+resource "google_project_service" "resource-manager" {
+  project = "purchase-plan-central-dev"
+  service = "cloudresourcemanager.googleapis.com"
+
+  disable_dependent_services = true
+}
+
+resource "google_project_service" "iam" {
+  project = "purchase-plan-central-dev"
+  service = "iam.googleapis.com"
+
+  disable_dependent_services = true
+}
