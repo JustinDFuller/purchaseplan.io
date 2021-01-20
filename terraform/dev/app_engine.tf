@@ -9,45 +9,38 @@ resource "google_service_account" "drone-central-dev" {
   description  = "This service account has permissions for drone in purchase-plan-central-dev"
 }
 
-data "google_iam_policy" "drone" {
-  binding {
-    role = "roles/iam.serviceAccountUser"
-
-    members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
-  }
-
-  binding {
-    role = "roles/compute.storageAdmin"
-
-    members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
-  }
-
-  binding {
-    role = "roles/cloudbuild.builds.editor"
-
-    members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
-  }
-
-  binding {
-    role = "roles/appengine.appCreator"
-
-    members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
-  }
-
-  binding {
-    role = "roles/appengine.serviceAdmin"
-
-    members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
-  }
-
-  binding {
-    role = "roles/appengine.deployer"
-
-    members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
-  }
+resource "google_project_iam_binding" "drone-central-dev-iam-binding-appenginedeployer" {
+  project = google_project.purchase-plan-central-dev.id
+  role    = "roles/appengine.deployer"
+  members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
 }
 
-resource "google_service_account_iam_policy" "drone-central-dev-iam" {
-  service_account_id = google_service_account.drone-central-dev.id
-  policy_data        = data.google_iam_policy.drone.policy_data
+resource "google_project_iam_binding" "drone-central-dev-iam-binding-appengineserviceadmin" {
+  project = google_project.purchase-plan-central-dev.id
+  role    = "roles/appengine.serviceAdmin"
+  members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
+}
+
+resource "google_project_iam_binding" "drone-central-dev-iam-binding-appengineappcreator" {
+  project = google_project.purchase-plan-central-dev.id
+  role    = "roles/appengine.appCreator"
+  members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
+}
+
+resource "google_project_iam_binding" "drone-central-dev-iam-binding-cloudbuildbuildeditor" {
+  project = google_project.purchase-plan-central-dev.id
+  role    = "roles/cloudbuild.builds.editor"
+  members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
+}
+
+resource "google_project_iam_binding" "drone-central-dev-iam-binding-computestorageadmin" {
+  project = google_project.purchase-plan-central-dev.id
+  role    = "roles/compute.storageAdmin"
+  members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
+}
+
+resource "google_project_iam_binding" "drone-central-dev-iam-binding-iamserviceaccountuser" {
+  project = google_project.purchase-plan-central-dev.id
+  role    = "roles/iam.serviceAccountUser"
+  members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
 }

@@ -16,7 +16,16 @@ resource "google_organization_iam_custom_role" "terraform" {
     "storage.objects.list",
     "storage.objects.get",
     "storage.objects.create",
-    "storage.objects.delete"
+    "storage.objects.delete",
+    ### Needed to make service accounts and roles ###
+    "iam.roles.create",
+    "iam.roles.delete",
+    "iam.roles.get",
+    "iam.roles.list",
+    "iam.roles.undelete",
+    "iam.roles.update",
+    "resourcemanager.projects.get",
+    "resourcemanager.projects.getIamPolicy"
   ]
 }
 
