@@ -44,3 +44,9 @@ resource "google_project_iam_binding" "drone-central-dev-iam-binding-iamservicea
   role    = "roles/iam.serviceAccountUser"
   members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
 }
+
+resource "google_project_iam_binding" "drone-central-dev-iam-binding-storageobjectcreator" {
+  project = google_project.purchase-plan-central-dev.id
+  role    = "roles/storage.objectCreator"
+  members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
+}
