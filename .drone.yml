@@ -38,7 +38,7 @@ steps:
   - name: terraform-central-dev
     image: hashicorp/terraform:light
     environment:
-      GOOGLE_APPLICATION_CREDENTIALS: ~/.config/gcloud/application_default_credentials.json
+      GOOGLE_APPLICATION_CREDENTIALS: ../../application_default_credentials.json
     commands:
       - cd ./terraform/dev
       - terraform init
