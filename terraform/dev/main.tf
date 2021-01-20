@@ -45,3 +45,10 @@ resource "google_project_service" "appengine" {
 
   disable_dependent_services = true
 }
+
+resource "google_project_service" "cloudbuild" {
+  project = "purchase-plan-central-dev"
+  service = "cloudbuild.googleapis.com"
+
+  disable_dependent_services = true
+}
