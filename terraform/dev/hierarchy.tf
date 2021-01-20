@@ -3,23 +3,23 @@ data "google_organization" "org" {
 }
 
 data "google_billing_account" "billing" {
-  display_name = "Purchase Plan"
+  display_name = var.billing_account
   open         = true
 }
 
-resource "google_folder" "purchase-plan" {
-  display_name = "Purchase Plan"
+resource "google_folder" "product" {
+  display_name = var.product_name
   parent       = data.google_organization.org.name
 }
 
-resource "google_folder" "purchase-plan-central" {
-  display_name = "Purchase Plan Central"
-  parent       = google_folder.purchase-plan.name
+resource "google_folder" "product-environment" {
+  display_name = "${var.product_name}-${var.environment}"
+  parent       = google_folder.product.name
 }
 
-resource "google_project" "purchase-plan-central-dev" {
-  folder_id       = google_folder.purchase-plan-central.id
-  name            = "${var.product_name}-${var.region}-${var.environment}"
-  project_id      = "${var.product_name}-${var.region}-${var.environment}"
+resource "google_project" "product-environment-region" {
+  folder_id       = google_folder.product-environment.id
+  name            = local.project_name
+  project_id      = local.project_name
   billing_account = data.google_billing_account.billing.id
 }

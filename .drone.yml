@@ -35,7 +35,23 @@ steps:
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
 
-  - name: terraform-central-dev
+  - name: terraform-org
+    image: hashicorp/terraform:light
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: ../../application_default_credentials.json
+      TF_VAR_products: ["purchase-plan","terraform"]
+      TF_VAR_billing_account: purchase-plan
+      TF_VAR_org_name: purchaseplanio
+      TF_VAR_org_id: 911410357820
+    commands:
+      - cd ./terraform/org
+      - terraform init
+      - terraform fmt -check
+      - terraform apply -auto-approve
+    depends_on:
+      - setup
+
+  - name: terraform-dev-central
     image: hashicorp/terraform:light
     environment:
       GOOGLE_APPLICATION_CREDENTIALS: ../../application_default_credentials.json
@@ -52,16 +68,16 @@ steps:
       - terraform fmt -check
       - terraform apply -auto-approve
     depends_on:
-      - setup
+      - terraform-org
 
-  - name: deploy-central-dev
+  - name: deploy-dev-central
     image: nytimes/drone-gae
     environment:
       GAE_CREDENTIALS:
-        from_secret: DRONE_CREDENTIALS_CENTRAL_DEV
+        from_secret: DRONE_CREDENTIALS_DEV_CENTRAL
     settings:
       action: deploy
-      project: purchase-plan-central-dev
+      project: purchase-plan-dev-central
       dir: backend/cmd/server
       app_file: app.yaml
       max_versions: 10

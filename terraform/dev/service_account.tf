@@ -1,7 +1,7 @@
 resource "google_service_account" "terraform-central-dev" {
   account_id   = "terraform-${var.region}-dev"
   display_name = "Terraform Central Dev"
-  description  = "This service account has permissions for terraform in purchase-plan-central-dev"
+  description  = "This service account has permissions for terraform"
 }
 
 resource "google_organization_iam_custom_role" "terraform" {

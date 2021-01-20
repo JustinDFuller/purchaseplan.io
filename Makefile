@@ -16,6 +16,14 @@ terraform-dev-central:
 		-var="region=central" \
 		-var="multiregion=US" \
 		-var="product_name=purchase-plan" \
-		-var="billing_account=purchase-plan" \
+		-var="billing_account=Purchase Plan" \
+		-var="org_name=purchaseplanio" \
+		-var="org_id=911410357820";
+
+terraform-org:
+	@cd ./terraform/org && \
+		terraform plan \
+		-var="products=[\"purchase-plan\",\"terraform-state\"]" \
+		-var="billing_account=Purchase Plan" \
 		-var="org_name=purchaseplanio" \
 		-var="org_id=911410357820";

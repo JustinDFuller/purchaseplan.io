@@ -34,5 +34,5 @@ variable "multiregion" {
 }
 
 locals {
-  project_name = "${var.product_name}-${var.region}-${var.environment}"
+  project_name = "${var.product_name}-${var.environment}-${var.region}"
 }
