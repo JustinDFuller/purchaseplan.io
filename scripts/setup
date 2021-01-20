@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 mkdir -p ~/.config/gcloud/
-echo -n $GOOGLE_APPLICATION_CREDENTIALS > ~/.config/gcloud/application_default_credentials.json
-echo -n $ENV > ./backend/cmd/server/.env
+echo $GOOGLE_APPLICATION_CREDENTIALS > ~/.config/gcloud/application_default_credentials.json
+echo $ENV > ./backend/cmd/server/.env
