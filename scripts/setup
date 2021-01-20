@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-echo -n $GAE_CREDENTIALS_DEV > $HOME/.config/gcloud/application_default_credentials.json
+mkdir -p ~/.config/gcloud/
+echo -n $GOOGLE_APPLICATION_CREDENTIALS > ~/.config/gcloud/application_default_credentials.json
 echo -n $ENV > ./backend/cmd/server/.env
