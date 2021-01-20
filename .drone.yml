@@ -11,12 +11,12 @@ workspace:
 
 steps:
   - name: setup
-    image: alpine
+    image: bash
     environment:
       GOOGLE_APPLICATION_CREDENTIALS:
         from_secret: TERRAFORM_CREDENTIALS_PURCHASE_PLAN_CENTRAL_DEV
     commands:
-      - /bin/bash ./scripts/setup
+      - ./scripts/setup
 
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
