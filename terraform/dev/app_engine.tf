@@ -21,25 +21,25 @@ resource "google_organization_iam_custom_role" "drone-deploy" {
 
 data "google_iam_policy" "drone-deploy" {
   binding {
-    role = "roles/iam.serviceAccountUser"
+    role = "iam.serviceAccountUser"
 
     members = ["serviceAccount:${google_service_account.drone-deploy-central-dev.email}"]
   }
 
   binding {
-    role = "roles/compute.storageAdmin"
+    role = "compute.storageAdmin"
 
     members = ["serviceAccount:${google_service_account.drone-deploy-central-dev.email}"]
   }
 
   binding {
-    role = "roles/cloudbuild.builds.editor"
+    role = "cloudbuild.builds.editor"
 
     members = ["serviceAccount:${google_service_account.drone-deploy-central-dev.email}"]
   }
 
   binding {
-    role = "roles/appengine.deployer"
+    role = "appengine.deployer"
 
     members = ["serviceAccount:${google_service_account.drone-deploy-central-dev.email}"]
   }
