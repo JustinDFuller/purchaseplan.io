@@ -33,13 +33,13 @@ data "google_iam_policy" "drone" {
   }
 
   binding {
-    role = "roles/cloudbuild.builds.editor"
+    role = "roles/cloudbuild.builds.builder"
 
     members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
   }
 
   binding {
-    role = "roles/appengine.deployer"
+    role = "roles/appengine.serviceAdmin"
 
     members = ["serviceAccount:${google_service_account.drone-central-dev.email}"]
   }
