@@ -1,12 +1,12 @@
 resource "google_app_engine_application" "purchase-plan" {
   project     = google_project.purchase-plan-central-dev.project_id
-  location_id = "us-central"
+  location_id = "us-${var.region}"
 }
 
 resource "google_service_account" "drone-central-dev" {
-  account_id   = "drone-central-dev"
+  account_id   = "drone-${var.region}-dev"
   display_name = "Drone Central Dev"
-  description  = "This service account has permissions for drone in purchase-plan-central-dev"
+  description  = "This service account has permissions for drone in purchase-plan-${var.region}-dev"
 }
 
 resource "google_project_iam_binding" "drone-central-dev-iam-binding-appenginedeployer" {

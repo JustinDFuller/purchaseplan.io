@@ -1,15 +1,15 @@
-data "google_organization" "purchaseplanio" {
-  organization = "organizations/911410357820"
+data "google_organization" "org" {
+  organization = "organizations/${var.org_id}"
 }
 
-data "google_billing_account" "purchase-plan" {
+data "google_billing_account" "billing" {
   display_name = "Purchase Plan"
   open         = true
 }
 
 resource "google_folder" "purchase-plan" {
   display_name = "Purchase Plan"
-  parent       = data.google_organization.purchaseplanio.name
+  parent       = data.google_organization.org.name
 }
 
 resource "google_folder" "purchase-plan-central" {
@@ -19,7 +19,7 @@ resource "google_folder" "purchase-plan-central" {
 
 resource "google_project" "purchase-plan-central-dev" {
   folder_id       = google_folder.purchase-plan-central.id
-  name            = "purchase-plan-central-dev"
-  project_id      = "purchase-plan-central-dev"
-  billing_account = data.google_billing_account.purchase-plan.id
+  name            = "${var.product_name}-${var.region}-${var.environment}"
+  project_id      = "${var.product_name}-${var.region}-${var.environment}"
+  billing_account = data.google_billing_account.billing.id
 }

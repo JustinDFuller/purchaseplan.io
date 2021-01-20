@@ -13,41 +13,40 @@ terraform {
 }
 
 provider "google" {
-  project = "purchase-plan-central-dev"
-  region  = "us-central1"
-  zone    = "us-central1-a"
+  project = local.project_name
+  region  = "us-${var.region}"
 }
 
 resource "google_project_service" "billing" {
-  project = "purchase-plan-central-dev"
+  project = local.project_name
   service = "cloudbilling.googleapis.com"
 
   disable_dependent_services = true
 }
 
 resource "google_project_service" "resource-manager" {
-  project = "purchase-plan-central-dev"
+  project = local.project_name
   service = "cloudresourcemanager.googleapis.com"
 
   disable_dependent_services = true
 }
 
 resource "google_project_service" "iam" {
-  project = "purchase-plan-central-dev"
+  project = local.project_name
   service = "iam.googleapis.com"
 
   disable_dependent_services = true
 }
 
 resource "google_project_service" "appengine" {
-  project = "purchase-plan-central-dev"
+  project = local.project_name
   service = "appengine.googleapis.com"
 
   disable_dependent_services = true
 }
 
 resource "google_project_service" "cloudbuild" {
-  project = "purchase-plan-central-dev"
+  project = local.project_name
   service = "cloudbuild.googleapis.com"
 
   disable_dependent_services = true
