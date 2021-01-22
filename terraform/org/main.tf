@@ -9,8 +9,8 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "purchaseplanio-terraform-state"
-    prefix = "org/state"
+    bucket = "purchaseplanio-terraform"
+    prefix = "state/remote"
   }
 }
 

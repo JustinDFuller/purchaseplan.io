@@ -1,3 +1,5 @@
+# Terraform for dev central
+
 terraform {
   required_providers {
     google = {
@@ -7,8 +9,8 @@ terraform {
   }
 
   backend "gcs" {
-    bucket = "purchaseplanio-terraform-state"
-    prefix = "purchase-plan/dev/us-central/state"
+    bucket = "purchaseplanio-terraform"
+    prefix = "state/remote"
   }
 }
 
