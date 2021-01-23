@@ -34,21 +34,7 @@ steps:
       - npm run build
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
-
-  - name: terraform-remote
-    image: hashicorp/terraform:light
-    environment:
-      GOOGLE_APPLICATION_CREDENTIALS: ../../application_default_credentials.json
-      TF_VAR_billing_account: "Purchase Plan"
-      TF_VAR_org_id: 911410357820
-    commands:
-      - cd ./terraform/remote
-      - terraform init
-      - terraform fmt -check
-      - terraform apply -auto-approve
-    depends_on:
-      - setup
-
+    
   - name: terraform-dev
     image: hashicorp/terraform:light
     environment:
@@ -59,7 +45,7 @@ steps:
       - terraform fmt -check
       - terraform apply -auto-approve
     depends_on:
-      - terraform-remote
+      - setup
 
   - name: deploy-dev
     image: nytimes/drone-gae
