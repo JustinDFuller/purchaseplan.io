@@ -10,46 +10,27 @@ terraform {
 
   backend "gcs" {
     bucket = "purchaseplanio-terraform"
-    prefix = "state/remote"
+    prefix = "state/purchase-plan-dev"
   }
 }
 
 provider "google" {
-  project = local.project_name
-  region  = var.region
+  project = "purchase-plan-dev"
+  region  = "us-central"
 }
 
-resource "google_project_service" "billing" {
-  project = local.project_name
-  service = "cloudbilling.googleapis.com"
-
-  disable_dependent_services = true
+data "google_organization" "org" {
+  organization = "organizations/911410357820"
 }
 
-resource "google_project_service" "resource-manager" {
-  project = local.project_name
-  service = "cloudresourcemanager.googleapis.com"
-
-  disable_dependent_services = true
+data "google_billing_account" "billing" {
+  display_name = "Purchase Plan"
+  open         = true
 }
 
-resource "google_project_service" "iam" {
-  project = local.project_name
-  service = "iam.googleapis.com"
-
-  disable_dependent_services = true
+resource "google_project" "purchase-plan-dev" {
+  name            = "purchase-plan-dev"
+  project_id      = "purchase-plan-dev"
+  billing_account = data.google_billing_account.billing.id
 }
 
-resource "google_project_service" "appengine" {
-  project = local.project_name
-  service = "appengine.googleapis.com"
-
-  disable_dependent_services = true
-}
-
-resource "google_project_service" "cloudbuild" {
-  project = local.project_name
-  service = "cloudbuild.googleapis.com"
-
-  disable_dependent_services = true
-}
