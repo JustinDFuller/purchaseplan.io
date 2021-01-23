@@ -70,7 +70,7 @@ steps:
       - frontend
       - backend
 
-  - name: slack
+  - name: slack-dev
     image: plugins/slack
     settings:
       webhook:
@@ -83,5 +83,28 @@ steps:
         {{else}}
           build {{build.link}} failed. Fix me please. <@{{build.author}}>
         {{/success}}
+    depends_on:
+      - deploy-dev
     when:
+      events: push
+      branch: [main]
+      status: [ success, failure  ]
+
+  - name: slack-prd
+    image: plugins/slack
+    settings:
+      webhook:
+        from_secret: SLACK_WEBHOOK_URL
+      channel: drone-alerts
+      link_names: true
+      template: >
+        {{#success build.status}}
+          build {{build.link}} succeeded. Good job. <@{{build.author}}>
+        {{else}}
+          build {{build.link}} failed. Fix me please. <@{{build.author}}>
+        {{/success}}
+    depends_on:
+      - deploy-prd
+    when:
+      events: tag
       status: [ success, failure  ]
