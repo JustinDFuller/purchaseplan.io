@@ -192,7 +192,6 @@ func (parser OpenGraphParser) Product() (Product, error) {
 	}
 
 	doc.Find("meta").Each(func(i int, s *goquery.Selection) {
-
 		attr, ok := s.Attr("property")
 		if !ok {
 			attr, ok = s.Attr("name")

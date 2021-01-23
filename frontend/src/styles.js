@@ -50,6 +50,8 @@ export const bubble = {
   background: "#4e2ecf",
   padding: "8px 20px",
   borderRadius: 4,
+  minWidth: 90,
+  textAlign: "center",
 };
 
 export function combine(...styles) {

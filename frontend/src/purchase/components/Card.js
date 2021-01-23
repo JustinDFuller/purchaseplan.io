@@ -21,7 +21,12 @@ export const Edit = React.forwardRef(function ({ children, onClick }, ref) {
   );
 });
 
-export const Card = User.withContext(function ({ purchase, user, setUser }) {
+export const Card = User.withContext(function ({
+  purchase,
+  user,
+  setUser,
+  readonly,
+}) {
   function onRemove(purchase) {
     const purchases = user.purchases().remove(purchase);
     const u = user.setPurchases(purchases);
@@ -42,7 +47,7 @@ export const Card = User.withContext(function ({ purchase, user, setUser }) {
   return (
     <Layout.Card noBody>
       <Row>
-        <Col xs={12} sm={5} md={3}>
+        <Col xs={12} sm={5} md={4}>
           <div
             className="card-img-top"
             style={{
@@ -63,8 +68,8 @@ export const Card = User.withContext(function ({ purchase, user, setUser }) {
             }}
           />
         </Col>
-        <Col xs={12} sm={7} md={9}>
-          <div className="card-body" style={{ position: "relative" }}>
+        <Col xs={12} sm={7} md={8}>
+          <div className="card-body pl-md-5" style={{ position: "relative" }}>
             <strong className="price-bubble" style={styles.bubble}>
               ${purchase.data.product.data.price}
             </strong>
@@ -84,19 +89,24 @@ export const Card = User.withContext(function ({ purchase, user, setUser }) {
               </h5>
             </a>
 
-            <Dropdown className="float-right mt-3 mt-sm-0">
-              <Dropdown.Toggle variant="primary" as={Edit}>
-                Edit
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item as="button" onClick={() => onRemove(purchase)}>
-                  Remove this product
-                </Dropdown.Item>
-                <Dropdown.Item as="button" onClick={() => onPurchase(purchase)}>
-                  I purchased this product
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            {!readonly && (
+              <Dropdown className="float-right mt-3 mt-sm-0">
+                <Dropdown.Toggle variant="primary" as={Edit}>
+                  Edit
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item as="button" onClick={() => onRemove(purchase)}>
+                    Remove this product
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    as="button"
+                    onClick={() => onPurchase(purchase)}
+                  >
+                    I purchased this product
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            )}
 
             <p style={{ maxWidth: "90%" }}>
               {purchase.data.product.data.description.slice(0, 150)}

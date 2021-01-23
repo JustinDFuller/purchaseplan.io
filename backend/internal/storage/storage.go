@@ -29,7 +29,7 @@ func New(ctx context.Context, project string) (Client, error) {
 		return c, err
 	}
 
-	bkt := client.Bucket("purchase-saving-planner-images-local")
+	bkt := client.Bucket("purchase-plan-images-local")
 	c.bucket = bkt
 	if _, err := bkt.Attrs(ctx); err == storage.ErrBucketNotExist {
 		if err := bkt.Create(ctx, c.project, nil); err != nil {

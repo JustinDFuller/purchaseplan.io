@@ -6,13 +6,13 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/url"
 
 	"github.com/gorilla/mux"
 	planner "github.com/justindfuller/purchase-saving-planner/api"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/config"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/datastore"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/storage"
+	"github.com/pkg/errors"
 )
 
 // S is a service.
@@ -36,19 +36,19 @@ func New() (S, error) {
 
 	c, err := config.New()
 	if err != nil {
-		return s, err
+		return s, errors.Wrap(err, "error creating config")
 	}
 	s.Config = c
 
 	ds, err := datastore.New(ctx, c.GoogleCloudProject)
 	if err != nil {
-		return s, err
+		return s, errors.Wrap(err, "error connecting to datastore")
 	}
 	s.datastore = ds
 
 	st, err := storage.New(ctx, c.GoogleCloudProject)
 	if err != nil {
-		return s, err
+		return s, errors.Wrap(err, "error connecting to storage")
 	}
 	s.storage = st
 
@@ -112,13 +112,14 @@ func New() (S, error) {
 	}).Methods(http.MethodGet, http.MethodOptions)
 
 	r.HandleFunc("/products", func(w http.ResponseWriter, r *http.Request) {
-		u, err := url.QueryUnescape(r.URL.Query().Get("url"))
+		/* u, err := url.QueryUnescape(r.URL.Query().Get("url"))
 		if err != nil {
 			log.Printf("Error unescaping query: %s", err)
 			w.WriteHeader(http.StatusBadRequest)
 			return
-		}
+		}*/
 
+		u := r.URL.Query().Get("url")
 		log.Printf("Searching for schema from: %s", u)
 
 		req, err := http.NewRequestWithContext(ctx, http.MethodGet, u, nil)
