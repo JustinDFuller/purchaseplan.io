@@ -69,3 +69,19 @@ steps:
     depends_on:
       - frontend
       - backend
+
+  - name: slack
+    image: plugins/slack
+    settings:
+      webhook:
+        from_secret: SLACK_WEBHOOK_URL
+      channel: drone-alerts
+      link_names: true
+      template: >
+        {{#success build.status}}
+          build {{build.link}} succeeded. Good job. <@{{build.author}}>
+        {{else}}
+          build {{build.link}} failed. Fix me please. <@{{build.author}}>
+        {{/success}}
+    when:
+      status: [ success, failure  ]
