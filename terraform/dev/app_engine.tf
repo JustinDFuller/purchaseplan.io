@@ -3,6 +3,14 @@ resource "google_app_engine_application" "purchase-plan-dev" {
   location_id = "us-central"
 }
 
+resource "google_app_engine_domain_mapping" "domain_mapping" {
+  domain_name = "dev.purchaseplan.io"
+
+  ssl_settings {
+    ssl_management_type = "AUTOMATIC"
+  }
+}
+
 resource "google_service_account" "drone-dev" {
   account_id   = "drone-dev"
   display_name = "Drone Central Dev"

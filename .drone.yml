@@ -52,3 +52,20 @@ steps:
     depends_on:
       - frontend
       - backend
+
+  - name: deploy-prd
+    image: nytimes/drone-gae
+    environment:
+      GAE_CREDENTIALS:
+        from_secret: DRONE_CREDENTIALS_DEV
+    settings:
+      action: deploy
+      project: purchase-plan-prd
+      dir: backend/cmd/server
+      app_file: app.yaml
+      max_versions: 10
+    when:
+      event: tag
+    depends_on:
+      - frontend
+      - backend
