@@ -4,9 +4,15 @@ import * as User from "../user";
 import * as Purchase from "../purchase";
 import * as Product from "../product";
 
+function makeDate(days) {
+  const today = new Date();
+  today.setDate(today.getDate() + days);
+  return today;
+}
+
 const samplePurchases = [
   User.Purchase({
-    date: new Date(),
+    date: makeDate(2),
     product: Product.data.New({
       name: "Lily Storage Cabinet",
       description: "For the living room",
@@ -19,7 +25,7 @@ const samplePurchases = [
     }),
   }),
   User.Purchase({
-    date: new Date(),
+    date: makeDate(14),
     product: Product.data.New({
       name: 'KOLBJÖRN Cabinet, indoor/outdoor - green 31 1/2x31 7/8 "',
       description: "For the kids' tinker station on the deck",
@@ -33,7 +39,7 @@ const samplePurchases = [
     }),
   }),
   User.Purchase({
-    date: new Date(),
+    date: makeDate(31),
     product: Product.data.New({
       name:
         "SOLLERÖN Modular corner sofa 4-seat, outdoor - with footstool brown/Frösön/Duvholmen beige",
@@ -66,14 +72,20 @@ export function Landing() {
         </div>
       </div>
       <div
-        className="row text-white my-md-4 pt-4"
+        className="row text-white my-md-4 py-4"
         style={styles.combine(styles.darkLight, {
           minHeight: 200,
+          borderTop: "3px solid rgb(10, 10, 36)",
+          borderBottom: "3px solid rgb(10, 10, 36)",
         })}
       >
         <div className="col-12 col-md-8 col-xl-7 pt-3 order-2 order-md-1">
           {samplePurchases.map((p) => (
-            <Purchase.components.Card purchase={p} readonly />
+            <Purchase.components.Card
+              purchase={p}
+              readonly
+              key={p.product().name()}
+            />
           ))}
         </div>
         <div className="col-12 col-md-4 col-xl-5 d-flex d-column align-items-center justify-content-center order-1 order-md-2">
