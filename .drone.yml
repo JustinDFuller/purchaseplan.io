@@ -35,18 +35,6 @@ steps:
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
     
-  - name: terraform-dev
-    image: hashicorp/terraform:light
-    environment:
-      GOOGLE_APPLICATION_CREDENTIALS: ../../application_default_credentials.json
-    commands:
-      - cd ./terraform/dev
-      - terraform init
-      - terraform fmt -check
-      - terraform apply -auto-approve
-    depends_on:
-      - setup
-
   - name: deploy-dev
     image: nytimes/drone-gae
     environment:
@@ -64,4 +52,3 @@ steps:
     depends_on:
       - frontend
       - backend
-      - terraform-dev
