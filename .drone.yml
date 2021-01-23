@@ -10,14 +10,6 @@ workspace:
   path: src/github.com/justindfuller/purchase-plan
 
 steps:
-  - name: setup
-    image: bash
-    environment:
-      GOOGLE_APPLICATION_CREDENTIALS:
-        from_secret: TERRAFORM_CREDENTIALS_PURCHASE_PLAN_DEV
-    commands:
-      - ./scripts/setup
-
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
     commands:
@@ -25,6 +17,8 @@ steps:
       - cd backend
       # - make test
       - make build
+    when:
+      event: push
 
   - name: frontend
     image: node
@@ -34,6 +28,8 @@ steps:
       - npm run build
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
+    when:
+      event: push
     
   - name: deploy-dev
     image: nytimes/drone-gae
@@ -79,14 +75,14 @@ steps:
       link_names: true
       template: >
         {{#success build.status}}
-          build {{build.link}} succeeded. Good job. <@{{build.author}}>
+          build {{build.link}} (dev deploy) succeeded.
         {{else}}
-          build {{build.link}} failed. Fix me please. <@{{build.author}}>
+          build {{build.link}} (dev deploy) failed.
         {{/success}}
     depends_on:
       - deploy-dev
     when:
-      events: push
+      event: push
       branch: [main]
       status: [ success, failure  ]
 
@@ -99,12 +95,12 @@ steps:
       link_names: true
       template: >
         {{#success build.status}}
-          build {{build.link}} succeeded. Good job. <@{{build.author}}>
+          @here build {{build.link}} (production deploy) succeeded.
         {{else}}
-          build {{build.link}} failed. Fix me please. <@{{build.author}}>
+          @here build {{build.link}} (production deploy) failed.
         {{/success}}
     depends_on:
       - deploy-prd
     when:
-      events: tag
+      event: tag
       status: [ success, failure  ]
