@@ -18,7 +18,7 @@ steps:
       # - make test
       - make build
     when:
-      event: push
+      event: [push, tag]
 
   - name: frontend
     image: node
@@ -29,7 +29,7 @@ steps:
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
     when:
-      event: push
+      event: [push, tag]
     
   - name: deploy-dev
     image: nytimes/drone-gae
