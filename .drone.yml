@@ -45,8 +45,6 @@ steps:
       - terraform fmt -check
       - terraform apply -auto-approve
     depends_on:
-      - frontend
-      - backend
       - setup
 
   - name: terraform-dev
