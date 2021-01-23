@@ -39,6 +39,8 @@ steps:
     image: hashicorp/terraform:light
     environment:
       GOOGLE_APPLICATION_CREDENTIALS: ../../application_default_credentials.json
+      TF_VAR_billing_account: "Purchase Plan"
+      TF_VAR_org_id: 911410357820
     commands:
       - cd ./terraform/remote
       - terraform init
