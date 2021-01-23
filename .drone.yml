@@ -14,7 +14,7 @@ steps:
     image: bash
     environment:
       GOOGLE_APPLICATION_CREDENTIALS:
-        from_secret: TERRAFORM_CREDENTIALS_PURCHASE_PLAN_CENTRAL_DEV
+        from_secret: TERRAFORM_CREDENTIALS_PURCHASE_PLAN_DEV
     commands:
       - ./scripts/setup
 
@@ -65,7 +65,7 @@ steps:
     image: nytimes/drone-gae
     environment:
       GAE_CREDENTIALS:
-        from_secret: DRONE_CREDENTIALS_DEV_CENTRAL
+        from_secret: DRONE_CREDENTIALS_DEV
     settings:
       action: deploy
       project: purchase-plan-dev
