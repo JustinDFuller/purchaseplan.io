@@ -64,6 +64,20 @@ export function New(input = defaults) {
     isDuplicateName(product) {
       return data.purchases.findProduct(product);
     },
+    purchase(purchase) {
+      return New({
+        ...data,
+        saved: data.saved - purchase.product().price(),
+        purchases: data.purchases.purchase(purchase),
+      });
+    },
+    undoPurchase(purchase) {
+      return New({
+        ...data,
+        saved: data.saved + purchase.product().price(),
+        purchases: data.purchases.undoPurchase(purchase),
+      });
+    },
   };
 }
 

@@ -37,8 +37,7 @@ export const Card = User.withContext(function ({
   }
 
   function onPurchase(purchase) {
-    const purchases = user.purchases().purchase(purchase);
-    const u = user.setPurchases(purchases);
+    const u = user.purchase(purchase);
     setUser(u);
     User.api.put(u);
 

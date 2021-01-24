@@ -139,7 +139,6 @@ export function New(input = defaults) {
         purchases,
       });
     },
-
     purchase(purchase) {
       const i = data.purchases.findIndex((p) => p.is(purchase));
       const purchases = data.purchases.slice();

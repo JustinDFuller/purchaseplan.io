@@ -13,8 +13,7 @@ export const UndoPurchase = User.withContext(function ({
       <button
         className="btn btn-primary mb-2"
         onClick={() => {
-          const purchases = user.purchases().undoPurchase(purchase);
-          const u = user.setPurchases(purchases);
+          const u = user.undoPurchase(purchase);
           setUser(u);
           User.api.put(u);
           closeToast();
