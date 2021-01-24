@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil.svg";
+import { ReactComponent as MenuIcon } from "bootstrap-icons/icons/three-dots-vertical.svg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -15,9 +15,9 @@ import { UndoRemove } from "./UndoRemove";
 
 export const Edit = React.forwardRef(function ({ children, onClick }, ref) {
   return (
-    <Pencil ref={ref} onClick={onClick} style={styles.pointer}>
+    <MenuIcon ref={ref} onClick={onClick} style={styles.pointer}>
       {children}
-    </Pencil>
+    </MenuIcon>
   );
 });
 
