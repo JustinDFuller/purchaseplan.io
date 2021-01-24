@@ -1,0 +1,29 @@
+runtime: go114
+service: default
+
+env_variables:
+    PURCHASE_PLAN_IMAGE_BUCKET: "purchase-plan-images-prd"
+
+handlers:
+  - url: /favicon\.ico
+    static_files: frontend/build/favicon.ico
+    upload: frontend/build/favicon\.ico
+    secure: always
+
+  - url: /logo\.png
+    static_files: frontend/build/logo.png
+    upload: frontend/build/logo\.png
+    secure: always
+
+  - url: /
+    static_files: frontend/build/index.html
+    upload: frontend/build/index\.html
+    secure: always
+
+  - url: /static
+    static_dir: frontend/build/static
+    secure: always
+
+  - url: /.*
+    script: auto
+    secure: always

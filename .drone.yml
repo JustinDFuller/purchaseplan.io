@@ -40,7 +40,7 @@ steps:
       action: deploy
       project: purchase-plan-dev
       dir: backend/cmd/server
-      app_file: app.yaml
+      app_file: dev.yaml
       max_versions: 10
     when:
       event: push
@@ -58,7 +58,7 @@ steps:
       action: deploy
       project: purchase-plan-prd
       dir: backend/cmd/server
-      app_file: app.yaml
+      app_file: prd.yaml
       max_versions: 10
     when:
       event: tag

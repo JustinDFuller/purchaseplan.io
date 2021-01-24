@@ -46,7 +46,7 @@ func New() (S, error) {
 	}
 	s.datastore = ds
 
-	st, err := storage.New(ctx, c.GoogleCloudProject)
+	st, err := storage.New(ctx, c.GoogleCloudProject, c.ImageStorageBucket)
 	if err != nil {
 		return s, errors.Wrap(err, "error connecting to storage")
 	}

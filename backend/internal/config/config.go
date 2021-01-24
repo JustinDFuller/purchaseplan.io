@@ -13,6 +13,7 @@ type C struct {
 	GoogleCloudProject  string `envconfig:"GOOGLE_CLOUD_PROJECT"`
 	AmazonPAPIAccessKey string `envconfig:"AMAZON_PAPI_ACCESS_KEY"`
 	AmazonPAPISecretKey string `envconfig:"AMAZON_PAPI_SECRET_KEY"`
+	ImageStorageBucket  string `envconfig:"PURCHASE_PLAN_IMAGE_BUCKET"`
 }
 
 // New parses config values from environment variables.

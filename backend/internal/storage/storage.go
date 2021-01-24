@@ -19,7 +19,7 @@ type Client struct {
 }
 
 // New creates a new storage client, scoped to the specified project.
-func New(ctx context.Context, project string) (Client, error) {
+func New(ctx context.Context, project, bucket string) (Client, error) {
 	c := Client{
 		project: project,
 	}
@@ -29,7 +29,7 @@ func New(ctx context.Context, project string) (Client, error) {
 		return c, err
 	}
 
-	bkt := client.Bucket("purchase-plan-images-local")
+	bkt := client.Bucket(bucket)
 	c.bucket = bkt
 	if _, err := bkt.Attrs(ctx); err == storage.ErrBucketNotExist {
 		if err := bkt.Create(ctx, c.project, nil); err != nil {

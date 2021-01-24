@@ -1,6 +1,9 @@
 runtime: go114
 service: default
 
+env_variables:
+    PURCHASE_PLAN_IMAGE_BUCKET: "purchase-plan-images-dev"
+
 handlers:
   - url: /favicon\.ico
     static_files: frontend/build/favicon.ico
