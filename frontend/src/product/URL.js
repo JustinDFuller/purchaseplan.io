@@ -64,7 +64,7 @@ export function URL({ onSubmit, loading, error }) {
               </div>
             ) : (
               <>
-                <div className="col-12 col-md-10">
+                <div className="col-12 col-lg-10">
                   <input
                     autoFocus
                     required
@@ -76,7 +76,7 @@ export function URL({ onSubmit, loading, error }) {
                     onChange={(e) => setUrl(e.target.value)}
                   />
                 </div>
-                <div className="col-12 col-md-2 text-right mt-3 mt-md-0">
+                <div className="col-12 col-lg-2 text-right mt-3 mt-lg-0">
                   <Submit
                     onClick={handleSubmit}
                     loading={loading}

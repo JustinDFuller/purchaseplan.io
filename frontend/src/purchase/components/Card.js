@@ -69,44 +69,52 @@ export const Card = User.withContext(function ({
           />
         </Col>
         <Col xs={12} sm={7} md={8}>
-          <div className="card-body pl-md-5" style={{ position: "relative" }}>
+          <div
+            className="card-body pl-md-5 d-flex flex-column justify-content-between"
+            style={{ position: "relative", height: "100%" }}
+          >
             <strong className="price-bubble" style={styles.bubble}>
               ${purchase.data.product.data.price}
             </strong>
 
-            <a href={purchase.data.product.data.url} className="text-white">
-              <h5
-                className="card-title mt-3 mt-sm-0 d-inline-block"
-                style={{
-                  height: "1.4rem",
-                  textOverflow: "ellipsis",
-                  overflow: "hidden",
-                  whiteSpace: "nowrap",
-                  maxWidth: "90%",
-                }}
-              >
-                {purchase.data.product.data.name}
-              </h5>
-            </a>
+            <div>
+              <a href={purchase.data.product.data.url} className="text-white">
+                <h5
+                  className="card-title mt-3 mt-sm-0 d-inline-block"
+                  style={{
+                    height: "1.4rem",
+                    textOverflow: "ellipsis",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    maxWidth: readonly ? "100%" : "90%",
+                  }}
+                >
+                  {purchase.data.product.data.name}
+                </h5>
+              </a>
 
-            {!readonly && (
-              <Dropdown className="float-right mt-3 mt-sm-0">
-                <Dropdown.Toggle variant="primary" as={Edit}>
-                  Edit
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item as="button" onClick={() => onRemove(purchase)}>
-                    Remove this product
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    as="button"
-                    onClick={() => onPurchase(purchase)}
-                  >
-                    I purchased this product
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            )}
+              {!readonly && (
+                <Dropdown className="float-right mt-3 mt-sm-0">
+                  <Dropdown.Toggle variant="primary" as={Edit}>
+                    Edit
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      as="button"
+                      onClick={() => onRemove(purchase)}
+                    >
+                      Remove this product
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      as="button"
+                      onClick={() => onPurchase(purchase)}
+                    >
+                      I purchased this product
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
+            </div>
 
             <p style={{ maxWidth: "90%" }}>
               {purchase.data.product.data.description.slice(0, 150)}

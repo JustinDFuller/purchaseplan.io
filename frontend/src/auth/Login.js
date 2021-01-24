@@ -48,17 +48,18 @@ export const Login = withContext(
               To get started, log in with your email address.
             </label>
             <div className="row">
-              <div className="col-12 col-md-9">
+              <div className="col-12 col-lg-9">
                 <input
                   className="form-control"
                   type="email"
                   name="email"
                   value={user.email()}
+                  placeholder="email@example.com"
                   disabled={auth.state() === Auth.state.LOGGING_IN}
                   onChange={(e) => setUser(user.setEmail(e.target.value))}
                 />
               </div>
-              <div className="col-12 col-md-3 text-right mt-3 mt-md-0">
+              <div className="col-12 col-lg-3 text-right mt-3 mt-lg-0">
                 <Submit
                   onClick={handleSubmit}
                   loading={auth.state() === Auth.state.LOGGING_IN}

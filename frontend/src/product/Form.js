@@ -73,11 +73,9 @@ export const Form = User.withContext(function ({
         </div>
         <div className="col-12 col-md-8">
           <form onSubmit={handleSubmitEdit}>
-            <h5 className="card-title">
-              Feel free to fix anything that doesn't look right.
-            </h5>
+            <h5 className="card-title">Does everything look correct?</h5>
             <div className="row">
-              <div className="form-group col-12 col-md-6">
+              <div className="form-group col-12">
                 <label className="form-label">Name</label>
                 <input
                   autoFocus
@@ -95,9 +93,9 @@ export const Form = User.withContext(function ({
                   </div>
                 )}
               </div>
-              <div className="form-group col-12 col-md-6">
+              <div className="form-group col-12">
                 <label className="form-label">Description</label>
-                <input
+                <textarea
                   type="text"
                   className="form-control"
                   value={product.data.description}
@@ -107,23 +105,13 @@ export const Form = User.withContext(function ({
                   required
                 />
               </div>
-              <div className="form-group col-12">
-                <label className="form-label">URL</label>
-                <input
-                  type="url"
-                  className="form-control"
-                  value={product.data.url}
-                  onChange={(e) => setProduct(product.setUrl(e.target.value))}
-                  required
-                />
-              </div>
             </div>
             <div className="form-group col-12">
               <div className="row">
                 <label className="form-label">Price</label>
               </div>
               <div className="row align-items-center">
-                <div className="col-5 p-0">
+                <div className="col-12 p-0">
                   <input
                     type="number"
                     className="form-control"
@@ -137,20 +125,29 @@ export const Form = User.withContext(function ({
                     required
                   />
                 </div>
-                <div className="col-7 text-right">
-                  <button
-                    type="button"
-                    className="btn btn-danger mr-2"
-                    style={styles.combine(styles.danger, styles.transparent)}
-                    onClick={() => setProduct(productDefaults)}
-                  >
-                    Cancel
-                  </button>
-                  <Submit
-                    onClick={handleSubmitEdit}
-                    loading={loading}
-                    text="Save"
-                  />
+                <div className="col-12 text-right mt-4">
+                  <div className="row">
+                    <div className="col-12 col-md-6 p-0 mb-2 pr-md-3">
+                      <button
+                        type="button"
+                        className="btn btn-danger mr-2 w-100"
+                        style={styles.combine(
+                          styles.danger,
+                          styles.transparent
+                        )}
+                        onClick={() => setProduct(productDefaults)}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                    <div className="col-12 col-md-6 p-0 pl-md-3">
+                      <Submit
+                        onClick={handleSubmitEdit}
+                        loading={loading}
+                        text="Save"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

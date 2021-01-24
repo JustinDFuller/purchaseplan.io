@@ -6,7 +6,10 @@ export function Header() {
   const { auth, setAuth } = useContext(Auth.Context);
 
   return (
-    <nav className="navbar navbark-dark mb-3 pt-3" styles={styles.dark}>
+    <nav
+      className="navbar navbark-dark py-3 px-4 m-auto"
+      style={styles.combine(styles.dark, { maxWidth: 1500 })}
+    >
       <a className="navbard-brand" href="/">
         <img src="/logo.png" alt="logo" style={styles.logo} />
       </a>

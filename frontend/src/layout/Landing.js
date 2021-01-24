@@ -59,11 +59,11 @@ export function Landing() {
   return (
     <>
       <div className="row">
-        <div className="col-12 col-md-6 text-white pt-md-4 pl-md-5">
+        <div className="col-12 col-md-6 text-white pt-md-4 pl-lg-5">
           <div className="m-auto" style={{ maxWidth: 424 }}>
             <h5>Purchase Plan</h5>
             <h1>
-              Not a wish list — <br className="d-md-none" /> a plan.
+              Not a wish list — <br className="d-lg-none" /> a plan.
             </h1>
           </div>
         </div>
@@ -79,7 +79,7 @@ export function Landing() {
           borderBottom: "3px solid rgb(10, 10, 36)",
         })}
       >
-        <div className="col-12 col-md-8 col-xl-7 pt-3 order-2 order-md-1">
+        <div className="col-12 col-lg-8 col-xl-7 pt-3 order-2 order-lg-1">
           {samplePurchases.map((p) => (
             <Purchase.components.Card
               purchase={p}
@@ -88,7 +88,7 @@ export function Landing() {
             />
           ))}
         </div>
-        <div className="col-12 col-md-4 col-xl-5 d-flex d-column align-items-center justify-content-center order-1 order-md-2">
+        <div className="col-12 col-lg-4 col-xl-5 d-flex d-column align-items-center justify-content-center order-1 order-lg-2">
           <h2>
             Plan your purchases. <br /> Know where your money is going.
           </h2>

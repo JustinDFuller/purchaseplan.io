@@ -7,7 +7,7 @@ import { HowItWorks } from "./HowItWorks";
 
 export function Dashboard() {
   return (
-    <div className="row">
+    <div className="row m-auto" style={{ maxWidth: 1500 }}>
       <div className="col-12 col-lg-4 order-2 order-lg-1">
         <User.SavingsOverview />
         <HowItWorks />

@@ -8,7 +8,7 @@ export function Submit({ loading, text }) {
   return (
     <button
       type="submit"
-      className="btn btn-success"
+      className="btn btn-success w-100 w-md-auto"
       style={styles.combine(styles.success, styles.transparent)}
     >
       {text}
