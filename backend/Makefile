@@ -2,7 +2,7 @@ export PORT=8080
 export DATASTORE_EMULATOR_HOST=localhost:8081
 export GOOGLE_CLOUD_PROJECT=purchase-plan-dev
 export GOOGLE_APPLICATION_CREDENTIALS=$(HOME)/.config/gcloud/application_default_credentials.json
-export PURCHASE_PLAN_IMAGE_BUCKET="purchase-plan-images-local"
+export PURCHASE_PLAN_IMAGE_BUCKET=purchase-plan-images-local
 
 build:
 	@go build ./cmd/server/main.go;

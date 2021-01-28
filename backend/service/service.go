@@ -3,17 +3,28 @@ package service
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
+	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/mux"
 	planner "github.com/justindfuller/purchase-saving-planner/api"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/config"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/datastore"
 	"github.com/justindfuller/purchase-saving-planner/api/internal/storage"
+	"github.com/magiclabs/magic-admin-go"
+	"github.com/magiclabs/magic-admin-go/client"
+	"github.com/magiclabs/magic-admin-go/token"
 	"github.com/pkg/errors"
 )
+
+const headerAuthorization = "Authorization"
+const authCookieName = "Authorization"
+const authBearer = "Bearer"
 
 // S is a service.
 type S struct {
@@ -58,6 +69,8 @@ func New() (S, error) {
 	r.Use(func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Add("Access-Control-Allow-Origin", "http://localhost:3000")
+			w.Header().Add("Access-Control-Allow-Credentials", "true")
+			w.Header().Add("Access-Control-Allow-Headers", fmt.Sprintf("%s,content-type", headerAuthorization))
 
 			if r.Method == http.MethodOptions {
 				w.WriteHeader(http.StatusOK)
@@ -68,7 +81,96 @@ func New() (S, error) {
 		})
 	})
 
-	r.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
+	// POST /v1/users/login will create a JWT cookie for the user.
+	// It will also create a DB entry if it does not exist.
+	r.HandleFunc("/v1/users/login", func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("Logging in with %s header: %s", headerAuthorization, r.Header.Get(headerAuthorization))
+		if !strings.HasPrefix(r.Header.Get(headerAuthorization), authBearer) {
+			log.Printf("Missing Bearer in X-Authorization header: %s", r.Header.Get(headerAuthorization))
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		did := r.Header.Get(headerAuthorization)[len(authBearer)+1:]
+		if did == "" {
+			log.Printf("Missing DID token: %s", r.Header.Get(headerAuthorization))
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		tk, err := token.NewToken(did)
+		if err != nil {
+			log.Printf("Unable to parse DID Token: %s", did)
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		if err := tk.Validate(); err != nil {
+			log.Printf("Invalid DID token: %s", err)
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		m := client.New("sk_test_01353B9D1568572B", magic.NewDefaultClient())
+		metadata, err := m.User.GetMetadataByIssuer(tk.GetIssuer())
+		if err != nil {
+			log.Printf("Unable to retrieve user metadata: %s", err)
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		// TODO: Should this really all happen here?
+		u, err := ds.GetUser(r.Context(), metadata.Email)
+		if datastore.IsNotFound(err) {
+			// Login + Not found == create new user
+			if err := ds.PutUser(r.Context(), planner.User{Email: metadata.Email}); err != nil {
+				log.Printf("Unable to create new user during login: %s", err)
+				w.WriteHeader(http.StatusUnauthorized)
+				return
+			}
+		} else if err != nil {
+			log.Printf("Unable to get user: %s", err)
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		oneWeek := time.Now().Add(time.Hour * 24 * 7)
+		j := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), jwt.MapClaims{
+			"issuer":        metadata.Issuer,
+			"publicAddress": metadata.PublicAddress,
+			"email":         metadata.Email,
+			"exp":           oneWeek.String(),
+		})
+
+		signed, err := j.SignedString([]byte("purchase-plan-jwt-secret-envionment-local-2021-01"))
+		if err != nil {
+			log.Printf("Unable to sign JWT: %s", err)
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		http.SetCookie(w, &http.Cookie{
+			Name:    authCookieName,
+			Value:   signed,
+			Expires: oneWeek,
+		})
+
+		if err := json.NewEncoder(w).Encode(u); err != nil {
+			log.Printf("Error encoding json to response: %s", err)
+			w.WriteHeader(http.StatusInternalServerError)
+		}
+	}).Methods(http.MethodPost, http.MethodOptions)
+
+	// PUT /users will update the current user.
+	r.HandleFunc("/users", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
+		val := r.Context().Value(emailContextKey)
+		email, ok := val.(string)
+		if !ok {
+			log.Printf("Unexpected email value: %s", email)
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
 		b, err := ioutil.ReadAll(r.Body)
 		if err != nil {
 			log.Printf("Error reading body: %s", err)
@@ -83,6 +185,9 @@ func New() (S, error) {
 			return
 		}
 
+		// Force the correct email, even if they tried to change it.
+		u.Email = email
+
 		if err := ds.PutUser(ctx, u); err != nil {
 			log.Printf("Error storing user: %s", err)
 			w.WriteHeader(http.StatusBadRequest)
@@ -94,31 +199,33 @@ func New() (S, error) {
 			log.Printf("Error encoding json to response: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
 		}
-	}).Methods(http.MethodPut, http.MethodOptions)
+	})).Methods(http.MethodPut, http.MethodOptions)
 
-	r.HandleFunc("/users/{id}", func(w http.ResponseWriter, r *http.Request) {
-		u, err := ds.GetUser(ctx, mux.Vars(r)["id"])
+	// GET /users will return the currect user.
+	r.HandleFunc("/users", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
+		val := r.Context().Value(emailContextKey)
+		email, ok := val.(string)
+		if !ok {
+			log.Printf("Unexpected email value: %s", email)
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		u, err := ds.GetUser(r.Context(), email)
 		if err != nil {
-			log.Printf("Error retrieving user: %s", err)
+			log.Printf("Couldn't find user from context: %s", err)
 			w.WriteHeader(http.StatusNotFound)
 			return
 		}
 
-		w.WriteHeader(http.StatusCreated)
+		w.WriteHeader(http.StatusOK)
 		if err := json.NewEncoder(w).Encode(u); err != nil {
 			log.Printf("Error encoding json to response: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
 		}
-	}).Methods(http.MethodGet, http.MethodOptions)
+	})).Methods(http.MethodGet, http.MethodOptions)
 
 	r.HandleFunc("/products", func(w http.ResponseWriter, r *http.Request) {
-		/* u, err := url.QueryUnescape(r.URL.Query().Get("url"))
-		if err != nil {
-			log.Printf("Error unescaping query: %s", err)
-			w.WriteHeader(http.StatusBadRequest)
-			return
-		}*/
-
 		u := r.URL.Query().Get("url")
 		log.Printf("Searching for schema from: %s", u)
 

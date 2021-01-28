@@ -41,3 +41,8 @@ func (c Client) GetUser(ctx context.Context, id string) (planner.User, error) {
 	err := c.c.Get(ctx, k, &u)
 	return u, err
 }
+
+// IsNotFound returns if the error is a datastore 404.
+func IsNotFound(err error) bool {
+	return err == ds.ErrNoSuchEntity
+}

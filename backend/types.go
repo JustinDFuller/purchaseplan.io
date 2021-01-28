@@ -8,6 +8,7 @@ type (
 	// Are stored as a property on the user, rather than by association.
 	User struct {
 		Email         string     `json:"email"`
+		Issuer        string     `json:"issuer"`
 		Saved         int64      `json:"saved"`
 		Contributions int64      `json:"contributions"`
 		Frequency     string     `json:"frequency"`
