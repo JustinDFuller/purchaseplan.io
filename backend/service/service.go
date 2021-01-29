@@ -266,7 +266,11 @@ func New() (S, error) {
 		p.OriginalImage = p.Image
 		p.Image = image
 
-		json.NewEncoder(w).Encode(p)
+		if err := json.NewEncoder(w).Encode(p); err != nil {
+			log.Printf("Error encoding JSON: %s", err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
 	}, c)).Methods(http.MethodGet, http.MethodOptions)
 
 	s.Router = r

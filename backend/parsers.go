@@ -307,9 +307,10 @@ func (parser SchemaOrgParser) Product() (Product, error) {
 
 	doc.Find(`script[type="application/ld+json"]`).Each(func(i int, s *goquery.Selection) {
 		var c context
-		json.Unmarshal([]byte(s.Text()), &c)
-		if c.Type == "Product" {
-			p = c.toProduct()
+		if err := json.Unmarshal([]byte(s.Text()), &c); err == nil {
+			if c.Type == "Product" {
+				p = c.toProduct()
+			}
 		}
 
 		var g graph
