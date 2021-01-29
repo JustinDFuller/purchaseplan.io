@@ -10,6 +10,14 @@ workspace:
   path: src/github.com/justindfuller/purchase-plan
 
 steps:
+  - name: backend-lint
+    image: golangci/golangci-lint
+    commands:
+      - cd backend
+      - golangci-lint run
+    when:
+      event: [push, tag]
+
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
     commands:
@@ -48,6 +56,7 @@ steps:
     depends_on:
       - frontend
       - backend
+      - backend-lint
 
   - name: deploy-prd
     image: nytimes/drone-gae

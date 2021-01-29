@@ -196,11 +196,7 @@ func New() (S, error) {
 			return
 		}
 
-		w.WriteHeader(http.StatusCreated)
-		if err := json.NewEncoder(w).Encode(u); err != nil {
-			log.Printf("Error encoding json to response: %s", err)
-			w.WriteHeader(http.StatusInternalServerError)
-		}
+		w.WriteHeader(http.StatusOK)
 	}, c)).Methods(http.MethodPut, http.MethodOptions)
 
 	// GET /users will return the currect user.
