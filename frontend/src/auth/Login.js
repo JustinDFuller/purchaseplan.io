@@ -13,17 +13,7 @@ export const Login = withContext(
       setAuth(a);
 
       if (a.data.user) {
-        const u = user.setEmail(a.data.user.email);
-
-        try {
-          const existingUser = await User.api.get(u);
-          setUser(user.from(existingUser));
-          return;
-        } catch (e) {
-          console.error(e);
-        }
-
-        await User.api.put(u);
+        setUser(user.from(a.data.user));
       }
     }
 
@@ -32,9 +22,7 @@ export const Login = withContext(
         <Card style={{ maxWidth: 400, margin: "auto" }}>
           <div style={{ textAlign: "center" }}>
             <div className="spinner-border" role="status" />
-            <h5 className="card-header">
-              Hang tight, I'm fetching your data from the vault.
-            </h5>
+            <h5 className="card-header">Logging you in</h5>
           </div>
         </Card>
       );

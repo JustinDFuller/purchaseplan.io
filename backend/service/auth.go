@@ -7,16 +7,18 @@ import (
 	"net/http"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/justindfuller/purchase-saving-planner/api/internal/config"
 )
 
 type contextKey string
 
 const emailContextKey contextKey = "auth_email"
 
-func withAuthentication(h http.HandlerFunc) http.HandlerFunc {
+func withAuthentication(h http.HandlerFunc, cfg config.C) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		c, err := r.Cookie(authCookieName)
 		if err != nil {
+			log.Printf("Missing auth cookie: %s", err)
 			w.WriteHeader(http.StatusUnauthorized)
 			return
 		}
@@ -26,7 +28,7 @@ func withAuthentication(h http.HandlerFunc) http.HandlerFunc {
 				return nil, fmt.Errorf("Unexpected signing method: %v", t.Header["alg"])
 			}
 
-			return []byte("purchase-plan-jwt-secret-envionment-local-2021-01"), nil
+			return []byte(cfg.JwtSecret), nil
 		})
 		if err != nil {
 			log.Printf("Unable to parse jwt: %s", err)
@@ -41,7 +43,7 @@ func withAuthentication(h http.HandlerFunc) http.HandlerFunc {
 
 		claims, ok := t.Claims.(jwt.MapClaims)
 		if !ok {
-			log.Printf("JWT Claims are invalid: ok=%s, claims:%s", ok, claims)
+			log.Printf("JWT Claims are invalid: ok=%t, claims:%s", ok, claims)
 			w.WriteHeader(http.StatusUnauthorized)
 			return
 		}
@@ -56,14 +58,5 @@ func withAuthentication(h http.HandlerFunc) http.HandlerFunc {
 		ctx := context.WithValue(r.Context(), emailContextKey, email)
 		r = r.WithContext(ctx)
 		h(w, r)
-	}
-}
-
-func withUserFromIssuer(h http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		// TODO: Get the user from the issuer.
-		// Need a new datastore struct to get it from.
-		// issuer -> email.
-		// email -> user
 	}
 }

@@ -14,6 +14,8 @@ type C struct {
 	AmazonPAPIAccessKey string `envconfig:"AMAZON_PAPI_ACCESS_KEY"`
 	AmazonPAPISecretKey string `envconfig:"AMAZON_PAPI_SECRET_KEY"`
 	ImageStorageBucket  string `envconfig:"PURCHASE_PLAN_IMAGE_BUCKET"`
+	MagicSecretKey      string `envconfig:"MAGIC_SECRET_KEY"`
+	JwtSecret           string `envconfig:"JWT_SECRET"`
 }
 
 // New parses config values from environment variables.

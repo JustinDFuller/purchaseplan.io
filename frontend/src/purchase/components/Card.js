@@ -60,11 +60,6 @@ export const Card = User.withContext(function ({
               backgroundRepeat: "no-repeat",
             }}
             alt={purchase.data.product.data.description}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src =
-                "https://cdn.dribbble.com/users/2046015/screenshots/6015680/08_404.gif"; // TODO: Find another image.
-            }}
           />
         </Col>
         <Col xs={12} sm={7} md={8}>

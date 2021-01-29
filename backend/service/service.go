@@ -85,6 +85,7 @@ func New() (S, error) {
 	// It will also create a DB entry if it does not exist.
 	r.HandleFunc("/v1/users/login", func(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Logging in with %s header: %s", headerAuthorization, r.Header.Get(headerAuthorization))
+
 		if !strings.HasPrefix(r.Header.Get(headerAuthorization), authBearer) {
 			log.Printf("Missing Bearer in X-Authorization header: %s", r.Header.Get(headerAuthorization))
 			w.WriteHeader(http.StatusUnauthorized)
@@ -111,7 +112,7 @@ func New() (S, error) {
 			return
 		}
 
-		m := client.New("sk_test_01353B9D1568572B", magic.NewDefaultClient())
+		m := client.New(c.MagicSecretKey, magic.NewDefaultClient())
 		metadata, err := m.User.GetMetadataByIssuer(tk.GetIssuer())
 		if err != nil {
 			log.Printf("Unable to retrieve user metadata: %s", err)
@@ -142,7 +143,7 @@ func New() (S, error) {
 			"exp":           oneWeek.String(),
 		})
 
-		signed, err := j.SignedString([]byte("purchase-plan-jwt-secret-envionment-local-2021-01"))
+		signed, err := j.SignedString([]byte(c.JwtSecret))
 		if err != nil {
 			log.Printf("Unable to sign JWT: %s", err)
 			w.WriteHeader(http.StatusUnauthorized)
@@ -153,6 +154,7 @@ func New() (S, error) {
 			Name:    authCookieName,
 			Value:   signed,
 			Expires: oneWeek,
+			Path:    "/",
 		})
 
 		if err := json.NewEncoder(w).Encode(u); err != nil {
@@ -162,7 +164,7 @@ func New() (S, error) {
 	}).Methods(http.MethodPost, http.MethodOptions)
 
 	// PUT /users will update the current user.
-	r.HandleFunc("/users", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/v1/users", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
 		val := r.Context().Value(emailContextKey)
 		email, ok := val.(string)
 		if !ok {
@@ -199,10 +201,10 @@ func New() (S, error) {
 			log.Printf("Error encoding json to response: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
 		}
-	})).Methods(http.MethodPut, http.MethodOptions)
+	}, c)).Methods(http.MethodPut, http.MethodOptions)
 
 	// GET /users will return the currect user.
-	r.HandleFunc("/users", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/v1/users", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
 		val := r.Context().Value(emailContextKey)
 		email, ok := val.(string)
 		if !ok {
@@ -223,9 +225,9 @@ func New() (S, error) {
 			log.Printf("Error encoding json to response: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
 		}
-	})).Methods(http.MethodGet, http.MethodOptions)
+	}, c)).Methods(http.MethodGet, http.MethodOptions)
 
-	r.HandleFunc("/products", func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/products", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
 		u := r.URL.Query().Get("url")
 		log.Printf("Searching for schema from: %s", u)
 
@@ -269,7 +271,7 @@ func New() (S, error) {
 		p.Image = image
 
 		json.NewEncoder(w).Encode(p)
-	}).Methods(http.MethodGet, http.MethodOptions)
+	}, c)).Methods(http.MethodGet, http.MethodOptions)
 
 	s.Router = r
 

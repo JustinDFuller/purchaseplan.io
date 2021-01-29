@@ -6,20 +6,19 @@ import * as Auth from "./auth";
 
 export default function App() {
   const [user, setUser] = useState(User.New());
-  const [auth, setAuth] = useState(Auth.New());
+  const [auth, setAuth] = useState(
+    Auth.New().onLogout(function () {
+      setUser(User.New());
+    })
+  );
 
   useEffect(function () {
     async function init() {
       setAuth(auth.setState(Auth.state.LOGGING_IN));
       const a = await auth.init();
 
-      if (a.data.user) {
-        try {
-          const u = await User.api.get(user.setEmail(a.data.user.email));
-          setUser(user.from(u));
-        } catch (e) {
-          setUser(user.setEmail(a.data.user.email));
-        }
+      if (a.user()) {
+        setUser(user.from(a.user()));
       }
 
       setAuth(a);
