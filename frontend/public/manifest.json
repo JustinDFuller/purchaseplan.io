@@ -1,6 +1,6 @@
 {
-  "short_name": "Saver",
-  "name": "Piggie Saver - Plan Your Purchases",
+  "short_name": "Purchase Plan",
+  "name": "Purchase Plan. Not a wish list, a plan.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#1d1d42",
   "background_color": "#1d1d42"
 }

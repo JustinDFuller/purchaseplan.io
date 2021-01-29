@@ -10,26 +10,10 @@ build-backend:
 	@cd ./backend && make build;
 
 terraform-dev-central:
-	@cd ./terraform/dev && \
-		terraform plan \
-		-var="environment=dev" \
-		-var="region=us-central" \
-		-var="multiregion=US" \
-		-var="product_name=purchase-plan" \
-		-var="billing_account=Purchase Plan" \
-		-var="org_name=purchaseplanio" \
-		-var="org_id=911410357820";
+	@cd ./terraform/dev && terraform plan;
 
 terraform-dev-central-apply:
-	@cd ./terraform/dev && \
-		terraform apply \
-		-var="environment=dev" \
-		-var="region=us-central" \
-		-var="multiregion=US" \
-		-var="product_name=purchase-plan" \
-		-var="billing_account=Purchase Plan" \
-		-var="org_name=purchaseplanio" \
-		-var="org_id=911410357820";
+	@cd ./terraform/dev && terraform apply;
 
 terraform-org:
 	@cd ./terraform/org && \
