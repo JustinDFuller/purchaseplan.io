@@ -11,7 +11,7 @@ function isNotLocal() {
 }
 
 function credentials() {
-  return isNotLocal() ? "same-site" : "include";
+  return isNotLocal() ? "same-origin" : "include";
 }
 
 export function fetch(url, options) {

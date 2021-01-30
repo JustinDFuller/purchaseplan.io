@@ -29,7 +29,7 @@ handlers:
     static_dir: frontend/build
     secure: always
 
-  - url: /
+  - url: /.*
     static_files: frontend/build/index.html
     upload: frontend/build/index\.html
     secure: always
