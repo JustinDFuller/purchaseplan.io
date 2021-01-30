@@ -53,6 +53,7 @@ steps:
         GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
     commands:
       - cd terraform/dev
+      - terraform init
       - terraform apply -auto-approve
     when:
       event: push
@@ -86,6 +87,7 @@ steps:
       GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
     commands:
       - cd terraform/prd
+      - terraform init
       - terraform apply -auto-approve
     when:
       event: tag
