@@ -50,7 +50,7 @@ steps:
   - name: terraform-dev
     image: hashicorp/terraform:light
     environment:
-        GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
+        GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
     commands:
       - cd terraform/dev
       - terraform init
@@ -84,7 +84,7 @@ steps:
   - name: terraform-prd
     image: hashicorp/terraform:light
     environment:
-      GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
+      GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
     commands:
       - cd terraform/prd
       - terraform init

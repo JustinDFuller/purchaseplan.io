@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-echo $SERVICE_ACCOUNT_CREDENTIALS > ./service_account_credentials.json
+echo $SERVICE_ACCOUNT_CREDENTIALS > /drone/service_account_credentials.json
