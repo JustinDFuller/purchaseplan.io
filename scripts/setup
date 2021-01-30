@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-echo $GOOGLE_APPLICATION_CREDENTIALS > ./application_default_credentials.json
-echo $ENV > ./backend/cmd/server/.env
+echo $SERVICE_ACCOUNT_CREDENTIALS > ./service_account_credentials.json

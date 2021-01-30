@@ -38,6 +38,20 @@ steps:
       - cp -r ./build/ ../backend/frontend/
     when:
       event: [push, tag]
+
+  - name: terraform-dev
+    image: hashicorp/terraform:light
+    environment:
+      SERVICE_ACCOUNT_CREDENTIALS:
+        from_secret: TERRAFORM_CREDENTIALS
+        GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
+    commands:
+      - ./scripts/setup
+      - cd terraform/dev
+      - terraform apply -auto-approve
+    when:
+      event: push
+      branch: main
     
   - name: deploy-dev
     image: nytimes/drone-gae
@@ -52,11 +66,24 @@ steps:
       max_versions: 10
     when:
       event: push
-      branch: [main]
+      branch: main
     depends_on:
       - frontend
       - backend
       - backend-lint
+      - terraform-dev
+
+  - name: terraform-prd
+    image: hashicorp/terraform:light
+    environment:
+      SERVICE_ACCOUNT_CREDENTIALS:
+        from_secret: TERRAFORM_CREDENTIALS
+        GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
+    commands:
+      - cd terraform/prd
+      - terraform apply -auto-approve
+    when:
+      event: tag
 
   - name: deploy-prd
     image: nytimes/drone-gae
@@ -74,6 +101,7 @@ steps:
     depends_on:
       - frontend
       - backend
+      - terraform-prd
 
   - name: slack-dev
     image: plugins/slack

@@ -39,3 +39,10 @@ resource "google_project_service" "secretmanager" {
 
   disable_dependent_services = true
 }
+
+resource "google_project_service" "datastore" {
+  project = "purchase-plan-prd"
+  service = "datastore.googleapis.com"
+
+  disable_dependent_services = true
+}
