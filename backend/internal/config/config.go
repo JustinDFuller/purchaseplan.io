@@ -1,9 +1,7 @@
 package config
 
 import (
-	"log"
-
-	"github.com/joho/godotenv"
+	"github.com/justindfuller/secretmanager"
 	"github.com/kelseyhightower/envconfig"
 )
 
@@ -11,29 +9,22 @@ import (
 type C struct {
 	Port                int    `envconfig:"PORT"`
 	GoogleCloudProject  string `envconfig:"GOOGLE_CLOUD_PROJECT"`
-	AmazonPAPIAccessKey string `envconfig:"AMAZON_PAPI_ACCESS_KEY"`
-	AmazonPAPISecretKey string `envconfig:"AMAZON_PAPI_SECRET_KEY"`
 	ImageStorageBucket  string `envconfig:"PURCHASE_PLAN_IMAGE_BUCKET"`
-	MagicSecretKey      string `envconfig:"MAGIC_SECRET_KEY"`
-	JwtSecret           string `envconfig:"JWT_SECRET"`
+	AmazonPAPIAccessKey string `secretmanager:"AMAZON_PAPI_ACCESS_KEY"`
+	AmazonPAPISecretKey string `secretmanager:"AMAZON_PAPI_SECRET_KEY"`
+	MagicSecretKey      string `secretmanager:"MAGIC_SECRET_KEY"`
+	JwtSecret           string `secretmanager:"JWT_SECRET"`
 }
 
 // New parses config values from environment variables.
 func New() (C, error) {
 	var c C
 
-	// Same dir in app engine
-	if err := godotenv.Load("./.env"); err != nil {
-		// Up one dir when running locally
-		if err := godotenv.Load("../.env"); err != nil {
-			// Up two dirs when running tests
-			if err := godotenv.Load("../../.env"); err != nil {
-				log.Printf("Error loading .env file: %s", err)
-			}
-		}
+	if err := envconfig.Process("", &c); err != nil {
+		return c, err
 	}
 
-	if err := envconfig.Process("", &c); err != nil {
+	if err := secretmanager.Parse(&c); err != nil {
 		return c, err
 	}
 
