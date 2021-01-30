@@ -1,6 +1,6 @@
 # Purchase Plan
 
-[![Build Status](https://cloud.drone.io/api/badges/JustinDFuller/purchase-plan/status.svg)](https://cloud.drone.io/JustinDFuller/purchase-plan)
+[![Build Status](https://cloud.drone.io/api/badges/JustinDFuller/purchaseplan.io/status.svg)](https://cloud.drone.io/JustinDFuller/purchaseplan.io)
 
 Plan your purchases.
 
