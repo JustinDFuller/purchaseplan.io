@@ -25,7 +25,7 @@ handlers:
     script: auto
     secure: always
 
-  - url: /.*
+  - url: /
     static_dir: frontend/build
     secure: always
 
