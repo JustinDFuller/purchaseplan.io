@@ -14,6 +14,22 @@ handlers:
     upload: frontend/build/index\.html
     secure: always
 
+  - url: /static/css/.*
+    static_dir: frontend/build/static/css
+    secure: always
+
+  - url: /static/js/.*
+    static_dir: frontend/build/static/js
+    secure: always
+
+  - url: /static/media/.*
+    static_dir: frontend/build/static/media
+    secure: always
+
+  - url: /static/.*
+    static_dir: frontend/build/static
+    secure: always
+
   - url: /.*
     static_dir: frontend/build
     secure: always
