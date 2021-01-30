@@ -70,7 +70,7 @@ func New() (S, error) {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Add("Access-Control-Allow-Origin", "http://localhost:3000")
 			w.Header().Add("Access-Control-Allow-Credentials", "true")
-			w.Header().Add("Access-Control-Allow-Headers", fmt.Sprintf("%s,content-type", headerAuthorization))
+			w.Header().Add("Access-Control-Allow-Headers", fmt.Sprintf("%s,content-type,sentry-trace", headerAuthorization))
 
 			if r.Method == http.MethodOptions {
 				w.WriteHeader(http.StatusOK)
