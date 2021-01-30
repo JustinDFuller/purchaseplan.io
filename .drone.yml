@@ -39,19 +39,26 @@ steps:
     when:
       event: [push, tag]
 
-  - name: terraform-dev
-    image: hashicorp/terraform:light
+  - name: setup-terraform
+    image: bash
     environment:
       SERVICE_ACCOUNT_CREDENTIALS:
         from_secret: TERRAFORM_CREDENTIALS
-        GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
     commands:
       - ./scripts/setup
+
+  - name: terraform-dev
+    image: hashicorp/terraform:light
+    environment:
+        GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
+    commands:
       - cd terraform/dev
       - terraform apply -auto-approve
     when:
       event: push
       branch: main
+    depends_on:
+      - setup-terraform
     
   - name: deploy-dev
     image: nytimes/drone-gae
@@ -76,14 +83,14 @@ steps:
   - name: terraform-prd
     image: hashicorp/terraform:light
     environment:
-      SERVICE_ACCOUNT_CREDENTIALS:
-        from_secret: TERRAFORM_CREDENTIALS
-        GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
+      GOOGLE_APPLICATION_CREDENTIALS: ./service_account_credentials.json
     commands:
       - cd terraform/prd
       - terraform apply -auto-approve
     when:
       event: tag
+    depends_on:
+      - setup-terraform
 
   - name: deploy-prd
     image: nytimes/drone-gae
