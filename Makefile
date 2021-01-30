@@ -9,28 +9,17 @@ build-frontend:
 build-backend:
 	@cd ./backend && make build;
 
-terraform-dev-central:
+terraform-dev:
 	@cd ./terraform/dev && terraform plan;
 
-terraform-dev-central-apply:
+terraform-dev-apply:
 	@cd ./terraform/dev && terraform apply;
 
-terraform-org:
-	@cd ./terraform/org && \
-		terraform plan \
-		-var="products=[\"purchase-plan\"]" \
-		-var="billing_account=Purchase Plan" \
-		-var="org_name=purchaseplanio" \
-		-var="org_id=911410357820";
+terraform-prd:
+	@cd ./terraform/prd && terraform plan;
 
-terraform-org-apply:
-	@cd ./terraform/org && \
-		terraform apply \
-		-var="products=[\"purchase-plan\"]" \
-		-var="billing_account=Purchase Plan" \
-		-var="org_name=purchaseplanio" \
-		-var="org_id=911410357820";
-
+terraform-prd-apply:
+	@cd ./terraform/prd && terraform apply;
 
 terraform-remote:
 	@cd ./terraform/remote && \

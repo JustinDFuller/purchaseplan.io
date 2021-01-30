@@ -32,3 +32,10 @@ resource "google_project_service" "cloudbuild" {
 
   disable_dependent_services = true
 }
+
+resource "google_project_service" "secretmanager" {
+  project = "purchase-plan-prd"
+  service = "secretmanager.googleapis.com"
+
+  disable_dependent_services = true
+}

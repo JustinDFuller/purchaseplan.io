@@ -5,10 +5,6 @@ env_variables:
     PURCHASE_PLAN_IMAGE_BUCKET: "purchase-plan-images-prd"
 
 handlers:
-  - url: /v1/.*
-    script: auto
-    secure: always
-
   - url: /
     static_files: frontend/build/index.html
     upload: frontend/build/index\.html
@@ -28,6 +24,10 @@ handlers:
 
   - url: /static/.*
     static_dir: frontend/build/static
+    secure: always
+
+  - url: /v1/.*
+    script: auto
     secure: always
 
   - url: /.*
