@@ -9,11 +9,11 @@ type (
 	User struct {
 		Email         string     `json:"email"`
 		Issuer        string     `json:"issuer"`
-		Saved         int64      `json:"saved"`
-		Contributions int64      `json:"contributions"`
-		Frequency     string     `json:"frequency"`
-		LastPaycheck  *time.Time `json:"lastPaycheck"`
-		Purchases     []Purchase `json:"purchases"`
+		Saved         int64      `json:"saved,omitempty"`
+		Contributions int64      `json:"contributions,omitempty"`
+		Frequency     string     `json:"frequency,omitempty"`
+		LastPaycheck  *time.Time `json:"lastPaycheck,omitempty"`
+		Purchases     []Purchase `json:"purchases,omitempty"`
 	}
 
 	// Purchase is something a User wants to buy.

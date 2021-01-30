@@ -11,7 +11,11 @@ export function Header() {
       style={styles.combine(styles.dark, { maxWidth: 1500 })}
     >
       <a className="navbard-brand" href="/">
-        <img src="/logo.png" alt="logo" style={styles.logo} />
+        <img
+          src={`${process.env.PUBLIC_URL}/logo.png`}
+          alt="logo"
+          style={styles.logo}
+        />
       </a>
       <div className="d-flex">
         <ul className="navbar-nav">

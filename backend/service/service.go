@@ -84,8 +84,6 @@ func New() (S, error) {
 	// POST /v1/users/login will create a JWT cookie for the user.
 	// It will also create a DB entry if it does not exist.
 	r.HandleFunc("/v1/users/login", func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("Logging in with %s header: %s", headerAuthorization, r.Header.Get(headerAuthorization))
-
 		if !strings.HasPrefix(r.Header.Get(headerAuthorization), authBearer) {
 			log.Printf("Missing Bearer in X-Authorization header: %s", r.Header.Get(headerAuthorization))
 			w.WriteHeader(http.StatusUnauthorized)
