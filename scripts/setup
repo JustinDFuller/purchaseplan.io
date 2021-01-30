@@ -1,2 +1,2 @@
-#!/usr/bin/env bash
+#!/bin/bash
 echo $SERVICE_ACCOUNT_CREDENTIALS > ./service_account_credentials.json
