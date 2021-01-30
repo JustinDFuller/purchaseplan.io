@@ -5,24 +5,19 @@ env_variables:
     PURCHASE_PLAN_IMAGE_BUCKET: "purchase-plan-images-dev"
 
 handlers:
-  - url: /
-    static_files: frontend/build/index.html
-    upload: frontend/build/index\.html
-    secure: always
-
-  - url: /static/css/.*
+  - url: /static/css
     static_dir: frontend/build/static/css
     secure: always
 
-  - url: /static/js/.*
+  - url: /static/js
     static_dir: frontend/build/static/js
     secure: always
 
-  - url: /static/media/.*
+  - url: /static/media
     static_dir: frontend/build/static/media
     secure: always
 
-  - url: /static/.*
+  - url: /static
     static_dir: frontend/build/static
     secure: always
 
@@ -33,3 +28,9 @@ handlers:
   - url: /.*
     static_dir: frontend/build
     secure: always
+
+  - url: /
+    static_files: frontend/build/index.html
+    upload: frontend/build/index\.html
+    secure: always
+
