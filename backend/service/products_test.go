@@ -9,7 +9,7 @@ import (
 	"reflect"
 	"testing"
 
-	planner "github.com/justindfuller/purchase-saving-planner/api"
+	planner "github.com/justindfuller/purchaseplan.io/backend"
 	"github.com/kr/pretty"
 )
 

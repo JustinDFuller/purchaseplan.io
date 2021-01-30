@@ -4,7 +4,7 @@ import (
 	"context"
 
 	ds "cloud.google.com/go/datastore"
-	planner "github.com/justindfuller/purchase-saving-planner/api"
+	planner "github.com/justindfuller/purchaseplan.io/backend"
 )
 
 // Client is a wrapper around the datastore client.

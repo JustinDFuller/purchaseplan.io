@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/justindfuller/purchase-saving-planner/api/service"
+	"github.com/justindfuller/purchaseplan.io/backend/service"
 )
 
 func main() {

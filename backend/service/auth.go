@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/justindfuller/purchase-saving-planner/api/internal/config"
+	"github.com/justindfuller/purchaseplan.io/backend/config"
 )
 
 type contextKey string
