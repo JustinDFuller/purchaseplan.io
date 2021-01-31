@@ -1,3 +1,5 @@
+import Alert from "react-bootstrap/Alert";
+
 import * as Auth from "./context";
 import * as User from "../user";
 import { withContext } from "./with";
@@ -30,6 +32,14 @@ export const Login = withContext(
 
     return (
       <Card style={{ maxWidth: 500, margin: "auto" }}>
+        {auth.serverError() ||
+          (auth.unauthorized() && (
+            <Alert variant="danger" style={{ borderRadius: 0 }}>
+              {auth.serverError() &&
+                "Purchase Plan is currently experiencing issues. If you are unable to log in, please try again later."}
+              {auth.unauthorized() && "Unable to log you in. Please try again."}
+            </Alert>
+          ))}
         <form onSubmit={handleSubmit}>
           <div className="form-group margin-auto">
             <label className="form-label">
@@ -38,6 +48,7 @@ export const Login = withContext(
             <div className="row">
               <div className="col-12 col-lg-9">
                 <input
+                  required
                   className="form-control"
                   type="email"
                   name="email"

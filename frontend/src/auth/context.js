@@ -15,6 +15,8 @@ const defaults = {
   user: null,
   error: null,
   state: state.LOGGED_OUT,
+  serverError: false,
+  unauthorized: false,
 };
 
 export function New(data = defaults) {
@@ -24,28 +26,40 @@ export function New(data = defaults) {
     ...getterSetters(data, New),
     async init() {
       try {
-        let user;
+        let response;
         const params = new URLSearchParams(window.location.search);
 
         if (params.has("magic_credential")) {
           const didToken = params.get("magic_credential");
-          user = await api.login(didToken);
+          response = await api.login(didToken);
           params.delete("magic_credential");
           window.history.replaceState(
             null,
             null,
             window.location.pathname + params.toString()
           );
+          return New({
+            ...data,
+            ...response,
+            user: response.data,
+            state:
+              response.data && !response.error
+                ? state.LOGGED_IN
+                : state.LOGGED_OUT,
+          });
         } else {
-          user = await User.api.get();
+          response = await User.api.get();
+          // Don't return auth errors here. They just haven't logged in.
+          return New({
+            ...data,
+            serverError: response.serverError,
+            user: response.data,
+            state:
+              response.data && !response.error
+                ? state.LOGGED_IN
+                : state.LOGGED_OUT,
+          });
         }
-
-        return New({
-          ...data,
-          user,
-          state: state.LOGGED_IN,
-          error: null,
-        });
       } catch (error) {
         return New({
           ...data,
@@ -58,21 +72,21 @@ export function New(data = defaults) {
       const redirectURI = window.location.origin;
 
       try {
-        if (email) {
-          const didToken = await m.auth.loginWithMagicLink({
-            email,
-            redirectURI,
-          });
-          const user = await api.login(didToken);
-          return New({
-            ...data,
-            user,
-            error: null,
-            state: state.LOGGED_IN,
-          });
-        }
+        const didToken = await m.auth.loginWithMagicLink({
+          email,
+          redirectURI,
+        });
+        const response = await api.login(didToken);
+        return New({
+          ...data,
+          ...response,
+          user: response.data,
+          state:
+            response.data && !response.error
+              ? state.LOGGED_IN
+              : state.LOGGED_OUT,
+        });
       } catch (error) {
-        console.log("login error", error);
         return New({
           ...data,
           error,
