@@ -54,7 +54,7 @@ steps:
     commands:
       - cd terraform/dev
       - terraform init
-      - terraform apply -auto-approve
+        # - terraform apply -auto-approve
     when:
       event: push
       branch: main
@@ -88,7 +88,7 @@ steps:
     commands:
       - cd terraform/prd
       - terraform init
-      - terraform apply -auto-approve
+        # - terraform apply -auto-approve
     when:
       event: tag
     depends_on:
