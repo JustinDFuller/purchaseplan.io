@@ -1,6 +1,6 @@
 {
   "short_name": "Purchase Plan",
-  "name": "Purchase Plan. Not a wish list, a plan.",
+  "name": "Not a wish list — a plan.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,7 +18,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#1d1d42",
   "background_color": "#1d1d42"
