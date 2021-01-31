@@ -46,3 +46,10 @@ resource "google_project_service" "datastore" {
 
   disable_dependent_services = true
 }
+
+resource "google_project_service" "bigquery" {
+  project = "purchase-plan-prd"
+  service = "bigquery.googleapis.com"
+
+  disable_dependent_services = true
+}

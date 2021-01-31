@@ -34,3 +34,4 @@ resource "google_project" "purchase-plan-dev" {
   billing_account = data.google_billing_account.billing.id
 }
 
+
