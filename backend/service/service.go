@@ -13,6 +13,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/mux"
 	planner "github.com/justindfuller/purchaseplan.io/backend"
+	"github.com/justindfuller/purchaseplan.io/backend/analytics"
 	"github.com/justindfuller/purchaseplan.io/backend/config"
 	"github.com/justindfuller/purchaseplan.io/backend/datastore"
 	"github.com/justindfuller/purchaseplan.io/backend/storage"
@@ -62,6 +63,11 @@ func New() (S, error) {
 		return s, errors.Wrap(err, "error connecting to storage")
 	}
 	s.storage = st
+
+	a, err := analytics.New(ctx, c.GoogleCloudProject)
+	if err != nil {
+		return s, errors.Wrap(err, "error connecting to analytics")
+	}
 
 	r := mux.NewRouter()
 	r.Use(mux.CORSMethodMiddleware(r))
@@ -263,6 +269,12 @@ func New() (S, error) {
 		}
 		p.OriginalImage = p.Image
 		p.Image = image
+
+		go func() {
+			if err := a.PutProduct(context.Background(), u, p); err != nil {
+				log.Printf("Unable to save product analytics: %s", err)
+			}
+		}()
 
 		if err := json.NewEncoder(w).Encode(p); err != nil {
 			log.Printf("Error encoding JSON: %s", err)

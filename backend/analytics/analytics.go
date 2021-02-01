@@ -2,9 +2,10 @@ package analytics
 
 import (
 	"context"
+	"net/url"
 
 	"cloud.google.com/go/bigquery"
-	planner "github.com/justindfuller/purchase-saving-planner/api"
+	planner "github.com/justindfuller/purchaseplan.io/backend"
 	"github.com/pkg/errors"
 )
 
@@ -28,6 +29,7 @@ func New(ctx context.Context, project string) (Client, error) {
 }
 
 type product struct {
+	Hostname    string
 	RequestURL  string
 	Name        string
 	Description string
@@ -38,7 +40,13 @@ type product struct {
 
 // PutProduct will save a product to bigquery.
 func (c Client) PutProduct(ctx context.Context, requestURL string, p planner.Product) error {
+	u, err := url.Parse(requestURL)
+	if err != nil {
+		return errors.Wrap(err, "product analytics unable to parse requestURL")
+	}
+
 	if err := c.products.Inserter().Put(ctx, product{
+		Hostname:    u.Hostname(),
 		RequestURL:  requestURL,
 		Name:        p.Name,
 		Description: p.Description,
