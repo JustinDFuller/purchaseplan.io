@@ -29,10 +29,11 @@ const authBearer = "Bearer"
 
 // S is a service.
 type S struct {
-	Config    config.C
-	Router    *mux.Router
-	datastore datastore.Client
-	storage   storage.Client
+	Config     config.C
+	Router     *mux.Router
+	datastore  datastore.Client
+	storage    storage.Client
+	httpClient *http.Client
 }
 
 // Close will run any cleanup needed for a service to close.
@@ -41,8 +42,18 @@ func (s S) Close() {
 }
 
 // New creates a service.
-func New() (S, error) {
+func New(opts ...Option) (S, error) {
 	var s S
+
+	for _, opt := range opts {
+		if err := opt(&s); err != nil {
+			return s, err
+		}
+	}
+
+	if s.httpClient == nil {
+		s.httpClient = &http.Client{}
+	}
 
 	ctx := context.Background()
 
@@ -240,8 +251,7 @@ func New() (S, error) {
 
 		req.Header.Add("user-agent", "Mozilla/5.0 (X11; CrOS x86_64 13421.89.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36")
 
-		c := http.Client{}
-		res, err := c.Do(req)
+		res, err := s.httpClient.Do(req)
 		if err != nil {
 			log.Printf("Error during GET %s: %s", u, err)
 			w.WriteHeader(http.StatusBadRequest)

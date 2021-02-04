@@ -1,7 +1,9 @@
 package service
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -16,6 +18,17 @@ import (
 type testProducts struct {
 	url     string
 	product planner.Product
+}
+
+type fileTransport struct{}
+
+func (t fileTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	b, err := ioutil.ReadFile(fmt.Sprintf("./fixtures/%s", req.URL))
+	if err != nil {
+		return nil, err
+	}
+
+	return &http.Response{Body: ioutil.NopCloser(bytes.NewBuffer(b))}, nil
 }
 
 func TestService(t *testing.T) {
@@ -117,7 +130,9 @@ func TestService(t *testing.T) {
 		},
 	}
 
-	s, err := New()
+	s, err := New(WithHttpClient(&http.Client{
+		Transport: fileTransport{},
+	}))
 	if err != nil {
 		t.Fatal(err)
 	}
