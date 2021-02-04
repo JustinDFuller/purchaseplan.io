@@ -12,6 +12,12 @@ resource "google_bigquery_table" "products" {
   schema = <<EOF
 [
   {
+    "name": "hostname",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The host from the URL that the user requested."
+  },
+  {
     "name": "requestURL",
     "type": "STRING",
     "mode": "REQUIRED",
