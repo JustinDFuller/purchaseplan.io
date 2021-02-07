@@ -8,6 +8,7 @@ import (
 // C is the struct that holds all configuration properties.
 type C struct {
 	Port                int    `envconfig:"PORT"`
+	ENV                 string `envconfig:"ENV"`
 	GoogleCloudProject  string `envconfig:"GOOGLE_CLOUD_PROJECT"`
 	ImageStorageBucket  string `envconfig:"PURCHASE_PLAN_IMAGE_BUCKET"`
 	AmazonPAPIAccessKey string `secretmanager:"AMAZON_PAPI_ACCESS_KEY"`

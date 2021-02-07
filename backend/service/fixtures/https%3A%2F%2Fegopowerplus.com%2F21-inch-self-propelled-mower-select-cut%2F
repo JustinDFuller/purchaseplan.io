@@ -1,0 +1,1954 @@
+<!doctype html>
+<html lang="en">
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: http://ogp.me/ns/product#">
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+        
+                {'gtm.start': new Date().getTime(),event:'gtm.js'}
+            
+              );var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-5CTFR9G');
+        </script>
+<!-- End Google Tag Manager --><script>
+
+    var BASE_URL = 'https://egopowerplus.com/';
+    var require = {
+        "baseUrl": "https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US"
+    
+    };
+
+
+    let storeLocale = "default";
+    let siteOrigin;
+    switch(storeLocale.toLowerCase()) {
+        case "default":
+            siteOrigin = "United States";
+            break;
+        case "en_au":
+            siteOrigin = "Australia";
+            break;
+        default:
+            siteOrigin = "United States";
+    
+    }
+</script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<meta name="facebook-domain-verification" content="4vao7ufzvnnhd6t60p0zh2g57vth1g" />
+        <meta charset="utf-8"/><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"03ffa6c8be",applicationID:"188173529"};window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var i=t[n]={exports:{}};e[n][0].call(i.exports,function(t){var i=e[n][1][t];return r(i||t)},i,i.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(e,t,n){function r(){}function i(e,t,n){return function(){return o(e,[u.now()].concat(c(arguments)),t?null:this,n),t?void 0:this}}var o=e("handle"),a=e(6),c=e(7),f=e("ee").get("tracer"),u=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",l=p+"ixn-";a(d,function(e,t){s[t]=i(p+t,!0,"api")}),s.addPageAction=i(p+"addPageAction",!0),s.setCurrentRouteName=i(p+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,i="function"==typeof t;return o(l+"tracer",[u.now(),e,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return t.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],n),e}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=i(l+t)}),newrelic.noticeError=function(e,t){"string"==typeof e&&(e=new Error(e)),o("err",[e,u.now(),!1,t])}},{}],2:[function(e,t,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=e(8);t.exports=r,t.exports.offset=a,t.exports.getLastTimestamp=i},{}],3:[function(e,t,n){function r(e,t){var n=e.getEntries();n.forEach(function(e){"first-paint"===e.name?d("timing",["fp",Math.floor(e.startTime)]):"first-contentful-paint"===e.name&&d("timing",["fcp",Math.floor(e.startTime)])})}function i(e,t){var n=e.getEntries();n.length>0&&d("lcp",[n[n.length-1]])}function o(e){e.getEntries().forEach(function(e){e.hadRecentInput||d("cls",[e])})}function a(e){if(e instanceof m&&!g){var t=Math.round(e.timeStamp),n={type:e.type};t<=p.now()?n.fid=p.now()-t:t>p.offset&&t<=Date.now()?(t-=p.offset,n.fid=p.now()-t):t=p.now(),g=!0,d("timing",["fi",t,n])}}function c(e){d("pageHide",[p.now(),e])}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,s,d=e("handle"),p=e("loader"),l=e(5),m=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){f=new PerformanceObserver(r);try{f.observe({entryTypes:["paint"]})}catch(v){}u=new PerformanceObserver(i);try{u.observe({entryTypes:["largest-contentful-paint"]})}catch(v){}s=new PerformanceObserver(o);try{s.observe({type:"layout-shift",buffered:!0})}catch(v){}}if("addEventListener"in document){var g=!1,w=["click","keydown","mousedown","pointerdown","touchstart"];w.forEach(function(e){document.addEventListener(e,a,!1)})}l(c)}},{}],4:[function(e,t,n){function r(e,t){if(!i)return!1;if(e!==i)return!1;if(!t)return!0;if(!o)return!1;for(var n=o.split("."),r=t.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}t.exports={agent:i,version:o,match:r}},{}],5:[function(e,t,n){function r(e){function t(){e(a&&document[a]?document[a]:document[i]?"hidden":"visible")}"addEventListener"in document&&o&&document.addEventListener(o,t,!1)}t.exports=r;var i,o,a;"undefined"!=typeof document.hidden?(i="hidden",o="visibilitychange",a="visibilityState"):"undefined"!=typeof document.msHidden?(i="msHidden",o="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(i="webkitHidden",o="webkitvisibilitychange",a="webkitVisibilityState")},{}],6:[function(e,t,n){function r(e,t){var n=[],r="",o=0;for(r in e)i.call(e,r)&&(n[o]=t(r,e[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;t.exports=r},{}],7:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,i=n-t||0,o=Array(i<0?0:i);++r<i;)o[r]=e[t+r];return o}t.exports=r},{}],8:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function i(e){function t(e){return e&&e instanceof r?e:e?u(e,f,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){e&&a&&e(n,r,i);for(var c=t(i),f=v(n),u=f.length,s=0;s<u;s++)f[s].apply(c,r);var p=d[h[n]];return p&&p.push([b,n,r,c]),c}}function o(e,t){y[e]=v(e).concat(t)}function m(e,t){var n=y[e];if(n)for(var r=0;r<n.length;r++)n[r]===t&&n.splice(r,1)}function v(e){return y[e]||[]}function g(e){return p[e]=p[e]||i(n)}function w(e,t){s(e,function(e,n){t=t||"feature",h[n]=t,t in d||(d[t]=[])})}var y={},h={},b={on:o,addEventListener:o,removeEventListener:m,emit:n,get:g,listeners:v,context:t,buffer:w,abort:c,aborted:!1};return b}function o(e){return u(e,f,a)}function a(){return new r}function c(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var f="nr@context",u=e("gos"),s=e(6),d={},p={},l=t.exports=i();t.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(e,t,n){function r(e,t,n){if(i.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return e[t]=r,r}var i=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){i.buffer([e],r),i.emit(e,t,n)}var i=e("ee").get("handle");t.exports=r,r.ee=i},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,o,function(){return i++})}var i=1,o="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=b.info=NREUM.info,t=p.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return u.abort();f(y,function(t,n){e[t]||(e[t]=n)});var n=a();c("mark",["onload",n+b.offset],null,"api"),c("timing",["load",n]);var r=p.createElement("script");r.src="https://"+e.agent,t.parentNode.insertBefore(r,t)}}function i(){"complete"===p.readyState&&o()}function o(){c("mark",["domContent",a()+b.offset],null,"api")}var a=e(2),c=e("handle"),f=e(6),u=e("ee"),s=e(4),d=window,p=d.document,l="addEventListener",m="attachEvent",v=d.XMLHttpRequest,g=v&&v.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:v,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var w=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1198.min.js"},h=v&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),b=t.exports={offset:a.getLastTimestamp(),now:a,origin:w,features:{},xhrWrappable:h,userAgent:s};e(1),e(3),p[l]?(p[l]("DOMContentLoaded",o,!1),d[l]("load",r,!1)):(p[m]("onreadystatechange",i),d[m]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var x=0},{}],"wrap-function":[function(e,t,n){function r(e,t){function n(t,n,r,f,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,f],s],e)}c(n+"start",[o,a,f],s,u);try{return p=t.apply(a,o)}catch(m){throw c(n+"err",[o,a,m],s,u),m}finally{c(n+"end",[o,a,p],s,u)}}return a(t)?t:(n||(n=""),nrWrapper[p]=t,o(t,nrWrapper,e),nrWrapper)}function r(e,t,r,i,o){r||(r="");var c,f,u,s="-"===r.charAt(0);for(u=0;u<t.length;u++)f=t[u],c=e[f],a(c)||(e[f]=n(c,s?f+r:r,i,f,o))}function c(n,r,o,a){if(!m||t){var c=m;m=!0;try{e.emit(n,r,o,t,a)}catch(f){i([f,n,r,o],e)}m=c}}return e||(e=s),n.inPlace=r,n.flag=p,n}function i(e,t){t||(t=s);try{t.emit("internal-error",e)}catch(n){}}function o(e,t,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(e);return r.forEach(function(n){Object.defineProperty(t,n,{get:function(){return e[n]},set:function(t){return e[n]=t,t}})}),t}catch(o){i([o],n)}for(var a in e)l.call(e,a)&&(t[a]=e[a]);return t}function a(e){return!(e&&e instanceof Function&&e.apply&&!e[p])}function c(e,t){var n=t(e);return n[p]=e,o(e,n,s),n}function f(e,t,n){var r=e[t];e[t]=c(r,n)}function u(){for(var e=arguments.length,t=new Array(e),n=0;n<e;++n)t[n]=arguments[n];return t}var s=e("ee"),d=e(7),p="nr@original",l=Object.prototype.hasOwnProperty,m=!1;t.exports=r,t.exports.wrapFunction=c,t.exports.wrapInPlace=f,t.exports.argsToArray=u},{}]},{},["loader"]);</script>
+<meta name="title" content="Power+ 21&quot; Select Cut™ Mower with Touch Drive™ Self-Propelled Technology"/>
+<meta name="description" content="Engineered to run two blades simultaneously, the EGO Select Cut™ Lawn mower is the 1st cordless lawn mower to have a multi-blade cutting system."/>
+<meta name="keywords" content="mower, dual blade mower, cordless mower, self propelled mower, self propelled, 21 inch mower, 21 inch self propelled mower, select cut mower"/>
+<meta name="robots" content="INDEX,FOLLOW"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="format-detection" content="telephone=no"/>
+<title>Power+ 21&quot; Select Cut™ Mower with Touch Drive™ Self-Propelled Technology</title>
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/Magedelight_Faqs/css/font-awesome.min.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/Magedelight_Faqs/css/animate.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/css/styles.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/FME_Mediaappearance/css/mediaappearance/media.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/FME_Mediaappearance/css/mediaappearance/jquery.fancybox.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/FME_Mediaappearance/css/mediaappearance/owl.carousel.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/Skilsaw_Widget/css/slick.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/Skilsaw_Widget/css/slick-theme.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/WeltPixel_OwlCarouselSlider/css/owl.carousel.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/mage/gallery/gallery.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/FME_Mediaappearance/css/mediaappearance/component.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/FME_Mediaappearance/css/mediaappearance/demo.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/Magedelight_Faqs/css/bootstrap.css" />
+<script  type="text/javascript"  src="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/requirejs/require.js"></script>
+<script  type="text/javascript"  src="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/mage/requirejs/mixins.js"></script>
+<script  type="text/javascript"  src="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/requirejs-config.js"></script>
+<script  type="text/javascript"  src="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/mage/polyfill.js"></script>
+<script  type="text/javascript"  src="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/Magedelight_Faqs/js/faq_items.js"></script>
+<script  type="text/javascript"  type="text/javascript" src="https://geoip-js.com/js/apis/geoip2/v2.1/geoip2.js"></script>
+<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fjalla+One" />
+<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" />
+<link  rel="icon" type="image/x-icon" href="https://egopowerplus.com/media/favicon/stores/1/favicon_ego.ico" />
+<link  rel="shortcut icon" type="image/x-icon" href="https://egopowerplus.com/media/favicon/stores/1/favicon_ego.ico" />
+        <script>
+
+                        //  For mobile sso hide header/footer
+        if (getCookie("__mobilesso") === "true") {
+          setTimeout(function() {
+                                document.getElementsByClassName("ego-header")[0].style.display= "none";
+                                document.getElementsByClassName("ego-footer")[0].style.display = "none";
+                                document.getElementsByClassName("ego-black-banner")[0].className += " ego-black-banner__mobile-sso";
+                                document.getElementsByClassName("ego-register-line__wr")[0].className += " ego-register-line__wr-mobile-sso";
+                                document.getElementsByClassName("ego-register-steps-wr")[0].className += " ego-register-steps-wr-mobile-sso";
+                            
+              },0);
+                        
+        }
+
+                        let showEgoAUSiteConfirmationModal = false;
+
+                        if (getUrlParameter('preventredirect') === "true") { //Querystring to prevent country redirects (?preventredirect=true)
+                            setCookie('country', 'preventredirect', 365);
+                         } else if (getUrlParameter('preventredirect') === "false") { //Querystring to allow country redirects (?preventredirect=false)
+                            setCookie('country', '', 365);
+                         }
+
+            /*-----------------*/
+                        /* Redirect Login  */
+                        /*-----------------*/
+if (document.location.pathname.replace(/\//g, "") === "account") {
+if (getCookie('__auth').length > 0){
+                                document.location = '/account-center';
+                            
+}
+                        
+} else if (document.location.pathname.replace(/\//g, "") === "account-center" || document.location.pathname.replace(/\//g, "") === "register-product") {
+if (getCookie('__auth').length <= 0) {
+                                window.location.href = '/account';
+                            
+}
+                        
+}
+
+                        //MAILCHIMP EMAIL REDIRECT
+if (window.location.pathname + window.location.search === "/15-inch-string-trimmer-rapid-reload/?utm_campaign=ego_promo_20190607&utm_source=mailchimp&utm_medium=email") {
+                            document.location = "/15-inch-string-trimmer-powerload/?utm_campaign=ego_promo_20190607&utm_source=mailchimp&utm_medium=email";
+                        
+}
+
+                        /*-------------------------*/
+                        /* Ip Redirect Logic       */
+                        /*-------------------------*/
+
+                        var country = getCookie("country");
+                        let windowHost = window.location.host + "/";
+
+                        if (country == "" || country == null) {
+                          geoip2.country( function ( response  ) {
+                                country = response.country.iso_code;
+                                setCookie('country', country, 365);
+                                countryRedirect(country);
+                            
+                                }, function ( error  ) {
+                                console.log('geoip2 timeout!');
+
+                                var $jsonp = (function() {
+                                    var that = {};
+
+                                    that.send = function(src, options) {
+                                        var callback_name = options.callbackName || 'callback',
+                                        on_success = options.onSuccess || function(){},
+                                        on_timeout = options.onTimeout || function(){},
+                                        timeout = options.timeout || 10; // sec
+
+                                        var timeout_trigger = window.setTimeout(function(){
+                                            window[callback_name] = function(){};
+                                            on_timeout();
+                                        
+                                            }, timeout * 1000);
+
+                                        window[callback_name] = function(data){
+                                            window.clearTimeout(timeout_trigger);
+                                            on_success(data);
+                                        
+                                        }
+
+                                        var script = document.createElement('script');
+                                        script.type = 'text/javascript';
+                                        script.async = true;
+                                        script.src = src;
+
+                                        document.getElementsByTagName('head')[0].appendChild(script);
+                                    
+                                    }
+
+                                    return that;
+                                
+                                    })();
+
+                                $jsonp.send('https://ipinfo.io/?callback=callback', {
+                                    callbackName: 'callback',
+                                    onSuccess: function(response){
+                                        country = response.country;
+                                        setCookie('country', country, 365);
+                                        countryRedirect(country);
+                                    
+                                    },
+onTimeout: function(){
+                                        setCookie('country', "US", 365);
+                                        console.log('ipinfo Timeout');
+                                    
+},
+                                    timeout: 5
+                                
+                                    });
+                            
+                                } );
+                        
+} else {
+                            countryRedirect(country);
+                        
+}
+
+function countryRedirect(location) {
+  if (
+                                window.location.hostname.indexOf('release') === -1
+                                // && window.location.hostname.indexOf('local') === -1
+                                && window.location.hostname.indexOf('integration') === -1
+                                // && window.location.hostname.indexOf('staging') === -1
+                                
+     ) {
+    switch(location.toLowerCase()) {
+                                    case "au":
+                                      if (windowHost.indexOf(".com.au/") > -1) {
+                                            break;
+                                        
+                                      } else {
+                                            window.location.href = "https://egopowerplus.com.au";
+                                        
+                                      }
+                                    case "nz":
+                                      if (windowHost.indexOf(".com.au/") > -1) {
+                                            break;
+                                        
+                                      } else {
+                                            window.location.href = "https://egopowerplus.com.au";
+                                        
+                                      }
+                                    case "us":
+                                      if (windowHost.indexOf(".com/") > -1) {
+                                            break;
+                                        
+                                      } else {
+                                        if (!getCookie('prevent-site-redirect')) {
+                                                showEgoAUSiteConfirmationModal = true;
+                                            
+                                        }
+                                            break;
+                                        
+                                      }
+                                        break;
+                                    case "ca":
+                                        if (windowHost.indexOf(".com/") > -1) {
+                                            break;
+                                        
+                                        } else {
+                                          if (!getCookie('prevent-site-redirect')) {
+                                                showEgoAUSiteConfirmationModal = true;
+                                            
+                                          }
+                                            break;
+                                        
+                                        }
+                                        break;
+                                    case "gb":
+                                        window.location.href = "http://egopowerplus.co.uk";
+                                        break;
+                                    case "at":
+                                        window.location.href = "http://egopowerplus.at";
+                                        break;
+                                    case "be":
+                                        window.location.href = "http://egopowerplus.be";
+                                        break;
+                                    case "fi":
+                                        window.location.href = "http://egopowerplus.fi";
+                                        break;
+                                    case "fr":
+                                        window.location.href = "http://egopowerplus.fr";
+                                        break;
+                                    case "de":
+                                        window.location.href = "http://egopowerplus.de";
+                                        break;
+                                    case "ie":
+                                        window.location.href = "http://egopowerplus.ie";
+                                        break;
+                                    case "it":
+                                        window.location.href = "http://egopowerplus.it";
+                                        break;
+                                    case "nl":
+                                        window.location.href = "http://egopowerplus.nl";
+                                        break;
+                                    case "es":
+                                        window.location.href = "http://egopowerplus.es";
+                                        break;
+                                    case "ch":
+                                        window.location.href = "http://egopowerplus.ch";
+                                        break;
+                                    case "za":
+                                        window.location.href = "http://egopowerplus.co.za";
+                                        break;
+                                    default:
+                                        break;
+                                
+    }
+                            
+  }
+                        
+}
+
+function setCookie(cname, cvalue, exdays) {
+                            var d = new Date();
+                            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                            var expires = "expires="+d.toUTCString();
+                            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                        
+}
+
+function getCookie(cname) {
+                            var name = cname + "=";
+                            var ca = document.cookie.split(';');
+                            for(var i = 0; i < ca.length; i++) {
+                                var c = ca[i];
+                                while (c.charAt(0) == ' ') {
+                                    c = c.substring(1);
+                                
+                                }
+                                if (c.indexOf(name) == 0) {
+                                    return c.substring(name.length, c.length);
+                                
+                                }
+                            
+                            }
+                            return "";
+                        
+}
+
+function getUrlParameter(name) {
+                            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                            var results = regex.exec(location.search);
+                            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+                        
+};
+                        </script><!-- BEGIN GOOGLE VERIFICATION TAG -->
+<!-- END GOOGLE VERIFICATION TAG -->
+<!-- BEGIN GTAG GLOBAL TAG -->
+<!-- END GTAG GLOBAL TAG -->
+
+<meta property="og:type" content="product" />
+<meta property="og:title"
+      content="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology" />
+      <meta property="og:image"
+      content="https://egopowerplus.com/media/catalog/product/cache/02995e5077dda5c77697ad23ef8c2836/l/m/lm2130sp_v2_2.png" />
+<meta property="og:description"
+      content=" The Select Cut™ multi-blade cutting system is equipped with two, interchangeable lower blades; the Premium Mulching Blade and the Premium Bagging Blade. " />
+<meta property="og:url" content="https://egopowerplus.com/21-inch-self-propelled-mower-select-cut/" />
+    <meta property="product:price:amount" content="0"/>
+    <meta property="product:price:currency"
+      content="USD"/>
+    </head>
+    <body data-container="body"
+          data-mage-init='{"loaderAjax": {}, "loader": { "icon": "https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/images/loader-2.gif" }}'
+        itemtype="http://schema.org/Product" itemscope="itemscope" class="catalog-product-view product-21-inch-self-propelled-mower-select-cut categorypath-power-mowers category-power-mowers page-layout-1column">
+        <!-- Google Tag Manager (noscript) -->
+                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CTFR9G"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+                <!-- End Google Tag Manager (noscript) -->
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Magento_PageBuilder/js/widget-initializer": {
+                "config": {"[data-content-type=\"slider\"][data-appearance=\"default\"]":{"Magento_PageBuilder\/js\/content-type\/slider\/appearance\/default\/widget":false},"[data-content-type=\"map\"]":{"Magento_PageBuilder\/js\/content-type\/map\/appearance\/default\/widget":false},"[data-content-type=\"row\"]":{"Magento_PageBuilder\/js\/content-type\/row\/appearance\/default\/widget":false},"[data-content-type=\"tabs\"]":{"Magento_PageBuilder\/js\/content-type\/tabs\/appearance\/default\/widget":false},"[data-content-type=\"slide\"]":{"Magento_PageBuilder\/js\/widget\/show-on-hover":{"buttonSelector":".pagebuilder-slide-button","showOverlay":"hover","dataRole":"slide"}},"[data-content-type=\"banner\"]":{"Magento_PageBuilder\/js\/widget\/show-on-hover":{"buttonSelector":".pagebuilder-banner-button","showOverlay":"hover","dataRole":"banner"}},"[data-content-type=\"buttons\"]":{"Magento_PageBuilder\/js\/content-type\/buttons\/appearance\/inline\/widget":false},"[data-content-type=\"products\"][data-appearance=\"carousel\"]":{"Magento_PageBuilder\/js\/content-type\/products\/appearance\/carousel\/widget":false}},
+                "breakpoints": {"desktop":{"conditions":{"min-width":"1024px"},"options":{"products":{"default":{"slidesToShow":"5"}}}},"tablet":{"conditions":{"max-width":"1024px","min-width":"768px"},"options":{"products":{"default":{"slidesToShow":"4"},"continuous":{"slidesToShow":"3"}}}},"mobile":{"conditions":{"max-width":"768px","min-width":"640px"},"options":{"products":{"default":{"slidesToShow":"3"}}}},"mobile-small":{"conditions":{"max-width":"640px"},"options":{"products":{"default":{"slidesToShow":"2"},"continuous":{"slidesToShow":"1"}}}}}            
+    }
+        
+  }
+    
+}
+</script>
+
+<script type="text/x-magento-init">
+{
+  "*": {
+    "mage/cookies": {
+                "expires": null,
+                "path": "\u002F",
+                "domain": ".egopowerplus.com",
+                "secure": false,
+                "lifetime": "3600"
+            
+    }
+        
+  }
+    
+}
+</script>
+    <noscript>
+        <div class="message global noscript">
+            <div class="content">
+                <p>
+                    <strong>JavaScript seems to be disabled in your browser.</strong>
+                    <span>For the best experience on our site, be sure to turn on Javascript in your browser.</span>
+                </p>
+            </div>
+        </div>
+    </noscript>
+<script>
+require.config({
+map: {
+'*': {
+                wysiwygAdapter: 'mage/adminhtml/wysiwyg/tiny_mce/tinymce4Adapter'
+            
+}
+        
+}
+    
+    });
+</script>
+
+<script>
+    window.cookiesConfig = window.cookiesConfig || {};
+    window.cookiesConfig.secure = false;
+</script>
+<script>
+require.config({
+paths: {
+            googleMaps: 'https\u003A\u002F\u002Fmaps.googleapis.com\u002Fmaps\u002Fapi\u002Fjs\u003Fv\u003D3\u0026key\u003D'
+        
+},
+config: {
+'Magento_PageBuilder/js/utils/map': {
+                style: ''
+            
+},
+'Magento_PageBuilder/js/content-type/map/preview': {
+                apiKey: '',
+                apiKeyErrorMessage: 'You\u0020must\u0020provide\u0020a\u0020valid\u0020\u003Ca\u0020href\u003D\u0027https\u003A\u002F\u002Fegopowerplus.com\u002Fadminhtml\u002Fsystem_config\u002Fedit\u002Fsection\u002Fcms\u002F\u0023cms_pagebuilder\u0027\u0020target\u003D\u0027_blank\u0027\u003EGoogle\u0020Maps\u0020API\u0020key\u003C\u002Fa\u003E\u0020to\u0020use\u0020a\u0020map.'
+            
+},
+'Magento_PageBuilder/js/form/element/map': {
+                apiKey: '',
+                apiKeyErrorMessage: 'You\u0020must\u0020provide\u0020a\u0020valid\u0020\u003Ca\u0020href\u003D\u0027https\u003A\u002F\u002Fegopowerplus.com\u002Fadminhtml\u002Fsystem_config\u002Fedit\u002Fsection\u002Fcms\u002F\u0023cms_pagebuilder\u0027\u0020target\u003D\u0027_blank\u0027\u003EGoogle\u0020Maps\u0020API\u0020key\u003C\u002Fa\u003E\u0020to\u0020use\u0020a\u0020map.'
+            
+},
+        
+}
+    
+    });
+</script>
+
+<script>
+require.config({
+shim: {
+'Magento_PageBuilder/js/utils/map': {
+                deps: ['googleMaps']
+            
+}
+        
+}
+    
+    });
+</script>
+<!-- BEGIN GTAG CART SCRIPT -->
+<!-- END GTAG CART SCRIPT -->
+    <!--suppress HtmlUnknownTarget -->
+    <script async type="text/javascript" src="//apps.bazaarvoice.com/deployments/egopowerplus/main_site/production/en_US/bv.js"></script>
+
+
+
+<script async type="text/javascript">
+window.bvCallback = function (BV) {
+  BV.reviews.on('show', function () {
+      });
+  BV.questions.on('show', function () {
+      });
+    
+};
+</script>
+<div class="page-wrapper"><header class="ego-header"><div class="container ego-container"><div class="row"><div class="ego-nav__logo col-6 col-xl-2 col-lg-2 col-md-2">        <a class="ego-nav__logo-link" href="https://egopowerplus.com/" title="EGO">
+                        <img src="https://egopowerplus.com/media/logo/websites/1/logo_2.png"
+                 alt="EGO"
+                                            />
+                </a>
+</div><div class="col-6 col-md-9"><div class="psevdo-icon"><i></i></div><nav class="ego-nav js-header">    <div class='lamp'><span></span></div>
+
+    <ul class="ego-nav__menu">
+
+        <li class="ego-nav__menu-item ego-nav__menu-item--home">
+
+            <a class="ego-nav__link" href="/">Home</a>
+
+        </li>
+
+        <li class="ego-nav__menu-item">
+
+            <a class="ego-nav__link " href="/products">Products</a>
+
+        </li>
+
+        <li class="ego-nav__menu-item">
+
+            <a class="ego-nav__link " href="/technology">Technology</a>
+
+        </li>
+
+        <li class="ego-nav__menu-item">
+
+            <a class="ego-nav__link " href="/your-ego">Your EGO</a>
+
+        </li>
+
+        <li class="ego-nav__menu-item">
+
+            <a class="ego-nav__link " href="/store-locator">Shop EGO</a>
+
+        </li>
+
+        <li class="ego-nav__menu-item">
+
+            <a class="ego-nav__link " href="/commercial">Commercial Series</a>
+
+        </li>
+
+    </ul>
+
+    <div class="ego-nav__menu-account">
+
+        <a class="ego-nav__link ego-nav__link--account" href="/account">my account</a>
+
+    </div>
+
+    <div class="ego-nav__icon"><i></i></div>
+
+</nav></div><div class="ego-header__search-wrp ego-header__search-wrp--hidden-mobile">
+    <form class="ego-search-box js-search-box js-search-wrapp form minisearch" id="search_mini_form" action="https://egopowerplus.com/catalogsearch/result/" method="get">
+        <input id="search"
+               type="search"
+               name="q"
+               value=""
+               placeholder="Search...."
+               class="ego-search-box__input js-search-field"
+               maxlength="128"
+               role="combobox"
+               aria-haspopup="false"
+               aria-autocomplete="both"
+               autocomplete="off"/>
+        <div id="search_autocomplete" class="search-autocomplete"></div>
+                <input type="submit" data-btn="close" title="Search" class="ego-search-box__button js-search-btn action search" />
+        <button style="display: none" type="submit" data-btn="close" title="Search" class="ego-search-box__button js-search-btn action search" />
+    </form>
+</div>
+<a href="#" class="ego-search-box-toggle js-search-box-toggle"></a>
+</div></div><div class="ego-header__search-wrp ego-header__search-wrp--hidden-desktop js-search-box-mobile js-search-wrapp">
+    <form class="ego-search-box form minisearch" id="search_mini_form_mobile" action="https://egopowerplus.com/catalogsearch/result/" method="get">
+        <input id="searchMobile"
+               type="search"
+               name="q"
+               value=""
+               placeholder="Search...."
+               class="ego-search-box__input js-search-field"
+               maxlength="128"
+               role="combobox"
+               aria-haspopup="false"
+               aria-autocomplete="both"
+               autocomplete="off"/>
+        <button type="submit" title="Search" class="ego-search-box__button js-search-btn action search" />
+    </form>
+</div>
+<a href="#" class="ego-search-box-toggle js-search-box-toggle"></a></header><div class="ego-space-for-menu">&nbsp;</div><main id="maincontent" class="page-main"><a id="contentarea" tabindex="-1"></a>
+<div class="page messages"><div data-placeholder="messages"></div>
+<div data-bind="scope: 'messages'">
+    <!-- ko if: cookieMessages && cookieMessages.length > 0 -->
+    <div role="alert" data-bind="foreach: { data: cookieMessages, as: 'message'  }" class="messages">
+    <div data-bind="attr: {
+            class: 'message-' + message.type + ' ' + message.type + ' message',
+            'data-ui-id': 'message-' + message.type
+        
+    }">
+            <div data-bind="html: message.text"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: messages().messages && messages().messages.length > 0 -->
+    <div role="alert" data-bind="foreach: { data: messages().messages, as: 'message'  }" class="messages">
+    <div data-bind="attr: {
+            class: 'message-' + message.type + ' ' + message.type + ' message',
+            'data-ui-id': 'message-' + message.type
+        
+    }">
+            <div data-bind="html: message.text"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Magento_Ui/js/core/app": {
+      "components": {
+        "messages": {
+                            "component": "Magento_Theme/js/view/messages"
+                        
+        }
+                    
+      }
+                
+    }
+            
+  }
+    
+}
+</script>
+</div><div class="ego-product-banner"><div class="container ego-container product-container"><div class="row"><div class="col-12"><div class="ego-product-det ego-product-banner__detail ego-product-banner__detail--top">    <h1 class=" ego-product-det__title ego-title ego-title--product"
+                >
+        <span class="base" data-ui-id="page-title-wrapper" itemprop="name">Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology</span>    </h1>
+    <div class="ego-product-det__meta ego-product-meta">
+<script type="text/javascript">
+    let ego_media_gallery = [{"mediaappearance_id":"453","title":"21\u201d Select Cut\u2122 Lawn Mower with Touch Drive\u2122 Technology Information","mediatype":"2","filename":null,"filethumb":"https:\/\/i.ytimg.com\/vi\/jR4ycrG2954\/maxresdefault.jpg","videourl":"https:\/\/www.youtube.com\/embed\/jR4ycrG2954","cmspage_ids":"27","category_ids":null,"featured_video":"0","desp":"Introducing the newest innovation in lawn mowers; the 21\u201d Select Cut\u2122 Lawn Mower with Touch Drive\u2122 Technology. See more here: http:\/\/bit.ly\/2s9gbmu","status":"1","created_time":"2020-07-23 12:58:03","update_time":"2020-08-31 02:23:14","videotype":"2","videoproduct":"1","videolength":"2:04","sortorder":"","id":"962","product_id":"2285"}];
+</script>    <span class="product-meta__sku">
+                <span class="product-meta___sku-details" itemprop="sku">LM2135SP</span>
+    </span>
+</div></div><div class="ego-product-gallery ego-product-banner__gallery"><script src="https://viewinyourspace.com/scripts/epigraph-serve.js" type="text/javascript" async></script><script src="https://scripts.sirv.com/sirv.js"></script>
+
+
+<div class="ego-product-gallery__main">
+    <div class="swiper-container swiper-no-swiping">
+        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                    <div class="Sirv" data-src="https://360.viewinyourspace.com/Spins/Chervon/EGO/LM2130SP/LM2130SP.spin"></div>
+                </div>
+                                                            <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/l/m/lm2130sp_v2_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_location_1_day_1__0090.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <div class="ego-video-wrapp ego-video-wrapp--video ego-video-wrapp--product">
+                            <!-- Youtube Video -->
+                            <iframe src="https://www.youtube.com/embed/YX-wejVlSwA" allowscriptaccess="always" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <!-- HTML5 Video -->
+                        </div>
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <div class="ego-video-wrapp ego-video-wrapp--video ego-video-wrapp--product">
+                            <!-- Youtube Video -->
+                            <iframe src="https://www.youtube.com/embed/jR4ycrG2954" allowscriptaccess="always" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <!-- HTML5 Video -->
+                        </div>
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_lm2135sp_1rated_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_lm2133_selectcut_1_1.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_lm2135sp_touch_drive_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_lm2130sp_runtime.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_lm2135sp_height_3.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_lm2135sp_fc_1_1.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_lm2135sp_led_1_1.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_location_1_day_1__0038_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_location_1_day_1__0052_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_location_1_day_1__0054_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_location_1_day_1__0085_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_location_1_day_1__0106_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/e/g/ego_location_1_day_1__0125_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/l/m/lm2130sp_03_selfpropelled_still.jpg" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/l/m/lm2130sp_01_selfpropelled_still.jpg" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                                                <div class="swiper-slide js-pdp-zoom">
+                                                <img src="https://egopowerplus.com/media/catalog/product/cache/3da7e955a818206b430ca910a0b76132/l/m/lm2130sp_02_selfpropelled_still.jpg" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                    </div>
+    </div>
+</div>
+<div id="product-thumb" class="ego-product-gallery__thumb">
+    <div class="ego-product-gallery__thumb-wrapper-container">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/bedc399b55c1b7d37af6baf2a08917a3/e/g/ego_360_spinner_1300x730_1_8.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/l/m/lm2130sp_v2_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_location_1_day_1__0090.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/h/q/hqdefault_43_18.jpg" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/h/q/hqdefault_44.jpg" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_lm2135sp_1rated_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_lm2133_selectcut_1_1.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_lm2135sp_touch_drive_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_lm2130sp_runtime.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_lm2135sp_height_3.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_lm2135sp_fc_1_1.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_lm2135sp_led_1_1.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_location_1_day_1__0038_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_location_1_day_1__0052_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_location_1_day_1__0054_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_location_1_day_1__0085_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_location_1_day_1__0106_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/e/g/ego_location_1_day_1__0125_2.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/l/m/lm2130sp_03_selfpropelled_still.jpg" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/l/m/lm2130sp_01_selfpropelled_still.jpg" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                                    <div class="swiper-slide">
+                        <img src="https://egopowerplus.com/media/catalog/product/cache/35073dc87d6bdc846c5295b4c39e8446/l/m/lm2130sp_02_selfpropelled_still.jpg" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology">
+                    </div>
+                            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <div class="ego-product-gallery__thumb-pagination-container">
+        <a href="#" id="js-pdp-slider-prev"><</a>
+        <div class="swiper-pagination"></div>
+        <a href="#" id="js-pdp-slider-next">></a>
+    </div>
+</div><script type="text/x-magento-init">
+{
+  "[data-gallery-role=gallery-placeholder]": {
+    "Magento_ProductVideo/js/fotorama-add-video-events": {
+                "videoData": [{"mediaType":"image","videoUrl":null,"isBase":true},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"external-video","videoUrl":"https:\/\/www.youtube.com\/embed\/YX-wejVlSwA","isBase":false},{"mediaType":"external-video","videoUrl":"https:\/\/www.youtube.com\/embed\/jR4ycrG2954","isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false},{"mediaType":"image","videoUrl":null,"isBase":false}],
+                "videoSettings": [{"playIfBase":"0","showRelated":"0","videoAutoRestart":"0"}],
+                "optionsVideoData": []            
+    }
+        
+  }
+    
+}
+</script>
+</div>
+    <div class="ego-product-det ego-product-banner__detail ego-product-banner__detail--bottom">
+        <div class="ar-sku-LM2130SP"></div>
+                <div class="ego-product-det__rating ego-product-list-rating">
+            <div id="ego-bv-main-rating-stars" data-bv-show="inline_rating" data-bv-product-id="LM2130SP"></div>
+                        <a id="ego-bv-main-rating-no" href="#" class="ego-link ego-product-det__review-link"></a>
+        </div>
+                                                                                                                                    <p class="ego-product-det__text ego-subtitle ego-subtitle--xs-size" id="productattach" data-role="content">
+             The Select Cut™ multi-blade cutting system is equipped with two, interchangeable lower blades; the Premium Mulching Blade and the Premium Bagging Blade.         </p>
+        <a href="#" class="ego-product-det__more ego-link js-scroll-learn-more">Learn More</a>
+        <div class="ego-product-det__btn-wrapp">
+            <h3 class="ego-title ego-title--medium"><a href="#" id="ego-product-det-trigger-cs" class="cswidget-link" data-sku="LM2135SP"><span>Buy Now:</span> Order Online & Ship to Home</a></h3><div class="ego-product-det__btn-wrapp-container"><a href="https://www.lowes.com/pd/EGO-Push-Mower-56-Volt-Brushless-Lithium-Ion-Self-Propelled-21-in-Cordless-Electric-Lawn-Mower/1003171264" class="ego-product-det__btn ego-btn ego-btn__product lowes pdpherolowes"
+                        target="_blank" data-sku="LM2135SP" style="display: none"><img src="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/images/logo-lowes-white.png" alt="Lowes Logo" style=""></a><a href="https://www.acehardware.com/departments/lawn-and-garden/lawn-mowers/walk-behind-lawn-mowers/7006686" class="ego-product-det__btn ego-btn ego-btn__product ace"
+                        target="_blank" data-sku="LM2135SP"><img src="https://egopowerplus.com/static/version1612395606/frontend/Chervon/ego/en_US/images/logo-ace-white.png" alt="Ace Hardware Logo"></a><button class="cswidget" data-asset-id="1252" data-product-sku="LM2135SP" type="button">Where to Buy</button></div>        </div>
+        <a href="#" class="ego-link js-configuration-learn-more" style="display: none">Learn About All Configurations</a>
+    </div>
+<script id="bv_ratings_script">
+if (storeLocale.toLowerCase() === "en_au") {
+  require(['jquery'],function ($) {
+      $(window).load(function() {
+                getRatingCount();
+
+                setTimeout(function () {
+                    getRatingCount();
+                
+                    }, 500);
+            
+          });
+
+      function getRatingCount() {
+                let numberOfReviews = BV.rating_summary.data[0].data.reviewSummary.numReviews;
+                if (numberOfReviews) {
+                    $('#ego-bv-main-rating-no').html(BV.rating_summary.data[0].data.reviewSummary.numReviews + " Reviews");
+                
+                    } else {
+                    $('#ego-bv-main-rating-no').html("0 Reviews");
+                
+                    }
+            
+      }
+        
+      });
+    
+} else {
+        var bv_ratings = document.getElementById("ego-bv-main-rating-stars");
+
+        var bv_ratings_config = {
+            attributes: true,
+            attributeOldValue: true,
+            characterData: true,
+            characterDataOldValue: true,
+            childList: true,
+            subtree: true
+        
+        };
+
+        var bv_ratings_loaded = false;
+
+        function bv_ratings_callback(mutations) {
+          for (var mutation of mutations) {
+            if (mutation.type == "childList") {
+                    let ratingsElem = bv_ratings.childNodes[0].childNodes[2].childNodes[1];
+                    let numOfRatings = Number(ratingsElem.textContent.replace('(', '').replace(')', ''));
+                    ratingsElem.textContent = '';
+
+                    let reviewsAmount = document.getElementById('ego-bv-main-rating-no');
+                    reviewsAmount.textContent = numOfRatings + ' Reviews';
+                    bv_ratings_observer.disconnect();
+                    document.getElementById('bv_ratings_script').remove();
+                }
+            }
+        };
+
+        var bv_ratings_observer = new MutationObserver(bv_ratings_callback);
+        var changes = bv_ratings_observer.takeRecords();
+
+        bv_ratings_observer.observe(bv_ratings, bv_ratings_config);
+    }
+</script></div></div></div></div><div class="columns"><div class="column main"><input name="form_key" type="hidden" value="KpI4LzAwqtBskKVb" /><div id="authenticationPopup" data-bind="scope:'authenticationPopup'" style="display: none;">
+    <script>
+        window.authenticationPopup = {"autocomplete":"off","customerRegisterUrl":"https:\/\/egopowerplus.com\/customer\/account\/create\/","customerForgotPasswordUrl":"https:\/\/egopowerplus.com\/customer\/account\/forgotpassword\/","baseUrl":"https:\/\/egopowerplus.com\/"};
+    </script>
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+{
+  "#authenticationPopup": {
+                "Magento_Ui/js/core/app": {"components":{"authenticationPopup":{"component":"Magento_Customer\/js\/view\/authentication-popup","children":{"messages":{"component":"Magento_Ui\/js\/view\/messages","displayArea":"messages"},"captcha":{"component":"Magento_Captcha\/js\/view\/checkout\/loginCaptcha","displayArea":"additional-login-form-fields","formId":"user_login","configSource":"checkout"},"amazon-button":{"component":"Amazon_Login\/js\/view\/login-button-wrapper","sortOrder":"0","displayArea":"additional-login-form-fields","config":{"tooltip":"Securely login to our website using your existing Amazon details.","componentDisabled":true}}}}}}            
+  },
+    "*": {
+                "Magento_Ui/js/block-loader": "https\u003A\u002F\u002Fegopowerplus.com\u002Fstatic\u002Fversion1612395606\u002Ffrontend\u002FChervon\u002Fego\u002Fen_US\u002Fimages\u002Floader\u002D1.gif"
+            
+    }
+        
+}
+    </script>
+</div>
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Magento_Customer/js/section-config": {
+                "sections": {"stores\/store\/switch":"*","stores\/store\/switchrequest":"*","directory\/currency\/switch":"*","*":["messages"],"customer\/account\/logout":["recently_viewed_product","recently_compared_product","persistent"],"customer\/account\/loginpost":"*","customer\/account\/createpost":"*","customer\/account\/editpost":"*","customer\/ajax\/login":["checkout-data","cart","captcha"],"catalog\/product_compare\/add":["compare-products"],"catalog\/product_compare\/remove":["compare-products"],"catalog\/product_compare\/clear":["compare-products"],"sales\/guest\/reorder":["cart"],"sales\/order\/reorder":["cart"],"checkout\/cart\/add":["cart","directory-data"],"checkout\/cart\/delete":["cart"],"checkout\/cart\/updatepost":["cart"],"checkout\/cart\/updateitemoptions":["cart"],"checkout\/cart\/couponpost":["cart"],"checkout\/cart\/estimatepost":["cart"],"checkout\/cart\/estimateupdatepost":["cart"],"checkout\/onepage\/saveorder":["cart","checkout-data","last-ordered-items","checkout-fields"],"checkout\/sidebar\/removeitem":["cart"],"checkout\/sidebar\/updateitemqty":["cart"],"rest\/*\/v1\/carts\/*\/payment-information":["cart","last-ordered-items","instant-purchase"],"rest\/*\/v1\/guest-carts\/*\/payment-information":["cart"],"rest\/*\/v1\/guest-carts\/*\/selected-payment-method":["cart","checkout-data"],"rest\/*\/v1\/carts\/*\/selected-payment-method":["cart","checkout-data","instant-purchase"],"authorizenet\/directpost_payment\/place":["cart","checkout-data"],"wishlist\/index\/add":["wishlist"],"wishlist\/index\/remove":["wishlist"],"wishlist\/index\/updateitemoptions":["wishlist"],"wishlist\/index\/update":["wishlist"],"wishlist\/index\/cart":["wishlist","cart"],"wishlist\/index\/fromcart":["wishlist","cart"],"wishlist\/index\/allcart":["wishlist","cart"],"wishlist\/shared\/allcart":["wishlist","cart"],"wishlist\/shared\/cart":["cart"],"customer_order\/cart\/updatefaileditemoptions":["cart"],"checkout\/cart\/updatefaileditemoptions":["cart"],"customer_order\/cart\/advancedadd":["cart"],"checkout\/cart\/advancedadd":["cart"],"checkout\/cart\/removeallfailed":["cart"],"customer_order\/cart\/addfaileditems":["cart"],"checkout\/cart\/addfaileditems":["cart"],"customer_order\/sku\/uploadfile":["cart"],"paypal\/express\/placeorder":["cart","checkout-data"],"paypal\/payflowexpress\/placeorder":["cart","checkout-data"],"paypal\/express\/onauthorization":["cart","checkout-data"],"customer\/address\/*":["instant-purchase"],"customer\/account\/*":["instant-purchase"],"vault\/cards\/deleteaction":["instant-purchase"],"wishlist\/index\/copyitem":["wishlist"],"wishlist\/index\/copyitems":["wishlist"],"wishlist\/index\/deletewishlist":["wishlist","multiplewishlist"],"wishlist\/index\/createwishlist":["multiplewishlist"],"wishlist\/index\/moveitem":["wishlist"],"wishlist\/index\/moveitems":["wishlist"],"wishlist\/search\/addtocart":["cart","wishlist"],"multishipping\/checkout\/overviewpost":["cart"],"giftregistry\/index\/cart":["cart"],"giftregistry\/view\/addtocart":["cart"],"braintree\/paypal\/placeorder":["cart","checkout-data"],"persistent\/index\/unsetcookie":["persistent"],"review\/product\/post":["review"]},
+                "clientSideSections": ["checkout-data","cart-data","chatData"],
+                "baseUrls": ["https:\/\/egopowerplus.com\/","http:\/\/egopowerplus.com\/"],
+                "sectionNames": ["messages","customer","compare-products","last-ordered-items","cart","directory-data","captcha","wishlist","instant-purchase","multiplewishlist","persistent","review","chatData","recently_viewed_product","recently_compared_product","product_data_storage","paypal-billing-agreement","checkout-fields","collection-point-result","pickup-location-result"]            
+    }
+        
+  }
+    
+}
+</script>
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Magento_Customer/js/customer-data": {
+                "sectionLoadUrl": "https\u003A\u002F\u002Fegopowerplus.com\u002Fcustomer\u002Fsection\u002Fload\u002F",
+                "expirableSectionLifetime": 60,
+                "expirableSectionNames": ["cart","persistent"],
+                "cookieLifeTime": "3600",
+                "updateSessionUrl": "https\u003A\u002F\u002Fegopowerplus.com\u002Fcustomer\u002Faccount\u002FupdateSession\u002F"
+            
+    }
+        
+  }
+    
+}
+</script>
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Magento_Customer/js/invalidation-processor": {
+      "invalidationRules": {
+        "website-rule": {
+          "Magento_Customer/js/invalidation-rules/website-rule": {
+            "scopeConfig": {
+                                "websiteId": "1"
+                            
+            }
+                        
+          }
+                    
+        }
+                
+      }
+            
+    }
+        
+  }
+    
+}
+</script>
+<script type="text/x-magento-init">
+{
+  "body": {
+            "pageCache": {"url":"https:\/\/egopowerplus.com\/page_cache\/block\/render\/id\/2285\/","handles":["default","catalog_product_view","catalog_product_view_type_simple","catalog_product_view_id_2285","catalog_product_view_sku_LM2130SP"],"originalRequest":{"route":"catalog","controller":"product","action":"view","uri":"\/21-inch-self-propelled-mower-select-cut\/"},"versionCookieName":"private_content_version"}        
+  }
+    
+}
+</script>
+<script type="text/x-magento-init">
+{
+  "*": {
+        "Magento_Banner/js/model/banner":
+            {"sectionLoadUrl":"https:\/\/egopowerplus.com\/banner\/ajax\/load\/","cacheTtl":30000}        
+  }
+
+}
+</script>
+
+
+                  <script>
+                  window.onload = function(){
+            const FILE_PATH = "https://egopowerplus.com/media/productattach/1/9/19-0719_ego_lm2130sp_lm2130_56v_lithium-ion_cordless_mower_manual_na_v....pdf";
+            document.getElementById('prince-file').removeAttribute('style');
+            document.getElementById('prince-file').href = FILE_PATH.replace("pub/","");
+          
+                  }
+              </script>
+      
+<div class="product-add-form">
+    <form data-product-sku="LM2130SP"
+          action="https://egopowerplus.com/checkout/cart/add/uenc/aHR0cHM6Ly9lZ29wb3dlcnBsdXMuY29tLzIxLWluY2gtc2VsZi1wcm9wZWxsZWQtbW93ZXItc2VsZWN0LWN1dC8%2C/product/2285/" method="post"
+          id="product_addtocart_form">
+        <input type="hidden" name="product" value="2285" />
+        <input type="hidden" name="selected_configurable_option" value="" />
+        <input type="hidden" name="related_product" id="related-products-field" value="" />
+        <input type="hidden" name="item"  value="2285" />
+        <input name="form_key" type="hidden" value="KpI4LzAwqtBskKVb" />                                    
+                    </form>
+</div>
+
+<script>
+require([
+        'jquery',
+        'priceBox'
+    
+], function($){
+        var dataPriceBoxSelector = '[data-role=priceBox]',
+            dataProductIdSelector = '[data-product-id=2285]',
+            priceBoxes = $(dataPriceBoxSelector + dataProductIdSelector);
+
+            priceBoxes = priceBoxes.filter(function(index, elem){
+            return !$(elem).find('.price-from').length;
+        
+                });
+        priceBoxes.priceBox({'priceConfig': {"productId":"2285","priceFormat":{"pattern":"$%s","precision":2,"requiredPrecision":2,"decimalSymbol":".","groupSymbol":",","groupLength":3,"integerRequired":false}}});
+    
+});
+</script>
+<script type="text/x-magento-init">
+{
+  "body": {
+            "requireCookie": {"noCookieUrl":"https:\/\/egopowerplus.com\/cookie\/index\/noCookies\/","triggers":[".action.tocompare"],"isRedirectCmsPage":true}        
+  }
+    
+}
+</script>
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Magento_Catalog/js/product/view/provider": {
+                    "data": {"items":{"2285":{"add_to_cart_button":{"post_data":"{\"action\":\"https:\\\/\\\/egopowerplus.com\\\/checkout\\\/cart\\\/add\\\/uenc\\\/%25uenc%25\\\/product\\\/2285\\\/\",\"data\":{\"product\":\"2285\",\"uenc\":\"%uenc%\"}}","url":"https:\/\/egopowerplus.com\/checkout\/cart\/add\/uenc\/%25uenc%25\/product\/2285\/","required_options":false},"add_to_compare_button":{"post_data":null,"url":"{\"action\":\"https:\\\/\\\/egopowerplus.com\\\/catalog\\\/product_compare\\\/add\\\/\",\"data\":{\"product\":\"2285\",\"uenc\":\"aHR0cHM6Ly9lZ29wb3dlcnBsdXMuY29tLzIxLWluY2gtc2VsZi1wcm9wZWxsZWQtbW93ZXItc2VsZWN0LWN1dC8,\"}}","required_options":null},"price_info":{"final_price":0,"max_price":0,"max_regular_price":0,"minimal_regular_price":0,"special_price":null,"minimal_price":0,"regular_price":0,"formatted_prices":{"final_price":"<span class=\"price\">$0.00<\/span>","max_price":"<span class=\"price\">$0.00<\/span>","minimal_price":"<span class=\"price\">$0.00<\/span>","max_regular_price":"<span class=\"price\">$0.00<\/span>","minimal_regular_price":null,"special_price":null,"regular_price":"<span class=\"price\">$0.00<\/span>"},"extension_attributes":{"msrp":{"msrp_price":"<span class=\"price\">$0.00<\/span>","is_applicable":"","is_shown_price_on_gesture":"","msrp_message":"","explanation_message":"Our price is lower than the manufacturer&#039;s &quot;minimum advertised price.&quot; As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart."},"tax_adjustments":{"final_price":0,"max_price":0,"max_regular_price":0,"minimal_regular_price":0,"special_price":0,"minimal_price":0,"regular_price":0,"formatted_prices":{"final_price":"<span class=\"price\">$0.00<\/span>","max_price":"<span class=\"price\">$0.00<\/span>","minimal_price":"<span class=\"price\">$0.00<\/span>","max_regular_price":"<span class=\"price\">$0.00<\/span>","minimal_regular_price":null,"special_price":"<span class=\"price\">$0.00<\/span>","regular_price":"<span class=\"price\">$0.00<\/span>"}},"weee_attributes":[],"weee_adjustment":"<span class=\"price\">$0.00<\/span>"}},"images":[{"url":"https:\/\/egopowerplus.com\/media\/catalog\/product\/cache\/41627d70daaeba1f17f38fc1707d58a0\/l\/m\/lm2130sp_v2_2.png","code":"recently_viewed_products_grid_content_widget","height":250,"width":350,"label":"Power+ 21\" Select Cut\u2122 Mower with Touch Drive\u2122 Self-Propelled Technology","resized_width":350,"resized_height":188},{"url":"https:\/\/egopowerplus.com\/media\/catalog\/product\/cache\/aa2dc67862fde2a1d9e3bf1609199843\/l\/m\/lm2130sp_v2_2.png","code":"recently_viewed_products_list_content_widget","height":270,"width":270,"label":"Power+ 21\" Select Cut\u2122 Mower with Touch Drive\u2122 Self-Propelled Technology","resized_width":270,"resized_height":145},{"url":"https:\/\/egopowerplus.com\/media\/catalog\/product\/cache\/6c4dcf6477dbc90bc41185522ca8f980\/l\/m\/lm2130sp_v2_2.png","code":"recently_viewed_products_images_names_widget","height":90,"width":75,"label":"Power+ 21\" Select Cut\u2122 Mower with Touch Drive\u2122 Self-Propelled Technology","resized_width":75,"resized_height":40},{"url":"https:\/\/egopowerplus.com\/media\/catalog\/product\/cache\/41627d70daaeba1f17f38fc1707d58a0\/l\/m\/lm2130sp_v2_2.png","code":"recently_compared_products_grid_content_widget","height":250,"width":350,"label":"Power+ 21\" Select Cut\u2122 Mower with Touch Drive\u2122 Self-Propelled Technology","resized_width":350,"resized_height":188},{"url":"https:\/\/egopowerplus.com\/media\/catalog\/product\/cache\/691880980e4ada2e2a3dc28b05d73f02\/l\/m\/lm2130sp_v2_2.png","code":"recently_compared_products_list_content_widget","height":207,"width":270,"label":"Power+ 21\" Select Cut\u2122 Mower with Touch Drive\u2122 Self-Propelled Technology","resized_width":270,"resized_height":145},{"url":"https:\/\/egopowerplus.com\/media\/catalog\/product\/cache\/6c4dcf6477dbc90bc41185522ca8f980\/l\/m\/lm2130sp_v2_2.png","code":"recently_compared_products_images_names_widget","height":90,"width":75,"label":"Power+ 21\" Select Cut\u2122 Mower with Touch Drive\u2122 Self-Propelled Technology","resized_width":75,"resized_height":40}],"url":"https:\/\/egopowerplus.com\/21-inch-self-propelled-mower-select-cut\/","id":2285,"name":"Power+ 21\" Select Cut\u2122 Mower with Touch Drive\u2122 Self-Propelled Technology","type":"simple","is_salable":"1","store_id":1,"currency_code":"USD","extension_attributes":{"wishlist_button":{"post_data":null,"url":"{\"action\":\"https:\\\/\\\/egopowerplus.com\\\/wishlist\\\/index\\\/add\\\/\",\"data\":{\"product\":2285,\"uenc\":\"aHR0cHM6Ly9lZ29wb3dlcnBsdXMuY29tLzIxLWluY2gtc2VsZi1wcm9wZWxsZWQtbW93ZXItc2VsZWN0LWN1dC8,\"}}","required_options":null},"review_html":""}}},"store":"1","currency":"USD"}            
+    }
+        
+  }
+    
+}
+</script>
+
+    <div class="ego-advertisting-wrapp">
+        <div class="ego-container container">
+            <div class="row center-text">
+                <div class="offset-lg-2 col-lg-8 offset-lg-right-2">
+                    <div class="ego-advertisting-wrapp__header">
+                        <h2 class="ego-title">Why this MOWER is Awesome</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-md-center ego-advertisting-wrapp__body">
+                                                        <div class="col-12 col-md-6 col-lg-3 ego-advertisting-item">
+                        <figure>
+                                                            <img class="ego-advertisting-item__img" src="https://egopowerplus.com/media/catalog/product/cache/73c32c7ca27b14d9816d9a8cc7e53146/l/m/lm2130sp_selectcut_3.jpg" alt="SELECT CUT™ Multi-Blade System">
+                                                        <figcaption class="ego-advertisting-item__content">
+                                <h3 class="ego-title ego-title--medium ego-advertisting-item__title">SELECT CUT™ Multi-Blade System</h3>
+                                <p class="ego-subtitle ego-subtitle--xs-size">The first cordless lawn mower to have an interchangeable multi-blade cutting system. Equipped with three interchangeable lower blades that let you customize your cut.</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                                                        <div class="col-12 col-md-6 col-lg-3 ego-advertisting-item">
+                        <figure>
+                                                            <img class="ego-advertisting-item__img" src="https://egopowerplus.com/media/catalog/product/cache/73c32c7ca27b14d9816d9a8cc7e53146/l/m/lm2130sp_touchdrive_2.jpg" alt="Touch Drive™ Technology">
+                                                        <figcaption class="ego-advertisting-item__content">
+                                <h3 class="ego-title ego-title--medium ego-advertisting-item__title">Touch Drive™ Technology</h3>
+                                <p class="ego-subtitle ego-subtitle--xs-size">Engage the self propel function with the touch of your palm, change the speed at the same time with the scroll of a dial.</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                                                        <div class="col-12 col-md-6 col-lg-3 ego-advertisting-item">
+                        <figure>
+                                                            <img class="ego-advertisting-item__img" src="https://egopowerplus.com/media/catalog/product/cache/73c32c7ca27b14d9816d9a8cc7e53146/l/m/lm2130sp_height_3.jpg" alt="7 DIFFERENT HEIGHT SETTINGS">
+                                                        <figcaption class="ego-advertisting-item__content">
+                                <h3 class="ego-title ego-title--medium ego-advertisting-item__title">7 DIFFERENT HEIGHT SETTINGS</h3>
+                                <p class="ego-subtitle ego-subtitle--xs-size">Adjust deck height between 7 different height settings 1.5” – 4”.</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                                                        <div class="col-12 col-md-6 col-lg-3 ego-advertisting-item">
+                        <figure>
+                                                            <img class="ego-advertisting-item__img" src="https://egopowerplus.com/media/catalog/product/cache/73c32c7ca27b14d9816d9a8cc7e53146/c/r/cr_image_rating_6.jpg" alt="CONSUMER REPORTS RATINGS">
+                                                        <figcaption class="ego-advertisting-item__content">
+                                <h3 class="ego-title ego-title--medium ego-advertisting-item__title">CONSUMER REPORTS RATINGS</h3>
+                                <p class="ego-subtitle ego-subtitle--xs-size">Check out <a href="/consumer-reports">unbiased ratings</a> of this tool from one of the top, product-testing organizations. </p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                            </div>
+        </div>
+    </div>
+
+<div class="ego-wrapper">
+    <div class="ego-details-wrapp">
+        <div class="container ego-container">
+            <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6 ego-details-item">
+                        <h3 class="ego-title ego-title--medium ego-details-item__title">Details</h3>
+                        <p class="ego-subtitle ego-subtitle--xs-size ego-details-item__subtitle">The EGO POWER+ 21" Select Cut Self-Propelled Mower delivers performance that exceeds the power of gas. The Select Cut™ Multi-blade Cutting System is equipped with three, interchangeable lower blades; the Mulching Blade, High Lift Bagging Blade and Extended Runtime Blade. The Mulching Blade comes installed on the mower and is ideal for weekly mulching, giving you the mulching quality you would expected from a high-end gas lawn mower. The High Lift Bagging Blade provides extra suction ideal for bagging, leaving your yard free of clippings. The Extended Runtime Blade provides an optimal balance of cut quality and runtime for all around performance. All three blades can be used interchangeably based on your desired cut. The EGO Upper Blade is used in combination with the lower blade chosen to slice the grass into fine fragments; this greatly enhances cutting performance with all grass types. 
+
+
+
+EGO’s Self-Propelled Touch Drive™ Technology comes from years of research and development. Touch Drive™ Technology puts complete control of the self-propelled system in the palm of your hands by using pressure to engage the system. Easily control the variable speed with a dial positioned at your fingertips for safe and convenient operation.
+
+</p>
+                    </div>
+                                                    <div class="col-12 col-md-6 col-lg-6 ego-details-item">
+                        <h3 class="ego-title ego-title--medium ego-details-item__title">Tech Specs</h3>
+                        <ul class="ego-list--xs-size ego-details-item__list">
+                            <li><span>Select Cut™ Multi-Blade System for customizable cutting performance that exceeds gas
+
+</span></li><li><span>Touch Drive™ Self Propelled Technology puts complete control in the palm of your hands
+
+</span></li><li><span>Get 60 minutes of run time on single charge when used with the recommended 56V 7.5 Ah ARC Lithium™ battery
+
+</span></li><li><span>High-efficiency brushless motor  
+
+</span></li><li><span>Adjustable self-propel speed .9 MPH – 3.1 MPH
+
+</span></li><li><span>7-position cutting height adjustments: 1.5"- 4"
+
+</span></li><li><span>3-in-1 function: mulching, bagging, side discharge 
+
+</span></li><li><span>Quick and easy push-button start
+
+</span></li><li><span>21" deck
+
+</span></li><li><span>Bright LED headlights
+
+</span></li><li><span>1-handed height adjustment
+
+</span></li><li><span>Weather resistant construction
+
+</span></li><li><span>Folds for compact storage
+
+</span></li><li><span>Easy-access 2-bushel grass collection bag
+
+</span></li><li><span>Mulching blade, High Lift Bagging blade and Extended Run Time blade included
+
+</span></li><li><span>60-minute charge time when used with the recommended 7.5 Ah ARC Lithium™ battery and Power+ Rapid Charger 
+
+</span></li><li><span>Compatible with all EGO 56V ARC Lithium™ batteries. 
+
+</span></li><li><span>5-Year Tool Warranty</span></li>
+
+                        </ul>
+                        <a href="#" id="prince-file" target="_blank" style="display: none;" class="ego-btn ego-btn__product ego-btn__product--small-xs ego-details-item__btn">View The Manual</a>
+                    </div>
+                            </div>
+        </div>
+    </div>
+
+
+            
+                                <div class="ego-configuration-wrapp">
+                <div class="container ego-container">
+                    <div class="row center-text">
+                        <div class="offset-lg-2 col-lg-8 offset-lg-right-2">
+                            <div class="ego-configuration-wrapp__header">
+                                <h2 class="ego-title">Configurations</h2>
+                                <h3>Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ego-container-right">
+                    <div class="row">
+                        <div class="col-12 ego-configuration-wrapp__slider">
+                            <div class="ego-configuration-wrapp__attributes ego-configuration-wrapp__attributes-name">
+                                <p>Type</p>
+                                <p>Battery</p>
+                                <p>Charger</p>
+                            </div>
+                            <div class="swiper-container">
+                                <div class="swiper-container-gradient-beginning"></div>
+                                <div class="swiper-wrapper">
+                                    <!-- BARE TOOL -->
+                                    <div class="swiper-slide" data-sku="LM2130SP">
+                                        <div class="ego-configuration-item-img-container">
+                                                                                        <a href="#" class="ego-configuration-item-load-cs cswidget-link" data-sku="LM2130SP">
+                                                <img class="ego-configuration-item__img" src="https://egopowerplus.com/media/catalog/product/cache/b1c7ba2e1c541476c81ee173c27d5012/l/m/lm2130sp_configuration_41.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology  (Bare Tool)">
+                                            </a>
+                                            <p class="ego-subtitle ego-configuration-item__subtitle">LM2130SP</p>
+                                        </div>
+                                        <div class="ego-configuration-wrapp__attributes ego-configuration-wrapp__attributes-dynamic">
+                                            <div class="ego-configuration-wrapp__attributes-dynamic-container">
+                                                <a href="#" class="ego-configuration-item-load-cs cswidget-link" data-sku="LM2130SP">
+                                                    <p class="ego-configuration-wrapp__attributes-dynamic-type">Mower Only</p>
+                                                </a>
+                                                                                                    <p class="ego-configuration-wrapp__attributes-dynamic-battery">Not Included</p>
+                                                                                                                                                    <p class="ego-configuration-wrapp__attributes-dynamic-charger">Not Included</p>
+                                                                                            </div>
+                                            <div class="ego-configuration-wrapp__purchase-links">
+                                            <a href="https://www.amazon.com/dp/B0857JMSTB"
+                                                               class="ego-link ego-configuration-item__link amazon" target="_blank"
+                                                               data-sku="LM2130SP"><span>Buy Now on</span> Amazon.com</a>
+                                                                                                                    <a href="https://www.lowes.com/pd/EGO-POWER-21-in-Select-Cut-8482-Mower-with-Touch-Drive-8482-Self-Propelled-Technology/5000199077"
+                                                               class="ego-link ego-configuration-item__link lowes configlowes" target="_blank"
+                                                               data-sku="LM2130SP" style="display: none"><span>Buy Now on</span> Lowes.com</a>
+                                                                                                                    <a href="https://www.acehardware.com/departments/lawn-and-garden/lawn-mowers/push-mowers/7009062"
+                                                               class="ego-link ego-configuration-item__link ace" target="_blank"
+                                                               data-sku="LM2130SP"><span>Buy Now on</span> AceHardware.com</a>
+                                                        
+                                                                                                    <button class="cswidget" data-asset-id="1252" data-product-sku="LM2130SP" type="button">Where to Buy</button>                                                
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- CONFIGURATIONS -->
+                                                                                                                                                                    <div class="swiper-slide" data-sku="LM2135SP">
+                                                <div class="ego-configuration-item-img-container">
+                                                                                                        <a href="#" class="ego-configuration-item-load-cs cswidget-link" data-sku="LM2135SP">
+                                                        <img class="ego-configuration-item__img" src="https://egopowerplus.com/media/catalog/product/cache/b1c7ba2e1c541476c81ee173c27d5012/l/m/lm2135_config_540x540_1.png" alt="Power+ 21" Select Cut™ Mower with Touch Drive™ Self-Propelled Technology with 7.5Ah Battery and Rapid Charger">
+                                                    </a>
+                                                    <p class="ego-subtitle ego-configuration-item__subtitle">LM2135SP</p>
+                                                </div>
+                                                <div class="ego-configuration-wrapp__attributes ego-configuration-wrapp__attributes-dynamic">
+                                                    <div class="ego-configuration-wrapp__attributes-dynamic-container">
+                                                        <a href="#" class="ego-configuration-item-load-cs cswidget-link" data-sku="LM2135SP">
+                                                            <p class="ego-configuration-wrapp__attributes-dynamic-type">Mower with Battery & Charger</p>
+                                                        </a>
+                                                                                                                    <a href="https://egopowerplus.com/battery-7-5amp-fuel-gauge/" class="ego-configuration-wrapp__attributes-dynamic-battery ego-configuration-wrapp__attributes-included" data-sku="BA4200T">7.5 Ah<span>included</span></a>
+                                                                                                                                                                            <a href="https://egopowerplus.com/charger-rapid/" class="ego-configuration-wrapp__attributes-dynamic-charger ego-configuration-wrapp__attributes-included" data-sku="CH5500">Rapid<span>included</span></a>
+                                                                                                            </div>
+                                                    <div class="ego-configuration-wrapp__purchase-links">
+                                                    <a href="https://www.acehardware.com/departments/lawn-and-garden/lawn-mowers/walk-behind-lawn-mowers/7006686"
+                                                                       class="ego-link ego-configuration-item__link ace" target="_blank"
+                                                                       data-sku="LM2135SP"><span>Buy Now on</span> AceHardware.com</a>
+                                                                                                                                    <a href="https://www.lowes.com/pd/EGO-Push-Mower-56-Volt-Brushless-Lithium-Ion-Self-Propelled-21-in-Cordless-Electric-Lawn-Mower/1003171264"
+                                                                       class="ego-link ego-configuration-item__link lowes configlowes"
+                                                                       target="_blank"
+                                                                       data-sku="LM2135SP" style="display: none"><span>Buy Now on</span> Lowes.com</a>
+                                                                
+                                                                                                                    <button class="cswidget" data-asset-id="1252" data-product-sku="LM2135SP" type="button">Where to Buy</button>                                                        
+                                                                                                            </div>
+                                                </div>
+                                            </div>
+                                                                                                            </div>
+                                <div class="swiper-container-gradient-end"></div>
+                            </div>
+                            <div class="swiper-button-prev">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="24" cy="24" r="23" fill="#77BC1F" stroke="#77BC1F" stroke-width="2"/>
+                                    <path d="M28 15L19 24L28 33" stroke="white" stroke-width="4"/>
+                                </svg>
+                            </div>
+                            <div class="swiper-button-next">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle r="23" transform="matrix(-1 0 0 1 24 24)" fill="#77BC1F" stroke="#77BC1F" stroke-width="2"/>
+                                    <path d="M20 15L29 24L20 33" stroke="white" stroke-width="4"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div><div class="ego-choose-wrapp"><div class="container ego-container"><div class="row">
+
+            <div class="offset-xl-1 col-xl-4 offset-lg-0 col-lg-5 offset-md-3 col-md-6 col-12 ego-choose-wrapp__first-column">
+            <h2 class="ego-title ego-choose-wrapp__header">You Might Also Like</h2>
+                            <div class="ego-tools--product">
+                    <a href="https://egopowerplus.com/21-inch-self-propelled-mower/" class="ego-tools__wrap ego-tools__wrap--product" data-sku="LM2100SP">
+                        <div class="ego-tools__title">
+                            <h3 class="ego-title ego-title--letter-normal ego-title--medium">Power+ 21" Self-Propelled Mower</h3>
+                        </div>
+                        <div class="ego-tools__img">
+                            
+<img
+src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/l/m/lm2100sp_1.png"
+    alt="Power+ 21&quot; Self-Propelled Mower"/>
+                        </div>
+                        <div class="ego-tools__rating">
+                            <div class="bv-no-review-count" data-bv-show="inline_rating" data-bv-product-id="LM2100SP"></div>
+                        </div>
+                    </a>
+                    <div class="ego-tools__text">
+                        <p class="ego-subtitle ego-subtitle--small ego-subtitle--xs-size">
+                            All the torque of gas without the noise, fuss and fumes. Get up to 60 minutes of run-time, easy push-button start, single-handed deck height adjustment, plus a range of self-propelled speeds that let you pick your pace.                         </p>
+                    </div>
+                    <div class="ego-tools__btn">
+                        <a href="https://egopowerplus.com/21-inch-self-propelled-mower/" class="ego-btn ego-btn__view" data-sku="LM2100SP">View Product</a>
+                    </div>
+                </div>
+                    </div>
+    
+
+            <div class="col-xl-6 col-lg-7 offset-lg-0 offset-md-0 col-md-12 col-12 ego-choose-wrapp__second-column">
+            <h2 class="ego-title ego-choose-wrapp__header">Parts & Accessories</h2>
+            <div class="ego-accessories-wrapp">
+                <div class="ego-accessories-wrapp__inner">
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/a/b/ab2100d_ego_mower_runtime_blade_20-0811_accessory_3_1300x730.png"
+    alt="EGO Extended Run Time Blade Set"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">EGO Extended Run Time Blade Set</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The Extended Run Time Blade provides an optimal balance of cut quality and runtime for all around performance.</p>
+                                <a href="https://egopowerplus.com/extended-run-time-blade-dual-blade-set-ab2100d/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="AB2100D">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/a/b/ab2102d_ego_mower_highlift_blade_20-0811_accessory_3_onwhite.png"
+    alt="EGO High-Lift Bagging Blade Set"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">EGO High-Lift Bagging Blade Set</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The EGO High-Lift Bagging Blade is great when you need extra suction ideal for bagging, leaving your yard free of grass clippings.</p>
+                                <a href="https://egopowerplus.com/high-lift-dual-blade-set-ab2102d/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="AB2102D">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/a/b/ab2101d_ego_mower_mulching_blade_20-0811_accessory_3_onwhite.png"
+    alt="EGO Mulching Blade Set"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">EGO Mulching Blade Set</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The Mulching Lower Blade is a heavy-duty lower blade that turns grass into fine fragments.</p>
+                                <a href="https://egopowerplus.com/mulching-blade-set-ab2101d/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="AB2101D">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/b/a/ba2800_1.png"
+    alt="Power+ 5.0 Amp Hour Battery"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">Power+ 5.0 Amp Hour Battery</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The EGO POWER+ 56-Volt 5.0Ah battery uses industry-leading ARC Lithium&#8482; technology to deliver Power Beyond Belief&#8482; and is compatible with all EGO outdoor power equipment.</p>
+                                <a href="https://egopowerplus.com/battery-5amp/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="BA2800">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/b/a/ba4200_1.png"
+    alt="Power+ 7.5 Amp Hour Battery"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">Power+ 7.5 Amp Hour Battery</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The EGO POWER+ 56-Volt 7.5Ah battery uses industry-leading ARC Lithium&#8482; technology to deliver Power Beyond Belief&#8482; and is compatible with all EGO outdoor power equipment.</p>
+                                <a href="https://egopowerplus.com/battery-7-5amp/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="BA4200">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/c/h/ch2100_1.png"
+    alt="Power+ 56 Volt Charger"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">Power+ 56 Volt Charger</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The EGO POWER+ 56 Volt Charger boasts industry leading recharge times. In just 50 minutes, a depleted 2.5 Ah battery can be fully recharged with the 56-Volt Charger.</p>
+                                <a href="https://egopowerplus.com/charger-standard/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="CH2100">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/c/h/ch5500_1.png"
+    alt="Power+ Rapid Charger"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">Power+ Rapid Charger</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The EGO POWER+ Rapid Charger leads the industry in recharge times. In just 20 minutes, a depleted 2.0 Ah battery can be fully recharged with the Rapid Charger.</p>
+                                <a href="https://egopowerplus.com/charger-rapid/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="CH5500">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/c/m/cm001_1.png"
+    alt="EGO Mower Cover"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">EGO Mower Cover</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">Designed to provide year-round protection for all EGO POWER+ lawn mowers. The mower cover is constructed to protect against dust, dirt and debris. </p>
+                                <a href="https://egopowerplus.com/mower-cover/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="CM001">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/b/a/ba2800t_hero-5ah-battery_1300x730png_1.png"
+    alt="Power+ 5.0 Amp Hour Battery with Fuel Gauge "/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">Power+ 5.0 Amp Hour Battery with Fuel Gauge </h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The 5.0Ah ARC Lithium&#8482; Battery is now equipped with an upgraded fuel gauge. </p>
+                                <a href="https://egopowerplus.com/battery-5-0-amp-fuel-gauge/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="BA2800T">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/b/a/ba4200t-main-7-5ah-battery_v1_1300x730.png"
+    alt="Power+ 7.5 Amp Hour Battery with Fuel Gauge"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">Power+ 7.5 Amp Hour Battery with Fuel Gauge</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The EGO POWER+ 56-Volt 7.5Ah battery uses industry-leading ARC Lithium&#8482; technology to deliver Power Beyond Belief&#8482; and is compatible with all EGO outdoor power equipment.</p>
+                                <a href="https://egopowerplus.com/battery-7-5amp-fuel-gauge/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="BA4200T">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/b/a/ba5600t_ego_10ah_battery_20-0203_onwhite_1_1300x730.png"
+    alt="POWER+ 10.0 Amp Hour Battery"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">POWER+ 10.0 Amp Hour Battery</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">The 10.0Ah ARC Lithium™ Battery is the industry’s most powerful battery. Fully equipped with an upgraded fuel gauge.</p>
+                                <a href="https://egopowerplus.com/battery-10-amp/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="BA5600T">View Detail</a>
+                            </div>
+                        </div>
+                                            <div class="ego-accessories-item">
+                            <div class="ego-accessories-item__img">
+                                
+<img
+    src="https://egopowerplus.com/media/catalog/product/cache/41627d70daaeba1f17f38fc1707d58a0/c/h/ch2800d_ego_280w-dual-port-charger_20-0629_main_1300x700.png"
+    alt="Power+ Dual port charger"/>
+                            </div>
+                            <div class="ego-accessories-item__content">
+                                <h3 class="ego-title ego-title--medium ego-title--xs-small ego-accessories-item__title">Power+ Dual port charger</h3>
+                                <p class="ego-subtitle ego-subtitle--small ego-subtitle--extra-small ego-accessories-item__subtitle">Simultaneously charge two EGO batteries of any size. </p>
+                                <a href="https://egopowerplus.com/dual-port-charger-ch2800d/" class="ego-link ego-accessories-item__link" target="_blank" data-sku="CH2800D">View Detail</a>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+        </div>
+    </div></div></div>    <div class="ego-product-slider">
+        <div class="container ego-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="ego-product-slider__slider">
+                        <div class="swiper-container-product-slider">
+                            <div class="swiper-wrapper">
+                                                                    <div class="swiper-slide">
+                                        <div class="ego-product-slider-item">
+                                            <div class="ego-product-slider-item__detail">
+                                                <div class="ego-product-slider-item__rating ego-product-list-rating">
+                                                                                                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                        </div>
+                                                                                                    <h2 class="ego-product-slider-item__title ego-title ego-title--product ego-title--white">…A face lift</h2>
+                                                                                                <div class="ego-product-slider-item__desc product-description">
+                                                                                                            <p class="ego-subtitle ego-subtitle--xs-size ego-subtitle--white">The biggest upgrade to the 21" mower is the addition of a dual blade system. These two blades are coaxial, meaning they share the same axis as opposed to a side by side that is common on larger commercial mower decks.</p>
+                                                                                                                                                                <p class="ego-product-slider-item__author ego-subtitle ego-subtitle--xs-size">-RobbR</p>
+                                                                                                    </div>
+                                            </div>
+                                            <div class="ego-product-slider-item__gallery">
+                                                                                                <img src="https://egopowerplus.com/media/catalog/product/l/m/lm2130sp_v2_2.png" alt="…A face lift" />
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                                                    <div class="swiper-slide">
+                                        <div class="ego-product-slider-item">
+                                            <div class="ego-product-slider-item__detail">
+                                                <div class="ego-product-slider-item__rating ego-product-list-rating">
+                                                                                                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                        </div>
+                                                                                                    <h2 class="ego-product-slider-item__title ego-title ego-title--product ego-title--white">A Great Evolution!</h2>
+                                                                                                <div class="ego-product-slider-item__desc product-description">
+                                                                                                            <p class="ego-subtitle ego-subtitle--xs-size ego-subtitle--white">More power and dual blades for a better cut, more height adjustments, self propel with a really intuitive control, relocated front handle for closer cutting, a battery door that stays open on its own...</p>
+                                                                                                                                                                <p class="ego-product-slider-item__author ego-subtitle ego-subtitle--xs-size">-Shredder</p>
+                                                                                                    </div>
+                                            </div>
+                                            <div class="ego-product-slider-item__gallery">
+                                                                                                <img src="https://egopowerplus.com/media/catalog/product/e/g/ego_location_1_day_1__0090.png" alt="A Great Evolution!" />
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                                                    <div class="swiper-slide">
+                                        <div class="ego-product-slider-item">
+                                            <div class="ego-product-slider-item__detail">
+                                                <div class="ego-product-slider-item__rating ego-product-list-rating">
+                                                                                                                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 25 25" style="width: 20px !important; height: 20px !important;"><polygon points="25 9.12 15.5669599 9.12 12.512219 0 9.40860215 9.12 0 9.12 7.55131965 14.856 4.47214076 24 12.512219 18.216 20.5522972 24 17.4731183 14.856" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></polygon><path d="" style="fill: url(&quot;#bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h&quot;) !important;"></path><defs><linearGradient id="bv_inline_ratings_star_filled_2_99.99_wkqAxY4E9h" x1="99.99%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop><stop offset="1%" style="stop-color: #77bc1f; stop-opacity: 1;"></stop></linearGradient></defs></svg>
+                                                                                                                                                                        </div>
+                                                                                                    <h2 class="ego-product-slider-item__title ego-title ego-title--product ego-title--white">Premium Power!</h2>
+                                                                                                <div class="ego-product-slider-item__desc product-description">
+                                                                                                            <p class="ego-subtitle ego-subtitle--xs-size ego-subtitle--white">this one is mind blowing. It's equipped with a double blades system which is pretty unique for a cordless battery-powered mower. Self-propelled, led light, all you need is here with this premium OPE.</p>
+                                                                                                                                                                <p class="ego-product-slider-item__author ego-subtitle ego-subtitle--xs-size">-ThibsFCC</p>
+                                                                                                    </div>
+                                            </div>
+                                            <div class="ego-product-slider-item__gallery">
+                                                                                                <img src="https://egopowerplus.com/media/catalog/product/e/g/ego_lm2135sp_1rated_2.png" alt="Premium Power!" />
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                        <div class="ego-product-slider__btn-wrapp" style="display: none">
+                            <div class="ego-product-slider__btn ego-product-slider__btn--prev swiper-container-product-btn-prev">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+                                    <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"/>
+                                </svg>
+                            </div>
+                            <div class="ego-product-slider__btn ego-product-slider__btn--next swiper-container-product-btn-next">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
+                                    <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="ego-product-questions-wrapp"><div class="container ego-container"><div class="row">    <div class="col-lg-7">
+        <div class="ego-product-questions">
+            <h3 class="ego-product-questions__title ego-title ego-title--product" title="Frequently Asked Questions">Frequently Asked Questions</h3>
+            <div class="ego-product-questions__container">
+                                    <div class="ego-accordion">
+                                    <div class="ego-accordion__question collapsed"
+                             data-toggle="collapse"
+                             data-target="#collapse-75951"
+                             data-parent="#accordion"
+                             data-animated=""
+                             data-color-active=""
+                             data-bg-color-active=""
+                             data-color=""
+                             data-bg-color="">
+                            <h3 class="ego-accordion__title ego-title">
+                                <a class="accordion-toggle faq_questions_title" href="javascript:void(0);">
+                                    &nbsp;Which battery is compatible with this tool?                                </a>
+                            </h3>
+                        </div>
+                        <div style="animation-duration: ;  -webkit-animation-duration: ;" id="collapse-75951" class="panel-collapse collapse animated ego-accordion__desc">
+                            <p>All EGO batteries are compatible with all EGO tools.</p>
+                        </div>
+                    </div>
+                                    <div class="ego-accordion">
+                                                <div class="ego-accordion__question collapsed"
+                             data-toggle="collapse"
+                             data-target="#collapse-86180"
+                             data-parent="#accordion"
+                             data-animated=""
+                             data-color-active=""
+                             data-bg-color-active=""
+                             data-color=""
+                             data-bg-color="">
+                            <h3 class="ego-accordion__title ego-title">
+                                <a class="accordion-toggle faq_questions_title" href="javascript:void(0);">
+                                    &nbsp;Which charger can I use with my batteries?                                </a>
+                            </h3>
+                        </div>
+                        <div style="animation-duration: ;  -webkit-animation-duration: ;" id="collapse-86180" class="panel-collapse collapse animated ego-accordion__desc">
+                            <p>All EGO chargers charge all EGO batteries. The rapid charger will charge any EGO battery faster than the standard charger but both work interchangeably.</p>
+                        </div>
+                    </div>
+                                    <div class="ego-accordion">
+                                                <div class="ego-accordion__question collapsed"
+                             data-toggle="collapse"
+                             data-target="#collapse-93007"
+                             data-parent="#accordion"
+                             data-animated=""
+                             data-color-active=""
+                             data-bg-color-active=""
+                             data-color=""
+                             data-bg-color="">
+                            <h3 class="ego-accordion__title ego-title">
+                                <a class="accordion-toggle faq_questions_title" href="javascript:void(0);">
+                                    &nbsp;What is the warranty on this tool?                                </a>
+                            </h3>
+                        </div>
+                        <div style="animation-duration: ;  -webkit-animation-duration: ;" id="collapse-93007" class="panel-collapse collapse animated ego-accordion__desc">
+                            <p>All EGO tools carry a 5-year limited warranty purchased from authorized EGO retailers. There is a 3-year limited warranty on EGO Power+ System battery packs and chargers purchased from authorized EGO retailers. Please contact EGO Customer Service Toll-Free at 1-855-EGO-5656 any time you have questions or warranty claims.  The warranty period for any EGO product, battery pack and charger used for industrial, professional or commercial purpose is one year. The warranty period for reconditioned or refurbished products used for residential purpose is 1 year, for industrial, professional or commercial purpose is 90 days. The warranty period for routine maintenance parts, such as, but not limited to, blades, trimmer heads, chain bars, saw chains, belts, scraper bars, blower nozzles, and all other EGO accessories is 90 days for residential purpose, 30 days for industrial, professional or commercial purpose.</p>
+                        </div>
+                    </div>
+                                    <div class="ego-accordion">
+                                                <div class="ego-accordion__question collapsed"
+                             data-toggle="collapse"
+                             data-target="#collapse-113058"
+                             data-parent="#accordion"
+                             data-animated=""
+                             data-color-active=""
+                             data-bg-color-active=""
+                             data-color=""
+                             data-bg-color="">
+                            <h3 class="ego-accordion__title ego-title">
+                                <a class="accordion-toggle faq_questions_title" href="javascript:void(0);">
+                                    &nbsp;Is the handle adjustable?                                </a>
+                            </h3>
+                        </div>
+                        <div style="animation-duration: ;  -webkit-animation-duration: ;" id="collapse-113058" class="panel-collapse collapse animated ego-accordion__desc">
+                            <p>Yes, check the owner’s manual for complete instructions on how to adjust the handle.</p>
+                        </div>
+                    </div>
+                                    <div class="ego-accordion">
+                                                <div class="ego-accordion__question collapsed"
+                             data-toggle="collapse"
+                             data-target="#collapse-429136"
+                             data-parent="#accordion"
+                             data-animated=""
+                             data-color-active=""
+                             data-bg-color-active=""
+                             data-color=""
+                             data-bg-color="">
+                            <h3 class="ego-accordion__title ego-title">
+                                <a class="accordion-toggle faq_questions_title" href="javascript:void(0);">
+                                    &nbsp;Can I spray the underside of this mower with a hose to clean it?                                </a>
+                            </h3>
+                        </div>
+                        <div style="animation-duration: ;  -webkit-animation-duration: ;" id="collapse-429136" class="panel-collapse collapse animated ego-accordion__desc">
+                            <p>We do not suggest spraying the underside of the mower with a hose.  First remove the safety key and the battery. Wipe the upper surfaces with a cloth, if needed. Tip the mower on its side and clean the underside of the deck with a bristle brush and/or cloth.  Do not use a wire brush.  Do not spray the underside of your EGO Power+ mower with water. If grass has built up over time, you may find that a curved plastic scraper, such as those used in the kitchen, is useful to help remove dried, built up grass.</p>
+                        </div>
+                    </div>
+                                    <div class="ego-accordion">
+                                                <div class="ego-accordion__question collapsed"
+                             data-toggle="collapse"
+                             data-target="#collapse-2626182"
+                             data-parent="#accordion"
+                             data-animated=""
+                             data-color-active=""
+                             data-bg-color-active=""
+                             data-color=""
+                             data-bg-color="">
+                            <h3 class="ego-accordion__title ego-title">
+                                <a class="accordion-toggle faq_questions_title" href="javascript:void(0);">
+                                    &nbsp;Is there variable speed on this self-propelled mower?                                </a>
+                            </h3>
+                        </div>
+                        <div style="animation-duration: ;  -webkit-animation-duration: ;" id="collapse-2626182" class="panel-collapse collapse animated ego-accordion__desc">
+                            <p>Yes, the variable Speed ranges from 0.9 – 3.1 MPH.</p>
+                        </div>
+                    </div>
+                                    <div class="ego-accordion">
+                                                <div class="ego-accordion__question collapsed"
+                             data-toggle="collapse"
+                             data-target="#collapse-3052068"
+                             data-parent="#accordion"
+                             data-animated=""
+                             data-color-active=""
+                             data-bg-color-active=""
+                             data-color=""
+                             data-bg-color="">
+                            <h3 class="ego-accordion__title ego-title">
+                                <a class="accordion-toggle faq_questions_title" href="javascript:void(0);">
+                                    &nbsp;Is the deck adjustable?                                </a>
+                            </h3>
+                        </div>
+                        <div style="animation-duration: ;  -webkit-animation-duration: ;" id="collapse-3052068" class="panel-collapse collapse animated ego-accordion__desc">
+                            <p>Yes, there are 7 Position Cutting Height Adjustments from 1-3/8"– 4".</p>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </div>
+<script>
+require(['jquery', 'jquery.bootstrap', 'jquery/ui'], function ($) {
+    $(document).ready(function () {
+        $('.collapse').on('shown.bs.collapse', function (e) {
+                var animated =  $(this).parent().find(".faqcat-question").attr('data-animated');
+                var colorActive =  $(this).parent().find(".faqcat-question").attr('data-color-active');
+                var bgColorActive =  $(this).parent().find(".faqcat-question").attr('data-bg-color-active');
+                var dataIcon =  $(this).parent().find(".main_icon").attr('data-icon');
+                var dataIconActive =  $(this).parent().find(".main_icon").attr('data-icon-active');
+
+                $(this).addClass(animated);
+                $(this).parent().find('.main_icon').removeClass(dataIcon).addClass(dataIconActive);
+                $(this).parent().find(".faqcat-question").css("background-color",  bgColorActive);
+                $(this).parent().find(".faq_questions_title").css("color",  colorActive);
+
+            
+                }).on('hidden.bs.collapse', function () {
+                var color =  $(this).parent().find(".faqcat-question").attr('data-color');
+                var bgColor =  $(this).parent().find(".faqcat-question").attr('data-bg-color');
+                var dataIcon =  $(this).parent().find(".main_icon").attr('data-icon');
+                var dataIconActive =  $(this).parent().find(".main_icon").attr('data-icon-active');
+
+                $(this).parent().find('.main_icon').removeClass(dataIconActive).addClass(dataIcon);
+                $(this).parent().find(".faqcat-question").css("background-color",  bgColor);
+                $(this).parent().find(".faq_questions_title").css("color",  color);
+            
+                  });
+        
+        });
+    
+    });
+</script>
+<div class="col-lg-5">
+        <div class="ego-discussion">
+        <h2 class="ego-discussion__title ego-title ego-title--product">HOw-to videos
+        </h2>
+        <p class="ego-discussion__text ego-subtitle ego-subtitle--xs-size">Watch helpful videos about popular tool features.</p>
+        <div class="ego-videos ego-videos--transparent ego-videos--col2">
+            <div id="ego-videos-product-details-container" class="ego-videos__item-wrap">
+            </div>
+            <script>
+            require(['jquery'],function ($) {
+                    var container = document.getElementById("ego-videos-product-details-container");
+                    let ego_media_collection = [];
+                    if (ego_media_gallery) {
+                    $.each(ego_media_gallery, function (index, data) {
+                            let dataArray = data.cmspage_ids.split(',');
+                            $.each(dataArray, function (pindex, pdata) {
+                                if (storeLocale.toLowerCase() === "en_au" && pdata === "27") {
+                                    return false;
+                                
+                                    } else {
+                                    if (storeLocale.toLowerCase() === "default" && pdata === "27") {//EGO US
+                                        ego_media_collection.push(data);
+                                        return false;
+                                    } else if (storeLocale.toLowerCase() === "en_au" && pdata === "277") {//EGO AU
+                                        ego_media_collection.push(data);
+                                        return false;
+                                    }
+                                
+                                    }
+                            
+                                });
+                        
+                        });
+                    
+                    }
+                    ego_media_collection.forEach(function(obj, index){
+                        html = `<div class="ego-videos__item js-ego-grid-item">
+                                    <div class="ego-videos__item-inner">
+                                        <div class="ego-video-item">
+                                            <a href="#" class="ego-video-item__img js-bg-parent js-play-video" data-src="${obj.videourl.replace("watch?v=","embed/")}">
+                                                <img data-s-hidden="1" class="js-bg-hidden-child" src="${obj.filethumb}" alt="video thumbnail">
+                                            </a>
+                                            <h5 class="ego-video-item__title"><a data-src="${obj.videourl.replace("watch?v=","embed/")}" class="js-play-video" href="#">${obj.title}</a></h5>
+                                            <p class="ego-video-item__time">${obj.videolength}</p>
+                                        </div>
+                                    </div>
+                                </div>`;
+                        container.innerHTML += html;
+                    
+                        });
+                
+                })();
+            </script>
+        </div>
+        <a href="/video-gallery" class="ego-discussion__link ego-link" target="_blank">View Videos for All EGO Products</a>
+    </div>
+</div>
+</div></div></div><div class="ego-modal js-modal"><div class="ego-modal__wrap">
+    <span class="ego-modal__btn js-modal-btn"></span>
+    <div class="ego-modal__content">
+        <iframe class="ego-modal__iframe" src="" id="video" allowscriptaccess="always" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+</div></div>
+
+<script>
+require(['jquery'], function ($) {
+        $('body').attr('data-category', "power-mowers");
+        $('body').attr('data-categorypath', "power-mowers");
+        $('body').attr('data-sku', "LM2130SP");
+    
+    });
+</script>
+
+    <div class="ego-multihead-love">
+        <div class="container-fluid ego-customers">
+            <div class="row center-text  ego-customers__header ">
+                <div class="col-12">
+                    <h2 class="ego-title">Our customers love to show off their EGO</h2>
+                    <div class="ego-tools__btn">
+                        <a target="_blank" class="ego-btn ego-btn__view" href="https://submit.curations.bazaarvoice.com/?client=egopowerplus&group=direct-upload-us&productId=LM2130SP">Upload Your Photo</a>
+                        <p>Use #powerbeyondbelief</p>
+                    </div>
+                    <div id="bv-pdp-carousel" data-bv-show="curations" data-bv-widget="bv-gallery" data-bv-display-tag="meta-grid" data-bv-product-id="LM2130SP"></div>
+                </div>
+            </div>
+            <div id="reviews" class="ego-product-bazaarvoiceReview-wrapp">
+                <div class="container ego-container">
+                    <div data-bv-show="reviews" data-bv-product-id="LM2130SP"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div></main><footer class="ego-footer"><div class="container ego-container"><div class="row"><div class="block newsletter col-12 col-xl-6">
+    <div class="ego-footer__content-wrap">
+        <h3 class="title ego-title ego-title--spec-white">Sign up for news &amp; updates</h3>
+        <div class="content">
+            <form class="form subscribe"
+                  novalidate
+                  action="https://egopowerplus.us3.list-manage.com/subscribe/post?u=f8d6ccfeef1d0b5b4b990cea2&id=bb199b309a"
+                  method="post"
+                  data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                  id="newsletter-validate-detail"
+                  name="mc-embedded-subscribe-form"
+                  target="_blank" >
+                <div class="field newsletter">
+                    <label class="label " for="newsletter">
+                        <p class="ego-subtitle ego-subtitle--white">
+                            Be the first to know about new products and innovations.                        </p>
+                    </label>
+                    <div class="ego-footer__input-wrap">
+                        <div class="ego-footer__input-wrap__div">
+                            <input name="EMAIL" type="email" class="ego-footer__input" id="newsletter"
+                                   placeholder="Enter&#x20;your&#x20;email&#x20;address"
+                                   data-validate="{required:true, 'validate-email':true}"/>
+                        </div>
+                        <button class="action subscribe primary ego-btn ego-footer__signup" title="Sign&#x20;Up" type="submit">
+                            <span>Sign Up</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-12 col-xl-6"><div class="widget block block-static-block">
+    <div class="ego-footer__icon-wrap">
+
+            <a class="ego-footer__icon" href="http://www.facebook.com/egopowerplus" target="_blank" id="footerFacebook">
+
+                            <span class="icon-facebook-official"></span>
+
+                        </a>
+
+            <a class="ego-footer__icon" href="http://www.instagram.com/egopowerplus"  target="_blank" id="footerInstagram">
+
+                            <span class="icon-instagram"></span>
+
+                        </a>
+
+            <a class="ego-footer__icon" href="https://twitter.com/egopowerplus"  target="_blank" id="footerTwitter">
+
+                            <span class="icon-twitter"></span>
+
+                        </a>
+
+            <a class="ego-footer__icon" href="http://www.youtube.com/channel/UC-J2ywb-mrnnB0ordKWk_Vw/featured"  target="_blank" id="footerYoutube">
+
+                            <span class="icon-youtube-play"></span>
+
+                        </a>
+
+          </div>
+
+          <div class="ego-footer-wrp">
+
+            <div class="ego-footer__pages">
+
+              <ul>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/products" id="footerProducts">Residential Products</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/commercial" id="footerProductsCommercial">Commercial Products</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/technology" id="footerTechnology">Technology</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/your-ego" id="footerYourEgo">Your EGO</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/store-locator" id="footerStoreLocator">Shop EGO</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/about-ego" id="footerAbout">About EGO</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/faqs" id="footerFaqs">FAQs</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/video-gallery" id="footerVideo">Videos</a>
+
+                </li>
+
+                <li>
+
+                  &nbsp;
+
+                </li>
+
+                <li>
+
+                  &nbsp;
+
+                </li>
+
+              </ul>
+
+            </div>
+
+            <div class="ego-footer__links">
+
+              <ul>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/terms-conditions" id="footerTerms">Terms &amp; Conditions</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/privacy-policy" id="footerPrivacy">Privacy Policy</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/warranty-policy" id="footerWarranty">Warranty Policy</a>
+
+                </li>
+
+                <li>
+
+                  <a class="ego-subtitle ego-subtitle--white" href="/contact-us" id="footerContact">Contact Us</a>
+
+                </li>
+
+              </ul>
+
+            </div>
+
+          </div></div>
+</div></div></div><small class="copyright">
+    <div class="ego-copyright">
+        <div class="ego-copyright__content">
+            <p class="ego-subtitle ego-subtitle--white ego-subtitle--copyright">                                    "
+"
+                                                    "
+                                            "
+"2021 EGO POWER+. All rights reserved.</p>
+        </div>
+    </div>
+</small>
+</footer><script type="text/x-magento-init">
+{
+  "*": {
+    "Magento_Ui/js/core/app": {
+      "components": {
+        "storage-manager": {
+                            "component": "Magento_Catalog/js/storage-manager",
+                            "appendTo": "",
+                            "storagesConfiguration" : {"recently_viewed_product":{"requestConfig":{"syncUrl":"https:\/\/egopowerplus.com\/catalog\/product\/frontend_action_synchronize\/"},"lifetime":"1000","allowToSendRequest":null},"recently_compared_product":{"requestConfig":{"syncUrl":"https:\/\/egopowerplus.com\/catalog\/product\/frontend_action_synchronize\/"},"lifetime":"1000","allowToSendRequest":null},"product_data_storage":{"updateRequestConfig":{"url":"https:\/\/egopowerplus.com\/rest\/default\/V1\/products-render-info"},"allowToSendRequest":null}}                        
+        }
+                    
+      }
+                
+    }
+            
+  }
+        
+}
+</script>
+<!-- BEGIN GTAG PRODUCT TAG -->
+<!-- END GTAG PRODUCT TAG -->
+</div><div class="overlay hide js-overlay">&nbsp;</div>    <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"03ffa6c8be","applicationID":"188173529","transactionName":"bgBTMEpYCBUAWxZaDFdKcAdMUAkITlsDRwJVClZLSEsJAhRbFhwVUABG","queueTime":0,"applicationTime":1099,"atts":"QkdQRgJCGxs=","errorBeacon":"bam-cell.nr-data.net","agent":""}</script></body>
+</html>

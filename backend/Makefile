@@ -8,7 +8,7 @@ build:
 	@go build ./cmd/server/main.go;
 
 test:
-	@go test -race ./...;
+	@ENV=test go test -race ./...;
 
 dev-watch:
 	@rerun "$(MAKE) dev";

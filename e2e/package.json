@@ -1,0 +1,15 @@
+{
+  "name": "e2e",
+  "version": "0.0.0",
+  "description": "End-to-end tests for purchaseplan.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/justindfuller/purchaseplan.io/e2e"
+  },
+  "author": "",
+  "license": "ISC"
+}

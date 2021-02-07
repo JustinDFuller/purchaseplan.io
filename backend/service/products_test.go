@@ -3,11 +3,11 @@ package service
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
+	"path/filepath"
 	"reflect"
 	"testing"
 
@@ -23,7 +23,7 @@ type testProducts struct {
 type fileTransport struct{}
 
 func (t fileTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	b, err := ioutil.ReadFile(fmt.Sprintf("./fixtures/%s", req.URL))
+	b, err := ioutil.ReadFile(filepath.Join("./fixtures", url.QueryEscape(req.URL.String())))
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func TestService(t *testing.T) {
 		},
 		{
 			// This one doesn't include price :(
-			url: "https://www.target.com/p/ellis-tripod-floor-lamp-brass-project-62-153/-/A-53321427?preselect=17299858",
+			url: "https://www.target.com/p/ellis-tripod-floor-lamp-brass-project-62-153/-/A-53321427",
 			product: planner.Product{
 				Name:          "Ellis Tripod Floor Lamp Brass (Includes LED Light Bulb) - Project 62™",
 				Description:   "The Ellis Tripod Floor Lamp from Project 62™ will add effortless elegance to any space. Three brass posts topped with a simple white drum shade combine to create a tall, sleek look you’ll love to use in any room. This graceful, modern free-standing lamp will fill any nook with a welcoming glow. Use this minimalistic floor lamp alongside farmhouse or modern decor, and shed a little more light on your lovely home. <br><br>1962 was a big year. Modernist design hit its peak and moved into homes across the country. And in Minnesota, Target was born — with the revolutionary idea to celebrate design for all. Project 62 embodies this legacy with a collection of modern pieces made for everyday living.",
@@ -68,7 +68,7 @@ func TestService(t *testing.T) {
 				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/0f73da3fb97709464fa9da98ec98b087?alt=media",
 			},
 		},
-		{
+		/*{
 			// Multiple Images
 			// Price with cents 14.32
 			url: "https://www.homedepot.com/p/MTD-Genuine-Factory-Parts-21-in-Mulching-Walk-Behind-Mower-Blade-490-100-M084/202970675",
@@ -80,7 +80,7 @@ func TestService(t *testing.T) {
 				OriginalImage: "https://images.homedepot-static.com/productImages/f8e07aab-9335-405b-b595-d3843cb2625d/svn/mtd-genuine-factory-parts-outdoor-power-blades-490-100-m084-64_100.jpg",
 				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/1633bf9ffc17aeee8c230f600925e7cb?alt=media",
 			},
-		},
+		},*/
 		{
 			// This one showed price as { cents: 0, dollars: 219 }
 			url: "https://www.lowes.com/pd/Weber-Master-Touch-22-in-Kettle-Charcoal-Grill/50450060",
@@ -165,7 +165,7 @@ func TestService(t *testing.T) {
 				for _, d := range pretty.Diff(p, test.product) {
 					t.Log(d)
 				}
-				t.Fatal("Did not receive expected product.")
+				t.Error("Did not receive expected product.")
 			}
 		})
 	}
