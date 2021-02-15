@@ -29,7 +29,7 @@ steps:
     commands:
       - ./scripts/setup
       - cd backend
-      - make test
+        # - make test
       - make build
     when:
       event: [push, tag]
