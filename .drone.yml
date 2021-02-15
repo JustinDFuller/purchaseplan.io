@@ -28,6 +28,8 @@ steps:
 
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
     commands:
       - ./scripts/setup
       - cd backend
