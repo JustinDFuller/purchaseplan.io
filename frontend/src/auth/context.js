@@ -20,7 +20,7 @@ const defaults = {
 };
 
 export function New(data = defaults) {
-  const m = new Magic("pk_test_B7C5606EDFA77AF7");
+  const m = new Magic("pk_live_3041D9E15537098D");
 
   return {
     ...getterSetters(data, New),
