@@ -74,8 +74,8 @@ func (parser DefaultParser) Product() (Product, error) {
 	// so the more accurate parsers should go first.
 	return mergeProducts(
 		parser.AmazonParser,
-		parser.SchemaOrgParser,
 		parser.OpenGraphParser,
+		parser.SchemaOrgParser,
 		parser.MetaTagParser,
 		parser.HTMLParser,
 	)

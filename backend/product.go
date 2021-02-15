@@ -1,6 +1,9 @@
 package planner
 
-import "sync"
+import (
+	"net/url"
+	"sync"
+)
 
 // Producter is an interface for retrieving products.
 type Producter interface {
@@ -87,4 +90,37 @@ func (p Product) merge(p2 Product) Product {
 	}
 
 	return merged
+}
+
+func (p Product) Normalize(requestURL string) (Product, error) {
+	u, err := normalizeURL(requestURL, p.URL)
+	if err != nil {
+		return p, err
+	}
+	p.URL = u
+
+	return p, nil
+}
+
+func normalizeURL(requestURL, foundURL string) (string, error) {
+	if foundURL == "" {
+		return requestURL, nil
+	}
+
+	u, err := url.Parse(foundURL)
+	if err != nil {
+		return "", err
+	}
+	u.Scheme = "https"
+
+	reqU, err := url.Parse(requestURL)
+	if err != nil {
+		return "", err
+	}
+
+	if u.Host == "" {
+		u.Host = reqU.Host
+	}
+
+	return u.String(), nil
 }

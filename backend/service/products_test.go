@@ -37,8 +37,8 @@ func TestService(t *testing.T) {
 			// This one has multiple images
 			url: "https://www.ikea.com/us/en/p/kolbjoern-cabinet-indoor-outdoor-green-00450347/",
 			product: planner.Product{
-				Name:          `KOLBJÖRN Cabinet, indoor/outdoor - green 31 1/2x31 7/8 "`,
-				Description:   `KOLBJÖRN Cabinet, indoor/outdoor - green 31 1/2x31 7/8 ". Suitable for both indoor and outdoor use. The cabinet is durable, easy to clean and protected from rust since it is made of powder-coated galvanized steel. Stands evenly on an uneven floor since the feet can be adjusted.`,
+				Name:          `KOLBJÖRN Cabinet, indoor/outdoor, green - IKEA`,
+				Description:   `KOLBJÖRN Cabinet, indoor/outdoor, green. Suitable for both indoor and outdoor use. The cabinet is durable, easy to clean and protected from rust since it is made of powder-coated galvanized steel.`,
 				Price:         79,
 				URL:           "https://www.ikea.com/us/en/p/kolbjoern-cabinet-indoor-outdoor-green-00450347/",
 				OriginalImage: "https://www.ikea.com/us/en/images/products/kolbjoern-cabinet-indoor-outdoor-green__0762731_PE752182_S5.JPG",
@@ -49,23 +49,23 @@ func TestService(t *testing.T) {
 			// Sometimes this one gives null for price
 			url: "https://www.lowes.com/pd/Char-Broil-Performance-62-in-Black-Fits-Most-Cover/1000115081",
 			product: planner.Product{
-				Name:          `Char-Broil Performance 62-in Black Fits Most Cover`,
-				Description:   `Performance 62-in Black Fits Most Cover`,
+				Name:          `Char-Broil Performance 62-in Black Fits Most Cover Lowes.com`,
+				Description:   `Shop char-broil performance 62-in black fits most cover in the grill covers section of Lowes.com`,
 				Price:         34,
 				URL:           "https://www.lowes.com/pd/Char-Broil-Performance-62-in-Black-Fits-Most-Cover/1000115081",
-				OriginalImage: "//mobileimages.lowes.com/product/converted/047362/047362763273.jpg",
-				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/c0abf724f113eb41f2a05dc4cdff6226?alt=media",
+				OriginalImage: "https://mobileimages.lowes.com/product/converted/047362/047362763273xl.jpg",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/ef4aa931a515e54600d244ca83e03f47?alt=media",
 			},
 		},
 		{
 			// This one doesn't include price :(
 			url: "https://www.target.com/p/ellis-tripod-floor-lamp-brass-project-62-153/-/A-53321427",
 			product: planner.Product{
-				Name:          "Ellis Tripod Floor Lamp Brass (Includes LED Light Bulb) - Project 62™",
-				Description:   "The Ellis Tripod Floor Lamp from Project 62™ will add effortless elegance to any space. Three brass posts topped with a simple white drum shade combine to create a tall, sleek look you’ll love to use in any room. This graceful, modern free-standing lamp will fill any nook with a welcoming glow. Use this minimalistic floor lamp alongside farmhouse or modern decor, and shed a little more light on your lovely home. <br><br>1962 was a big year. Modernist design hit its peak and moved into homes across the country. And in Minnesota, Target was born — with the revolutionary idea to celebrate design for all. Project 62 embodies this legacy with a collection of modern pieces made for everyday living.",
-				URL:           "https://www.target.com/p/ellis-tripod-floor-lamp-brass-includes-led-light-bulb-project-62-8482/-/A-17299858",
-				OriginalImage: "https://target.scene7.com/is/image/Target/GUEST_51ec9b9d-ece7-4b45-b699-590cabd2c2ba",
-				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/0f73da3fb97709464fa9da98ec98b087?alt=media",
+				Name:          "Ellis Tripod Floor Lamp Brass - Project 62&#153;",
+				Description:   "Read reviews and buy Ellis Tripod Floor Lamp Brass - Project 62&#153; at Target. Choose from contactless Same Day Delivery, Drive Up and more.",
+				URL:           "https://www.target.com/p/ellis-tripod-floor-lamp-brass-project-62-153/-/A-53321427",
+				OriginalImage: "//target.scene7.com/is/image/Target/GUEST_51ec9b9d-ece7-4b45-b699-590cabd2c2ba",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/76a17ca6ba38adf6a3898d671ee25970?alt=media",
 			},
 		},
 		/*{
@@ -86,11 +86,11 @@ func TestService(t *testing.T) {
 			url: "https://www.lowes.com/pd/Weber-Master-Touch-22-in-Kettle-Charcoal-Grill/50450060",
 			product: planner.Product{
 				Price:         219,
-				Name:          "Weber Master Touch 22-in Black Kettle Charcoal Grill",
+				Name:          "Weber Master Touch 22-in Black Kettle Charcoal Grill Lowes.com",
+				Description:   "Shop Weber Master Touch 22-in Black Kettle Charcoal Grillundefined at Lowe's.com. Expand your culinary repertoire with the Weber Master-Touch 22 in. charcoal BBQ grill featuring the gourmet BBQ system cooking grate. This plated-steel hinged",
 				URL:           "https://www.lowes.com/pd/Weber-Master-Touch-22-in-Kettle-Charcoal-Grill/50450060",
-				Description:   "Master Touch 22-in Black Kettle Charcoal Grill",
-				OriginalImage: "//mobileimages.lowes.com/product/converted/077924/077924032264.jpg",
-				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/7fbf5056f3cfa16839571aac3a2bac93?alt=media",
+				OriginalImage: "https://mobileimages.lowes.com/product/converted/077924/077924032264xl.jpg",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/8edd7b8f3d3f6feab1840476097a1505?alt=media",
 			},
 		},
 		{
@@ -126,6 +126,18 @@ func TestService(t *testing.T) {
 				OriginalImage: "https://na2.electroluxmedia.com/Transparent/Electrolux/Electrolux%20Assets/Images/Product%20Photography/EW30MC65PS-HOV_531.png?impolicy=EA-PLP",
 				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/92a4b4272738fec930c223cfe07f910e?alt=media",
 				Price:         4399,
+			},
+		},
+		{
+			// Relative URL
+			url: "https://www.walmart.com/ip/VIZIO-85-Class-4K-UHD-Quantum-Smartcast-Smart-TV-HDR-P-Series-P85QX-H1/592330349",
+			product: planner.Product{
+				Name:          `VIZIO 85" Class 4K UHD Quantum Smartcast Smart TV HDR P-Series P85QX-H1 - Walmart.com`,
+				Description:   "Free 2-day shipping. Buy VIZIO 85\" Class 4K UHD Quantum Smartcast Smart TV HDR P-Series P85QX-H1 at Walmart.com",
+				URL:           "https://www.walmart.com/ip/VIZIO-85-Class-4K-UHD-Quantum-Smartcast-Smart-TV-HDR-P-Series-P85QX-H1/592330349",
+				OriginalImage: "https://i5.walmartimages.com/asr/ef8b4108-efe5-4bab-a3ea-ed303edad5d6.3452b3a4a0ac25eec6980626eef24486.jpeg",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/05134012ed177deef19dfe961024a93d?alt=media",
+				Price:         2498,
 			},
 		},
 	}

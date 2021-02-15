@@ -1,5 +1,8 @@
 export GOOGLE_APPLICATION_CREDENTIALS=$(HOME)/.config/gcloud/application_default_credentials.json
 
+init:
+	@(cd ./frontend && npm install) & (cd ./e2e && npm install) & (cd ./backend && go mod download);
+
 run:
 	@(cd ./frontend && npm start) & (cd ./backend && make dev);
 
@@ -8,6 +11,13 @@ build-frontend:
 
 build-backend:
 	@cd ./backend && make build;
+
+test:
+	@($(MAKE) run) & (sleep 10 && cd ./e2e && npm test);
+
+stop:
+	@kill -9 `sudo netstat -nlp | grep :3000 | awk '{print $7}' | cut -d'/' -f1`;
+	@kill -9 `sudo netstat -nlp | grep :8080 | awk '{print $7}' | cut -d'/' -f1`;
 
 terraform-dev:
 	@cd ./terraform/dev && terraform plan;

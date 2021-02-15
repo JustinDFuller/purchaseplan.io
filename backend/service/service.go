@@ -273,6 +273,13 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
+		p, err = p.Normalize(u)
+		if err != nil {
+			log.Printf("Error normalizing product: %s", err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+
 		image, err := st.PutImage(r.Context(), p.Image)
 		if err != nil {
 			log.Printf("Unable to save image: %s", err)

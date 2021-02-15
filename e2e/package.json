@@ -4,12 +4,15 @@
   "description": "End-to-end tests for purchaseplan.io",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open"
+    "test": "cypress run"
   },
   "repository": {
     "type": "git",
     "url": "github.com/justindfuller/purchaseplan.io/e2e"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^6.4.0"
+  }
 }
