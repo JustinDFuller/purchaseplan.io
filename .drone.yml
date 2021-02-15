@@ -19,20 +19,13 @@ steps:
     when:
       event: [push, tag]
 
-  - name: setup-backend
-    image: bash
-    pull: if-not-exists
-    environment:
-      SERVICE_ACCOUNT_CREDENTIALS:
-        from_secret: APP_ENGINE_CREDENTIALS_DEV
-    commands:
-      - ./scripts/setup
-
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
     pull: if-not-exists
     environment:
       GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
+      SERVICE_ACCOUNT_CREDENTIALS:
+        from_secret: APP_ENGINE_CREDENTIALS_DEV
     commands:
       - ./scripts/setup
       - cd backend
@@ -40,8 +33,6 @@ steps:
       - make build
     when:
       event: [push, tag]
-    depends_on:
-      - setup-backend
 
   - name: frontend
     image: node
