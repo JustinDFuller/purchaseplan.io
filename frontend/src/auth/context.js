@@ -102,6 +102,7 @@ export function New(data = defaults) {
         data.onLogout();
 
         return New({
+          ...data,
           error: null,
           user: null,
           state: state.LOGGED_OUT,
