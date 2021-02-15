@@ -18,6 +18,14 @@ steps:
     when:
       event: [push, tag]
 
+  - name: setup-backend
+    image: bash
+    environment:
+      SERVICE_ACCOUNT_CREDENTIALS:
+        from_secret: APP_ENGINE_CREDENTIALS_DEV
+    commands:
+      - ./scripts/setup
+
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
     commands:
@@ -27,6 +35,8 @@ steps:
       - make build
     when:
       event: [push, tag]
+    depends_on:
+      - setup-backend
 
   - name: frontend
     image: node
@@ -46,6 +56,8 @@ steps:
         from_secret: TERRAFORM_CREDENTIALS
     commands:
       - ./scripts/setup
+    depends_on:
+      - backend
 
   - name: terraform-dev
     image: hashicorp/terraform:light
