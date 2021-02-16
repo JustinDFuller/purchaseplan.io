@@ -10,10 +10,10 @@ build:
 test:
 	@ENV=test go test -race ./...;
 
-dev-watch:
+run-watch:
 	@rerun "$(MAKE) dev";
 
-dev: datastore-start
+run: datastore-start
 	@go run ./cmd/server/main.go;
 
 datastore-start:

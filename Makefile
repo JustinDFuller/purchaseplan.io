@@ -4,10 +4,10 @@ init:
 	@(cd ./frontend && npm install) & (cd ./e2e && npm install) & (cd ./backend && go mod download);
 
 run:
-	@(cd ./frontend && npm start) & (cd ./backend && make dev);
+	@(cd ./frontend && make run) & (cd ./backend && make run);
 
 build-frontend:
-	@cd ./frontend && npm run build;
+	@cd ./frontend && make build;
 
 build-backend:
 	@cd ./backend && make build;
