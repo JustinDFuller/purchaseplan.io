@@ -11,48 +11,66 @@ function makeDate(days) {
 }
 
 const samplePurchases = [
-  User.Purchase({
-    date: makeDate(2),
-    product: Product.data.New({
-      name: "Lily Storage Cabinet",
-      description: "For the living room",
-      price: 179,
-      url: "https://www.urbanoutfitters.com/shop/lily-storage-cabinet",
-      image:
-        "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/95ba7d219d70e5d06975e878cbf2106f?alt=media",
-      originalImage:
-        "https://s7d5.scene7.com/is/image/UrbanOutfitters/58325390_111_b?$xlarge$&fit=constrain&qlt=80&wid=683",
-    }),
-  }),
-  User.Purchase({
-    date: makeDate(14),
-    product: Product.data.New({
-      name: 'KOLBJÖRN Cabinet, indoor/outdoor - green 31 1/2x31 7/8 "',
-      description: "For the kids' tinker station on the deck",
-      price: 79,
-      url:
-        "https://www.ikea.com/us/en/p/kolbjoern-cabinet-indoor-outdoor-green-00450347/",
-      image:
-        "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/81d08b11c66d4a8c9edcc0cefaf2b7ec?alt=media",
-      originalImage:
-        "https://www.ikea.com/us/en/images/products/kolbjoern-cabinet-indoor-outdoor-green__0762731_PE752182_S5.JPG",
-    }),
-  }),
-  User.Purchase({
-    date: makeDate(31),
-    product: Product.data.New({
-      name:
-        "SOLLERÖN Modular corner sofa 4-seat, outdoor - with footstool brown/Frösön/Duvholmen beige",
-      description: "Back deck! Summer!",
-      price: 1205,
-      url:
-        "https://www.ikea.com/us/en/p/solleroen-modular-corner-sofa-4-seat-outdoor-with-footstool-brown-froesoen-duvholmen-beige-s89252570/",
-      image:
-        "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/b27dbf46d823a99aa14f939322886737?alt=media",
-      originalImage:
-        "https://www.ikea.com/us/en/images/products/solleroen-modular-corner-sofa-4-seat-outdoor-with-footstool-brown-froesoen-duvholmen-beige__0728668_PE736394_S5.JPG",
-    }),
-  }),
+  {
+    name: "an immersive home theater",
+    products: [
+      User.Purchase({
+        date: makeDate(20),
+        product: Product.data.New({
+          name: "Optoma 4k Projector",
+          description:
+            "A really good mid-tier 4k projector at a reasonable price.",
+          price: 2373,
+          url: "https://amzn.to/3rRVnt2",
+          image:
+            "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/2c5e30f70deb8b5e9342d882ab01ad86?alt=media",
+        }),
+      }),
+      User.Purchase({
+        date: makeDate(20),
+        product: Product.data.New({
+          name: "Elite Screens 4k Projector Screen",
+          description: "A simple manual projector screen that is 4k-ready.",
+          price: 69,
+          url: "https://amzn.to/3dgxnvL",
+          image:
+            "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/72474e3d1e0e6acb7580028531e8abb1?alt=media",
+        }),
+      }),
+      User.Purchase({
+        date: makeDate(30),
+        product: Product.data.New({
+          name: "Enclave Audio Surround Sound Bluetooth Speakers",
+          description:
+            "These bluetooth speakers have really good reviews. Plus, no wires!",
+          price: 799,
+          url: "https://amzn.to/37gEws6",
+          image:
+            "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/98e578528df6cc80d41eeb3dc5c6dc55?alt=media",
+        }),
+      }),
+      User.Purchase({
+        date: makeDate(30),
+        product: Product.data.New({
+          name: "Chromecast Ultra (4k)",
+          description: "To watch things with!",
+          price: 49,
+          url: "https://store.google.com/us/product/chromecast_google_tv",
+          image:
+            "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/173d7f269d7e395e05f53b47729b3fc2?alt=media",
+        }),
+      }),
+    ],
+  },
+  {
+    name: "your dream kitchen.",
+  },
+  {
+    name: "the perfect back yard.",
+  },
+  {
+    name: "a fall wardrobe.",
+  },
 ];
 
 export function Landing() {
@@ -80,7 +98,7 @@ export function Landing() {
         })}
       >
         <div className="col-12 col-lg-8 col-xl-7 pt-3 order-2 order-lg-1">
-          {samplePurchases.map((p) => (
+          {samplePurchases[0].products.map((p) => (
             <Purchase.components.Card
               purchase={p}
               readonly
@@ -90,7 +108,7 @@ export function Landing() {
         </div>
         <div className="col-12 col-lg-4 col-xl-5 d-flex d-column align-items-center justify-content-center order-1 order-lg-2">
           <h2>
-            Plan your purchases. <br /> Know where your money is going.
+            Plan for... <br /> {samplePurchases[0].name}
           </h2>
         </div>
       </div>
