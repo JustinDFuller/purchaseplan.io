@@ -3,7 +3,7 @@ service: default
 
 env_variables:
   PURCHASE_PLAN_IMAGE_BUCKET: "purchase-plan-images-dev"
-  ENV: "production"
+  ENV: "development"
 
 handlers:
   - url: /static/css
