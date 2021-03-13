@@ -20,7 +20,11 @@ const defaults = {
 };
 
 export function New(data = defaults) {
-  const m = new Magic("pk_live_3041D9E15537098D");
+  const m = new Magic(
+    process.env.NODE_ENV === "production"
+      ? "pk_live_3041D9E15537098D"
+      : "pk_test_B7C5606EDFA77AF7"
+  );
 
   return {
     ...getterSetters(data, New),

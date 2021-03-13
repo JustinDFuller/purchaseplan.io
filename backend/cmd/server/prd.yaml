@@ -2,7 +2,8 @@ runtime: go114
 service: default
 
 env_variables:
-    PURCHASE_PLAN_IMAGE_BUCKET: "purchase-plan-images-prd"
+  PURCHASE_PLAN_IMAGE_BUCKET: "purchase-plan-images-prd"
+  ENV: "production"
 
 handlers:
   - url: /static/css
