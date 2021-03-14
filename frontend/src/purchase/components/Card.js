@@ -50,17 +50,29 @@ export const Card = User.withContext(function ({
           <div
             className="card-img-top"
             style={{
-              backgroundColor: "white",
-              backgroundImage: `url('${purchase.data.product.data.image}')`,
-              minHeight: "200px",
-              height: "100%",
+              background: "white",
               width: "100%",
-              backgroundPosition: "top",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
+              height: "100%",
             }}
-            alt={purchase.data.product.data.description}
-          />
+          >
+            <img
+              src={purchase.data.product.data.image}
+              alt={purchase.data.product.data.description}
+              style={{
+                backgroundColor: "white",
+                minHeight: "200px",
+                height: "100%",
+                width: "100%",
+                backgroundPosition: "top",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+              onError={(e) => {
+                e.target.onError = null;
+                e.target.src = `${process.env.PUBLIC_URL}/404.png`;
+              }}
+            />
+          </div>
         </Col>
         <Col xs={12} sm={7} md={8}>
           <div
