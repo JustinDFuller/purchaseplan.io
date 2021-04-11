@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import * as Layout from "./layout";
-import * as User from "./user";
-import * as Auth from "./auth";
+import * as Layout from "./src/layout";
+import * as User from "./src/user";
+import * as Auth from "./src/auth";
 
 export default function App() {
   const [user, setUser] = useState(User.New());
