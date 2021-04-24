@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { Image } from "react-native";
+
 import * as styles from "../styles";
 import * as Auth from "../auth";
 
@@ -7,13 +9,11 @@ export function Header() {
 
   return (
     <nav
-      className="navbar navbark-dark py-3 px-4 m-auto"
-      style={styles.combine(styles.dark, { maxWidth: 1500 })}
+      style={styles.combine(styles.dark)}
     >
       <a className="navbard-brand" href="/">
-        <img
-          src={`${process.env.PUBLIC_URL}/logo.png`}
-          alt="logo"
+        <Image 
+          source={require("../../assets/logo.png")}
           style={styles.logo}
         />
       </a>

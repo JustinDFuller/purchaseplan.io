@@ -1,3 +1,8 @@
+/* import BootstrapStyleSheet from 'react-native-bootstrap-styles';
+
+const bootstrapStyleSheet = new BootstrapStyleSheet();
+const { s, c  } = bootstrapStyleSheet; */
+
 export const dark = {
   background: "#1d1d42",
 };
