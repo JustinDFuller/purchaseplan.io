@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Image } from "react-native";
+import { View, Image } from "react-native";
 
 import * as styles from "../styles";
 import * as Auth from "../auth";
@@ -9,15 +9,15 @@ export function Header() {
 
   return (
     <nav
-      style={styles.combine(styles.dark)}
+      style={styles.combine(styles.dark, styles.nav)}
     >
       <a className="navbard-brand" href="/">
         <Image 
-          source={require("../../assets/logo.png")}
+          source={require("../../public/logo.png")}
           style={styles.logo}
         />
       </a>
-      <div className="d-flex">
+      <View>
         <ul className="navbar-nav">
           <li className="nav-item">
             {auth.state() === Auth.state.LOGGED_IN && (
@@ -31,7 +31,7 @@ export function Header() {
             )}
           </li>
         </ul>
-      </div>
+      </View>
     </nav>
   );
 }

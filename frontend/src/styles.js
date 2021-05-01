@@ -4,6 +4,7 @@ const bootstrapStyleSheet = new BootstrapStyleSheet();
 const { s, c  } = bootstrapStyleSheet; */
 
 export const dark = {
+  color: "white",
   background: "#1d1d42",
 };
 
@@ -25,6 +26,7 @@ export const darkLight = {
 
 export const logo = {
   height: "40px",
+  width: "60px",
 };
 
 export const text = {
@@ -58,6 +60,10 @@ export const bubble = {
   minWidth: 90,
   textAlign: "center",
 };
+
+export const nav = {
+  padding: "20px",
+}
 
 export function combine(...styles) {
   return Object.assign({}, ...styles);

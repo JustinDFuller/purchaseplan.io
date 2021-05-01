@@ -1,3 +1,5 @@
+import { View } from "react-native";
+
 import * as Auth from "../auth";
 import * as styles from "../styles";
 import * as User from "../user";
@@ -76,20 +78,20 @@ const samplePurchases = [
 export function Landing() {
   return (
     <>
-      <div className="row">
-        <div className="col-12 col-md-6 text-white pt-md-4 pl-lg-5">
-          <div className="m-auto" style={{ maxWidth: 424 }}>
+      <View style={styles.dark}>
+        <View className="col-12 col-md-6 text-white pt-md-4 pl-lg-5">
+          <View className="m-auto" style={{ maxWidth: 424 }}>
             <h5>Purchase Plan</h5>
             <h1>
               Not a wish list — <br className="d-lg-none" /> a plan.
             </h1>
-          </div>
-        </div>
-        <div className="col-12 col-md-6 mt-4 mt-md-0">
+          </View>
+        </View>
+        <View className="col-12 col-md-6 mt-4 mt-md-0">
           <Auth.Login />
-        </div>
-      </div>
-      <div
+        </View>
+      </View>
+      <View
         className="row text-white my-md-4 py-4"
         style={styles.combine(styles.darkLight, {
           minHeight: 200,
@@ -97,7 +99,7 @@ export function Landing() {
           borderBottom: "3px solid rgb(10, 10, 36)",
         })}
       >
-        <div className="col-12 col-lg-8 col-xl-7 pt-3 order-2 order-lg-1">
+        <View className="col-12 col-lg-8 col-xl-7 pt-3 order-2 order-lg-1">
           {samplePurchases[0].products.map((p) => (
             <Purchase.components.Card
               purchase={p}
@@ -105,13 +107,13 @@ export function Landing() {
               key={p.product().name()}
             />
           ))}
-        </div>
-        <div className="col-12 col-lg-4 col-xl-5 d-flex d-column align-items-center justify-content-center order-1 order-lg-2">
+        </View>
+        <View className="col-12 col-lg-4 col-xl-5 d-flex d-column align-items-center justify-content-center order-1 order-lg-2">
           <h2>
             Plan for... <br /> {samplePurchases[0].name}
           </h2>
-        </div>
-      </div>
+        </View>
+      </View>
     </>
   );
 }
