@@ -35,7 +35,7 @@ steps:
       event: [push, tag]
 
   - name: frontend
-    image: node:alpine
+    image: node:latest
     pull: if-not-exists
     commands:
       - cd frontend
