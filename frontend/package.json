@@ -27,8 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/**/*.js",
-    "pretty": "prettier --write ./src",
-    "prepare": "husky install"
+    "pretty": "prettier --write ./src"
   },
   "eslintConfig": {
     "extends": [
