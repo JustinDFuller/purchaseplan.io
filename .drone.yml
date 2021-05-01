@@ -35,7 +35,7 @@ steps:
       event: [push, tag]
 
   - name: frontend
-    image: node:latest
+    image: node:15
     pull: if-not-exists
     commands:
       - cd frontend
