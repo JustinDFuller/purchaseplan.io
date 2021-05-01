@@ -54,6 +54,10 @@ export const bubble = {
   textAlign: "center",
 };
 
+export const zIndex = {
+  zIndex: 999,
+};
+
 export function combine(...styles) {
   return Object.assign({}, ...styles);
 }

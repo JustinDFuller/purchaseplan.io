@@ -15,7 +15,14 @@ import { UndoRemove } from "./UndoRemove";
 
 export const Edit = React.forwardRef(function ({ children, onClick }, ref) {
   return (
-    <MenuIcon ref={ref} onClick={onClick} style={styles.pointer}>
+    <MenuIcon
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+      style={styles.combine(styles.pointer, styles.zIndex)}
+    >
       {children}
     </MenuIcon>
   );
@@ -45,46 +52,51 @@ export const Card = User.withContext(function ({
   }
   return (
     <Layout.Card noBody>
-      <Row>
-        <Col xs={12} sm={5} md={4}>
-          <div
-            className="card-img-top"
-            style={{
-              background: "white",
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            <img
-              src={purchase.data.product.data.image}
-              alt={purchase.data.product.data.description}
+      <a
+        href={purchase.data.product.data.url}
+        className="text-white"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Row>
+          <Col xs={12} sm={5} md={4}>
+            <div
+              className="card-img-top"
               style={{
-                backgroundColor: "white",
-                minHeight: "200px",
-                height: "100%",
+                background: "white",
                 width: "100%",
-                backgroundPosition: "top",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
+                height: "100%",
               }}
-              onError={(e) => {
-                e.target.onError = null;
-                e.target.src = `${process.env.PUBLIC_URL}/404.png`;
-              }}
-            />
-          </div>
-        </Col>
-        <Col xs={12} sm={7} md={8}>
-          <div
-            className="card-body pl-md-5 d-flex flex-column justify-content-between"
-            style={{ position: "relative", height: "100%" }}
-          >
-            <strong className="price-bubble" style={styles.bubble}>
-              ${purchase.data.product.data.price}
-            </strong>
+            >
+              <img
+                src={purchase.data.product.data.image}
+                alt={purchase.data.product.data.description}
+                style={{
+                  backgroundColor: "white",
+                  minHeight: "200px",
+                  height: "100%",
+                  width: "100%",
+                  backgroundPosition: "top",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                }}
+                onError={(e) => {
+                  e.target.onError = null;
+                  e.target.src = `${process.env.PUBLIC_URL}/404.png`;
+                }}
+              />
+            </div>
+          </Col>
+          <Col xs={12} sm={7} md={8}>
+            <div
+              className="card-body pl-md-5 d-flex flex-column justify-content-between"
+              style={{ position: "relative", height: "100%" }}
+            >
+              <strong className="price-bubble" style={styles.bubble}>
+                ${purchase.data.product.data.price}
+              </strong>
 
-            <div>
-              <a href={purchase.data.product.data.url} className="text-white">
+              <div>
                 <h5
                   className="card-title mt-3 mt-sm-0 d-inline-block"
                   style={{
@@ -97,42 +109,42 @@ export const Card = User.withContext(function ({
                 >
                   {purchase.data.product.data.name}
                 </h5>
-              </a>
 
-              {!readonly && (
-                <Dropdown className="float-right mt-3 mt-sm-0">
-                  <Dropdown.Toggle variant="primary" as={Edit}>
-                    Edit
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item
-                      as="button"
-                      onClick={() => onRemove(purchase)}
-                    >
-                      Remove this product
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      as="button"
-                      onClick={() => onPurchase(purchase)}
-                    >
-                      I purchased this product
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              )}
-            </div>
+                {!readonly && (
+                  <Dropdown className="float-right mt-3 mt-sm-0">
+                    <Dropdown.Toggle variant="primary" as={Edit}>
+                      Edit
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item
+                        as="button"
+                        onClick={() => onRemove(purchase)}
+                      >
+                        Remove this product
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        as="button"
+                        onClick={() => onPurchase(purchase)}
+                      >
+                        I purchased this product
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                )}
+              </div>
 
-            <p style={{ maxWidth: "90%" }}>
-              {purchase.data.product.data.description.slice(0, 150)}
-              {purchase.data.product.data.description.length > 150 && "..."}
-            </p>
-            <div style={{ marginTop: 10 }}>
-              <strong style={{ marginRight: 3 }}>Ready to buy</strong>
-              <span className="availablity">{purchase.displayDate()}</span>
+              <p style={{ maxWidth: "90%" }}>
+                {purchase.data.product.data.description.slice(0, 150)}
+                {purchase.data.product.data.description.length > 150 && "..."}
+              </p>
+              <div style={{ marginTop: 10 }}>
+                <strong style={{ marginRight: 3 }}>Ready to buy</strong>
+                <span className="availablity">{purchase.displayDate()}</span>
+              </div>
             </div>
-          </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </a>
     </Layout.Card>
   );
 });

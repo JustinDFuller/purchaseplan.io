@@ -155,12 +155,12 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
-		oneWeek := time.Now().Add(time.Hour * 24 * 7)
+		oneYear := time.Now().Add(time.Hour * 24 * 365)
 		j := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), jwt.MapClaims{
 			"issuer":        metadata.Issuer,
 			"publicAddress": metadata.PublicAddress,
 			"email":         metadata.Email,
-			"exp":           oneWeek.String(),
+			"exp":           oneYear.String(),
 		})
 
 		signed, err := j.SignedString([]byte(c.JwtSecret))
@@ -173,7 +173,7 @@ func New(opts ...Option) (S, error) {
 		http.SetCookie(w, &http.Cookie{
 			Name:    authCookieName,
 			Value:   signed,
-			Expires: oneWeek,
+			Expires: oneYear,
 			Path:    "/",
 		})
 
