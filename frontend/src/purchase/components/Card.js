@@ -72,7 +72,6 @@ export const Card = User.withContext(function ({
                 width: "100%",
                 height: "100%",
                 maxHeight: 270,
-                background: "white",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
