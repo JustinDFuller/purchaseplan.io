@@ -11,10 +11,15 @@ const purchaseDefaults = {
 };
 
 export function Purchase(data = purchaseDefaults) {
+  function quantity() {
+    return Number(data.quantity) >= 1 ? data.quantity : 1;
+  }
+
   return {
     ...getterSetters(data, Purchase),
+    quantity,
     price() {
-      return data.product.price() * (data.quantity >= 1 ? data.quantity : 1);
+      return data.product.price() * quantity();
     },
     clear() {
       return Purchase();

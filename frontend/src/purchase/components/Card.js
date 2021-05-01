@@ -54,6 +54,7 @@ export const Card = User.withContext(function ({
 
     notifications.show(<UndoPurchase purchase={purchase} />);
   }
+
   return (
     <Layout.Card noBody>
       <a
@@ -141,6 +142,18 @@ export const Card = User.withContext(function ({
                 {purchase.data.product.data.description.slice(0, 150)}
                 {purchase.data.product.data.description.length > 150 && "..."}
               </p>
+              {purchase.quantity() > 1 && (
+                <>
+                  <div>
+                    <strong style={{ marginRight: 3 }}>Quantity</strong>
+                    <span>{purchase.quantity()}</span>
+                  </div>
+                  <div style={{ marginTop: 10 }}>
+                    <strong style={{ marginRight: 3 }}>Individual Price</strong>
+                    <span>${purchase.product().price()}</span>
+                  </div>
+                </>
+              )}
               <div style={{ marginTop: 10 }}>
                 <strong style={{ marginRight: 3 }}>Ready to buy</strong>
                 <span className="availablity">{purchase.displayDate()}</span>
