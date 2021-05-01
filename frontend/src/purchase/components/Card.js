@@ -34,7 +34,9 @@ export const Card = User.withContext(function ({
   setUser,
   readonly,
 }) {
-  function onRemove(purchase) {
+  function onRemove(e, purchase) {
+    e.preventDefault();
+
     const purchases = user.purchases().remove(purchase);
     const u = user.setPurchases(purchases);
     setUser(u);
@@ -43,7 +45,9 @@ export const Card = User.withContext(function ({
     notifications.show(<UndoRemove purchase={purchase} />);
   }
 
-  function onPurchase(purchase) {
+  function onPurchase(e, purchase) {
+    e.preventDefault();
+
     const u = user.purchase(purchase);
     setUser(u);
     User.api.put(u);
@@ -89,11 +93,11 @@ export const Card = User.withContext(function ({
           </Col>
           <Col xs={12} sm={7} md={8}>
             <div
-              className="card-body pl-md-5 d-flex flex-column justify-content-between"
+              className="card-body pl-md-5 d-flex flex-column"
               style={{ position: "relative", height: "100%" }}
             >
               <strong className="price-bubble" style={styles.bubble}>
-                ${purchase.data.product.data.price}
+                ${purchase.price()}
               </strong>
 
               <div>
@@ -118,13 +122,13 @@ export const Card = User.withContext(function ({
                     <Dropdown.Menu>
                       <Dropdown.Item
                         as="button"
-                        onClick={() => onRemove(purchase)}
+                        onClick={(e) => onRemove(e, purchase)}
                       >
                         Remove this product
                       </Dropdown.Item>
                       <Dropdown.Item
                         as="button"
-                        onClick={() => onPurchase(purchase)}
+                        onClick={(e) => onPurchase(e, purchase)}
                       >
                         I purchased this product
                       </Dropdown.Item>

@@ -20,6 +20,7 @@ export const Form = User.withContext(function ({
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState(productDefaults);
   const [error, setError] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   async function handleSubmit(url) {
     setLoading(true);
@@ -45,7 +46,9 @@ export const Form = User.withContext(function ({
     }
 
     setError(NO_ERROR);
-    const u = user.addPurchase(User.Purchase().setProduct(product));
+    const u = user.addPurchase(
+      User.Purchase().setQuantity(quantity).setProduct(product)
+    );
     setUser(u);
     User.api.put(u);
     setProduct(null);
@@ -108,10 +111,8 @@ export const Form = User.withContext(function ({
             </div>
             <div className="form-group col-12">
               <div className="row">
-                <label className="form-label">Price</label>
-              </div>
-              <div className="row align-items-center">
-                <div className="col-12 p-0">
+                <div className="col-12 col-md-6 pl-0">
+                  <label className="form-label">Price</label>
                   <input
                     type="number"
                     className="form-control"
@@ -125,6 +126,21 @@ export const Form = User.withContext(function ({
                     required
                   />
                 </div>
+                <div className="col-12 col-md-6 pr-0">
+                  <label className="form-label">Quantity</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    placeholder="0"
+                    min="1"
+                    max="9999"
+                    value={quantity.toString() || "1"}
+                    onChange={(e) => setQuantity(Number(e.target.value))}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="row align-items-center">
                 <div className="col-12 text-right mt-4">
                   <div className="row">
                     <div className="col-12 col-md-6 p-0 mb-2 pr-md-3">

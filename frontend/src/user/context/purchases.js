@@ -7,11 +7,15 @@ const purchaseDefaults = {
   purchased: false,
   purchasedAt: null,
   product: ProductData.New(),
+  quantity: 1,
 };
 
 export function Purchase(data = purchaseDefaults) {
   return {
     ...getterSetters(data, Purchase),
+    price() {
+      return data.product.price() * (data.quantity >= 1 ? data.quantity : 1);
+    },
     clear() {
       return Purchase();
     },

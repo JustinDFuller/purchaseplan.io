@@ -77,13 +77,11 @@ function interval({
 
   for (let i = 0; i < purchases.length; i++) {
     const p = purchases[i];
-    const product = p.product();
-
     if (p.shouldSkip()) {
       continue;
     }
 
-    total += product.price();
+    total += p.price();
 
     if (p.is(purchase)) {
       break;

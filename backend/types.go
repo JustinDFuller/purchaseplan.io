@@ -23,6 +23,7 @@ type (
 		PurchasedAt *time.Time `json:"purchasedAt"`
 		Date        *time.Time `json:"date"`
 		Product     Product    `json:"product"`
+		Quantity    int32      `json:"quantity"`
 	}
 
 	// Product contains information about the thing a User wants to buy.
