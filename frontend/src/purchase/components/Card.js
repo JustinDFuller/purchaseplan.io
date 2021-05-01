@@ -71,6 +71,11 @@ export const Card = User.withContext(function ({
                 background: "white",
                 width: "100%",
                 height: "100%",
+                maxHeight: 270,
+                background: "white",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <img
@@ -78,12 +83,10 @@ export const Card = User.withContext(function ({
                 alt={purchase.data.product.data.description}
                 style={{
                   backgroundColor: "white",
-                  minHeight: "200px",
-                  height: "100%",
-                  width: "100%",
-                  backgroundPosition: "top",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
+                  height: "auto",
+                  width: "auto",
+                  maxHeight: "100%",
+                  maxWidth: "100%",
                 }}
                 onError={(e) => {
                   e.target.onError = null;
