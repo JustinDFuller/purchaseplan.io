@@ -21,7 +21,7 @@ const defaults = {
 
 export function New(data = defaults) {
   const m = new Magic(
-    process.env.NODE_ENV === "production"
+    window.location.host === "purchaseplan.io"
       ? "pk_live_3041D9E15537098D"
       : "pk_test_B7C5606EDFA77AF7"
   );
