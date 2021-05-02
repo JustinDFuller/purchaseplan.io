@@ -66,7 +66,6 @@ export function URL({ onSubmit, loading, error }) {
               <>
                 <div className="col-12 col-lg-10">
                   <input
-                    autoFocus
                     required
                     type="url"
                     className="form-control"

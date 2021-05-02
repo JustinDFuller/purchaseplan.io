@@ -8,18 +8,10 @@ export function Header() {
   return (
     <>
       <div className="alert alert-dark text-center" style={{ borderRadius: 0 }}>
-        Welcome to the Purchase Plan{" "}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.productplan.com/glossary/alpha-test/#:~:text=Alpha%20testing%20is%20the%20first,everything%20it's%20supposed%20to%20do."
-        >
-          alpha
-        </a>
-        . The website may not work perfectly and may change at any time.
+        Welcome to the Purchase Plan early access. The website may not work perfectly and may change at any time.
       </div>
       <nav
-        className="navbar navbark-dark py-3 px-4 m-auto"
+        className="navbar navbark-dark py-3 px-3 m-auto"
         style={styles.combine(styles.dark, { maxWidth: 1500 })}
       >
         <a className="navbard-brand" href="/">
