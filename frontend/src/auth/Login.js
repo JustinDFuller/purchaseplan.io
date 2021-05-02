@@ -14,8 +14,8 @@ export const Login = withContext(
       const a = await auth.login({ email: user.email() });
       setAuth(a);
 
-      if (a.data.user) {
-        setUser(user.from(a.data.user));
+      if (a.user()) {
+        setUser(user.from(a.user()));
       }
     }
 

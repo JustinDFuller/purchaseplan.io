@@ -196,7 +196,7 @@ export function Landing() {
 
   return (
     <>
-      <div className="row">
+      <div className="row px-1 px-md-3">
         <div className="col-12 col-md-6 text-white pt-md-4 pl-lg-5">
           <div className="m-auto" style={{ maxWidth: 424 }}>
             <h5>Purchase Plan</h5>
@@ -210,7 +210,7 @@ export function Landing() {
         </div>
       </div>
       <div
-        className="row text-white my-md-4 py-4"
+        className="row text-white my-md-4 py-4 px-1 px-md-3"
         style={styles.combine(styles.darkLight, {
           minHeight: 200,
           borderTop: "3px solid rgb(10, 10, 36)",
@@ -226,7 +226,7 @@ export function Landing() {
             />
           ))}
         </div>
-        <div className="col-12 col-lg-4 col-xl-5 d-flex d-column align-items-center justify-content-center order-1 order-lg-2">
+        <div className="col-12 col-lg-4 col-xl-5 d-flex d-column align-items-md-center justify-content-md-center order-1 order-lg-2">
           <h2>
             Plan for... <br /> {samplePurchases[sample].name}
           </h2>
