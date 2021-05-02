@@ -48,7 +48,7 @@ export const List = User.withContext(function ({ user, setUser }) {
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           className="col-12"
-                          key={purchase.data.product.data.name}
+                          key={purchase.product().name()}
                         >
                           <Card purchase={purchase} />
                         </div>

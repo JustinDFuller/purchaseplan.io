@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { ReactComponent as MenuIcon } from "bootstrap-icons/icons/three-dots-vertical.svg";
 import Row from "react-bootstrap/Row";
@@ -9,6 +9,7 @@ import * as User from "../../user";
 import * as styles from "../../styles";
 import * as Layout from "../../layout";
 import * as notifications from "../../notifications";
+import { ProductForm } from "../../product/ProductForm";
 
 import { UndoPurchase } from "./UndoPurchase";
 import { UndoRemove } from "./UndoRemove";
@@ -34,6 +35,10 @@ export const Card = User.withContext(function ({
   setUser,
   readonly,
 }) {
+  const [editing, setEditing] = useState(false);
+  const [editProduct, setEditProduct] = useState(purchase.product());
+  const [editQuantity, setEditQuantity] = useState(purchase.quantity());
+
   function onRemove(e, purchase) {
     e.preventDefault();
 
@@ -53,6 +58,41 @@ export const Card = User.withContext(function ({
     User.api.put(u);
 
     notifications.show(<UndoPurchase purchase={purchase} />);
+  }
+
+  function onEdit(e, purchase) {
+    e.preventDefault();
+    setEditing(true);
+  }
+
+  function handleEditSubmit(e) {
+    e.preventDefault();
+    setEditing(false);
+    const u = user.setPurchase(
+      purchase.setQuantity(editQuantity).setProduct(editProduct)
+    );
+    setUser(u);
+    User.api.put(u);
+  }
+
+  function handleEditCancel(e) {
+    e.preventDefault();
+    setEditing(false);
+  }
+
+  if (editing) {
+    return (
+      <Layout.Card>
+        <ProductForm
+          onSubmit={handleEditSubmit}
+          onCancel={handleEditCancel}
+          product={editProduct}
+          setProduct={(p) => setEditProduct(p)}
+          quantity={editQuantity}
+          setQuantity={(q) => setEditQuantity(q)}
+        />
+      </Layout.Card>
+    );
   }
 
   return (
@@ -125,15 +165,21 @@ export const Card = User.withContext(function ({
                     <Dropdown.Menu>
                       <Dropdown.Item
                         as="button"
+                        onClick={(e) => onEdit(e, purchase)}
+                      >
+                        Edit
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        as="button"
                         onClick={(e) => onRemove(e, purchase)}
                       >
-                        Remove this product
+                        I don't want to buy this
                       </Dropdown.Item>
                       <Dropdown.Item
                         as="button"
                         onClick={(e) => onPurchase(e, purchase)}
                       >
-                        I purchased this product
+                        I purchased this
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>

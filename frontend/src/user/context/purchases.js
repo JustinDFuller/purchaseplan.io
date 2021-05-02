@@ -158,5 +158,15 @@ export function New(input = defaults) {
         purchases,
       });
     },
+    setPurchase(purchase) {
+      const i = data.purchases.findIndex((p) => p.is(purchase));
+      const purchases = data.purchases.slice();
+      purchases[i] = purchase;
+
+      return New({
+        ...data,
+        purchases,
+      });
+    },
   };
 }

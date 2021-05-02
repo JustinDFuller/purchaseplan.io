@@ -47,6 +47,13 @@ export function New(input = defaults) {
         purchases: data.purchases.addPurchase(purchase),
       });
     },
+    setPurchase(purchase) {
+      return New({
+        ...data,
+        purchases: data.purchases.setPurchase(purchase),
+      });
+    },
+
     lastPaycheckDisplay() {
       const t = new Date();
       const l = data.lastPaycheck;
