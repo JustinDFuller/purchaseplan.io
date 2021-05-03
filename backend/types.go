@@ -7,6 +7,7 @@ type (
 	// The data is stored in an object database, so purchases
 	// Are stored as a property on the user, rather than by association.
 	User struct {
+		ID            string     `json:"id"`
 		Email         string     `json:"email"`
 		Issuer        string     `json:"issuer"`
 		Saved         int64      `json:"saved,omitempty"`
@@ -18,6 +19,7 @@ type (
 
 	// Purchase is something a User wants to buy.
 	Purchase struct {
+		ID          string     `json:"id"`
 		Deleted     bool       `json:"deleted"`
 		Purchased   bool       `json:"purchased"`
 		PurchasedAt *time.Time `json:"purchasedAt"`

@@ -1,9 +1,5 @@
-import cn from "classnames";
-
 import * as styles from "../styles";
 import { Submit } from "../forms/Submit";
-
-const DUPLICATE_NAME = 2;
 
 export function ProductForm({
   onSubmit,
@@ -23,16 +19,11 @@ export function ProductForm({
           <label className="form-label">Name</label>
           <input
             type="text"
-            className={cn("form-control", {
-              "is-invalid": error === DUPLICATE_NAME,
-            })}
+            className="form-control"
             value={product.name()}
             onChange={(e) => setProduct(product.setName(e.target.value))}
             required
           />
-          {error === DUPLICATE_NAME && (
-            <div className="invalid-feedback">Please choose a unique name.</div>
-          )}
         </div>
         <div className="form-group col-12">
           <label className="form-label">Description</label>

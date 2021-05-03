@@ -8,7 +8,6 @@ import { ProductForm } from "./ProductForm";
 
 const NO_ERROR = 0;
 const INVALID_SEARCH = 1;
-const DUPLICATE_NAME = 2;
 
 export const Form = User.withContext(function ({
   user,
@@ -38,23 +37,21 @@ export const Form = User.withContext(function ({
   function handleSubmitEdit(e) {
     e.preventDefault();
 
-    if (user.isDuplicateName(product)) {
-      setError(DUPLICATE_NAME);
-      return;
-    }
-
-    setError(NO_ERROR);
     const u = user.addPurchase(
       User.Purchase().setQuantity(quantity).setProduct(product)
     );
-    setUser(u);
     User.api.put(u);
+
+    setUser(u);
+    setError(NO_ERROR);
     setProduct(null);
+    setQuantity(1);
   }
 
   function handleCancel(e) {
     e.preventDefault();
     setProduct(null);
+    setQuantity(1);
   }
 
   if (!product) {

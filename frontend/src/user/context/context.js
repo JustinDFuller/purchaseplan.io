@@ -1,10 +1,12 @@
 import React from "react";
+import { uuid } from "uuidv4";
 
 import { getterSetters } from "../../object/getterSetters";
 import * as availabilities from "./availabilities";
 import * as Purchases from "./purchases";
 
 const defaults = {
+  id: uuid(),
   email: "",
   saved: 100,
   frequency: "Every 2 Weeks",
@@ -68,20 +70,17 @@ export function New(input = defaults) {
 
       return data.lastPaycheck.toLocaleDateString("en-US");
     },
-    isDuplicateName(product) {
-      return data.purchases.findProduct(product);
-    },
     purchase(purchase) {
       return New({
         ...data,
-        saved: data.saved - purchase.product().price(),
+        saved: data.saved - purchase.price(),
         purchases: data.purchases.purchase(purchase),
       });
     },
     undoPurchase(purchase) {
       return New({
         ...data,
-        saved: data.saved + purchase.product().price(),
+        saved: data.saved + purchase.price(),
         purchases: data.purchases.undoPurchase(purchase),
       });
     },

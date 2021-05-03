@@ -1,7 +1,10 @@
+import { uuid } from "uuidv4";
+
 import { getterSetters } from "../../object/getterSetters";
 import * as ProductData from "../../product/data";
 
 const purchaseDefaults = {
+  id: null,
   date: null,
   deleted: false,
   purchased: false,
@@ -13,6 +16,13 @@ const purchaseDefaults = {
 export function Purchase(data = purchaseDefaults) {
   function quantity() {
     return Number(data.quantity) >= 1 ? data.quantity : 1;
+  }
+
+  if (!data.id) {
+    data = {
+      ...data,
+      id: uuid(),
+    };
   }
 
   return {
@@ -28,7 +38,7 @@ export function Purchase(data = purchaseDefaults) {
       return data !== purchaseDefaults;
     },
     is(purchase) {
-      return purchase.product().name() === data.product.name(); // unique name is enforced
+      return purchase.id() === data.id;
     },
     from(purchase) {
       return Purchase({
@@ -46,9 +56,6 @@ export function Purchase(data = purchaseDefaults) {
       }
 
       return data.date?.toLocaleDateString("en-US") ?? "";
-    },
-    id() {
-      return data.product?.name(); // name is unique
     },
   };
 }
@@ -112,11 +119,6 @@ export function New(input = defaults) {
         purchases: purchases?.map((p) => Purchase().from(p)) || [],
         availability,
       });
-    },
-    findProduct(product) {
-      return data.purchases.find(
-        (purchase) => purchase.product().name() === product.name()
-      );
     },
     undoRemove(purchase) {
       const i = data.purchases.findIndex((p) => p.is(purchase));
