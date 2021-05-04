@@ -36,9 +36,9 @@ export function ProductForm({
           />
         </div>
       </div>
-      <div className="form-group col-12">
+      <div className="col-12">
         <div className="row">
-          <div className="col-12 col-md-6 pl-0">
+          <div className="form-group col-12 col-md-6 pl-0 pr-0 pr-md-3">
             <label className="form-label">Price</label>
             <input
               type="number"
@@ -49,7 +49,7 @@ export function ProductForm({
               required
             />
           </div>
-          <div className="col-12 col-md-6 pr-0">
+          <div className="form-group col-12 col-md-6 pr-0 pl-0 pl-md-3">
             <label className="form-label">Quantity</label>
             <input
               type="number"
