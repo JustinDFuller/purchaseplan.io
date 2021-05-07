@@ -158,7 +158,7 @@ steps:
           build {{build.link}} (dev deploy) failed.
         {{/success}}
     depends_on:
-      - deploy-dev
+      - e2e-dev
     when:
       event: push
       branch: [main]
