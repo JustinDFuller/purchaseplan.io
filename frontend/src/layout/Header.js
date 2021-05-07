@@ -30,6 +30,7 @@ export function Header() {
               href="https://medium.com/@purchaseplan.io"
               target="_blank"
               rel="noreferrer"
+              data-testid="blog"
             >
               Blog
             </a>

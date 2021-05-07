@@ -4,7 +4,8 @@
   "description": "End-to-end tests for purchaseplan.io",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress run",
+    "start": "cypress open"
   },
   "repository": {
     "type": "git",

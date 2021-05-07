@@ -8,4 +8,10 @@ describe('Landing Page', function () {
     cy.visit(url("/")) 
     cy.contains("Log in")
   })
+
+  it("Links to blog", function() {
+    cy.visit(url("/"))
+
+    cy.get("[data-testid=blog]").should("have.attr",  "href", "https://medium.com/@purchaseplan.io").contains("Blog")
+  })
 })

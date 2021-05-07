@@ -93,6 +93,33 @@ steps:
       - backend-lint
       - terraform-dev
 
+  - name: e2e-dev
+    image: node:15
+    pull: if-not-exists
+    environment:
+      TEST_URL: https://dev.purchaseplan.io
+    commands:
+      - cd e2e
+      - npm ci
+      - npm test
+    when:
+      event: push
+      branch: main
+    depends_on:
+      - deploy-dev
+
+  - name: setup-terraform
+    image: bash
+    pull: if-not-exists
+    environment:
+      SERVICE_ACCOUNT_CREDENTIALS:
+        from_secret: TERRAFORM_CREDENTIALS
+    commands:
+      - ./scripts/setup
+    depends_on:
+      - backend
+
+
   - name: terraform-prd
     image: hashicorp/terraform:light
     pull: if-not-exists
