@@ -94,7 +94,7 @@ steps:
       - terraform-dev
 
   - name: e2e-dev
-    image: node:15
+    image: cypress/included:6.4.0
     pull: if-not-exists
     environment:
       TEST_URL: https://dev.purchaseplan.io
@@ -109,6 +109,27 @@ steps:
       branch: main
     depends_on:
       - deploy-dev
+
+  - name: slack-dev
+    image: plugins/slack
+    pull: if-not-exists
+    settings:
+      webhook:
+        from_secret: SLACK_WEBHOOK_URL
+      channel: drone-alerts
+      link_names: true
+      template: >
+        {{#success build.status}}
+          build {{build.link}} (dev deploy) succeeded.
+        {{else}}
+          build {{build.link}} (dev deploy) failed.
+        {{/success}}
+    depends_on:
+      - e2e-dev
+    when:
+      event: push
+      branch: [main]
+      status: [ success, failure  ]
 
   - name: terraform-prd
     image: hashicorp/terraform:light
@@ -142,27 +163,6 @@ steps:
       - frontend
       - backend
       - terraform-prd
-
-  - name: slack-dev
-    image: plugins/slack
-    pull: if-not-exists
-    settings:
-      webhook:
-        from_secret: SLACK_WEBHOOK_URL
-      channel: drone-alerts
-      link_names: true
-      template: >
-        {{#success build.status}}
-          build {{build.link}} (dev deploy) succeeded.
-        {{else}}
-          build {{build.link}} (dev deploy) failed.
-        {{/success}}
-    depends_on:
-      - e2e-dev
-    when:
-      event: push
-      branch: [main]
-      status: [ success, failure  ]
 
   - name: slack-prd
     image: plugins/slack
