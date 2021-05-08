@@ -96,12 +96,10 @@ steps:
   - name: e2e-dev
     image: cypress/included:6.4.0
     pull: if-not-exists
-    environment:
-      TEST_URL: https://dev.purchaseplan.io
     commands:
       - cd e2e
       - npm ci
-      - npm test
+      - npm test -- --config baseUrl=https://dev.purchaseplan.io
     when:
       environment:
         TEST_URL: https://dev.purchaseplan.io
