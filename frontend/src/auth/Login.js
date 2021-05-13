@@ -49,6 +49,7 @@ export const Login = withContext(
               <div className="col-12 col-lg-9">
                 <input
                   required
+                  data-testid="login-input"
                   className="form-control"
                   type="email"
                   name="email"
@@ -63,6 +64,7 @@ export const Login = withContext(
                   onClick={handleSubmit}
                   loading={auth.state() === Auth.state.LOGGING_IN}
                   text="Log in"
+                  dataTestid="login-button"
                 />
               </div>
             </div>

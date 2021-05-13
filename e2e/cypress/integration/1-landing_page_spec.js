@@ -23,7 +23,6 @@ describe('Landing Page', function () {
     dataTestId("login-button")
       .click()
 
-    cy.contains("We emailed a magic link to")
-    cy.contains("e2e-tests@purchaseplan.io")
+    cy.get('[data-magic-iframe-label="auth.magic.link"]')
   })
 })
