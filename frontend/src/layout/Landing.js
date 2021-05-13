@@ -51,17 +51,6 @@ const samplePurchases = [
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/98e578528df6cc80d41eeb3dc5c6dc55?alt=media",
         }),
       }),
-      User.Purchase({
-        date: makeDate(30),
-        product: Product.data.New({
-          name: "Chromecast Ultra (4k)",
-          description: "To watch things with!",
-          price: 49,
-          url: "https://store.google.com/us/product/chromecast_google_tv",
-          image:
-            "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/173d7f269d7e395e05f53b47729b3fc2?alt=media",
-        }),
-      }),
     ],
   },
   {
@@ -104,18 +93,6 @@ const samplePurchases = [
             "https://www.lowes.com/pd/KitchenAid-48-in-6-Burners-Stainless-Steel-Gas-Cooktop-Common-48-in-Actual-48-in/1001227780",
         }),
       }),
-      User.Purchase({
-        date: makeDate(60),
-        product: Product.data.New({
-          name: "The Pour-Over Social Kit",
-          description:
-            "Stagg EKG Electric Pour-Over Kettle, Pour-Over Dripper, Double Wall Carafe, 30 paper filters.",
-          price: 229,
-          url: "https://fellowproducts.com/products/the-pour-over-social-kit",
-          image:
-            "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/cb87270a139882b41365b0af64ab1e8d?alt=media",
-        }),
-      }),
     ],
   },
   {
@@ -144,18 +121,6 @@ const samplePurchases = [
             "https://www.ikea.com/us/en/p/aepplaroe-table-outdoor-brown-stained-70419787/",
           image:
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/9d8a7496cc6cfa83226ac32d3b2802b1?alt=media",
-        }),
-      }),
-      User.Purchase({
-        date: makeDate(20),
-        product: Product.data.New({
-          name: "ÄPPLARÖ Armchair x8",
-          description: "ÄPPLARÖ Armchair to go with the ÄPPLARÖ table.",
-          price: 520,
-          url:
-            "https://www.ikea.com/us/en/p/aepplaroe-armchair-outdoor-brown-stained-20208527/",
-          image:
-            "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/63ffac63470928a1e2c1fa5d3092c412?alt=media",
         }),
       }),
       User.Purchase({

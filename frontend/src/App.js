@@ -30,7 +30,7 @@ export default function App() {
     <Auth.Context.Provider value={{ auth, setAuth }}>
       <User.Context.Provider value={{ user, setUser }}>
         <Layout.Header />
-        <div className="container-fluid p-md-0">
+        <div className="container-fluid">
           {auth.state() === Auth.state.LOGGED_IN ? (
             <Layout.Dashboard />
           ) : (

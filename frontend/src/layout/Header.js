@@ -27,7 +27,7 @@ export function Header() {
             <a
               className="btn btn-link nav-link"
               style={styles.text}
-              href="https://medium.com/@purchaseplan.io"
+              href="https://blog.purchaseplan.io"
               target="_blank"
               rel="noreferrer"
               data-testid="blog"
