@@ -10,7 +10,7 @@ describe('Landing Page', function () {
     cy.visit("/")
 
     dataTestId("blog")
-      .should("have.attr",  "href", "https://medium.com/@purchaseplan.io")
+      .should("have.attr",  "href", "https://blog.purchaseplan.io")
       .contains("Blog")
   })
 
