@@ -44,7 +44,7 @@ export function ProductForm({
               type="number"
               className="form-control"
               placeholder="0"
-              value={product.data.price ? product.data.price.toString() : ""}
+              value={product.price() ? product.price().toString() : ""}
               onChange={(e) => setProduct(product.setPrice(e.target.value))}
               required
             />

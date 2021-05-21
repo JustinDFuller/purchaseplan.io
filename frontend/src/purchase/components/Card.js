@@ -98,7 +98,7 @@ export const Card = User.withContext(function ({
   return (
     <Layout.Card noBody style={{ height: 250 }}>
       <a
-        href={purchase.data.product.data.url}
+        href={purchase.product().url()}
         className="text-white"
         target="_blank"
         rel="noopener noreferrer"
@@ -117,8 +117,8 @@ export const Card = User.withContext(function ({
               }}
             >
               <img
-                src={purchase.data.product.data.image}
-                alt={purchase.data.product.data.description}
+                src={purchase.product().image()}
+                alt={purchase.product().description()}
                 style={{
                   backgroundColor: "white",
                   height: "auto",
@@ -153,7 +153,7 @@ export const Card = User.withContext(function ({
                     maxWidth: readonly ? "100%" : "90%",
                   }}
                 >
-                  {purchase.data.product.data.name}
+                  {purchase.product().name()}
                 </h5>
 
                 {!readonly && (
@@ -186,8 +186,8 @@ export const Card = User.withContext(function ({
               </div>
 
               <p style={{ maxWidth: "90%" }}>
-                {purchase.data.product.data.description.slice(0, 150)}
-                {purchase.data.product.data.description.length > 150 && "..."}
+                {purchase.product().description().slice(0, 150)}
+                {purchase.product().description().length > 150 && "..."}
               </p>
               {purchase.quantity() > 1 && (
                 <>

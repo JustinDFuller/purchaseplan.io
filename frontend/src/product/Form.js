@@ -70,8 +70,8 @@ export const Form = User.withContext(function ({
         <div className="col-12 col-md-4 mb-4">
           <img
             className="card-img-top"
-            src={product.data.image}
-            alt={product.data.description}
+            src={product.image()}
+            alt={product.description()}
           />
         </div>
         <div className="col-12 col-md-8">

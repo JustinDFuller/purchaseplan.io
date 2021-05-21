@@ -6,7 +6,6 @@
 // and a toJSON method to help with JSON.stringify support.
 export function getterSetters(data, constructor) {
   const obj = {
-    data: Object.freeze(data), // Need to make child objects immutable as well.
     toJSON() {
       return data;
     },
