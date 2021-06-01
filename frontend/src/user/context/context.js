@@ -55,10 +55,12 @@ export function New(input = defaults) {
         purchases: data.purchases.setPurchase(purchase),
       });
     },
-
+    lastPaycheck() {
+      return data.purchases.availability().date();
+    },
     lastPaycheckDisplay() {
       const t = new Date();
-      const l = data.lastPaycheck;
+      const l = data.purchases.availability().date();
 
       if (
         l.getYear() === t.getYear() &&
@@ -68,7 +70,7 @@ export function New(input = defaults) {
         return "Today";
       }
 
-      return data.lastPaycheck.toLocaleDateString("en-US");
+      return l.toLocaleDateString("en-US");
     },
     purchase(purchase) {
       return New({
