@@ -72,6 +72,10 @@ export const Form = User.withContext(function ({
             className="card-img-top"
             src={product.image()}
             alt={product.description()}
+            onError={(e) => {
+              e.target.onError = null;
+              e.target.src = `${process.env.PUBLIC_URL}/404.png`;
+            }}
           />
         </div>
         <div className="col-12 col-md-8">
