@@ -88,6 +88,8 @@ export function classes(...inputs) {
           }
         }
         break;
+      default:
+        break;
     }
   }
 

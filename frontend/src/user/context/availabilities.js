@@ -150,11 +150,3 @@ function onceAMonth({ lastPaycheck, saved, contributions }) {
   };
 }
 
-function interval({
-  lastPaycheck,
-  saved,
-  purchases,
-  purchase,
-  contributions,
-  interval,
-}) {}
