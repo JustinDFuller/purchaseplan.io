@@ -69,3 +69,27 @@ export function on(bool, style) {
 
   return {};
 }
+
+export function classes(...inputs) {
+  const classNames = [];
+
+  for (const i of inputs) {
+    switch (typeof i) {
+      case "string":
+        classNames.push(i);
+        break;
+      case "object":
+        console.log(i);
+        for (const key in i) {
+          const truthy = i[key];
+
+          if (truthy) {
+            classNames.push(key);
+          }
+        }
+        break;
+    }
+  }
+
+  return classNames;
+}

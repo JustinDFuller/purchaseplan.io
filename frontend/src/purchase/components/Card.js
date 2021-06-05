@@ -96,7 +96,7 @@ export const Card = User.withContext(function ({
   }
 
   return (
-    <Layout.Card noBody style={{ height: 250 }}>
+    <Layout.Card noBody>
       <a
         href={purchase.product().url()}
         className="text-white"
@@ -110,7 +110,7 @@ export const Card = User.withContext(function ({
               style={{
                 background: "white",
                 width: "100%",
-                height: 246,
+                height: 250,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
