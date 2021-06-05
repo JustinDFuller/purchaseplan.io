@@ -171,10 +171,12 @@ export function New(input = defaults) {
       });
     },
     total() {
-      return data.purchases.reduce(
-        (sum, purchase) => sum + purchase.price(),
-        0
-      );
+      return data.purchases.reduce((sum, purchase) => {
+        if (purchase.shouldSkip()) {
+          return sum;
+        }
+        return sum + purchase.price();
+      }, 0);
     },
   };
 }

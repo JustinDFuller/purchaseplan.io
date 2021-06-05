@@ -131,9 +131,9 @@ export const SavingsOverview = withContext(function ({ user, setUser }) {
           </div>
           <div className="col-12 col-xl-5">
             <strong style={styles.textDark}>
-              {user.remaining() >= 0 ? "Savings Remaining" : "Over Budget"}
+              {user.remaining() >= 0 ? "Remaining Budget" : "Need To Save"}
             </strong>
-            <p>{formatter.format(user.remaining())}</p>
+            <p>{formatter.format(Math.abs(user.remaining()))}</p>
           </div>
         </div>
       </>
