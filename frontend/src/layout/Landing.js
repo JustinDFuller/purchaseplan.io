@@ -192,8 +192,10 @@ export function Landing() {
           ))}
         </div>
         <div className="col-12 col-lg-4 col-xl-5 d-flex d-column align-items-md-center justify-content-md-center order-1 order-lg-2">
-          <h2>
-            Plan for... <br /> {samplePurchases[sample].name}
+          <h2 className="m-auto py-3 py-lg-0">
+            Plan for <span className="d-none d-lg-inline-block">...</span>{" "}
+            <br className="d-none d-lg-inline-block" />{" "}
+            {samplePurchases[sample].name}
           </h2>
         </div>
       </div>
