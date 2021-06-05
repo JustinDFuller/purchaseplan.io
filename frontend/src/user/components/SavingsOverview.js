@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil.svg";
 
-import * as styles from "../styles";
-import { Card } from "../layout/Card";
-import { withContext } from "./context/with";
-import { Submit } from "../forms/Submit";
-import * as availabilities from "./context/availabilities";
-import * as api from "./api";
+import * as styles from "../../styles";
+import { Card } from "../../layout/Card";
+import { withContext } from "../context/with";
+import { Submit } from "../../forms/Submit";
+import * as availabilities from "../context/availabilities";
+import * as api from "../api";
 
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
