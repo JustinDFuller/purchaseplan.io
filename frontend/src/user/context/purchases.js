@@ -170,5 +170,11 @@ export function New(input = defaults) {
         purchases,
       });
     },
+    total() {
+      return data.purchases.reduce(
+        (sum, purchase) => sum + purchase.price(),
+        0
+      );
+    },
   };
 }

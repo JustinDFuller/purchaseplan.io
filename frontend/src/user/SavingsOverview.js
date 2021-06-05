@@ -8,6 +8,11 @@ import { Submit } from "../forms/Submit";
 import * as availabilities from "./context/availabilities";
 import * as api from "./api";
 
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
 export const SavingsOverview = withContext(function ({ user, setUser }) {
   const [edit, setEdit] = useState(false);
 
@@ -112,17 +117,23 @@ export const SavingsOverview = withContext(function ({ user, setUser }) {
         <div className="row mt-3">
           <div className="col-12 col-xl-7">
             <strong style={styles.textDark}>Saved So Far</strong>
-            <p>${user.saved()}</p>
+            <p>{formatter.format(user.saved())}</p>
           </div>
           <div className="col-12 col-xl-5">
             <strong style={styles.textDark}>Planned Savings</strong>
             <p>
-              ${user.contributions()}/{user.frequency()}
+              {formatter.format(user.contributions())}/{user.frequency()}
             </p>
           </div>
-          <div className="col-12">
+          <div className="col-12 col-xl-7">
             <strong style={styles.textDark}>Last Paycheck</strong>
             <p>{user.lastPaycheckDisplay()}</p>
+          </div>
+          <div className="col-12 col-xl-5">
+            <strong style={styles.textDark}>
+              {user.remaining() >= 0 ? "Savings Remaining" : "Over Budget"}
+            </strong>
+            <p>{formatter.format(user.remaining())}</p>
           </div>
         </div>
       </>

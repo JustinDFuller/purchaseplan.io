@@ -86,6 +86,9 @@ export function New(input = defaults) {
         purchases: data.purchases.undoPurchase(purchase),
       });
     },
+    remaining() {
+      return data.saved - data.purchases.total();
+    },
   };
 }
 
