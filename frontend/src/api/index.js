@@ -1,17 +1,9 @@
-const hostname = window.location.hostname;
-const local = hostname === "localhost";
-const host = `//${hostname}${local ? ":8080" : ""}`;
-
 function withHost(url) {
-  return `${host}${url}`;
-}
-
-function isNotLocal() {
-  return !local;
+  return `//${window.location.host}${url}`;
 }
 
 function credentials() {
-  return isNotLocal() ? "same-origin" : "include";
+  return "same-origin";
 }
 
 export async function fetch(url, options) {
@@ -20,6 +12,7 @@ export async function fetch(url, options) {
       ...options,
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
         ...options?.headers,
       },
       credentials: credentials(),

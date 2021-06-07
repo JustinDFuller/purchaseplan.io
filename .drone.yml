@@ -139,8 +139,10 @@ steps:
       - terraform init
         # - terraform apply -auto-approve
     when:
-      event: tag
+      event: [push, tag]
+      branch: [main]
     depends_on:
+      - e2e-dev
       - setup-terraform
 
   - name: deploy-prd
@@ -156,7 +158,8 @@ steps:
       app_file: prd.yaml
       max_versions: 10
     when:
-      event: tag
+      event: [push, tag]
+      branch: [main]
     depends_on:
       - frontend
       - backend
@@ -179,5 +182,6 @@ steps:
     depends_on:
       - deploy-prd
     when:
-      event: tag
+      event: [push, tag]
+      branch: [main]
       status: [ success, failure  ]

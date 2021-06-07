@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
