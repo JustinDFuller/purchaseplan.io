@@ -14,7 +14,6 @@ type C struct {
 	AmazonPAPIAccessKey string `secretmanager:"AMAZON_PAPI_ACCESS_KEY"`
 	AmazonPAPISecretKey string `secretmanager:"AMAZON_PAPI_SECRET_KEY"`
 	MagicSecretKey      string `secretmanager:"MAGIC_SECRET_KEY"`
-	MagicTestSecretKey  string `secretmanager:"MAGIC_TEST_SECRET_KEY"`
 	JwtSecret           string `secretmanager:"JWT_SECRET"`
 }
 

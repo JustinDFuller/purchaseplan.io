@@ -127,12 +127,7 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
-		magicSecret := c.MagicTestSecretKey
-		if c.ENV == "production" {
-			magicSecret = c.MagicSecretKey
-		}
-
-		m := client.New(magicSecret, magic.NewDefaultClient())
+		m := client.New(c.MagicSecretKey, magic.NewDefaultClient())
 		metadata, err := m.User.GetMetadataByIssuer(tk.GetIssuer())
 		if err != nil {
 			log.Printf("Unable to retrieve user metadata: %s", err)

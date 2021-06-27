@@ -20,11 +20,7 @@ const defaults = {
 };
 
 export function New(data = defaults) {
-  const m = new Magic(
-    window.location.host === "purchaseplan.io"
-      ? "pk_live_3041D9E15537098D"
-      : "pk_test_B7C5606EDFA77AF7"
-  );
+  const m = new Magic("pk_live_06BF9798B97B7BB7");
 
   return {
     ...getterSetters(data, New),
