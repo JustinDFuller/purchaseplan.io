@@ -17,6 +17,7 @@ import (
 	"github.com/justindfuller/purchaseplan.io/backend/config"
 	"github.com/justindfuller/purchaseplan.io/backend/datastore"
 	"github.com/justindfuller/purchaseplan.io/backend/storage"
+	"github.com/justindfuller/purchaseplan.io/plan/user"
 	"github.com/magiclabs/magic-admin-go"
 	"github.com/magiclabs/magic-admin-go/client"
 	"github.com/magiclabs/magic-admin-go/token"
@@ -299,6 +300,25 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 	}, c)).Methods(http.MethodGet, http.MethodOptions)
+
+	r.HandleFunc("/actions/{action}", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
+		a, ok := mux.Vars(r)["action"]
+		if !ok {
+			log.Printf("missing action in URL")
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
+		log.Printf("Action: %s", a)
+
+		switch a {
+		case user.ActionSetLastPaycheck:
+			log.Printf("user.ActionSetLastPaycheck")
+		default:
+			log.Printf("Unknown action: %s", a)
+			w.WriteHeader(http.StatusBadRequest)
+		}
+	}, c)).Methods(http.MethodPost, http.MethodOptions)
 
 	s.Router = r
 

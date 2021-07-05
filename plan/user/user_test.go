@@ -1,6 +1,7 @@
 package user
 
 import (
+	"errors"
 	"reflect"
 	"testing"
 	"time"
@@ -12,29 +13,62 @@ import (
 func TestUser(t *testing.T) {
 	tests := []struct {
 		name   string
-		action plan.Actioner
-		user   plan.User
+		action plan.Action
+		given  plan.User
+		want   plan.User
+		err    error
 	}{
 		{
 			name: "set_last_paycheck",
 			action: SetLastPaycheck{
 				Date: "2018-07-22",
 			},
-			user: plan.User{
+			want: plan.User{
 				LastPaycheck: date(2018, time.July, 22, 0, 0, 0, 0, time.UTC),
 			},
+		},
+		{
+			name: "update_last_paycheck",
+			action: SetLastPaycheck{
+				Date: "2020-04-02",
+			},
+			given: plan.User{
+				LastPaycheck: date(2018, time.July, 22, 0, 0, 0, 0, time.UTC),
+			},
+			want: plan.User{
+				LastPaycheck: date(2020, time.April, 2, 0, 0, 0, 0, time.UTC),
+			},
+		},
+		{
+			name: "missing_date",
+			action: SetLastPaycheck{
+				Date: "",
+			},
+			err: ErrMissingDate,
+		},
+		{
+			name: "invalid_date",
+			action: SetLastPaycheck{
+				Date: "09-02-202009-02-2020",
+			},
+			err: ErrInvalidDate,
 		},
 	}
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			var u plan.User
-			if err := test.action.Act(&u); err != nil {
-				t.Error(err)
+			err := test.action.Act(&test.given)
+
+			if test.err == nil && err != nil {
+				t.Fatal(err)
 			}
 
-			if !reflect.DeepEqual(&test.user, &u) {
-				for _, d := range pretty.Diff(&test.user, &u) {
+			if test.err != nil && !errors.Is(err, test.err) {
+				t.Fatalf("Got error '%s' wanted '%s'", err, test.err)
+			}
+
+			if !reflect.DeepEqual(&test.want, &test.given) {
+				for _, d := range pretty.Diff(&test.want, &test.given) {
 					t.Log(d)
 				}
 				t.Error("Expected vs Actual")

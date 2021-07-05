@@ -39,8 +39,8 @@ type (
 	}
 )
 
-// Actioner performs an action on a User
-type Actioner interface {
+// Action modifies a User
+type Action interface {
 	// Act receives a pointer to a user, modifies it, or returns an error.
 	Act(*User) error
 }
