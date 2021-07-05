@@ -4,7 +4,7 @@ import (
 	"context"
 
 	ds "cloud.google.com/go/datastore"
-	planner "github.com/justindfuller/purchaseplan.io/backend"
+	"github.com/justindfuller/purchaseplan.io/plan"
 )
 
 // Client is a wrapper around the datastore client.
@@ -28,15 +28,15 @@ func (c Client) Close() {
 }
 
 // PutUser will save a User struct to datastore.
-func (c Client) PutUser(ctx context.Context, u planner.User) error {
+func (c Client) PutUser(ctx context.Context, u plan.User) error {
 	k := ds.NameKey("Users", u.Email, nil)
 	_, err := c.c.Put(ctx, k, &u)
 	return err
 }
 
 // GetUser retries a User struct from datastore.
-func (c Client) GetUser(ctx context.Context, id string) (planner.User, error) {
-	var u planner.User
+func (c Client) GetUser(ctx context.Context, id string) (plan.User, error) {
+	var u plan.User
 	k := ds.NameKey("Users", id, nil)
 	err := c.c.Get(ctx, k, &u)
 	return u, err

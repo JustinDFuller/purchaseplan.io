@@ -141,7 +141,7 @@ func New(opts ...Option) (S, error) {
 		u, err := ds.GetUser(r.Context(), metadata.Email)
 		if datastore.IsNotFound(err) {
 			// Login + Not found == create new user
-			if err := ds.PutUser(r.Context(), planner.User{Email: metadata.Email}); err != nil {
+			if err := ds.PutUser(r.Context(), plan.User{Email: metadata.Email}); err != nil {
 				log.Printf("Unable to create new user during login: %s", err)
 				w.WriteHeader(http.StatusUnauthorized)
 				return
@@ -197,7 +197,7 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
-		var u planner.User
+		var u plan.User
 		if err := json.Unmarshal(b, &u); err != nil {
 			log.Printf("Error unmarshaling json: %s", err)
 			w.WriteHeader(http.StatusBadRequest)
@@ -325,10 +325,30 @@ func New(opts ...Option) (S, error) {
 			}
 		}
 
-		var u plan.User
+		val := r.Context().Value(emailContextKey)
+		email, ok := val.(string)
+		if !ok {
+			log.Printf("Unexpected email value: %s", email)
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+
+		u, err := ds.GetUser(r.Context(), email)
+		if err != nil {
+			log.Printf("Couldn't find user from context: %s", err)
+			w.WriteHeader(http.StatusNotFound)
+			return
+		}
+
 		if err := action.Act(&u); err != nil {
 			log.Printf("Action error: %s", err)
 			http.Error(w, "Action error", http.StatusInternalServerError)
+			return
+		}
+
+		if err := ds.PutUser(r.Context(), u); err != nil {
+			log.Printf("PutUser error: %s", err)
+			http.Error(w, "Error saving user", http.StatusInternalServerError)
 			return
 		}
 
