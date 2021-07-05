@@ -9,7 +9,6 @@ require (
 	github.com/PuerkitoBio/goquery v1.6.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gorilla/mux v1.8.0
-	github.com/justindfuller/purchase-saving-planner/api v0.0.0-20210110193707-11fd6c20e190
 	github.com/justindfuller/purchaseplan.io/plan v0.0.0-20210629191046-f4dc204e8a01
 	github.com/justindfuller/secretmanager v0.0.3
 	github.com/kelseyhightower/envconfig v1.4.0
@@ -17,3 +16,5 @@ require (
 	github.com/magiclabs/magic-admin-go v0.1.0
 	github.com/pkg/errors v0.9.1
 )
+
+replace github.com/justindfuller/purchaseplan.io/plan => /home/justindanielfuller/code/purchaseplan.io/plan

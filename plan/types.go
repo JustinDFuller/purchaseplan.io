@@ -38,9 +38,3 @@ type (
 		OriginalImage string `datastore:",noindex" json:"originalImage"`
 	}
 )
-
-// Action modifies a User
-type Action interface {
-	// Act receives a pointer to a user, modifies it, or returns an error.
-	Act(*User) error
-}

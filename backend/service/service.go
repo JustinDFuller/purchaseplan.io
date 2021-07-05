@@ -17,6 +17,7 @@ import (
 	"github.com/justindfuller/purchaseplan.io/backend/config"
 	"github.com/justindfuller/purchaseplan.io/backend/datastore"
 	"github.com/justindfuller/purchaseplan.io/backend/storage"
+	"github.com/justindfuller/purchaseplan.io/plan"
 	"github.com/justindfuller/purchaseplan.io/plan/user"
 	"github.com/magiclabs/magic-admin-go"
 	"github.com/magiclabs/magic-admin-go/client"
@@ -309,14 +310,30 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
-		log.Printf("Action: %s", a)
+		var action plan.Action
+
+		d := json.NewDecoder(r.Body)
 
 		switch a {
 		case user.ActionSetLastPaycheck:
-			log.Printf("user.ActionSetLastPaycheck")
+			var a user.SetLastPaycheck
+			d.Decode(&a)
+			action = a
 		default:
-			log.Printf("Unknown action: %s", a)
-			w.WriteHeader(http.StatusBadRequest)
+			action = &plan.ErrAction{
+				Err: errors.New("invalid action"),
+			}
+		}
+
+		var u plan.User
+		if err := action.Act(&u); err != nil {
+			log.Printf("Action error: %s", err)
+			http.Error(w, "Action error", http.StatusInternalServerError)
+			return
+		}
+
+		if err := json.NewEncoder(w).Encode(&u); err != nil {
+			log.Printf("error encoding user to json: %s", err)
 		}
 	}, c)).Methods(http.MethodPost, http.MethodOptions)
 
