@@ -9,7 +9,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.6.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gorilla/mux v1.8.0
-	github.com/justindfuller/purchaseplan.io/plan v0.0.23
+	github.com/justindfuller/purchaseplan.io/plan v0.0.0-20210708184759-2ac79bdb2aa9 // indirect
 	github.com/justindfuller/secretmanager v0.0.3
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/kr/pretty v0.2.1

@@ -206,8 +206,11 @@ github.com/justindfuller/purchase-saving-planner v0.0.9 h1:eqEeQ9KXoqF9CGsUmtq1g
 github.com/justindfuller/purchase-saving-planner/api v0.0.0-20210110193707-11fd6c20e190 h1:BvscSTrpbhdrjJFTsCODTWBsdURxzcTiGCcHxdeV9os=
 github.com/justindfuller/purchase-saving-planner/api v0.0.0-20210110193707-11fd6c20e190/go.mod h1:PVjGWK0/DVQNWnrRsSgd1aySbJBlKYgZM3JQvcvgQDI=
 github.com/justindfuller/purchaseplan.io v0.0.22 h1:72bF0rJ/ZswcQw/NHRnExRiAl7KA2e9dLB5s5STxwAc=
+github.com/justindfuller/purchaseplan.io v0.0.24-0.20210708184759-2ac79bdb2aa9 h1:Jy9a8FvTM46cpxgZ7e++XEyJK6CjjRqp51PI36PWVL0=
 github.com/justindfuller/purchaseplan.io/plan v0.0.0-20210629191046-f4dc204e8a01 h1:Xz2e0Soquiq+vp/mwRAILGUJeNZlb6gbWf76vEpkDek=
 github.com/justindfuller/purchaseplan.io/plan v0.0.0-20210629191046-f4dc204e8a01/go.mod h1:w4ZeDkHDfbbU8dKt4UFH2q2xllihvk6PHSCcKrE5dmE=
+github.com/justindfuller/purchaseplan.io/plan v0.0.0-20210708184759-2ac79bdb2aa9 h1:IatGXoFA1COcwhrMOmah+fSM3GuWzlVWsph70HLsOPA=
+github.com/justindfuller/purchaseplan.io/plan v0.0.0-20210708184759-2ac79bdb2aa9/go.mod h1:w4ZeDkHDfbbU8dKt4UFH2q2xllihvk6PHSCcKrE5dmE=
 github.com/justindfuller/secretmanager v0.0.3 h1:5YqeEPVIPGSTckyXswPODcrmmFVjHGpriH+8W3Uyx88=
 github.com/justindfuller/secretmanager v0.0.3/go.mod h1:BnbXy+v7tP4YM/tX2DPQju81z21ERCqB3Eo9wElgWe8=
 github.com/karalabe/usb v0.0.0-20190919080040-51dc0efba356/go.mod h1:Od972xHfMJowv7NGVDiWVxk2zxnWgjLlJzE+F4F7AGU=
