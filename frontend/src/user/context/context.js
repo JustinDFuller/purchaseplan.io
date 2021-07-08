@@ -1,12 +1,12 @@
 import React from "react";
-import { uuid } from "uuidv4";
+import * as uuid from "uuid";
 
 import { getterSetters } from "../../object/getterSetters";
 import * as availabilities from "./availabilities";
 import * as Purchases from "./purchases";
 
 const defaults = {
-  id: uuid(),
+  id: uuid.v4(),
   email: "",
   saved: 100,
   frequency: "Every 2 Weeks",

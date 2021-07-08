@@ -157,6 +157,10 @@ export function Landing() {
         return s + 1;
       });
     }, 8000);
+
+    return function () {
+      clearTimeout(ref.Current);
+    };
   }, []);
 
   return (

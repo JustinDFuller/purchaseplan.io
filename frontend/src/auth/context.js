@@ -20,7 +20,11 @@ const defaults = {
 };
 
 export function New(data = defaults) {
-  const m = new Magic("pk_live_06BF9798B97B7BB7");
+  const m = new Magic(
+    window.location.href.includes("localhost")
+      ? "pk_test_7CA76FAB0A17039F"
+      : "pk_live_06BF9798B97B7BB7"
+  );
 
   return {
     ...getterSetters(data, New),

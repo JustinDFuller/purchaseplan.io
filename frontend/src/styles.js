@@ -79,7 +79,6 @@ export function classes(...inputs) {
         classNames.push(i);
         break;
       case "object":
-        console.log(i);
         for (const key in i) {
           const truthy = i[key];
 

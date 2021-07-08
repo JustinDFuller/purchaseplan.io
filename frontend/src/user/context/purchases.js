@@ -1,4 +1,4 @@
-import { uuid } from "uuidv4";
+import * as uuid from "uuid";
 
 import { getterSetters } from "../../object/getterSetters";
 import * as ProductData from "../../product/data";
@@ -21,7 +21,7 @@ export function Purchase(data = purchaseDefaults) {
   if (!data.id) {
     data = {
       ...data,
-      id: uuid(),
+      id: uuid.v4(),
     };
   }
 

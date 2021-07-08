@@ -168,10 +168,13 @@ func New(opts ...Option) (S, error) {
 		}
 
 		http.SetCookie(w, &http.Cookie{
-			Name:    authCookieName,
-			Value:   signed,
-			Expires: oneYear,
-			Path:    "/",
+			Name:     authCookieName,
+			Value:    signed,
+			Expires:  oneYear,
+			Path:     "/",
+			Secure:   true,
+			HttpOnly: true,
+			SameSite: http.SameSiteStrict,
 		})
 
 		if err := json.NewEncoder(w).Encode(u); err != nil {
@@ -242,7 +245,6 @@ func New(opts ...Option) (S, error) {
 
 	r.HandleFunc("/products", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
 		u := r.URL.Query().Get("url")
-		log.Printf("Searching for schema from: %s", u)
 
 		req, err := http.NewRequestWithContext(ctx, http.MethodGet, u, nil)
 		if err != nil {
