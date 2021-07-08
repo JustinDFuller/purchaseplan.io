@@ -118,8 +118,9 @@ func normalizeURL(requestURL, foundURL string) (string, error) {
 		return "", err
 	}
 
+	// Not a valid URL? Fall back to request URL.
 	if u.Host == "" {
-		u.Host = reqU.Host
+		return reqU.String(), nil
 	}
 
 	return u.String(), nil

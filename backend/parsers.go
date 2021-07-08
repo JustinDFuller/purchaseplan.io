@@ -227,7 +227,6 @@ type (
 	}
 
 	// context is one of many schema contexts that a website can have.
-	// TODO: Change to contextContext
 	context struct {
 		Context     string      `json:"@context"`
 		Type        string      `json:"@type"`
@@ -235,31 +234,78 @@ type (
 		Image       interface{} `json:"image"`
 		Name        string      `json:"name"`
 		URL         string      `json:"url"`
-		Offers      struct {
-			Price interface{} `json:"price"`
-			URL   string      `json:"url"`
-		} `json:"offers"`
+		Offers      interface{} `json:"offers"`
+	}
+
+	offer struct {
+		Price interface{} `json:"price"`
+		URL   string      `json:"url"`
 	}
 )
 
 func (c context) toProduct() Product {
 	var price int64
 
-	switch p := c.Offers.Price.(type) {
-	case string:
-		var err error
-		price, err = strconv.ParseInt(p, 10, 64)
-		if err != nil {
-			p, err := strconv.ParseFloat(p, 64)
-			if err != nil {
-				log.Printf("Error parsing price: %s", err)
+	var offers []offer
+
+	switch o := c.Offers.(type) {
+	case []interface{}:
+		for _, o := range o {
+			if o, ok := o.(map[string]interface{}); ok {
+				var offer offer
+				p, ok := o["price"]
+				if ok {
+					offer.Price = p
+				}
+
+				u, ok := o["url"].(string)
+				if ok {
+					offer.URL = u
+				}
+
+				offers = append(offers, offer)
 			}
-			price = int64(p)
 		}
-	case float64:
-		price = int64(p)
+	case interface{}:
+		if o, ok := o.(map[string]interface{}); ok {
+			var offer offer
+			p, ok := o["price"]
+			if ok {
+				offer.Price = p
+			}
+
+			u, ok := o["url"].(string)
+			if ok {
+				offer.URL = u
+			}
+
+			offers = append(offers, offer)
+		}
 	default:
-		log.Printf("Price type %T", c.Offers.Price)
+		log.Printf("Found other offer: %v", o)
+	}
+
+	for _, offer := range offers {
+		if price != 0 {
+			break
+		}
+
+		switch p := offer.Price.(type) {
+		case string:
+			var err error
+			price, err = strconv.ParseInt(p, 10, 64)
+			if err != nil {
+				p, err := strconv.ParseFloat(p, 64)
+				if err != nil {
+					log.Printf("Error parsing price: %s", err)
+				}
+				price = int64(p)
+			}
+		case float64:
+			price = int64(p)
+		default:
+			log.Printf("Price type %T", offer.Price)
+		}
 	}
 
 	var image string
@@ -283,8 +329,10 @@ func (c context) toProduct() Product {
 	}
 
 	url := c.URL
-	if url == "" {
-		url = c.Offers.URL
+	for _, offer := range offers {
+		if url == "" {
+			url = offer.URL
+		}
 	}
 
 	return Product{
@@ -306,7 +354,9 @@ func (parser SchemaOrgParser) Product() (Product, error) {
 	}
 
 	doc.Find(`script[type="application/ld+json"]`).Each(func(i int, s *goquery.Selection) {
+
 		var c context
+
 		if err := json.Unmarshal([]byte(s.Text()), &c); err == nil {
 			if c.Type == "Product" {
 				p = c.toProduct()
