@@ -174,7 +174,7 @@ func New(opts ...Option) (S, error) {
 			Path:     "/",
 			Secure:   true,
 			HttpOnly: true,
-			SameSite: http.SameSiteStrict,
+			SameSite: http.SameSiteStrictMode,
 		})
 
 		if err := json.NewEncoder(w).Encode(u); err != nil {
