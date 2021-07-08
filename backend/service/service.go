@@ -18,7 +18,6 @@ import (
 	"github.com/justindfuller/purchaseplan.io/backend/datastore"
 	"github.com/justindfuller/purchaseplan.io/backend/storage"
 	"github.com/justindfuller/purchaseplan.io/plan"
-	"github.com/justindfuller/purchaseplan.io/plan/user"
 	"github.com/magiclabs/magic-admin-go"
 	"github.com/magiclabs/magic-admin-go/client"
 	"github.com/magiclabs/magic-admin-go/token"
@@ -303,61 +302,6 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 	}, c)).Methods(http.MethodGet, http.MethodOptions)
-
-	r.HandleFunc("/actions/{action}", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
-		a, ok := mux.Vars(r)["action"]
-		if !ok {
-			log.Printf("missing action in URL")
-			w.WriteHeader(http.StatusBadRequest)
-			return
-		}
-
-		var action plan.Action
-
-		d := json.NewDecoder(r.Body)
-
-		switch a {
-		case user.ActionSetLastPaycheck:
-			var a user.SetLastPaycheck
-			d.Decode(&a)
-			action = a
-		default:
-			action = &plan.ErrAction{
-				Err: errors.New("invalid action"),
-			}
-		}
-
-		val := r.Context().Value(emailContextKey)
-		email, ok := val.(string)
-		if !ok {
-			log.Printf("Unexpected email value: %s", email)
-			w.WriteHeader(http.StatusUnauthorized)
-			return
-		}
-
-		u, err := ds.GetUser(r.Context(), email)
-		if err != nil {
-			log.Printf("Couldn't find user from context: %s", err)
-			w.WriteHeader(http.StatusNotFound)
-			return
-		}
-
-		if err := action.Act(&u); err != nil {
-			log.Printf("Action error: %s", err)
-			http.Error(w, "Action error", http.StatusInternalServerError)
-			return
-		}
-
-		if err := ds.PutUser(r.Context(), u); err != nil {
-			log.Printf("PutUser error: %s", err)
-			http.Error(w, "Error saving user", http.StatusInternalServerError)
-			return
-		}
-
-		if err := json.NewEncoder(w).Encode(&u); err != nil {
-			log.Printf("error encoding user to json: %s", err)
-		}
-	}, c)).Methods(http.MethodPost, http.MethodOptions)
 
 	s.Router = r
 
