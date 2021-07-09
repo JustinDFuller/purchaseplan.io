@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Purchase Plan",
-    "slug": "Purchase Plan",
-    "version": "1.0.0",
+    "slug": "github.com/justindfuller/purchaseplan.io/mobile",
+    "version": "0.0.26",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "splash": {
@@ -17,9 +17,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.purchaseplan.ios",
+      "buildNumber": "0.0.26"
     },
     "android": {
+      "package": "com.purchaseplan.android",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1d1d42"
