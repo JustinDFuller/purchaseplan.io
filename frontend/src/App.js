@@ -31,14 +31,6 @@ export default function App() {
     <Auth.Context.Provider value={{ auth, setAuth }}>
       <User.Context.Provider value={{ user, setUser }}>
         <div
-          className="alert alert-dark text-center"
-          style={{ borderRadius: 0 }}
-        >
-          Welcome to the Purchase Plan early access. The website may not work
-          perfectly and may change at any time.
-        </div>
-
-        <div
           className={styles.classes("container-fluid", {
             "px-0 px-md-3": auth.state() === Auth.state.LOGGED_IN,
           })}
