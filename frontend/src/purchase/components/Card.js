@@ -29,7 +29,7 @@ export const Edit = React.forwardRef(function ({ children, onClick }, ref) {
   );
 });
 
-export const Card = User.Context.With(function ({
+export const Card = User.data.WithContext(function ({
   purchase,
   user,
   setUser,

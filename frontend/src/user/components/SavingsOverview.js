@@ -5,8 +5,8 @@ import * as styles from "styles";
 import * as layout from "layout";
 import * as form from "form";
 
-import * as context from "../context";
-import * as availabilities from "../context/availabilities";
+import * as data from "../data";
+import * as availabilities from "../data/availabilities";
 import * as api from "../api";
 
 const formatter = new Intl.NumberFormat("en-US", {
@@ -14,7 +14,7 @@ const formatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-export const SavingsOverview = context.With(function ({ user, setUser }) {
+export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
   const [edit, setEdit] = useState(false);
 
   function getDate() {

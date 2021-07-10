@@ -16,7 +16,7 @@ const samplePurchases = [
   {
     name: "an immersive home theater",
     products: [
-      User.Purchase({
+      User.data.Purchase.New({
         date: makeDate(20),
         product: Product.data.New({
           name: "Optoma 4k Projector",
@@ -28,7 +28,7 @@ const samplePurchases = [
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/2c5e30f70deb8b5e9342d882ab01ad86?alt=media",
         }),
       }),
-      User.Purchase({
+      User.data.Purchase.New({
         date: makeDate(20),
         product: Product.data.New({
           name: "Elite Screens 4k Projector Screen",
@@ -39,7 +39,7 @@ const samplePurchases = [
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/72474e3d1e0e6acb7580028531e8abb1?alt=media",
         }),
       }),
-      User.Purchase({
+      User.data.Purchase.New({
         date: makeDate(30),
         product: Product.data.New({
           name: "Enclave Audio Surround Sound Bluetooth Speakers",
@@ -56,7 +56,7 @@ const samplePurchases = [
   {
     name: "your dream kitchen.",
     products: [
-      User.Purchase({
+      User.data.Purchase.New({
         date: makeDate(30),
         product: Product.data.New({
           name: "KitchenAid Refridgerator",
@@ -68,7 +68,7 @@ const samplePurchases = [
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/bb62d5e907ce64be5280169ae7991219?alt=media",
         }),
       }),
-      User.Purchase({
+      User.data.Purchase.New({
         date: makeDate(45),
         product: Product.data.New({
           name: "KitchenAid Combination Wall Oven",
@@ -81,7 +81,7 @@ const samplePurchases = [
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/0339bed0ce53e3bbab6a8f85636ac9ee?alt=media",
         }),
       }),
-      User.Purchase({
+      User.data.Purchase.New({
         date: makeDate(60),
         product: Product.data.New({
           name: "KitchenAid Cooktop",
@@ -98,7 +98,7 @@ const samplePurchases = [
   {
     name: "the perfect back yard.",
     products: [
-      User.Purchase({
+      User.data.Purchase.New({
         date: makeDate(20),
         product: Product.data.New({
           name: "Zuma Outdoor Sectional",
@@ -110,7 +110,7 @@ const samplePurchases = [
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/1d780a17877f7ec6e3dcbb3f45b93fae?alt=media",
         }),
       }),
-      User.Purchase({
+      User.data.Purchase.New({
         date: makeDate(20),
         product: Product.data.New({
           name: "ÄPPLARÖ Outdoor Table",
@@ -123,7 +123,7 @@ const samplePurchases = [
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/9d8a7496cc6cfa83226ac32d3b2802b1?alt=media",
         }),
       }),
-      User.Purchase({
+      User.data.Purchase.New({
         date: makeDate(30),
         product: Product.data.New({
           name: "White Rectangular Patio Umbrella",

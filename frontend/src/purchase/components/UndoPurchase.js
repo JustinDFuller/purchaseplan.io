@@ -1,6 +1,6 @@
 import * as User from "user";
 
-export const UndoPurchase = User.Context.With(function ({
+export const UndoPurchase = User.data.WithContext(function ({
   closeToast,
   purchase,
   user,

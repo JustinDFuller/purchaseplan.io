@@ -1,64 +1,6 @@
-import * as uuid from "uuid";
-
 import { getterSetters } from "object/getterSetters";
-import * as ProductData from "product/data";
 
-const purchaseDefaults = {
-  id: null,
-  date: null,
-  deleted: false,
-  purchased: false,
-  purchasedAt: null,
-  product: ProductData.New(),
-  quantity: 1,
-};
-
-export function Purchase(data = purchaseDefaults) {
-  function quantity() {
-    return Number(data.quantity) >= 1 ? data.quantity : 1;
-  }
-
-  if (!data.id) {
-    data = {
-      ...data,
-      id: uuid.v4(),
-    };
-  }
-
-  return {
-    ...getterSetters(data, Purchase),
-    quantity,
-    price() {
-      return data.product.price() * quantity();
-    },
-    clear() {
-      return Purchase();
-    },
-    isNotEmpty() {
-      return data !== purchaseDefaults;
-    },
-    is(purchase) {
-      return purchase.id() === data.id;
-    },
-    from(purchase) {
-      return Purchase({
-        ...purchaseDefaults,
-        ...purchase,
-        product: ProductData.New(purchase.product),
-      });
-    },
-    shouldSkip() {
-      return data.purchased || data.deleted;
-    },
-    displayDate() {
-      if (data.date <= new Date()) {
-        return "today";
-      }
-
-      return data.date?.toLocaleDateString("en-US") ?? "";
-    },
-  };
-}
+import * as Purchase from "./purchase";
 
 const defaults = {
   availability: null,
@@ -116,7 +58,7 @@ export function New(input = defaults) {
     },
     from(purchases, availability) {
       return New({
-        purchases: purchases?.map((p) => Purchase().from(p)) || [],
+        purchases: purchases?.map((p) => Purchase.New().from(p)) || [],
         availability,
       });
     },

@@ -1,4 +1,3 @@
-import React from "react";
 import * as uuid from "uuid";
 
 import { getterSetters } from "object/getterSetters";
@@ -92,8 +91,3 @@ export function New(input = defaults) {
     },
   };
 }
-
-export const Context = React.createContext({
-  user: null,
-  setUser: null,
-});

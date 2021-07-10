@@ -10,7 +10,7 @@ import { ProductForm } from "./ProductForm";
 const NO_ERROR = 0;
 const INVALID_SEARCH = 1;
 
-export const Form = User.Context.With(function ({
+export const Form = User.data.WithContext(function ({
   user,
   setUser,
   productDefaults = null,
@@ -39,7 +39,7 @@ export const Form = User.Context.With(function ({
     e.preventDefault();
 
     const u = user.addPurchase(
-      User.Purchase().setQuantity(quantity).setProduct(product)
+      User.data.Purchase.New().setQuantity(quantity).setProduct(product)
     );
     User.api.put(u);
 

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { Context } from "./context";
 
-export function With(Component) {
+export function WithContext(Component) {
   return function WithUserContext(props) {
     const { user, setUser } = useContext(Context);
 
