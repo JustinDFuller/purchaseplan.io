@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import * as styles from "../styles";
-import * as Auth from "../auth";
+
+import * as styles from "styles";
+import * as Auth from "auth";
 
 export function Header() {
   const { auth, setAuth } = useContext(Auth.context.Context);

@@ -1,4 +1,4 @@
-import * as styles from "../styles";
+import * as styles from "../../styles";
 
 export function Card({ children, style, noBody, light }) {
   return (

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-import * as User from "../user";
-import * as Product from "../product";
-import { Card } from "../layout/Card";
+import * as User from "user";
+import * as Product from "product";
+import * as layout from "layout";
+
 import { URL } from "./URL";
 import { ProductForm } from "./ProductForm";
 
@@ -65,7 +66,7 @@ export const Form = User.withContext(function ({
   }
 
   return (
-    <Card>
+    <layout.components.Card>
       <div className="row">
         <div className="col-12 col-md-4 mb-4">
           <img
@@ -91,6 +92,6 @@ export const Form = User.withContext(function ({
           />
         </div>
       </div>
-    </Card>
+    </layout.components.Card>
   );
 });

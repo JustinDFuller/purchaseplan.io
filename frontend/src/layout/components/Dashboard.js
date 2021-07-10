@@ -1,7 +1,7 @@
-import * as Product from "../product";
-import * as User from "../user";
-import * as Notifications from "../notifications";
-import * as Purchase from "../purchase";
+import * as Product from "product";
+import * as User from "user";
+import * as Notifications from "notifications";
+import * as Purchase from "purchase";
 
 import { HowItWorks } from "./HowItWorks";
 

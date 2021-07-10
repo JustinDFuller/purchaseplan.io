@@ -1,9 +1,9 @@
 import Alert from "react-bootstrap/Alert";
 
 import * as context from "../context";
-import * as User from "../../user";
-import { Card } from "../../layout/Card";
-import * as form from "../../form";
+import * as User from "user";
+import * as layout from "layout";
+import * as form from "form";
 
 export const Login = context.With(
   User.withContext(function ({ user, setUser, auth, setAuth }) {
@@ -20,17 +20,17 @@ export const Login = context.With(
 
     if (auth.state() === context.state.LOGGING_IN) {
       return (
-        <Card style={{ maxWidth: 400, margin: "auto" }}>
+        <layout.components.Card style={{ maxWidth: 400, margin: "auto" }}>
           <div style={{ textAlign: "center" }}>
             <div className="spinner-border" role="status" />
             <h5 className="card-header">Logging you in</h5>
           </div>
-        </Card>
+        </layout.components.Card>
       );
     }
 
     return (
-      <Card style={{ maxWidth: 500, margin: "auto" }}>
+      <layout.components.Card style={{ maxWidth: 500, margin: "auto" }}>
         {auth.serverError() ||
           (auth.unauthorized() && (
             <Alert variant="danger" style={{ borderRadius: 0 }}>
@@ -69,7 +69,7 @@ export const Login = context.With(
             </div>
           </div>
         </form>
-      </Card>
+      </layout.components.Card>
     );
   })
 );

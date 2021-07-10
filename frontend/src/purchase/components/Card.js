@@ -5,11 +5,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 
-import * as User from "../../user";
-import * as styles from "../../styles";
-import * as Layout from "../../layout";
-import * as notifications from "../../notifications";
-import { ProductForm } from "../../product/ProductForm";
+import * as User from "user";
+import * as styles from "styles";
+import * as layout from "layout";
+import * as notifications from "notifications";
+import { ProductForm } from "product/ProductForm";
 
 import { UndoPurchase } from "./UndoPurchase";
 import { UndoRemove } from "./UndoRemove";
@@ -82,7 +82,7 @@ export const Card = User.withContext(function ({
 
   if (editing) {
     return (
-      <Layout.Card>
+      <layout.components.Card>
         <ProductForm
           onSubmit={handleEditSubmit}
           onCancel={handleEditCancel}
@@ -91,12 +91,12 @@ export const Card = User.withContext(function ({
           quantity={editQuantity}
           setQuantity={(q) => setEditQuantity(q)}
         />
-      </Layout.Card>
+      </layout.components.Card>
     );
   }
 
   return (
-    <Layout.Card noBody>
+    <layout.components.Card noBody>
       <a
         href={purchase.product().url()}
         className="text-white"
@@ -209,6 +209,6 @@ export const Card = User.withContext(function ({
           </Col>
         </Row>
       </a>
-    </Layout.Card>
+    </layout.components.Card>
   );
 });

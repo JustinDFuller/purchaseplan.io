@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil.svg";
 
-import * as styles from "../../styles";
-import { Card } from "../../layout/Card";
+import * as styles from "styles";
+import * as layout from "layout";
+import * as form from "form";
+
 import { withContext } from "../context/with";
-import * as form from "../../form";
 import * as availabilities from "../context/availabilities";
 import * as api from "../api";
 
@@ -140,5 +141,7 @@ export const SavingsOverview = withContext(function ({ user, setUser }) {
     );
   }
 
-  return <Card>{edit ? Edit() : View()}</Card>;
+  return (
+    <layout.components.Card>{edit ? Edit() : View()}</layout.components.Card>
+  );
 });

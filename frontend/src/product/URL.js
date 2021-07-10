@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
-import { Card } from "../layout/Card";
-import * as form from "../form";
+import * as layout from "layout";
+import * as form from "form";
 
 const messages = [
   "Trying to find the best image.",
@@ -41,7 +41,7 @@ export function URL({ onSubmit, loading, error }) {
   );
 
   return (
-    <Card>
+    <layout.components.Card>
       {error && (
         <div className="alert alert-danger" role="alert">
           Please make sure the URL is correct and try again.
@@ -87,6 +87,6 @@ export function URL({ onSubmit, loading, error }) {
           </div>
         </div>
       </form>
-    </Card>
+    </layout.components.Card>
   );
 }

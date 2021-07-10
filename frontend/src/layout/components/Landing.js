@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import * as Auth from "../auth";
-import * as styles from "../styles";
-import * as User from "../user";
-import * as Purchase from "../purchase";
-import * as Product from "../product";
+import * as Auth from "auth";
+import * as styles from "styles";
+import * as User from "user";
+import * as Purchase from "purchase";
+import * as Product from "product";
 
 function makeDate(days) {
   const today = new Date();

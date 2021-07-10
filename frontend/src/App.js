@@ -35,11 +35,11 @@ export default function App() {
             "px-0 px-md-3": auth.state() === Auth.context.state.LOGGED_IN,
           })}
         >
-          <Layout.Header />
+          <Layout.components.Header />
           {auth.state() === Auth.context.state.LOGGED_IN ? (
-            <Layout.Dashboard />
+            <Layout.components.Dashboard />
           ) : (
-            <Layout.Landing />
+            <Layout.components.Landing />
           )}
         </div>
       </User.Context.Provider>
