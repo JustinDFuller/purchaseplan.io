@@ -4,7 +4,7 @@ import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil.svg";
 import * as styles from "../../styles";
 import { Card } from "../../layout/Card";
 import { withContext } from "../context/with";
-import { Submit } from "../../forms/Submit";
+import * as form from "../../form";
 import * as availabilities from "../context/availabilities";
 import * as api from "../api";
 
@@ -94,7 +94,7 @@ export const SavingsOverview = withContext(function ({ user, setUser }) {
             />
           </div>
           <div className="text-right">
-            <Submit text="Save" />
+            <form.components.Submit text="Save" />
           </div>
         </form>
       </div>

@@ -1,5 +1,5 @@
 import * as styles from "../styles";
-import { Submit } from "../forms/Submit";
+import * as form from "../form";
 
 export function ProductForm({
   onSubmit,
@@ -77,7 +77,11 @@ export function ProductForm({
                 </button>
               </div>
               <div className="col-12 col-md-6 p-0 pl-md-3">
-                <Submit onClick={onSubmit} loading={loading} text="Save" />
+                <form.components.Submit
+                  onClick={onSubmit}
+                  loading={loading}
+                  text="Save"
+                />
               </div>
             </div>
           </div>

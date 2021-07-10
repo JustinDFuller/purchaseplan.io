@@ -3,7 +3,7 @@ import Alert from "react-bootstrap/Alert";
 import * as context from "../context";
 import * as User from "../../user";
 import { Card } from "../../layout/Card";
-import { Submit } from "../../forms/Submit";
+import * as form from "../../form";
 
 export const Login = context.With(
   User.withContext(function ({ user, setUser, auth, setAuth }) {
@@ -59,7 +59,7 @@ export const Login = context.With(
                 />
               </div>
               <div className="col-12 col-lg-3 text-right mt-3 mt-lg-0">
-                <Submit
+                <form.components.Submit
                   onClick={handleSubmit}
                   loading={auth.state() === context.state.LOGGING_IN}
                   text="Log in"

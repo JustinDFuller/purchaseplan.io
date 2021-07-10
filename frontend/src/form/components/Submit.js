@@ -1,4 +1,4 @@
-import * as styles from "../styles";
+import * as styles from "../../styles";
 
 export function Submit({ loading, text, dataTestid }) {
   if (loading) {

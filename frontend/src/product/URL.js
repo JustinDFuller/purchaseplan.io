@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 import { Card } from "../layout/Card";
-import { Submit } from "../forms/Submit";
+import * as form from "../form";
 
 const messages = [
   "Trying to find the best image.",
@@ -76,7 +76,7 @@ export function URL({ onSubmit, loading, error }) {
                   />
                 </div>
                 <div className="col-12 col-lg-2 text-right mt-3 mt-lg-0">
-                  <Submit
+                  <form.components.Submit
                     onClick={handleSubmit}
                     loading={loading}
                     text="Search"
