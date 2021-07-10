@@ -1,15 +1,9 @@
-import React from "react";
 import { Magic } from "magic-sdk";
-import { getterSetters } from "../object/getterSetters";
 
-import * as api from "./api";
-import * as User from "../user";
-
-export const state = {
-  LOGGED_OUT: 0,
-  LOGGING_IN: 1,
-  LOGGED_IN: 2,
-};
+import { state } from "./state";
+import * as api from "../api";
+import * as User from "../../user";
+import { getterSetters } from "../../object/getterSetters";
 
 const defaults = {
   user: null,
@@ -126,8 +120,3 @@ export function New(data = defaults) {
     },
   };
 }
-
-export const Context = React.createContext({
-  auth: null,
-  setAuth: null,
-});

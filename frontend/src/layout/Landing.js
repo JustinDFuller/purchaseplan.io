@@ -175,7 +175,7 @@ export function Landing() {
           </div>
         </div>
         <div className="col-12 col-md-6 mt-4 mt-md-0">
-          <Auth.Login />
+          <Auth.components.Login />
         </div>
       </div>
       <div

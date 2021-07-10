@@ -8,14 +8,14 @@ import * as styles from "./styles";
 export default function App() {
   const [user, setUser] = useState(User.New());
   const [auth, setAuth] = useState(
-    Auth.New().onLogout(function () {
+    Auth.context.New().onLogout(function () {
       setUser(User.New());
     })
   );
 
   useEffect(function () {
     async function init() {
-      setAuth(auth.setState(Auth.state.LOGGING_IN));
+      setAuth(auth.setState(Auth.context.state.LOGGING_IN));
       const a = await auth.init();
 
       if (a.user()) {
@@ -28,21 +28,21 @@ export default function App() {
   }, []); // eslint-disable-line
 
   return (
-    <Auth.Context.Provider value={{ auth, setAuth }}>
+    <Auth.context.Context.Provider value={{ auth, setAuth }}>
       <User.Context.Provider value={{ user, setUser }}>
         <div
           className={styles.classes("container-fluid", {
-            "px-0 px-md-3": auth.state() === Auth.state.LOGGED_IN,
+            "px-0 px-md-3": auth.state() === Auth.context.state.LOGGED_IN,
           })}
         >
           <Layout.Header />
-          {auth.state() === Auth.state.LOGGED_IN ? (
+          {auth.state() === Auth.context.state.LOGGED_IN ? (
             <Layout.Dashboard />
           ) : (
             <Layout.Landing />
           )}
         </div>
       </User.Context.Provider>
-    </Auth.Context.Provider>
+    </Auth.context.Context.Provider>
   );
 }

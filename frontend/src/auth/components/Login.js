@@ -1,12 +1,11 @@
 import Alert from "react-bootstrap/Alert";
 
-import * as Auth from "./context";
-import * as User from "../user";
-import { withContext } from "./with";
-import { Card } from "../layout/Card";
-import { Submit } from "../forms/Submit";
+import * as context from "../context";
+import * as User from "../../user";
+import { Card } from "../../layout/Card";
+import { Submit } from "../../forms/Submit";
 
-export const Login = withContext(
+export const Login = context.With(
   User.withContext(function ({ user, setUser, auth, setAuth }) {
     async function handleSubmit(e) {
       e.preventDefault();
@@ -19,7 +18,7 @@ export const Login = withContext(
       }
     }
 
-    if (auth.state() === Auth.state.LOGGING_IN) {
+    if (auth.state() === context.state.LOGGING_IN) {
       return (
         <Card style={{ maxWidth: 400, margin: "auto" }}>
           <div style={{ textAlign: "center" }}>
@@ -55,14 +54,14 @@ export const Login = withContext(
                   name="email"
                   value={user.email()}
                   placeholder="email@example.com"
-                  disabled={auth.state() === Auth.state.LOGGING_IN}
+                  disabled={auth.state() === context.state.LOGGING_IN}
                   onChange={(e) => setUser(user.setEmail(e.target.value))}
                 />
               </div>
               <div className="col-12 col-lg-3 text-right mt-3 mt-lg-0">
                 <Submit
                   onClick={handleSubmit}
-                  loading={auth.state() === Auth.state.LOGGING_IN}
+                  loading={auth.state() === context.state.LOGGING_IN}
                   text="Log in"
                   dataTestid="login-button"
                 />

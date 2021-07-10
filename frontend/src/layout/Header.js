@@ -3,7 +3,7 @@ import * as styles from "../styles";
 import * as Auth from "../auth";
 
 export function Header() {
-  const { auth, setAuth } = useContext(Auth.Context);
+  const { auth, setAuth } = useContext(Auth.context.Context);
 
   return (
     <div
@@ -33,7 +33,7 @@ export function Header() {
               </a>
             </li>
             <li className="nav-item">
-              {auth.state() === Auth.state.LOGGED_IN && (
+              {auth.state() === Auth.context.state.LOGGED_IN && (
                 <button
                   className="btn btn-link nav-link"
                   style={styles.text}
