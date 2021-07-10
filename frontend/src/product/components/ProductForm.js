@@ -1,5 +1,5 @@
-import * as styles from "../styles";
-import * as form from "../form";
+import * as styles from "styles";
+import * as form from "form";
 
 export function ProductForm({
   onSubmit,

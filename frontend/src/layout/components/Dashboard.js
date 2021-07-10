@@ -13,7 +13,7 @@ export function Dashboard() {
         <HowItWorks />
       </div>
       <div className="col-12 col-lg-8 order-1 order-lg-2">
-        <Product.Form />
+        <Product.components.Form />
         <Purchase.components.List />
         <Notifications.components.Toasts />
       </div>

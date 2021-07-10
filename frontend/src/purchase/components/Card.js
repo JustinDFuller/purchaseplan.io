@@ -9,7 +9,7 @@ import * as User from "user";
 import * as styles from "styles";
 import * as layout from "layout";
 import * as notifications from "notifications";
-import { ProductForm } from "product/ProductForm";
+import * as Product from "product";
 
 import { UndoPurchase } from "./UndoPurchase";
 import { UndoRemove } from "./UndoRemove";
@@ -83,7 +83,7 @@ export const Card = User.withContext(function ({
   if (editing) {
     return (
       <layout.components.Card>
-        <ProductForm
+        <Product.components.ProductForm
           onSubmit={handleEditSubmit}
           onCancel={handleEditCancel}
           product={editProduct}
