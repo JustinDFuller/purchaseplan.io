@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Purchase Plan",
-    "slug": "github.com/justindfuller/purchaseplan.io/mobile",
+    "slug": "PurchasePlan",
     "version": "0.0.26",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
