@@ -1,10 +1,11 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Row from "react-bootstrap/Row";
 
-import * as User from "../../user";
+import * as User from "user";
+
 import { Card } from "./Card";
 
-export const List = User.withContext(function ({ user, setUser }) {
+export const List = User.Context.With(function ({ user, setUser }) {
   function onDragStart() {
     if (window.navigator.vibrate) {
       window.navigator.vibrate(100);

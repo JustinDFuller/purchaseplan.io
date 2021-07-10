@@ -10,7 +10,7 @@ import { ProductForm } from "./ProductForm";
 const NO_ERROR = 0;
 const INVALID_SEARCH = 1;
 
-export const Form = User.withContext(function ({
+export const Form = User.Context.With(function ({
   user,
   setUser,
   productDefaults = null,

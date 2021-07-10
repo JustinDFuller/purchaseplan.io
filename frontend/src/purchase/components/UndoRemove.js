@@ -1,6 +1,6 @@
-import * as User from "../../user";
+import * as User from "user";
 
-export const UndoRemove = User.withContext(function ({
+export const UndoRemove = User.Context.With(function ({
   closeToast,
   purchase,
   user,

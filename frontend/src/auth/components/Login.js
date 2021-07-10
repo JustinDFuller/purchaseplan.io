@@ -6,7 +6,7 @@ import * as layout from "layout";
 import * as form from "form";
 
 export const Login = context.With(
-  User.withContext(function ({ user, setUser, auth, setAuth }) {
+  User.Context.With(function ({ user, setUser, auth, setAuth }) {
     async function handleSubmit(e) {
       e.preventDefault();
 

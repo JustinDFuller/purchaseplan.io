@@ -1,7 +1,7 @@
 import * as uuid from "uuid";
 
-import { getterSetters } from "../../object/getterSetters";
-import * as ProductData from "../../product/data";
+import { getterSetters } from "object/getterSetters";
+import * as ProductData from "product/data";
 
 const purchaseDefaults = {
   id: null,
