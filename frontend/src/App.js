@@ -36,11 +36,18 @@ export default function App() {
           })}
         >
           <Layout.components.Header />
-          {auth.state() === Auth.context.state.LOGGED_IN ? (
-            <Layout.components.Dashboard />
-          ) : (
-            <Layout.components.Landing />
-          )}
+          <Layout.components.Routes
+            routes={[
+              {
+                path: "/dashboard",
+                Component: <Layout.components.Dashboard />,
+              },
+              {
+                path: "/",
+                Component: <Layout.components.Landing />,
+              },
+            ]}
+          />
         </div>
       </User.data.Context.Provider>
     </Auth.context.Context.Provider>
