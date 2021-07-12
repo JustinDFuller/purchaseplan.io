@@ -35,12 +35,11 @@ function everyWeek({ lastPaycheck, saved, contributions }) {
       return date;
     },
     calculate(purchase, purchases) {
-      const date = new Date(lastPaycheck.getTime());
+      const date = new Date(this.date());
       let s = saved;
       let total = 0;
 
-      for (let i = 0; i < purchases.length; i++) {
-        const p = purchases[i];
+      for (const p of purchases) {
         if (p.shouldSkip()) {
           continue;
         }
@@ -79,12 +78,11 @@ function every2Weeks({ lastPaycheck, saved, contributions }) {
       return date;
     },
     calculate(purchase, purchases) {
-      const date = new Date(lastPaycheck.getTime());
+      const date = new Date(this.date());
       let s = saved;
       let total = 0;
 
-      for (let i = 0; i < purchases.length; i++) {
-        const p = purchases[i];
+      for (const p of purchases) {
         if (p.shouldSkip()) {
           continue;
         }
@@ -123,12 +121,11 @@ function onceAMonth({ lastPaycheck, saved, contributions }) {
       return date;
     },
     calculate(purchase, purchases) {
-      const date = new Date(lastPaycheck.getTime());
+      const date = new Date(this.date());
       let s = saved;
       let total = 0;
 
-      for (let i = 0; i < purchases.length; i++) {
-        const p = purchases[i];
+      for (const p of purchases) {
         if (p.shouldSkip()) {
           continue;
         }
@@ -149,4 +146,3 @@ function onceAMonth({ lastPaycheck, saved, contributions }) {
     },
   };
 }
-
