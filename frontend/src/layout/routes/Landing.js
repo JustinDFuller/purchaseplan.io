@@ -206,3 +206,5 @@ export function Landing() {
     </>
   );
 }
+
+Landing.path = "/"

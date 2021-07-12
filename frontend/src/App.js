@@ -12,7 +12,7 @@ export default function App() {
   const [auth, setAuth] = useState(
     Auth.context.New().onLogout(function () {
       setUser(User.data.New());
-      history.push("/");
+      history.push(Layout.routes.Landing.path);
     })
   );
 
@@ -23,7 +23,9 @@ export default function App() {
 
       if (a.user()) {
         setUser(user.from(a.user()));
-        history.push("/dashboard");
+        if (window.location.path === Layout.routes.Landing.path) {
+          history.push(User.routes.Dashboard.path);
+        }
       }
 
       setAuth(a);
@@ -41,11 +43,20 @@ export default function App() {
         >
           <Layout.components.Header />
           <Switch>
-            <Route path="/dashboard">
-              <Layout.components.Dashboard />
+            <Route path={User.routes.List.path}>
+              <User.routes.List />
             </Route>
-            <Route path="/">
-              <Layout.components.Landing />
+            <Route path={User.routes.Overview.path}>
+              <User.routes.Overview />
+            </Route>
+            <Route path={User.routes.Dashboard.path}>
+              <User.routes.Dashboard />
+            </Route>
+            <Route path={Auth.routes.Login.path}>
+              <Auth.routes.Login />
+            </Route>
+            <Route path={Layout.routes.Landing.path}>
+              <Layout.routes.Landing />
             </Route>
           </Switch>
         </div>

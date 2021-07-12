@@ -19,7 +19,7 @@ export default function() {
       }} 
     >
       <WebView 
-        source={{ uri: 'https://purchaseplan.io'  }} 
+        source={{ uri: 'https://purchaseplan.io/app/user/list'  }} 
         style={{ height: "100%", width: "100%" }} 
       />
     </SafeAreaView>

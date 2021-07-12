@@ -3,14 +3,14 @@ import * as User from "user";
 import * as Notifications from "notifications";
 import * as Purchase from "purchase";
 
-import { HowItWorks } from "./HowItWorks";
+import * as Layout from "layout";
 
 export function Dashboard() {
   return (
     <div className="row m-auto" style={{ maxWidth: 1500 }}>
       <div className="col-12 col-lg-4 order-2 order-lg-1">
         <User.components.SavingsOverview />
-        <HowItWorks />
+        <Layout.components.HowItWorks />
       </div>
       <div className="col-12 col-lg-8 order-1 order-lg-2">
         <Product.components.Form />
@@ -20,3 +20,5 @@ export function Dashboard() {
     </div>
   );
 }
+
+Dashboard.path = "/app/user/dashboard";
