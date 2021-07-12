@@ -111,11 +111,11 @@ function onceAMonth({ lastPaycheck, saved, contributions }) {
       let date = new Date(lastPaycheck.getTime());
 
       while (date <= now) {
-        date.setDate(date.getMonth() + 1);
+        date.setMonth(date.getMonth() + 1);
       }
 
       if (date > now) {
-        date.setDate(date.getMonth() - 1);
+        date.setMonth(date.getMonth() - 1);
       }
 
       return date;
@@ -138,7 +138,7 @@ function onceAMonth({ lastPaycheck, saved, contributions }) {
       }
 
       while (s < total) {
-        date.setDate(date.getMonth() + 1);
+        date.setMonth(date.getMonth() + 1);
         s += contributions;
       }
 
