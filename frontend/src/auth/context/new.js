@@ -8,14 +8,14 @@ import { getterSetters } from "../../object/getterSetters";
 const defaults = {
   user: null,
   error: null,
-  state: state.LOGGED_OUT,
+  state: state.UNKNOWN,
   serverError: false,
   unauthorized: false,
 };
 
 export function New(data = defaults) {
   const m = new Magic(
-    window.location.href.includes("localhost")
+    ["dev.purchaseplan.io", "localhost"].includes(window.location.hostname)
       ? "pk_test_7CA76FAB0A17039F"
       : "pk_live_06BF9798B97B7BB7"
   );
@@ -96,7 +96,7 @@ export function New(data = defaults) {
       try {
         document.cookie =
           "Authorization=;expires=Thu, 01 Jan 1970 00:00:01 GMT";
-        await m.user.logout();
+        await Promise.all([m.user.logout(), api.logout()]);
         data.onLogout();
 
         return New({
@@ -116,6 +116,21 @@ export function New(data = defaults) {
       return New({
         ...data,
         onLogout,
+      });
+    },
+    isLoggingIn() {
+      return data.state === state.LOGGING_IN;
+    },
+    isLoggedIn() {
+      return data.state === state.LOGGED_IN;
+    },
+    isLoggedOut() {
+      return data.state === state.LOGGED_OUT;
+    },
+    setLoggingIn() {
+      return New({
+        ...data,
+        state: state.LOGGING_IN,
       });
     },
   };

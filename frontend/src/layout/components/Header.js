@@ -34,7 +34,7 @@ export function Header() {
               </a>
             </li>
             <li className="nav-item">
-              {auth.state() === Auth.context.state.LOGGED_IN && (
+              {auth.isLoggedIn() && (
                 <button
                   className="btn btn-link nav-link"
                   style={styles.text}

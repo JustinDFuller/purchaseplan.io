@@ -99,9 +99,9 @@ func New(opts ...Option) (S, error) {
 		})
 	})
 
-	// POST /v1/users/login will create a JWT cookie for the user.
+	// POST /v1/users/sessions will create a JWT cookie for the user.
 	// It will also create a DB entry if it does not exist.
-	r.HandleFunc("/v1/users/login", func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/v1/users/sessions", func(w http.ResponseWriter, r *http.Request) {
 		if !strings.HasPrefix(r.Header.Get(headerAuthorization), authBearer) {
 			log.Printf("Missing Bearer in X-Authorization header: %s", r.Header.Get(headerAuthorization))
 			w.WriteHeader(http.StatusUnauthorized)
@@ -181,6 +181,19 @@ func New(opts ...Option) (S, error) {
 			w.WriteHeader(http.StatusInternalServerError)
 		}
 	}).Methods(http.MethodPost, http.MethodOptions)
+
+	// DELETE /v1/users/sessions removes the Authorization cookie and logs out a user.
+	r.HandleFunc("/v1/users/sessions", func(w http.ResponseWriter, r *http.Request) {
+		http.SetCookie(w, &http.Cookie{
+			Name:     authCookieName,
+			Value:    "",
+			Expires:  time.Time{},
+			Path:     "/",
+			Secure:   true,
+			HttpOnly: true,
+			SameSite: http.SameSiteStrictMode,
+		})
+	}).Methods(http.MethodDelete, http.MethodOptions)
 
 	// PUT /users will update the current user.
 	r.HandleFunc("/v1/users", withAuthentication(func(w http.ResponseWriter, r *http.Request) {

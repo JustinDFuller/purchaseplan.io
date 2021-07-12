@@ -2,6 +2,8 @@ import "./bootstrap-overrides.scss";
 
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 
@@ -20,7 +22,9 @@ if (process.env.NODE_ENV === "production") {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
