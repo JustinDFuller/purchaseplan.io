@@ -35,3 +35,8 @@ handlers:
     upload: frontend/build/index\.html
     secure: always
 
+
+  - url: /app/.*
+    static_files: frontend/build/index.html
+    upload: frontend/build/index\.html
+    secure: always
