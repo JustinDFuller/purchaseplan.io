@@ -31,6 +31,7 @@ export default function App() {
         }
       } else {
         switch (window.location.pathname) {
+          case Layout.routes.Landing.path:
           case User.routes.Dashboard.path:
             history.push(Layout.routes.Landing.path);
             break;
