@@ -23,6 +23,8 @@ export default function App() {
 
       if (a.user()) {
         setUser(user.from(a.user()));
+
+        // Only redirect for home page.
         if (window.location.pathname === Layout.routes.Landing.path) {
           history.push(User.routes.Dashboard.path);
         }
@@ -38,7 +40,7 @@ export default function App() {
       <User.data.Context.Provider value={{ user, setUser }}>
         <div
           className={styles.classes("container-fluid", {
-            "px-0 px-md-3": auth.isLoggingIn(),
+            "px-0 px-md-3": auth.isNotLoggedOut(),
           })}
         >
           <Layout.components.Header />

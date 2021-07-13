@@ -143,6 +143,9 @@ export function New(data = defaults) {
     isLoggedOut() {
       return data.state === state.LOGGED_OUT;
     },
+    isNotLoggedOut() {
+      return !this.isLoggedOut();
+    },
     setLoggingIn() {
       return New({
         ...data,
