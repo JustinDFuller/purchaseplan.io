@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "PUBLIC_URL=public react-scripts build",
+    "build": "PUBLIC_URL=/public react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/**/*.js",
@@ -59,7 +59,6 @@
     ]
   },
   "devDependencies": {
-    "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1"
   },
