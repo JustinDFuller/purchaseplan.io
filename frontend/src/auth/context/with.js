@@ -8,3 +8,7 @@ export function With(Component) {
     return <Component {...props} auth={auth} setAuth={setAuth} />;
   };
 }
+
+export function Use() {
+  return useContext(Context);
+}

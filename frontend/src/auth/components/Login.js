@@ -1,10 +1,16 @@
 import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router-dom";
+/* import {
+  GoogleLoginButton,
+  AppleLoginButton,
+} from "react-social-login-buttons"; */
 
 import * as context from "../context";
 import * as User from "user";
 import * as layout from "layout";
 import * as form from "form";
+
+import { LoggingIn } from "./LoggingIn";
 
 export const Login = context.With(
   User.data.WithContext(function ({ user, setUser, auth, setAuth }) {
@@ -24,14 +30,7 @@ export const Login = context.With(
     }
 
     if (auth.isLoggingIn()) {
-      return (
-        <layout.components.Card style={{ maxWidth: 400, margin: "auto" }}>
-          <div style={{ textAlign: "center" }}>
-            <div className="spinner-border" role="status" />
-            <h5 className="card-header">Logging you in</h5>
-          </div>
-        </layout.components.Card>
-      );
+      return <LoggingIn />;
     }
 
     return (
@@ -71,6 +70,15 @@ export const Login = context.With(
                   dataTestid="login-button"
                 />
               </div>
+              {/*
+                <div className="mt-3 col-12 d-flex flex-column align-items-center justify-content-center">
+                  <GoogleLoginButton
+                    onClick={() => auth.loginWithGoogle()}
+                    style={{ height: 40 }}
+                  />
+                  <AppleLoginButton />
+                </div>
+               */}
             </div>
           </div>
         </form>

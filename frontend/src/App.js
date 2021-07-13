@@ -23,7 +23,7 @@ export default function App() {
 
       if (a.user()) {
         setUser(user.from(a.user()));
-        if (window.location.path === Layout.routes.Landing.path) {
+        if (window.location.pathname === Layout.routes.Landing.path) {
           history.push(User.routes.Dashboard.path);
         }
       }
@@ -54,6 +54,9 @@ export default function App() {
             </Route>
             <Route path={Auth.routes.Login.path}>
               <Auth.routes.Login />
+            </Route>
+            <Route path={Auth.routes.Email.path}>
+              <Auth.routes.Email />
             </Route>
             <Route path={Layout.routes.Landing.path}>
               <Layout.routes.Landing />

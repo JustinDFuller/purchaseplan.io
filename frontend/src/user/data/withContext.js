@@ -9,3 +9,7 @@ export function WithContext(Component) {
     return <Component {...props} user={user} setUser={setUser} />;
   };
 }
+
+export function Use() {
+  return useContext(Context);
+}

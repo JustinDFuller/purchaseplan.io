@@ -1,4 +1,5 @@
 import { Magic } from "magic-sdk";
+import { OAuthExtension } from "@magic-ext/oauth";
 
 import { state } from "./state";
 import * as api from "../api";
@@ -13,51 +14,60 @@ const defaults = {
   unauthorized: false,
 };
 
+const key = ["dev.purchaseplan.io", "localhost"].includes(
+  window.location.hostname
+)
+  ? "pk_test_7CA76FAB0A17039F"
+  : "pk_live_06BF9798B97B7BB7";
+
 export function New(data = defaults) {
-  const m = new Magic(
-    ["dev.purchaseplan.io", "localhost"].includes(window.location.hostname)
-      ? "pk_test_7CA76FAB0A17039F"
-      : "pk_live_06BF9798B97B7BB7"
-  );
+  const m = new Magic(key, {
+    extensions: [new OAuthExtension()],
+  });
 
   return {
     ...getterSetters(data, New),
     async init() {
       try {
-        let response;
+        const response = await User.api.get();
+        // Don't return auth errors here. They just haven't logged in.
+        return New({
+          ...data,
+          serverError: response.serverError,
+          user: response.data,
+          state:
+            response.data && !response.error
+              ? state.LOGGED_IN
+              : state.LOGGED_OUT,
+        });
+      } catch (error) {
+        return New({
+          ...data,
+          error,
+          state: state.LOGGED_OUT,
+        });
+      }
+    },
+    async initEmail() {
+      try {
         const params = new URLSearchParams(window.location.search);
-
-        if (params.has("magic_credential")) {
-          const didToken = params.get("magic_credential");
-          response = await api.login(didToken);
-          params.delete("magic_credential");
-          window.history.replaceState(
-            null,
-            null,
-            window.location.pathname + params.toString()
-          );
-          return New({
-            ...data,
-            ...response,
-            user: response.data,
-            state:
-              response.data && !response.error
-                ? state.LOGGED_IN
-                : state.LOGGED_OUT,
-          });
-        } else {
-          response = await User.api.get();
-          // Don't return auth errors here. They just haven't logged in.
-          return New({
-            ...data,
-            serverError: response.serverError,
-            user: response.data,
-            state:
-              response.data && !response.error
-                ? state.LOGGED_IN
-                : state.LOGGED_OUT,
-          });
-        }
+        const didToken = params.get("magic_credential");
+        const response = await api.login(didToken);
+        params.delete("magic_credential");
+        window.history.replaceState(
+          null,
+          null,
+          window.location.pathname + params.toString()
+        );
+        return New({
+          ...data,
+          ...response,
+          user: response.data,
+          state:
+            response.data && !response.error
+              ? state.LOGGED_IN
+              : state.LOGGED_OUT,
+        });
       } catch (error) {
         return New({
           ...data,
@@ -67,7 +77,7 @@ export function New(data = defaults) {
       }
     },
     async login({ email }) {
-      const redirectURI = window.location.origin;
+      const redirectURI = `${window.location.origin}/app/auth/email`;
 
       try {
         const didToken = await m.auth.loginWithMagicLink({
@@ -91,6 +101,12 @@ export function New(data = defaults) {
           state: state.LOGGED_OUT,
         });
       }
+    },
+    async loginWithGoogle() {
+      await m.oauth.loginWithRedirect({
+        provider: "google",
+        redirectURI: `${window.location.origin}/app/auth/google`,
+      });
     },
     async logout() {
       try {
