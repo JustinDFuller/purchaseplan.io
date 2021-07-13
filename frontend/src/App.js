@@ -20,6 +20,7 @@ export default function App() {
     async function init() {
       setAuth(auth.setLoggingIn());
       const a = await auth.init();
+      setAuth(a);
 
       if (a.user()) {
         setUser(user.from(a.user()));
@@ -28,11 +29,21 @@ export default function App() {
         if (window.location.pathname === Layout.routes.Landing.path) {
           history.push(User.routes.Dashboard.path);
         }
+      } else {
+        switch (window.location.pathname) {
+          case User.routes.Dashboard.path:
+            history.push(Layout.routes.Landing.path);
+            break;
+          default:
+            history.push(Auth.routes.Login.path);
+            break;
+        }
       }
-
-      setAuth(a);
     }
-    init();
+
+    if (auth.isNotAuthPath()) {
+      init();
+    }
   }, []); // eslint-disable-line
 
   return (

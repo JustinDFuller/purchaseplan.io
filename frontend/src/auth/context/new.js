@@ -152,5 +152,14 @@ export function New(data = defaults) {
         state: state.LOGGING_IN,
       });
     },
+    isNotAuthPath() {
+      switch (window.location.pathname) {
+        case "/app/auth/email":
+        case "app/auth/google":
+          return false;
+        default:
+          return true;
+      }
+    },
   };
 }
