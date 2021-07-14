@@ -25,9 +25,13 @@ export default function App() {
       if (a.user()) {
         setUser(user.from(a.user()));
 
-        // Only redirect for home page.
-        if (window.location.pathname === Layout.routes.Landing.path) {
-          history.push(User.routes.Dashboard.path);
+        switch (window.location.pathname) {
+          case Auth.routes.Login.path:
+            history.push(User.routes.List.path);
+            break;
+          default:
+            history.push(User.routes.Dashboard.path);
+            break;
         }
       } else {
         switch (window.location.pathname) {

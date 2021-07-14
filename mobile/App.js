@@ -2,6 +2,10 @@ import * as React from 'react';
 import { SafeAreaView, Platform, StatusBar  } from 'react-native';
 import { WebView  } from 'react-native-webview';
 
+const host = "http://192.168.86.116:3000"
+const entry = "/app/auth/login"
+const uri = host + entry
+
 export default function() {
   const isAndroid = Platform.OS === "android";
 
@@ -19,7 +23,7 @@ export default function() {
       }} 
     >
       <WebView 
-        source={{ uri: 'http://192.168.86.116:3000/app/user/list'  }} 
+        source={{ uri }} 
         style={{ height: "100%", width: "100%", backgroundColor: "#1d1d42" }} 
         injectedJavaScriptBeforeContentLoaded="window.isNativeApp=true;"
       />
