@@ -51,6 +51,7 @@ export default function App() {
     <Auth.context.Context.Provider value={{ auth, setAuth }}>
       <User.data.Context.Provider value={{ user, setUser }}>
         <div
+          style={{ height: "100%", width: "100%" }}
           className={styles.classes("container-fluid", {
             "px-0 px-md-3": auth.isNotLoggedOut(),
           })}

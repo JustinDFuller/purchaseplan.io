@@ -1,6 +1,6 @@
 import * as styles from "../../styles";
 
-export function Submit({ loading, text, dataTestid }) {
+export function Submit({ loading, text, dataTestid, style }) {
   if (loading) {
     return <div className="spinner-border mt-1" role="status" />;
   }
@@ -10,7 +10,7 @@ export function Submit({ loading, text, dataTestid }) {
       data-testid={dataTestid}
       type="submit"
       className="btn btn-success w-100 w-md-auto"
-      style={styles.combine(styles.success, styles.transparent)}
+      style={styles.combine(styles.success, styles.transparent, style)}
     >
       {text}
     </button>

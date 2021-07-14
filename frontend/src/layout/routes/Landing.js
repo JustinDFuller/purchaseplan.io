@@ -207,4 +207,4 @@ export function Landing() {
   );
 }
 
-Landing.path = "/"
+Landing.path = "/";

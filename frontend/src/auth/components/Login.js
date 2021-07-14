@@ -9,11 +9,12 @@ import * as context from "../context";
 import * as User from "user";
 import * as layout from "layout";
 import * as form from "form";
+import * as styles from "styles";
 
 import { LoggingIn } from "./LoggingIn";
 
 export const Login = context.With(
-  User.data.WithContext(function ({ user, setUser, auth, setAuth }) {
+  User.data.WithContext(function ({ user, setUser, auth, setAuth, style }) {
     const history = useHistory();
 
     async function handleSubmit(e) {
@@ -34,7 +35,9 @@ export const Login = context.With(
     }
 
     return (
-      <layout.components.Card style={{ maxWidth: 500, margin: "auto" }}>
+      <layout.components.Card
+        style={styles.combine({ maxWidth: 500, margin: "0 auto" }, style)}
+      >
         {(auth.serverError() || auth.unauthorized()) && (
           <Alert variant="danger" style={{ borderRadius: 0 }}>
             {auth.serverError() &&

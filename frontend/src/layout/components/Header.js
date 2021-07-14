@@ -3,8 +3,14 @@ import React, { useContext } from "react";
 import * as styles from "styles";
 import * as Auth from "auth";
 
+import { isNativeApp } from "../native";
+
 export function Header() {
   const { auth, setAuth } = useContext(Auth.context.Context);
+
+  if (isNativeApp()) {
+    return null;
+  }
 
   return (
     <div

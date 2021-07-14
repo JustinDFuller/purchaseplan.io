@@ -19,8 +19,9 @@ export default function() {
       }} 
     >
       <WebView 
-        source={{ uri: 'https://purchaseplan.io/app/user/list'  }} 
-        style={{ height: "100%", width: "100%" }} 
+        source={{ uri: 'http://192.168.86.116:3000/app/user/list'  }} 
+        style={{ height: "100%", width: "100%", backgroundColor: "#1d1d42" }} 
+        injectedJavaScriptBeforeContentLoaded="window.isNativeApp=true;"
       />
     </SafeAreaView>
   );
