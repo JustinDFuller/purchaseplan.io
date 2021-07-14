@@ -29,8 +29,10 @@ export default function App() {
           case Auth.routes.Login.path:
             history.push(User.routes.List.path);
             break;
-          default:
+          case Layout.routes.Landing.path:
             history.push(User.routes.Dashboard.path);
+            break;
+          default:
             break;
         }
       } else {
@@ -55,7 +57,7 @@ export default function App() {
     <Auth.context.Context.Provider value={{ auth, setAuth }}>
       <User.data.Context.Provider value={{ user, setUser }}>
         <div
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: "100vh", width: "100vw" }}
           className={styles.classes("container-fluid", {
             "px-0 px-md-3": auth.isLoggedIn(),
           })}
@@ -71,6 +73,9 @@ export default function App() {
             <Route path={User.routes.Dashboard.path}>
               <User.routes.Dashboard />
             </Route>
+            <Route path={User.routes.Add.path}>
+              <User.routes.Add />
+            </Route>
             <Route path={Auth.routes.Login.path}>
               <Auth.routes.Login />
             </Route>
@@ -81,6 +86,7 @@ export default function App() {
               <Layout.routes.Landing />
             </Route>
           </Switch>
+          {Layout.isNativeApp() && <Layout.components.BottomNav />}
         </div>
       </User.data.Context.Provider>
     </Auth.context.Context.Provider>

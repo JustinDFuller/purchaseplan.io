@@ -3,10 +3,12 @@ import * as Purchase from "purchase";
 
 export function List() {
   return (
-    <>
-      <Purchase.components.List />
+    <div className="row m-auto">
+      <div className="col col-12">
+        <Purchase.components.List />
+      </div>
       <Notifications.components.Toasts />
-    </>
+    </div>
   );
 }
 

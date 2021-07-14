@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SafeAreaView, Platform, StatusBar  } from 'react-native';
 import { WebView  } from 'react-native-webview';
 
-const host = "http://192.168.86.116:3000"
+const host = "https://purchaseplan.io"
 const entry = "/app/auth/login"
 const uri = host + entry
 
