@@ -53,7 +53,7 @@ export default function App() {
         <div
           style={{ height: "100%", width: "100%" }}
           className={styles.classes("container-fluid", {
-            "px-0 px-md-3": auth.isNotLoggedOut(),
+            "px-0 px-md-3": auth.isLoggedIn(),
           })}
         >
           <Layout.components.Header />

@@ -31,7 +31,7 @@ export const Login = context.With(
     }
 
     if (auth.isLoggingIn()) {
-      return <LoggingIn />;
+      return <LoggingIn style={style} />;
     }
 
     return (
