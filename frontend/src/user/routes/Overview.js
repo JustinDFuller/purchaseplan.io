@@ -10,6 +10,16 @@ export function Overview() {
     <div className="row m-auto">
       <div className="col col-12">
         <SavingsOverview />
+        <a
+          className="btn btn-link nav-link"
+          style={styles.text}
+          href="https://blog.purchaseplan.io"
+          target="_blank"
+          rel="noreferrer"
+          data-testid="blog"
+        >
+          Blog
+        </a>
         {auth.isLoggedIn() && (
           <button
             className="btn btn-link nav-link m-auto"

@@ -1,10 +1,16 @@
 import { useHistory, useLocation } from "react-router-dom";
+import { ReactComponent as ListIcon } from "bootstrap-icons/icons/list-ul.svg";
+import { ReactComponent as PlusIcon } from "bootstrap-icons/icons/plus-circle-fill.svg";
+import { ReactComponent as GearIcon } from "bootstrap-icons/icons/gear.svg";
+
 import * as User from "user";
 
 const buttonStyle = {
   width: "33.33%",
+  height: "100%",
+  padding: "12px 0 11px",
   background: "transparent",
-  color: "white",
+  fill: "#ccc",
   border: 0,
   borderTop: "2px solid white",
 };
@@ -12,6 +18,7 @@ const buttonStyle = {
 const activeButtonStyle = {
   ...buttonStyle,
   borderTop: "2px solid #4e2ecf",
+  fill: "#fff",
 };
 
 export function BottomNav() {
@@ -31,7 +38,7 @@ export function BottomNav() {
           height: 50,
         }}
       >
-        <button
+        <ListIcon
           onClick={() => history.push(User.routes.List.path)}
           style={
             location.pathname === User.routes.List.path
@@ -40,8 +47,8 @@ export function BottomNav() {
           }
         >
           List
-        </button>
-        <button
+        </ListIcon>
+        <PlusIcon
           onClick={() => history.push(User.routes.Add.path)}
           style={
             location.pathname === User.routes.Add.path
@@ -50,8 +57,8 @@ export function BottomNav() {
           }
         >
           Add
-        </button>
-        <button
+        </PlusIcon>
+        <GearIcon
           onClick={() => history.push(User.routes.Overview.path)}
           style={
             location.pathname === User.routes.Overview.path
@@ -60,7 +67,7 @@ export function BottomNav() {
           }
         >
           Overview
-        </button>
+        </GearIcon>
       </div>
       <div style={{ height: 50 }} />
     </>

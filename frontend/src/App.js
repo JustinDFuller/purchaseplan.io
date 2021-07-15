@@ -25,25 +25,16 @@ export default function App() {
       if (a.user()) {
         setUser(user.from(a.user()));
 
-        switch (window.location.pathname) {
-          case Auth.routes.Login.path:
-            history.push(User.routes.List.path);
-            break;
-          case Layout.routes.Landing.path:
-            history.push(User.routes.Dashboard.path);
-            break;
-          default:
-            break;
+        if (Layout.isNativeApp()) {
+          history.push(User.routes.List.path);
+        } else {
+          history.push(User.routes.Dashboard.path);
         }
       } else {
-        switch (window.location.pathname) {
-          case Layout.routes.Landing.path:
-          case User.routes.Dashboard.path:
-            history.push(Layout.routes.Landing.path);
-            break;
-          default:
-            history.push(Auth.routes.Login.path);
-            break;
+        if (Layout.isNativeApp()) {
+          history.push(Auth.routes.Login.path);
+        } else {
+          history.push(Layout.routes.Landing.path);
         }
       }
     }
