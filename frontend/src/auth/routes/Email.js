@@ -18,7 +18,7 @@ export function Email() {
 
       if (a.user()) {
         setUser(user.from(a.user()));
-        history.push(User.routes.Dashboard.path);
+        history.push(User.getDashboardPath());
       }
 
       setAuth(a);

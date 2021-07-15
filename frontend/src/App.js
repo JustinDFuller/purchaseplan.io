@@ -12,7 +12,7 @@ export default function App() {
   const [auth, setAuth] = useState(
     Auth.context.New().onLogout(function () {
       setUser(User.data.New());
-      history.push(Layout.routes.Landing.path);
+      history.push(Auth.getLoginPath(history));
     })
   );
 
@@ -24,18 +24,9 @@ export default function App() {
 
       if (a.user()) {
         setUser(user.from(a.user()));
-
-        if (Layout.isNativeApp()) {
-          history.push(User.routes.List.path);
-        } else {
-          history.push(User.routes.Dashboard.path);
-        }
+        history.push(User.getDashboardPath());
       } else {
-        if (Layout.isNativeApp()) {
-          history.push(Auth.routes.Login.path);
-        } else {
-          history.push(Layout.routes.Landing.path);
-        }
+        history.push(Auth.getLoginPath());
       }
     }
 
@@ -77,7 +68,9 @@ export default function App() {
               <Layout.routes.Landing />
             </Route>
           </Switch>
-          {Layout.isNativeApp() && <Layout.components.BottomNav />}
+          {auth.isLoggedIn() && Layout.isNativeApp() && (
+            <Layout.components.BottomNav />
+          )}
         </div>
       </User.data.Context.Provider>
     </Auth.context.Context.Provider>
