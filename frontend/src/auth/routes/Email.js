@@ -26,7 +26,14 @@ export function Email() {
     init();
   }, []); // eslint-disable-line
 
-  return <components.LoggingIn />;
+  return (
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ height: "100%" }}
+    >
+      <components.LoggingIn style={{ width: "100%", margin: 0 }} />
+    </div>
+  );
 }
 
 Email.path = "/app/auth/email";
