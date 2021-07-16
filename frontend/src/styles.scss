@@ -20,3 +20,33 @@ body,
 .cursor-pointer {
   cursor: pointer;
 }
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+
+  &:before,
+  &:after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid white;
+  }
+
+  &:not(:empty) {
+    &:before {
+      margin-right: .45em;
+    }
+  }
+
+  &:not(:empty) {
+    &:after {
+      margin-left: .45em;
+    }
+  }
+}
+
+
+
+

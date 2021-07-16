@@ -1,9 +1,11 @@
 import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router-dom";
-/* import {
+/*
+import {
   GoogleLoginButton,
   AppleLoginButton,
-} from "react-social-login-buttons"; */
+} from "react-social-login-buttons";
+*/
 
 import * as context from "../context";
 import * as User from "user";
@@ -74,14 +76,12 @@ export const Login = context.With(
                 />
               </div>
               {/*
-                <div className="mt-3 col-12 d-flex flex-column align-items-center justify-content-center">
-                  <GoogleLoginButton
-                    onClick={() => auth.loginWithGoogle()}
-                    style={{ height: 40 }}
-                  />
-                  <AppleLoginButton />
-                </div>
-               */}
+         <div className="col-12 mt-3 separator">or</div>
+              <div className="mt-3 col-12 d-flex flex-column align-items-center justify-content-center">
+                <GoogleLoginButton onClick={() => auth.loginWithGoogle()} />
+                <AppleLoginButton />
+              </div>
+         */}
             </div>
           </div>
         </form>
