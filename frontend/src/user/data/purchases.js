@@ -28,6 +28,9 @@ export function New(input = defaults) {
     map(...args) {
       return data.purchases.map(...args);
     },
+    withoutSkippable() {
+      return data.purchases.filter((p) => !p.shouldSkip());
+    },
     addPurchase(purchase) {
       return New({
         ...data,

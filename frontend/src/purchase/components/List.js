@@ -35,8 +35,10 @@ export const List = User.data.WithContext(function ({ user, setUser }) {
         {function (provided, snapshot) {
           return (
             <Row {...provided.droppableProps} ref={provided.innerRef}>
-              {user.purchases().map((purchase, index) =>
-                purchase.shouldSkip() ? null : (
+              {user
+                .purchases()
+                .withoutSkippable()
+                .map((purchase, index) => (
                   <Draggable
                     key={purchase.id()}
                     draggableId={purchase.id()}
@@ -56,8 +58,7 @@ export const List = User.data.WithContext(function ({ user, setUser }) {
                       );
                     }}
                   </Draggable>
-                )
-              )}
+                ))}
               {provided.placeholder}
             </Row>
           );
