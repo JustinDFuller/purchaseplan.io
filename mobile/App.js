@@ -1,12 +1,15 @@
 import * as React from 'react';
 import { SafeAreaView, Platform, StatusBar  } from 'react-native';
 import { WebView  } from 'react-native-webview';
+import { useURL } from 'expo-linking';
 
 const host = "https://purchaseplan.io"
 const entry = "/app/auth/login"
-const uri = host + entry
+const defaultURL = host + entry
 
 export default function() {
+  const entry = useURL();
+  const uri = entry && entry.includes(host) ? entry : defaultURL;
   const isAndroid = Platform.OS === "android";
 
   if (isAndroid) {
