@@ -31,7 +31,7 @@ handlers:
     secure: always
 
   - url: /.well-known
-    static_dir: frontend/build/.well_known
+    static_dir: frontend/build/.well-known
     secure: always
 
   - url: /
