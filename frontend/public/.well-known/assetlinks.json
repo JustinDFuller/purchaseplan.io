@@ -1,0 +1,8 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.purchaseplan.android",
+      "sha256_cert_fingerprints": ["52:3D:4D:8A:5A:09:DF:FA:F4:5E:3B:5F:45:45:B2:8F:95:40:47:DA:C6:2A:46:6E:67:FA:DD:94:3C:93:77:17"]
+    }
+}]

@@ -1,0 +1,9 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [{
+      "appID": "com.purchaseplan.ios",
+      "paths": ["/*", "/app/*", "/app/auth/*", "/app/user/*"]
+    }],
+  }
+}

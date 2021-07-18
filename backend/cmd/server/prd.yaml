@@ -30,6 +30,10 @@ handlers:
     static_dir: frontend/build
     secure: always
 
+  - url: /.well-known
+    static_dir: frontend/build/.well_known
+    secure: always
+
   - url: /
     static_files: frontend/build/index.html
     upload: frontend/build/index\.html

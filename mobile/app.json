@@ -27,7 +27,39 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1d1d42"
-      }
+      },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "*.purchaseplan.io",
+              "pathPrefix": "/"
+            },
+            {
+              "scheme": "http",
+              "host": "*.purchaseplan.io",
+              "pathPrefix": "/"
+            },
+            {
+              "scheme": "https",
+              "host": "purchaseplan.io",
+              "pathPrefix": "/"
+            },
+            {
+              "scheme": "http",
+              "host": "purchaseplan.io",
+              "pathPrefix": "/"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.ico"
