@@ -1,2 +1,2 @@
-export * as components from './components'
-export { show } from './show'
+export * as components from "./components";
+export { show } from "./show";

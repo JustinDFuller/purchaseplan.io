@@ -5,9 +5,9 @@ $danger:        $red;
 $light:         $gray-100;
 $dark:          $gray-800; */
 
-$primary:       #4e2ecf;
-$success:       #6fcf97;
-$secondary:     #26264e;
+$primary: #4e2ecf;
+$success: #6fcf97;
+$secondary: #26264e;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "./styles.scss";

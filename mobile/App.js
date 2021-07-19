@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { View, SafeAreaView, Platform, StatusBar, Text } from 'react-native';
-import { WebView  } from 'react-native-webview';
-import { useURL } from 'expo-linking';
-import * as SplashScreen from 'expo-splash-screen';
-import NetInfo from '@react-native-community/netinfo';
+import React, { useEffect, useState } from "react";
+import { View, SafeAreaView, Platform, StatusBar, Text } from "react-native";
+import { WebView } from "react-native-webview";
+import { useURL } from "expo-linking";
+import * as SplashScreen from "expo-splash-screen";
+import NetInfo from "@react-native-community/netinfo";
 
-const host = "http://192.168.86.111:3000"
-const entry = "/app/auth/login"
-const defaultURL = host + entry
+const host = "http://localhost:3000";
+const entry = "/app/auth/login";
+const defaultURL = host + entry;
 
 const defaultBackgroundColor = "#1d1d42";
 const errorBackgroundColor = "#cf2e2e";
@@ -17,8 +17,8 @@ SplashScreen.preventAutoHideAsync().catch(() => {
   /* reloading the app might trigger some race conditions, ignore them */
 });
 
-export default function() {
- const entry = useURL();
+export default function () {
+  const entry = useURL();
   const uri = entry && entry.includes(host) ? entry : defaultURL;
   const isAndroid = Platform.OS === "android";
 
@@ -29,41 +29,39 @@ export default function() {
       StatusBar.setBackgroundColor(errorBackgroundColor);
     }
   }
-  
-  useEffect(function() {
+
+  useEffect(function () {
     if (isAndroid) {
       StatusBar.setBackgroundColor(defaultBackgroundColor);
     }
-    StatusBar.setBarStyle("light-content")
+    StatusBar.setBarStyle("light-content");
 
     // Fetch network status and subscribe to updates.
     NetInfo.fetch().then(handleConnectionUpdate);
     const unsubscribe = NetInfo.addEventListener(handleConnectionUpdate);
 
-    return function() {
+    return function () {
       unsubscribe();
-    }
-  }, [])
+    };
+  }, []);
 
   function handleWebViewLoad() {
     SplashScreen.hideAsync().catch(() => {});
   }
 
-  function handleWebViewError() {
-
-  }
+  function handleWebViewError() {}
 
   return (
     <SafeAreaView
-      style={{ 
-        flex: 1, 
+      style={{
+        flex: 1,
         paddingTop: isAndroid ? StatusBar.currentHeight : 0,
         backgroundColor: "#1d1d42",
-      }} 
+      }}
     >
-      <WebView 
-        source={{ uri }} 
-        style={{ height: "100%", width: "100%", backgroundColor: "#1d1d42" }} 
+      <WebView
+        source={{ uri }}
+        style={{ height: "100%", width: "100%", backgroundColor: "#1d1d42" }}
         injectedJavaScriptBeforeContentLoaded="window.isNativeApp=true;"
         onLoad={handleWebViewLoad}
         onError={handleWebViewError}

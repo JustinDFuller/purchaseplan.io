@@ -1,1 +1,1 @@
-export { Submit } from './Submit'
+export { Submit } from "./Submit";

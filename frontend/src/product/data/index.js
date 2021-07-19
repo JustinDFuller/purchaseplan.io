@@ -1,1 +1,1 @@
-export { New } from './new';
+export { New } from "./new";
