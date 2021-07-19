@@ -6,7 +6,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "build:android": "expo build:android"
+    "build:android": "expo build:android",
+    "lint": "eslint --fix ./**/*.js",
+    "pretty": "prettier --write ./*.js"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
@@ -26,11 +28,20 @@
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
+    "react-native-svg": "12.1.1",
     "react-native-web": "~0.13.12",
     "react-native-webview": "11.6.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.9.0",
+    "eslint": "^7.31.0",
+    "eslint-config-react-app": "^6.0.0",
+    "prettier": "^2.3.2"
   },
-  "private": true
+  "private": true,
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  }
 }

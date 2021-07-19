@@ -4,8 +4,9 @@ import { WebView } from "react-native-webview";
 import { useURL } from "expo-linking";
 import * as SplashScreen from "expo-splash-screen";
 import NetInfo from "@react-native-community/netinfo";
+import Svg, { Path } from "react-native-svg";
 
-const host = "http://localhost:3000";
+const host = "https://www.purchaseplan.io";
 const entry = "/app/auth/login";
 const defaultURL = host + entry;
 
@@ -17,7 +18,9 @@ SplashScreen.preventAutoHideAsync().catch(() => {
   /* reloading the app might trigger some race conditions, ignore them */
 });
 
-export default function () {
+export default function App() {
+  const [error, setError] = useState(null);
+
   const entry = useURL();
   const uri = entry && entry.includes(host) ? entry : defaultURL;
   const isAndroid = Platform.OS === "android";
@@ -30,26 +33,31 @@ export default function () {
     }
   }
 
-  useEffect(function () {
-    if (isAndroid) {
-      StatusBar.setBackgroundColor(defaultBackgroundColor);
-    }
-    StatusBar.setBarStyle("light-content");
+  useEffect(
+    function () {
+      if (isAndroid) {
+        StatusBar.setBackgroundColor(defaultBackgroundColor);
+      }
+      StatusBar.setBarStyle("light-content");
 
-    // Fetch network status and subscribe to updates.
-    NetInfo.fetch().then(handleConnectionUpdate);
-    const unsubscribe = NetInfo.addEventListener(handleConnectionUpdate);
+      // Fetch network status and subscribe to updates.
+      NetInfo.fetch().then(handleConnectionUpdate);
+      const unsubscribe = NetInfo.addEventListener(handleConnectionUpdate);
 
-    return function () {
-      unsubscribe();
-    };
-  }, []);
+      return function () {
+        unsubscribe();
+      };
+    },
+    [isAndroid]
+  );
 
   function handleWebViewLoad() {
     SplashScreen.hideAsync().catch(() => {});
   }
 
-  function handleWebViewError() {}
+  function handleWebViewError(error) {
+    setError(error);
+  }
 
   return (
     <SafeAreaView
@@ -59,13 +67,61 @@ export default function () {
         backgroundColor: "#1d1d42",
       }}
     >
-      <WebView
-        source={{ uri }}
-        style={{ height: "100%", width: "100%", backgroundColor: "#1d1d42" }}
-        injectedJavaScriptBeforeContentLoaded="window.isNativeApp=true;"
-        onLoad={handleWebViewLoad}
-        onError={handleWebViewError}
-      />
+      {error ? (
+        <Error />
+      ) : (
+        <WebView
+          source={{ uri }}
+          style={{ height: "100%", width: "100%", backgroundColor: "#1d1d42" }}
+          injectedJavaScriptBeforeContentLoaded="window.isNativeApp=true;"
+          onLoad={handleWebViewLoad}
+          onError={handleWebViewError}
+        />
+      )}
     </SafeAreaView>
+  );
+}
+
+function Error() {
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 20,
+      }}
+    >
+      <Svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={60}
+        height={60}
+        fill="orange"
+        className="prefix__bi prefix__bi-cone-striped"
+        viewBox="0 0 16 16"
+      >
+        <Path d="M9.97 4.88l.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 01.037.96l-6 2a.5.5 0 01-.316 0l-6-2a.5.5 0 01.037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z" />
+      </Svg>
+      <Text
+        style={{
+          color: "white",
+          textAlign: "center",
+          marginTop: 15,
+          fontSize: 20,
+        }}
+      >
+        Looks like there's a problem right now.
+      </Text>
+      <Text
+        style={{
+          color: "white",
+          textAlign: "center",
+          marginTop: 5,
+          fontSize: 20,
+        }}
+      >
+        Please try again later.
+      </Text>
+    </View>
   );
 }
