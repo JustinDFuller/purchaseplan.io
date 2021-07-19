@@ -38,6 +38,7 @@ export default function App() {
   return (
     <Auth.context.Context.Provider value={{ auth, setAuth }}>
       <User.data.Context.Provider value={{ user, setUser }}>
+        <Layout.components.Offline />
         <div
           style={{ height: "100vh", width: "100vw" }}
           className={styles.classes("container-fluid", {
