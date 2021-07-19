@@ -165,6 +165,39 @@ steps:
       - backend
       - terraform-prd
 
+  - name: build-android
+    image: node:15
+    pull: if-not-exists
+    environment:
+      EXPO_TOKEN:
+        from_secret: EXPO_TOKEN
+    commands:
+      - cd mobile
+      - npm i -g expo-cli
+      - expo login
+      - expo build:android -t=app-bundle --no-publish --no-wait
+    when:
+      event: [push, tag]
+      branch: [main]
+
+  ## - name: publish-android
+  ##  image: node:15
+  ##  pull: if-not-exists
+  ##  environment:
+  ##    EXPO_TOKEN:
+  ##      from_secret: EXPO_TOKEN
+  ##  commands:
+  ##    - cd mobile
+  ##    - npm i -g expo-cli
+  ##    - expo login
+  ##    - expo upload:android --latest --track=internal
+  ##  depends_on:
+  ##    - build-android
+  ##    - deploy-prd
+  ##  when:
+  ##    event: [push, tag]
+  ##    branch: [main]
+
   - name: slack-prd
     image: plugins/slack
     pull: if-not-exists
@@ -181,6 +214,7 @@ steps:
         {{/success}}
     depends_on:
       - deploy-prd
+      - build-android
     when:
       event: [push, tag]
       branch: [main]
