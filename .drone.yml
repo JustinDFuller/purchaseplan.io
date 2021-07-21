@@ -174,7 +174,7 @@ steps:
     commands:
       - cd mobile
       - npm i -g expo-cli
-      - expo build:android -t=app-bundle --no-publish --no-wait
+      - expo build:android -t app-bundle --no-publish --no-wait
     when:
       event: [push, tag]
       branch: [main]

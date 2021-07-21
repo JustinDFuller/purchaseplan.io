@@ -6,6 +6,8 @@ import * as User from "user";
 import * as Purchase from "purchase";
 import * as Product from "product";
 
+import * as components from "../components";
+
 function makeDate(days) {
   const today = new Date();
   today.setDate(today.getDate() + days);
@@ -203,6 +205,7 @@ export function Landing() {
           </h2>
         </div>
       </div>
+      <components.Download />
     </>
   );
 }
