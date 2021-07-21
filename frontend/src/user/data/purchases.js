@@ -40,10 +40,40 @@ export function New(input = defaults) {
     hasAtLeastOne() {
       return data.purchases.length >= 1;
     },
-    reorder(start, end) {
+    reorder(id, start, end) {
       const purchases = data.purchases.slice();
-      const [removed] = purchases.splice(start, 1);
-      purchases.splice(end, 0, removed);
+      const realStart = purchases.findIndex((p) => p.id() === id);
+
+      // How many spaces did the purchase move?
+      let diff = end - start;
+      // Begin from where the purchase originally was.
+      let realEnd = realStart;
+
+      while (diff !== 0) {
+        // moving down the list (position 5 to position 1), diff is -4.
+        if (diff < 0) {
+          realEnd--;
+          if (!purchases[realEnd].shouldSkip()) {
+            diff++;
+          }
+        }
+
+        // moving up the list (position 1 to position 3), diff is 2.
+        if (diff > 0) {
+          realEnd++;
+          if (!purchases[realEnd].shouldSkip()) {
+            diff--;
+          }
+        }
+
+        // In case we get to the beginning or end of the array and that element is skippable.
+        if (realEnd === 0 || realEnd === purchases.length - 1) {
+          break;
+        }
+      }
+
+      const [removed] = purchases.splice(realStart, 1);
+      purchases.splice(realEnd, 0, removed);
 
       return New({
         ...data,

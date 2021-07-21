@@ -22,7 +22,11 @@ export const List = User.data.WithContext(function ({ user, setUser }) {
 
     const purchases = user
       .purchases()
-      .reorder(result.source.index, result.destination.index);
+      .reorder(
+        result.draggableId,
+        result.source.index,
+        result.destination.index
+      );
 
     const u = user.setPurchases(purchases);
     setUser(u);
