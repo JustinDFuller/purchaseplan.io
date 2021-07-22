@@ -7,12 +7,10 @@ type (
 	// The data is stored in an object database, so purchases
 	// Are stored as a property on the user, rather than by association.
 	User struct {
-		ID            string     `json:"id"`
 		Email         string     `json:"email"`
-		Issuer        string     `json:"issuer"`
 		Saved         int64      `json:"saved,omitempty"`
 		Contributions int64      `json:"contributions,omitempty"`
-		Frequency     string     `json:"frequency,omitempty"`
+		Frequency     Frequency  `json:"frequency,omitempty"`
 		LastPaycheck  *time.Time `json:"lastPaycheck,omitempty"`
 		Purchases     []Purchase `json:"purchases,omitempty"`
 	}
@@ -37,4 +35,12 @@ type (
 		Image         string `json:"image"`
 		OriginalImage string `datastore:",noindex" json:"originalImage"`
 	}
+
+	Frequency string
+)
+
+const (
+	EveryWeek   Frequency = "Every Week"
+	Every2Weeks           = "Every 2 Weeks"
+	OnceAMonth            = "Once A Month"
 )
