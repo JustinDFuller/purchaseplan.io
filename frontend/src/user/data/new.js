@@ -8,9 +8,9 @@ import * as Purchases from "./purchases";
 const defaults = {
   id: uuid.v4(),
   email: "",
-  saved: 100,
+  saved: 0,
   frequency: "Every 2 Weeks",
-  contributions: 100,
+  contributions: 0,
   lastPaycheck: new Date(),
   purchases: Purchases.New(),
 };
