@@ -3,8 +3,9 @@ package plan
 type Processor func(*User) error
 
 var Processors = []Processor{
-	ProcessValidation,
+	// Process validation after defaults to account for missing values.
 	ProcessDefaults,
+	ProcessValidation,
 	ProcessLastPaycheck,
 	ProcessPurchaseAvailability,
 }
@@ -23,6 +24,37 @@ func ProcessValidation(u *User) error {
 		return ErrMissingEmail
 	}
 
+	frequencies := []Frequency{
+		Weekly,
+		Biweekly,
+		Monthly,
+	}
+
+	var found bool
+	for _, f := range frequencies {
+		if f == u.Frequency {
+			found = true
+		}
+	}
+
+	if !found {
+		return ErrInvalidFrequency
+	}
+
+	for _, p := range u.Purchases {
+		if p.Product.Name == "" {
+			return ErrMissingProductName
+		}
+
+		if p.Product.Price == 0 {
+			return ErrMissingProductPrice
+		}
+
+		if p.Product.URL == "" {
+			return ErrMissingProductURL
+		}
+	}
+
 	return nil
 }
 
@@ -30,7 +62,7 @@ func ProcessDefaults(u *User) error {
 	// A quick google search shows that bi-weekly is the most
 	// common pay frequency in the US.
 	if u.Frequency == "" {
-		u.Frequency = Every2Weeks
+		u.Frequency = Biweekly
 	}
 
 	// Can't process availabilities without last paycheck.

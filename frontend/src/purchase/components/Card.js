@@ -201,10 +201,12 @@ export const Card = User.data.WithContext(function ({
                   </div>
                 </>
               )}
-              <div style={{ marginTop: 10 }}>
-                <strong style={{ marginRight: 3 }}>Ready to buy</strong>
-                <span className="availablity">{purchase.displayDate()}</span>
-              </div>
+              {purchase.date() && (
+                <div style={{ marginTop: 10 }}>
+                  <strong style={{ marginRight: 3 }}>Ready to buy</strong>
+                  <span className="availablity">{purchase.displayDate()}</span>
+                </div>
+              )}
             </div>
           </Col>
         </Row>

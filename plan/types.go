@@ -40,7 +40,7 @@ type (
 )
 
 const (
-	EveryWeek   Frequency = "Every Week"
-	Every2Weeks           = "Every 2 Weeks"
-	OnceAMonth            = "Once A Month"
+	Weekly   Frequency = "Every Week"
+	Biweekly           = "Every 2 Weeks"
+	Monthly            = "Once A Month"
 )

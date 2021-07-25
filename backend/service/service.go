@@ -222,6 +222,14 @@ func New(opts ...Option) (S, error) {
 		// Force the correct email, even if they tried to change it.
 		u.Email = email
 
+		if err := plan.Process(&u); err != nil {
+			log.Printf("Error processing user: %s", err)
+
+			// TODO: Switch based on error.
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+
 		if err := ds.PutUser(ctx, u); err != nil {
 			log.Printf("Error storing user: %s", err)
 			w.WriteHeader(http.StatusBadRequest)
@@ -245,6 +253,12 @@ func New(opts ...Option) (S, error) {
 		if err != nil {
 			log.Printf("Couldn't find user from context: %s", err)
 			w.WriteHeader(http.StatusNotFound)
+			return
+		}
+
+		if err := plan.Process(&u); err != nil {
+			log.Printf("Couldn't process user: %s", err)
+			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 

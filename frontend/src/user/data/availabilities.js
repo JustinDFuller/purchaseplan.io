@@ -35,6 +35,10 @@ function everyWeek({ lastPaycheck, saved, contributions }) {
       return date;
     },
     calculate(purchase, purchases) {
+      if (contributions <= 0) {
+        return null;
+      }
+
       const date = new Date(this.date());
       let s = saved;
       let total = 0;
@@ -78,6 +82,10 @@ function every2Weeks({ lastPaycheck, saved, contributions }) {
       return date;
     },
     calculate(purchase, purchases) {
+      if (contributions <= 0) {
+        return null;
+      }
+
       const date = new Date(this.date());
       let s = saved;
       let total = 0;
@@ -121,6 +129,10 @@ function onceAMonth({ lastPaycheck, saved, contributions }) {
       return date;
     },
     calculate(purchase, purchases) {
+      if (contributions <= 0) {
+        return null;
+      }
+
       const date = new Date(this.date());
       let s = saved;
       let total = 0;

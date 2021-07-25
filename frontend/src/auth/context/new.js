@@ -1,10 +1,11 @@
 import { Magic } from "magic-sdk";
 import { OAuthExtension } from "@magic-ext/oauth";
 
+import * as User from "user";
+import { getterSetters } from "object/getterSetters";
+
 import { state } from "./state";
 import * as api from "../api";
-import * as User from "../../user";
-import { getterSetters } from "../../object/getterSetters";
 
 const defaults = {
   user: null,

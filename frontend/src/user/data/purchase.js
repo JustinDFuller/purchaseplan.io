@@ -51,6 +51,10 @@ export function New(data = purchaseDefaults) {
       return data.purchased || data.deleted;
     },
     displayDate() {
+      if (data.date === null) {
+        return null;
+      }
+
       if (data.date <= new Date()) {
         return "today";
       }

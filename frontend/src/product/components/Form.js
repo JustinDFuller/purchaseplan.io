@@ -41,6 +41,7 @@ export const Form = User.data.WithContext(function ({
     const u = user.addPurchase(
       User.data.Purchase.New().setQuantity(quantity).setProduct(product)
     );
+
     User.api.put(u);
 
     setUser(u);
