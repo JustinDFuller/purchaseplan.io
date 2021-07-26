@@ -19,6 +19,21 @@ func Process(u *User) error {
 	return nil
 }
 
+func ProcessDefaults(u *User) error {
+	// A quick google search shows that bi-weekly is the most
+	// common pay frequency in the US.
+	if u.Frequency == "" {
+		u.Frequency = Biweekly
+	}
+
+	// Can't process availabilities without last paycheck.
+	if u.LastPaycheck == nil {
+		u.LastPaycheck = now()
+	}
+
+	return nil
+}
+
 func ProcessValidation(u *User) error {
 	if u.Email == "" {
 		return ErrMissingEmail
@@ -58,25 +73,33 @@ func ProcessValidation(u *User) error {
 	return nil
 }
 
-func ProcessDefaults(u *User) error {
-	// A quick google search shows that bi-weekly is the most
-	// common pay frequency in the US.
-	if u.Frequency == "" {
-		u.Frequency = Biweekly
-	}
-
-	// Can't process availabilities without last paycheck.
-	if u.LastPaycheck == nil {
-		u.LastPaycheck = now()
-	}
-
-	return nil
-}
-
 func ProcessLastPaycheck(U *User) error {
 	return nil
 }
 
 func ProcessPurchaseAvailability(u *User) error {
+	if u.Contributions == 0 {
+		return nil
+	}
+
+	c, err := GetPurchaseCalculator(u)
+	if err != nil {
+		return err
+	}
+
+	if c == nil {
+		return ErrInvalidAvailabilityCalculator
+	}
+
+	for i, p := range u.Purchases {
+		d, err := c.Calculate(u, &p)
+		if err != nil {
+			return err
+		}
+
+		p.Date = d
+		u.Purchases[i] = p
+	}
+
 	return nil
 }

@@ -88,6 +88,107 @@ func TestProcess(t *testing.T) {
 			},
 			error: ErrInvalidFrequency,
 		},
+		{
+			name: "process_availability_weekly",
+			given: User{
+				Email:         "foobar",
+				Frequency:     Weekly,
+				Contributions: 100,
+				LastPaycheck:  now(),
+				Purchases: []Purchase{
+					{
+						Deleted: true,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "deleted",
+							Price: 100,
+						},
+					},
+					{
+						Purchased: true,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "deleted",
+							Price: 100,
+						},
+					},
+					{
+						Quantity: 2,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "test",
+							Price: 300,
+						},
+					},
+				},
+			},
+			expected: User{
+				Email:         "foobar",
+				Frequency:     Weekly,
+				Contributions: 100,
+				LastPaycheck:  now(),
+				Purchases: []Purchase{
+					{
+						Deleted: true,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "deleted",
+							Price: 100,
+						},
+					},
+					{
+						Purchased: true,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "deleted",
+							Price: 100,
+						},
+					},
+					{
+						Quantity: 2,
+						Date:     fromNow(time.Hour * 24 * 7 * 6),
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "test",
+							Price: 300,
+						},
+					},
+				},
+			},
+		},
+		{
+			name: "process_availability_weekly_no_contributions",
+			given: User{
+				Email:        "foobar",
+				Frequency:    Weekly,
+				LastPaycheck: now(),
+				Purchases: []Purchase{
+					{
+						Quantity: 2,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "test",
+							Price: 300,
+						},
+					},
+				},
+			},
+			expected: User{
+				Email:        "foobar",
+				Frequency:    Weekly,
+				LastPaycheck: now(),
+				Purchases: []Purchase{
+					{
+						Quantity: 2,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "test",
+							Price: 300,
+						},
+					},
+				},
+			},
+		},
 	}
 
 	for _, test := range tests {
