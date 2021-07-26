@@ -21,7 +21,9 @@ export function Offline() {
         backgroundColor: "#cf2e2e",
         padding: 10,
         width: "100%",
-        position: "fixed",
+        position: "sticky",
+        top: 0,
+        zIndex: 1,
       }}
     >
       <p style={{ color: "white", textAlign: "center", margin: 0 }}>
