@@ -12,7 +12,7 @@ test:
 	@ENV=test go test -race ./...;
 
 run-watch:
-	@rerun "$(MAKE) dev";
+	@rerun "$(MAKE) run";
 
 run: datastore-start
 	@go run ./cmd/server/main.go;
