@@ -108,6 +108,20 @@ steps:
     depends_on:
       - deploy-dev
 
+  - name: build-android
+    image: node:15
+    pull: if-not-exists
+    environment:
+      EXPO_TOKEN:
+        from_secret: EXPO_TOKEN
+    commands:
+      - cd mobile
+      - npm i -g expo-cli
+      - expo build:android -t app-bundle --no-publish --no-wait
+    when:
+      event: [push, tag]
+      branch: [main]
+
   - name: slack-dev
     image: plugins/slack
     pull: if-not-exists
@@ -124,6 +138,7 @@ steps:
         {{/success}}
     depends_on:
       - e2e-dev
+      - build-android
     when:
       event: push
       branch: [main]
@@ -165,20 +180,7 @@ steps:
       - backend
       - terraform-prd
 
-  - name: build-android
-    image: node:15
-    pull: if-not-exists
-    environment:
-      EXPO_TOKEN:
-        from_secret: EXPO_TOKEN
-    commands:
-      - cd mobile
-      - npm i -g expo-cli
-      - expo build:android -t app-bundle --no-publish --no-wait
-    when:
-      event: [push, tag]
-      branch: [main]
-
+  
   ## - name: publish-android
   ##  image: node:15
   ##  pull: if-not-exists
@@ -213,7 +215,6 @@ steps:
         {{/success}}
     depends_on:
       - deploy-prd
-      - build-android
     when:
       event: [push, tag]
       branch: [main]
