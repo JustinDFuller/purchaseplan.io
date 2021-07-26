@@ -256,6 +256,8 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
+		u.Email = email
+
 		if err := plan.Process(&u); err != nil {
 			log.Printf("Couldn't process user: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
