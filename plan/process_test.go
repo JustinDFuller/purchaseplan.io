@@ -16,19 +16,8 @@ func TestProcess(t *testing.T) {
 		return &n
 	}
 
-	// During tests, we need uuid to always return an expected value.
-	ids := []string{
-		"776867e6-c0e4-4911-9789-7dcee8a5678f",
-		"7430b439-ed20-4f44-8640-aacb766d199e",
-	}
 	newID = func() (string, error) {
-		if len(ids) == 0 {
-			return "", errors.New("no mock UUIDs left")
-		}
-
-		id := ids[0]
-		ids = ids[1:]
-		return id, nil
+		return "776867e6-c0e4-4911-9789-7dcee8a5678f", nil
 	}
 
 	tests := []struct {
