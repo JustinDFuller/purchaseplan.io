@@ -144,7 +144,21 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-time.Hour * 24),
 			},
 		},
-
+		{
+			name: "process_last_paycheck_monthly",
+			given: User{
+				Email:         "foobar",
+				Frequency:     Biweekly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-time.Hour * 24 * 32),
+			},
+			expected: User{
+				Email:         "foobar",
+				Frequency:     Biweekly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-time.Hour * 24 * 4),
+			},
+		},
 		{
 			name: "process_availability_weekly",
 			given: User{

@@ -103,5 +103,12 @@ func (w MonthlyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
 }
 
 func (w MonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
-	return nil, nil
+	lastPaycheck := *u.LastPaycheck
+	n := now()
+
+	for lastPaycheck.AddDate(0, 1, 0).Before(*n) {
+		lastPaycheck = lastPaycheck.AddDate(0, 1, 0)
+	}
+
+	return &lastPaycheck, nil
 }
