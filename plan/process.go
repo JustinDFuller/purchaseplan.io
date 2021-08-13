@@ -83,7 +83,23 @@ func ProcessValidation(u *User) error {
 	return nil
 }
 
-func ProcessLastPaycheck(U *User) error {
+func ProcessLastPaycheck(u *User) error {
+	c, err := GetPurchaseCalculator(u)
+	if err != nil {
+		return err
+	}
+
+	if c == nil {
+		return ErrInvalidAvailabilityCalculator
+	}
+
+	d, err := c.LastPaycheck(u)
+	if err != nil {
+		return err
+	}
+
+	u.LastPaycheck = d
+
 	return nil
 }
 

@@ -2,11 +2,10 @@ package plan
 
 import (
 	"errors"
-	"reflect"
 	"testing"
 	"time"
 
-	"github.com/kr/pretty"
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestProcess(t *testing.T) {
@@ -115,6 +114,37 @@ func TestProcess(t *testing.T) {
 			},
 			error: ErrInvalidFrequency,
 		},
+		{
+			name: "process_last_paycheck_weekly",
+			given: User{
+				Email:         "foobar",
+				Frequency:     Weekly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-time.Hour * 24 * 8),
+			},
+			expected: User{
+				Email:         "foobar",
+				Frequency:     Weekly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-time.Hour * 24),
+			},
+		},
+		{
+			name: "process_last_paycheck_biweekly",
+			given: User{
+				Email:         "foobar",
+				Frequency:     Biweekly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-time.Hour * 24 * 15),
+			},
+			expected: User{
+				Email:         "foobar",
+				Frequency:     Biweekly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-time.Hour * 24),
+			},
+		},
+
 		{
 			name: "process_availability_weekly",
 			given: User{
@@ -247,12 +277,8 @@ func TestProcess(t *testing.T) {
 				t.Fatalf("Expected error: %s", test.error)
 			}
 
-			if !reflect.DeepEqual(test.given, test.expected) {
-				diff := pretty.Diff(test.given, test.expected)
-				for _, d := range diff {
-					t.Log(d)
-				}
-				t.Fatal("Actual vs Expected")
+			if diff := cmp.Diff(test.expected, test.given); diff != "" {
+				t.Error(diff)
 			}
 		})
 	}
