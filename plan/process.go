@@ -31,6 +31,16 @@ func ProcessDefaults(u *User) error {
 		u.LastPaycheck = now()
 	}
 
+	for i := range u.Purchases {
+		if u.Purchases[i].ID == "" {
+			id, err := newID()
+			if err != nil {
+				return err
+			}
+			u.Purchases[i].ID = id
+		}
+	}
+
 	return nil
 }
 

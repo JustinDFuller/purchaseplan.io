@@ -4,21 +4,22 @@ import { ReactComponent as PlusIcon } from "bootstrap-icons/icons/plus-circle-fi
 import { ReactComponent as GearIcon } from "bootstrap-icons/icons/gear.svg";
 
 import * as User from "user";
+import { theme } from "styles";
 
 const buttonStyle = {
   width: "33.33%",
   height: "100%",
   padding: "12px 0 11px",
   background: "transparent",
-  fill: "#ccc",
+  fill: theme.textColorFaded,
   border: 0,
-  borderTop: "2px solid white",
+  borderTop: `2px solid ${theme.borderColor}`,
 };
 
 const activeButtonStyle = {
   ...buttonStyle,
-  borderTop: "2px solid #4e2ecf",
-  fill: "#fff",
+  borderTop: `2px solid ${theme.highlight}`,
+  fill: theme.highlight,
 };
 
 export function BottomNav() {
@@ -34,7 +35,7 @@ export function BottomNav() {
           bottom: 0,
           left: 0,
           right: 0,
-          background: "#0a0a24",
+          background: theme.backgroundDark,
           height: 50,
         }}
       >

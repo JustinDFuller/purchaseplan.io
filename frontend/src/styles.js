@@ -1,13 +1,43 @@
+const themes = {
+  dark: {
+    background: "#1d1d42",
+    backgroundDark: "#0a0a24",
+    backgroundLight: "#141432",
+    cardBorderColor: "#0a0a24",
+    borderColor: "white",
+    textColor: "white",
+    textColorFaded: "#ccc",
+    highlight: "#4e2ecf",
+  },
+  light: {
+    background: "#eee",
+    backgroundDark: "#ddd",
+    backgroundLight: "#fff",
+    cardBorderColor: "black",
+    borderColor: "black",
+    textColor: "black",
+    textColorFaded: "#4e4e4e",
+    highlight: "#4e2ecf",
+  },
+};
+
+export const theme =
+  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? themes.dark
+    : themes.light;
+
 export const dark = {
-  background: "#1d1d42",
+  background: theme.background,
+  fontColor: theme.textColor,
 };
 
 export const darkAlt = {
-  background: "#141432",
-  borderRight: "3px solid rgb(10 10 36)",
-  borderBottom: "3px solid rgb(10 10 36)",
-  borderLeft: "1px solid rgb(10 10 36)",
-  borderTop: "1px solid rgb(10 10 36)",
+  background: theme.backgroundLight,
+  borderRight: `3px solid ${theme.cardBorderColor}`,
+  borderBottom: `3px solid ${theme.cardBorderColor}`,
+  borderLeft: `1px solid ${theme.cardBorderColor}`,
+  borderTop: `1px solid ${theme.cardBorderColor}`,
+  fontColor: theme.textColor,
 };
 
 export const roundBorder = {
@@ -23,7 +53,7 @@ export const logo = {
 };
 
 export const text = {
-  color: "white",
+  color: theme.textColor,
 };
 
 export const textDark = {
