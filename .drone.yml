@@ -28,9 +28,9 @@ steps:
         from_secret: APP_ENGINE_CREDENTIALS_DEV
     commands:
       - ./scripts/setup
-      - cd ./backend/cmd/server
+      - cd ./backend
         # - make test
-      - make build
+      - make build-server
     when:
       event: [push, tag]
 
@@ -39,8 +39,8 @@ steps:
     pull: if-not-exists
     commands:
       - ./scripts/setup
-      - cd ./backend/cmd/cron
-      - make build
+      - cd ./backend
+      - make build-cron
     when:
       event: [push, tag]
 
