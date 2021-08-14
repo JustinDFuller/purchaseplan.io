@@ -560,6 +560,80 @@ func TestProcess(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "process_availability_monthly",
+			given: User{
+				Email:         "foobar",
+				Frequency:     Monthly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-oneWeek * 5),
+				Purchases: []Purchase{
+					{
+						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted: true,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "deleted",
+							Price: 100,
+						},
+					},
+					{
+						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
+						Purchased: true,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "deleted",
+							Price: 100,
+						},
+					},
+					{
+						ID:       "3b557e55-76a4-4023-87bd-90bc6dc14eeb",
+						Quantity: 2,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "test",
+							Price: 300,
+						},
+					},
+				},
+			},
+			expected: User{
+				Email:         "foobar",
+				Frequency:     Monthly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-oneWeek + oneDay*2),
+				Purchases: []Purchase{
+					{
+						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted: true,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "deleted",
+							Price: 100,
+						},
+					},
+					{
+						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
+						Purchased: true,
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "deleted",
+							Price: 100,
+						},
+					},
+					{
+						ID:       "3b557e55-76a4-4023-87bd-90bc6dc14eeb",
+						Quantity: 2,
+						Date:     fromNow(oneWeek*25 + oneDay*4),
+						Product: Product{
+							URL:   "https://example.com",
+							Name:  "test",
+							Price: 300,
+						},
+					},
+				},
+			},
+		},
 	}
 
 	for _, test := range tests {
