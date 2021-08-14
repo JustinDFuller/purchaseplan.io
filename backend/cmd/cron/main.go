@@ -25,9 +25,19 @@ func main() {
 		log.Fatal(err)
 	}
 
+	process := func(u *User) error {
+		if err := plan.Process(u); err != nil {
+			return err
+		}
+		if err := ds.PutUser(ctx, u); err != nil {
+			return err
+		}
+		return nil
+	}
+
 	log.Print("CRON STARTED")
 
-	if err := ds.QueryUsers(ctx, plan.Process); err != nil {
+	if err := ds.QueryUsers(ctx, process); err != nil {
 		log.Fatal(err)
 	}
 
