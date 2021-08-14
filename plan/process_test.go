@@ -161,6 +161,7 @@ func TestProcess(t *testing.T) {
 				Email:         "foobar",
 				Frequency:     Monthly,
 				Contributions: 100,
+				Saved:         100,
 				LastPaycheck:  fromNow(-oneDay * 2),
 			},
 		},
@@ -607,6 +608,7 @@ func TestProcess(t *testing.T) {
 				Email:         "foobar",
 				Frequency:     Monthly,
 				Contributions: 100,
+				Saved:         100,
 				LastPaycheck:  fromNow(-oneWeek + oneDay*2),
 				Purchases: []Purchase{
 					{
@@ -630,7 +632,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:       "3b557e55-76a4-4023-87bd-90bc6dc14eeb",
 						Quantity: 2,
-						Date:     fromNow(oneWeek*25 + oneDay*4),
+						Date:     fromNow(oneWeek*21 + oneDay),
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "test",
@@ -720,7 +722,7 @@ func TestProcess(t *testing.T) {
 				Email:         "foobar",
 				Frequency:     TwiceMonthly,
 				Contributions: 100,
-				LastPaycheck:  fromNow(-oneWeek * 50), // July 1st
+				LastPaycheck:  fromNow(-oneWeek * 5),
 				Purchases: []Purchase{
 					{
 						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
@@ -755,6 +757,7 @@ func TestProcess(t *testing.T) {
 				Email:         "foobar",
 				Frequency:     TwiceMonthly,
 				Contributions: 100,
+				Saved:         100,
 				LastPaycheck:  fromNow(-oneWeek * 3),
 				Purchases: []Purchase{
 					{
@@ -778,7 +781,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:       "3b557e55-76a4-4023-87bd-90bc6dc14eeb",
 						Quantity: 2,
-						Date:     fromNow(oneWeek*10 + oneDay),
+						Date:     fromNow(oneWeek*8 - oneDay),
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "test",

@@ -195,7 +195,16 @@ func (w MonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 }
 
 func (w MonthlyCalculator) Saved(u *User) (int64, error) {
-	return 0, nil
+	saved := u.Saved
+	lastPaycheck := *u.LastPaycheck
+	n := now()
+
+	for lastPaycheck.AddDate(0, 1, 0).Before(*n) {
+		lastPaycheck = lastPaycheck.AddDate(0, 1, 0)
+		saved += u.Contributions
+	}
+
+	return saved, nil
 }
 
 type TwiceMonthlyCalculator struct {
@@ -253,5 +262,20 @@ func (w TwiceMonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 }
 
 func (w TwiceMonthlyCalculator) Saved(u *User) (int64, error) {
-	return 0, nil
+	n := now()
+	saved := u.Saved
+	t := *u.LastPaycheck
+	for {
+		if t.Day() >= 15 {
+			t = time.Date(t.Year(), t.Month()+1, 1, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), time.UTC)
+		} else {
+			t = time.Date(t.Year(), t.Month(), 15, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), time.UTC)
+		}
+
+		if n.Before(t) {
+			return saved, nil
+		} else {
+			saved += u.Contributions
+		}
+	}
 }
