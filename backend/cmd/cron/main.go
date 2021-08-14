@@ -25,11 +25,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-	process := func(u *User) error {
+	process := func(u *plan.User) error {
 		if err := plan.Process(u); err != nil {
 			return err
 		}
-		if err := ds.PutUser(ctx, u); err != nil {
+		if err := ds.PutUser(ctx, *u); err != nil {
 			return err
 		}
 		return nil
