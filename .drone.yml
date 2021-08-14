@@ -1,11 +1,14 @@
 kind: pipeline
 name: default
+
 platform:
   os: linux
   arch: amd64
+
 workspace:
   base: /drone
   path: src/github.com/justindfuller/purchase-plan
+
 steps:
   - name: backend-lint
     image: golangci/golangci-lint
@@ -13,8 +16,7 @@ steps:
     commands:
       - cd backend
       - golangci-lint run
-    when:
-      event: [push, tag]
+
   - name: backend
     image: nytimes/golang-gcloud-sdk:latest
     pull: if-not-exists
@@ -26,8 +28,7 @@ steps:
       - ./scripts/setup
       - cd ./backend
       - make build-server
-    when:
-      event: [push, tag]
+
   - name: cron
     image: nytimes/golang-gcloud-sdk:latest
     pull: if-not-exists
@@ -35,8 +36,7 @@ steps:
       - ./scripts/setup
       - cd ./backend
       - make build-cron
-    when:
-      event: [push, tag]
+
   - name: frontend
     image: node:15
     pull: if-not-exists
@@ -46,8 +46,19 @@ steps:
       - npm run build
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
-    when:
-      event: [push, tag]
+
+  - name: build-android
+    image: node:15
+    pull: if-not-exists
+    environment:
+      EXPO_TOKEN:
+        from_secret: EXPO_TOKEN
+    commands:
+      - cd mobile
+      - npm ci
+      - npm i -g expo-cli
+      - expo build:android -t app-bundle --no-publish --no-wait
+
   - name: setup-terraform
     image: bash
     pull: if-not-exists
@@ -58,6 +69,7 @@ steps:
       - ./scripts/setup
     depends_on:
       - backend
+
   - name: terraform-dev
     image: hashicorp/terraform:light
     pull: if-not-exists
@@ -72,6 +84,7 @@ steps:
       branch: main
     depends_on:
       - setup-terraform
+
   - name: deploy-cron-dev
     image: nytimes/drone-gae
     pull: if-not-exists
@@ -91,6 +104,7 @@ steps:
       - cron
       - backend-lint
       - terraform-dev
+
   - name: deploy-dev
     image: nytimes/drone-gae
     pull: if-not-exists
@@ -111,6 +125,7 @@ steps:
       - backend
       - backend-lint
       - terraform-dev
+
   - name: e2e-dev
     image: cypress/included:6.4.0
     pull: if-not-exists
@@ -126,20 +141,7 @@ steps:
     depends_on:
       - deploy-dev
       - deploy-cron
-  - name: build-android
-    image: node:15
-    pull: if-not-exists
-    environment:
-      EXPO_TOKEN:
-        from_secret: EXPO_TOKEN
-    commands:
-      - cd mobile
-      - npm ci
-      - npm i -g expo-cli
-      - expo build:android -t app-bundle --no-publish --no-wait
-    when:
-      event: [push, tag]
-      branch: [main]
+  
   - name: slack-dev
     image: plugins/slack
     pull: if-not-exists
@@ -150,20 +152,18 @@ steps:
       link_names: true
       template: >
         {{#success build.status}}
-
           build {{build.link}} (dev deploy) succeeded.
         {{else}}
-
           build {{build.link}} (dev deploy) failed.
         {{/success}}
-
     depends_on:
       - e2e-dev
       - build-android
     when:
       event: push
-      branch: [main]
+      branch: main
       status: [success, failure]
+
   - name: terraform-prd
     image: hashicorp/terraform:light
     pull: if-not-exists
@@ -174,10 +174,10 @@ steps:
       - terraform init
       # - terraform apply -auto-approve
     when:
-      event: [tag]
-      branch: [main]
+      event: tag
     depends_on:
       - setup-terraform
+
   - name: deploy-prd
     image: nytimes/drone-gae
     pull: if-not-exists
@@ -191,12 +191,32 @@ steps:
       app_file: prd.yaml
       max_versions: 10
     when:
-      event: [tag]
-      branch: [main]
+      event: tag
     depends_on:
       - frontend
       - backend
+      - backend-lint
       - terraform-prd
+
+  - name: deploy-cron-prd
+    image: nytimes/drone-gae
+    pull: if-not-exists
+    environment:
+      GAE_CREDENTIALS:
+        from_secret: DRONE_CREDENTIALS_PRD
+    settings:
+      action: deploy
+      project: purchase-plan-prd
+      dir: backend/cmd/cron
+      app_file: app.yaml
+      max_versions: 2
+    when:
+      event: tag
+    depends_on:
+      - cron
+      - backend-lint
+      - terraform-prd
+ 
   ## - name: publish-android
   ##  image: node:15
   ##  pull: if-not-exists
@@ -213,7 +233,8 @@ steps:
   ##    - deploy-prd
   ##  when:
   ##    event: [push, tag]
-  ##    branch: [main]
+  ##    branch: main
+
   - name: slack-prd
     image: plugins/slack
     pull: if-not-exists
@@ -224,16 +245,13 @@ steps:
       link_names: true
       template: >
         {{#success build.status}}
-
           @here build {{build.link}} (production deploy) succeeded.
         {{else}}
-
           @here build {{build.link}} (production deploy) failed.
         {{/success}}
-
     depends_on:
       - deploy-prd
     when:
-      event: [tag]
-      branch: [main]
+      event: tag
       status: [success, failure]
+
