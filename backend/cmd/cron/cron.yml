@@ -1,0 +1,4 @@
+- description: "daily cron job"
+  url: /
+  schedule: every 24 hours
+  target: cron
