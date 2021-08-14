@@ -61,8 +61,6 @@ func (c Client) QueryUsers(ctx context.Context, p plan.Processor) error {
 			return err
 		}
 	}
-
-	return nil
 }
 
 // IsNotFound returns if the error is a datastore 404.
