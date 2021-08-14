@@ -53,6 +53,7 @@ func ProcessValidation(u *User) error {
 		Weekly,
 		Biweekly,
 		Monthly,
+		TwiceMonthly,
 	}
 
 	var found bool

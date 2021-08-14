@@ -27,7 +27,10 @@ func GetPurchaseCalculator(u *User) (PurchaseCalculator, error) {
 		return MonthlyCalculator{
 			Contributions: u.Contributions,
 		}, nil
-
+	case TwiceMonthly:
+		return TwiceMonthlyCalculator{
+			Contributions: u.Contributions,
+		}, nil
 	}
 
 	return nil, ErrInvalidAvailabilityCalculator
@@ -111,4 +114,27 @@ func (w MonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 	}
 
 	return &lastPaycheck, nil
+}
+
+type TwiceMonthlyCalculator struct {
+	Contributions int64
+}
+
+func (w TwiceMonthlyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
+	return nil, nil
+}
+
+func (w TwiceMonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
+	n := now()
+	l := u.LastPaycheck
+
+	year, month, day := n.Date()
+
+	if day < 15 {
+		d := time.Date(year, month, 1, l.Hour(), l.Minute(), l.Second(), l.Nanosecond(), time.UTC)
+		return &d, nil
+	}
+
+	d := time.Date(year, month, 15, l.Hour(), l.Minute(), l.Second(), l.Nanosecond(), time.UTC)
+	return &d, nil
 }

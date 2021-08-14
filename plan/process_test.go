@@ -10,7 +10,7 @@ import (
 
 func TestProcess(t *testing.T) {
 	// During tests, we need time.Now to always return the same value.
-	now = func() *time.Time {
+	mockNow := func() *time.Time {
 		n := time.Date(2020, time.July, 22, 10, 43, 0, 0, time.UTC)
 		return &n
 	}
@@ -19,11 +19,14 @@ func TestProcess(t *testing.T) {
 		return "776867e6-c0e4-4911-9789-7dcee8a5678f", nil
 	}
 
+	now = mockNow
+
 	tests := []struct {
 		name     string
 		given    User
 		expected User
 		error    error
+		now      func() *time.Time
 	}{
 		{
 			name:     "process_validation_missing_email",
@@ -148,15 +151,47 @@ func TestProcess(t *testing.T) {
 			name: "process_last_paycheck_monthly",
 			given: User{
 				Email:         "foobar",
-				Frequency:     Biweekly,
+				Frequency:     Monthly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-time.Hour * 24 * 32),
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     Biweekly,
+				Frequency:     Monthly,
 				Contributions: 100,
-				LastPaycheck:  fromNow(-time.Hour * 24 * 4),
+				LastPaycheck:  fromNow(-time.Hour * 24 * 2),
+			},
+		},
+		{
+			name: "process_last_paycheck_twicemonthly_(15th)",
+			given: User{
+				Email:         "foobar",
+				Frequency:     TwiceMonthly,
+				Contributions: 100,
+			},
+			expected: User{
+				Email:         "foobar",
+				Frequency:     TwiceMonthly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-time.Hour * 24 * 7),
+			},
+		},
+		{
+			name: "process_last_paycheck_twicemonthly_(1st)",
+			given: User{
+				Email:         "foobar",
+				Frequency:     TwiceMonthly,
+				Contributions: 100,
+			},
+			expected: User{
+				Email:         "foobar",
+				Frequency:     TwiceMonthly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-time.Hour * 24 * 21),
+			},
+			now: func() *time.Time {
+				n := time.Date(2020, time.July, 12, 10, 43, 0, 0, time.UTC)
+				return &n
 			},
 		},
 		{
@@ -272,6 +307,11 @@ func TestProcess(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
+			now = mockNow
+			if test.now != nil {
+				now = test.now
+			}
+
 			if err := Process(&test.given); err != nil {
 				if test.error == nil {
 					t.Fatal(err)
