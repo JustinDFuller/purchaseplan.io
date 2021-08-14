@@ -81,7 +81,7 @@ steps:
     depends_on:
       - setup-terraform
 
-  - name: deploy-cron
+  - name: deploy-cron-dev
     image: nytimes/drone-gae
     pull: if-not-exists
     environment:
@@ -185,10 +185,9 @@ steps:
       - terraform init
         # - terraform apply -auto-approve
     when:
-      event: [push, tag]
+      event: [tag]
       branch: [main]
     depends_on:
-      - e2e-dev
       - setup-terraform
 
   - name: deploy-prd
@@ -204,7 +203,7 @@ steps:
       app_file: prd.yaml
       max_versions: 10
     when:
-      event: [push, tag]
+      event: [tag]
       branch: [main]
     depends_on:
       - frontend
@@ -247,6 +246,6 @@ steps:
     depends_on:
       - deploy-prd
     when:
-      event: [push, tag]
+      event: [tag]
       branch: [main]
       status: [ success, failure  ]
