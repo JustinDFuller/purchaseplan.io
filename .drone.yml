@@ -140,7 +140,7 @@ steps:
       branch: main
     depends_on:
       - deploy-dev
-      - deploy-cron
+      - deploy-cron-dev
   
   - name: slack-dev
     image: plugins/slack
@@ -251,6 +251,7 @@ steps:
         {{/success}}
     depends_on:
       - deploy-prd
+      - deploy-cron-prd
     when:
       event: tag
       status: [success, failure]
