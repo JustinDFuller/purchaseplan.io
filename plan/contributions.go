@@ -7,6 +7,7 @@ import (
 type PurchaseCalculator interface {
 	Calculate(*User, *Purchase) (*time.Time, error)
 	LastPaycheck(*User) (*time.Time, error)
+	Saved(*User) (int64, error)
 }
 
 func GetPurchaseCalculator(u *User) (PurchaseCalculator, error) {
@@ -77,6 +78,19 @@ func (w WeeklyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 	return &lastPaycheck, nil
 }
 
+func (w WeeklyCalculator) Saved(u *User) (int64, error) {
+	saved := u.Saved
+	lastPaycheck := *u.LastPaycheck
+	n := now()
+
+	for n.Sub(lastPaycheck) >= oneWeek {
+		lastPaycheck = lastPaycheck.Add(oneWeek)
+		saved += u.Contributions
+	}
+
+	return saved, nil
+}
+
 type BiWeeklyCalculator struct {
 	Contributions int64
 }
@@ -122,6 +136,19 @@ func (w BiWeeklyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 	return &lastPaycheck, nil
 }
 
+func (w BiWeeklyCalculator) Saved(u *User) (int64, error) {
+	saved := u.Saved
+	lastPaycheck := *u.LastPaycheck
+	n := now()
+
+	for n.Sub(lastPaycheck) >= oneWeek*2 {
+		lastPaycheck = lastPaycheck.Add(oneWeek * 2)
+		saved += u.Contributions
+	}
+
+	return saved, nil
+}
+
 type MonthlyCalculator struct {
 	Contributions int64
 }
@@ -165,6 +192,10 @@ func (w MonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 	}
 
 	return &lastPaycheck, nil
+}
+
+func (w MonthlyCalculator) Saved(u *User) (int64, error) {
+	return 0, nil
 }
 
 type TwiceMonthlyCalculator struct {
@@ -219,4 +250,8 @@ func (w TwiceMonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 
 	d := time.Date(year, month, 15, l.Hour(), l.Minute(), l.Second(), l.Nanosecond(), time.UTC)
 	return &d, nil
+}
+
+func (w TwiceMonthlyCalculator) Saved(u *User) (int64, error) {
+	return 0, nil
 }

@@ -6,6 +6,7 @@ var Processors = []Processor{
 	// Process validation after defaults to account for missing values.
 	ProcessDefaults,
 	ProcessValidation,
+	ProcessSaved,
 	ProcessLastPaycheck,
 	ProcessPurchaseAvailability,
 }
@@ -81,6 +82,25 @@ func ProcessValidation(u *User) error {
 		}
 	}
 
+	return nil
+}
+
+func ProcessSaved(u *User) error {
+	c, err := GetPurchaseCalculator(u)
+	if err != nil {
+		return err
+	}
+
+	if c == nil {
+		return ErrInvalidAvailabilityCalculator
+	}
+
+	saved, err := c.Saved(u)
+	if err != nil {
+		return err
+	}
+
+	u.Saved = saved
 	return nil
 }
 
