@@ -3,8 +3,10 @@ package datastore
 import (
 	"context"
 
+	"cloud.google.com/go/datastore"
 	ds "cloud.google.com/go/datastore"
 	"github.com/justindfuller/purchaseplan.io/plan"
+	"google.golang.org/api/iterator"
 )
 
 // Client is a wrapper around the datastore client.
@@ -40,6 +42,27 @@ func (c Client) GetUser(ctx context.Context, id string) (plan.User, error) {
 	k := ds.NameKey("Users", id, nil)
 	err := c.c.Get(ctx, k, &u)
 	return u, err
+}
+
+func (c Client) QueryUsers(ctx context.Context, p plan.Processor) error {
+	t := c.c.Run(ctx, datastore.NewQuery("Users"))
+	for {
+		var u plan.User
+		_, err := t.Next(&u)
+		if err == iterator.Done {
+			return nil
+		}
+
+		if err != nil {
+			return err
+		}
+
+		if err := p(&u); err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 // IsNotFound returns if the error is a datastore 404.
