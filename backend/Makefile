@@ -5,8 +5,12 @@ export GOOGLE_CLOUD_PROJECT=purchase-plan-dev
 export GOOGLE_APPLICATION_CREDENTIALS=$(HOME)/.config/gcloud/application_default_credentials.json
 export PURCHASE_PLAN_IMAGE_BUCKET=purchase-plan-images-local
 
-build:
+build-server:
 	@go build ./cmd/server/main.go;
+	
+build-cron:
+        @go build ./cmd/cron/main.go;
+
 
 test:
 	@ENV=test go test -race ./...;
