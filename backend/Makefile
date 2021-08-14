@@ -9,8 +9,7 @@ build-server:
 	@go build ./cmd/server/main.go;
 	
 build-cron:
-        @go build ./cmd/cron/main.go;
-
+	@go build ./cmd/cron/main.go;
 
 test:
 	@ENV=test go test -race ./...;

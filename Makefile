@@ -10,7 +10,10 @@ build-frontend:
 	@cd ./frontend && make build;
 
 build-backend:
-	@cd ./backend && make build;
+	@cd ./backend && make build-server;
+
+build-cron:
+	@cd ./backend && make build-cron;
 
 test:
 	@($(MAKE) run) & (sleep 10 && cd ./e2e && npm test);

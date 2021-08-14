@@ -29,7 +29,6 @@ steps:
     commands:
       - ./scripts/setup
       - cd ./backend
-        # - make test
       - make build-server
     when:
       event: [push, tag]
