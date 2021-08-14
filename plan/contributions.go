@@ -172,7 +172,38 @@ type TwiceMonthlyCalculator struct {
 }
 
 func (w TwiceMonthlyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
-	return nil, nil
+	var total int64
+
+	if p.Deleted || p.Purchased {
+		return nil, nil
+	}
+
+	for _, p := range u.Purchases {
+		if p.Deleted || p.Purchased {
+			continue
+		}
+
+		total += p.Quantity * p.Product.Price
+	}
+
+	s := u.Saved
+	n, err := w.LastPaycheck(u)
+	if err != nil {
+		return nil, err
+	}
+
+	for s < total {
+		var d time.Time
+		if n.Day() < 15 {
+			d = time.Date(n.Year(), n.Month(), 15, n.Hour(), n.Minute(), n.Second(), n.Nanosecond(), time.UTC)
+		} else {
+			d = time.Date(n.Year(), n.Month()+1, 1, n.Hour(), n.Minute(), n.Second(), n.Nanosecond(), time.UTC)
+		}
+		n = &d
+		s += u.Contributions
+	}
+
+	return n, nil
 }
 
 func (w TwiceMonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
