@@ -16,5 +16,3 @@ require (
 	github.com/magiclabs/magic-admin-go v0.1.0
 	github.com/pkg/errors v0.9.1
 )
-
-replace github.com/justindfuller/purchaseplan.io/plan => /home/justindanielfuller/code/purchaseplan.io/plan
