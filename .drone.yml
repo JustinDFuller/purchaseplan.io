@@ -106,17 +106,6 @@ steps:
       - backend-lint
       - terraform-dev
 
-  - name: predeploy-cron-dev
-    image: bash
-    pull: if-not-exists
-    commands:
-      - rm -rf ./backend/frontend
-    depends_on:
-      - cron
-      - backend-lint
-      - terraform-dev
-      - deploy-dev
-
   - name: deploy-cron-dev
     image: nytimes/drone-gae
     pull: if-not-exists
@@ -133,7 +122,9 @@ steps:
       event: push
       branch: main
     depends_on:
-      - predeploy-cron-dev
+      - cron
+      - backend-lint
+      - terraform-dev
 
   - name: e2e-dev
     image: cypress/included:6.4.0
