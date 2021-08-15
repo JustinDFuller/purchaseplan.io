@@ -21,10 +21,10 @@ const themes = {
   },
 };
 
-export const theme =
-  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+export const theme = themes.dark;
+/* window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
     ? themes.dark
-    : themes.light;
+    : themes.light; */
 
 export const dark = {
   background: theme.background,
