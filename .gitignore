@@ -18,7 +18,6 @@
 *.eslintcache
 build
 main
-.gcloudignore
 .env
 .terraform*
 *tfstate*
