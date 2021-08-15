@@ -96,7 +96,7 @@ steps:
       project: purchase-plan-dev
       dir: backend/cmd/cron
       app_file: app.yaml
-      max_versions: 2
+      max_versions: 10
     when:
       event: push
       branch: main
@@ -209,7 +209,7 @@ steps:
       project: purchase-plan-prd
       dir: backend/cmd/cron
       app_file: app.yaml
-      max_versions: 2
+      max_versions: 10
     when:
       event: tag
     depends_on:

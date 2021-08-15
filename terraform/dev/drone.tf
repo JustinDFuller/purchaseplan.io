@@ -40,9 +40,9 @@ resource "google_project_iam_binding" "drone-dev-iam-binding-iamserviceaccountus
   members = ["serviceAccount:${google_service_account.drone-dev.email}"]
 }
 
-resource "google_project_iam_binding" "drone-dev-iam-binding-storageobjectcreator" {
+resource "google_project_iam_binding" "drone-dev-iam-binding-storageobjectadmin" {
   project = google_project.purchase-plan-dev.id
-  role    = "roles/storage.objectCreator"
+  role    = "roles/storage.objectAdmin"
   members = ["serviceAccount:${google_service_account.drone-dev.email}"]
 }
 
