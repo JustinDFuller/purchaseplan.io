@@ -1,1 +1,7 @@
 node_modules
+mobile/node_modules
+mobile/.expo
+frontend/node_modules
+terraform
+scripts
+e2e
