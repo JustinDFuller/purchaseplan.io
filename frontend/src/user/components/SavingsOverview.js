@@ -6,7 +6,6 @@ import * as layout from "layout";
 import * as form from "form";
 
 import * as data from "../data";
-import * as availabilities from "../data/availabilities";
 import * as api from "../api";
 
 const formatter = new Intl.NumberFormat("en-US", {
@@ -37,10 +36,11 @@ export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
     return `${d.getFullYear()}-${m}-${dt}`;
   }
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
     setEdit(false);
-    api.put(user);
+    const res = await api.put(user);
+    setUser(user.from(res));
   }
 
   function Edit() {
@@ -76,7 +76,12 @@ export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
               value={user.frequency()}
               onChange={(e) => setUser(user.setFrequency(e.target.value))}
             >
-              {availabilities.map(function (frequency) {
+              {[
+                "Every Week",
+                "Every 2 Weeks",
+                "Once A Month",
+                "1st and 15th",
+              ].map(function (frequency) {
                 return (
                   <option key={frequency} value={frequency}>
                     {frequency}

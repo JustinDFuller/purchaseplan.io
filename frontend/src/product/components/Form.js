@@ -35,16 +35,15 @@ export const Form = User.data.WithContext(function ({
     }
   }
 
-  function handleSubmitEdit(e) {
+  async function handleSubmitEdit(e) {
     e.preventDefault();
 
     const u = user.addPurchase(
       User.data.Purchase.New().setQuantity(quantity).setProduct(product)
     );
 
-    User.api.put(u);
-
-    setUser(u);
+    const res = await User.api.put(u);
+    setUser(user.from(res));
     setError(NO_ERROR);
     setProduct(null);
     setQuantity(1);

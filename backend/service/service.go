@@ -236,7 +236,9 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
-		w.WriteHeader(http.StatusOK)
+		if err := json.NewEncoder(w).Encode(&u); err != nil {
+			log.Printf("Error encoding json to response: %s", err)
+		}
 	}, c)).Methods(http.MethodPut, http.MethodOptions)
 
 	// GET /users will return the currect user.

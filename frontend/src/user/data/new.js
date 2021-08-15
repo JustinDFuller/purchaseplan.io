@@ -2,7 +2,6 @@ import * as uuid from "uuid";
 
 import { getterSetters } from "object/getterSetters";
 
-import * as availabilities from "./availabilities";
 import * as Purchases from "./purchases";
 
 const defaults = {
@@ -15,26 +14,17 @@ const defaults = {
   purchases: Purchases.New(),
 };
 
-export function New(input = defaults) {
-  const data = {
-    ...input,
-    purchases: input.purchases.setAvailability(availabilities.get(input)),
-  };
-
+export function New(data = defaults) {
   return {
     ...getterSetters(data, New),
     from(user) {
-      const d = {
+      return New({
         ...defaults,
         ...user,
         lastPaycheck: user.lastPaycheck
           ? new Date(user.lastPaycheck)
           : data.lastPaycheck,
-      };
-
-      return New({
-        ...d,
-        purchases: data.purchases.from(user.purchases, availabilities.get(d)),
+        purchases: data.purchases.from(user.purchases),
       });
     },
     setLastPaycheck(lastPaycheck) {
@@ -55,12 +45,9 @@ export function New(input = defaults) {
         purchases: data.purchases.setPurchase(purchase),
       });
     },
-    lastPaycheck() {
-      return data.purchases.availability().date();
-    },
     lastPaycheckDisplay() {
       const t = new Date();
-      const l = data.purchases.availability().date();
+      const l = data.lastPaycheck;
 
       if (
         l.getYear() === t.getYear() &&

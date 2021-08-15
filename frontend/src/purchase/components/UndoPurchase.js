@@ -12,11 +12,11 @@ export const UndoPurchase = User.data.WithContext(function ({
       <p>{purchase.product().name()}</p>
       <button
         className="btn btn-primary mb-2"
-        onClick={() => {
-          const u = user.undoPurchase(purchase);
-          setUser(u);
-          User.api.put(u);
+        onClick={async () => {
           closeToast();
+          const u = user.undoPurchase(purchase);
+          const res = await User.api.put(u);
+          setUser(user.from(res));
         }}
       >
         Undo

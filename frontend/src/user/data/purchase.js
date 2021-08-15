@@ -55,11 +55,12 @@ export function New(data = purchaseDefaults) {
         return null;
       }
 
-      if (data.date <= new Date()) {
+      const d = new Date(data.date);
+      if (d <= new Date()) {
         return "today";
       }
 
-      return data.date?.toLocaleDateString("en-US") ?? "";
+      return d.toLocaleDateString("en-US") ?? "";
     },
   };
 }

@@ -12,7 +12,7 @@ export const List = User.data.WithContext(function ({ user, setUser }) {
     }
   }
 
-  function onDragEnd(result) {
+  async function onDragEnd(result) {
     if (
       !result.destination ||
       result.destination.index === result.source.index
@@ -28,9 +28,12 @@ export const List = User.data.WithContext(function ({ user, setUser }) {
         result.destination.index
       );
 
+    // Optimistically change it to avoid shuffling.
     const u = user.setPurchases(purchases);
     setUser(u);
-    User.api.put(u);
+    const res = await User.api.put(u);
+    // reset it just in case backend changed
+    setUser(user.from(res));
   }
 
   return (
