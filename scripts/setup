@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 echo $SERVICE_ACCOUNT_CREDENTIALS > /drone/service_account_credentials.json
-cp ./.gcloudignore ./backend ./backend/cmd/server ./backend/cmd/cron
+cp ./.gcloudignore ./backend
+cp ./.gcloudignore ./backend/cmd/server
+cp ./.gcloudignore ./backend/cmd/cron
