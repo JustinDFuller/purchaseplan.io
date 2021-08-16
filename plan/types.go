@@ -10,7 +10,7 @@ type (
 		Email         string     `json:"email"`
 		Saved         int64      `json:"saved,omitempty"`
 		Contributions int64      `json:"contributions,omitempty"`
-		Frequency     Frequency  `json:"frequency,omitempty"`
+		Frequency     frequency  `json:"frequency,omitempty"`
 		LastPaycheck  *time.Time `json:"lastPaycheck,omitempty"`
 		Purchases     []Purchase `json:"purchases,omitempty"`
 	}
@@ -36,12 +36,12 @@ type (
 		OriginalImage string `datastore:",noindex" json:"originalImage"`
 	}
 
-	Frequency string
+	frequency string
 )
 
 const (
-	Weekly       Frequency = "Every Week"
-	Biweekly               = "Every 2 Weeks"
-	Monthly                = "Once A Month"
-	TwiceMonthly           = "1st and 15th"
+	weekly       frequency = "Every Week"
+	biweekly               = "Every 2 Weeks"
+	monthly                = "Once A Month"
+	twiceMonthly           = "1st and 15th"
 )

@@ -51,7 +51,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:        "foobar",
-				Frequency:    Biweekly,
+				Frequency:    biweekly,
 				LastPaycheck: now(),
 				Purchases: []Purchase{
 					{
@@ -121,13 +121,13 @@ func TestProcess(t *testing.T) {
 			name: "process_last_paycheck_weekly",
 			given: User{
 				Email:         "foobar",
-				Frequency:     Weekly,
+				Frequency:     weekly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneDay * 8),
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     Weekly,
+				Frequency:     weekly,
 				Contributions: 100,
 				Saved:         100,
 				LastPaycheck:  fromNow(-oneDay),
@@ -137,13 +137,13 @@ func TestProcess(t *testing.T) {
 			name: "process_last_paycheck_biweekly",
 			given: User{
 				Email:         "foobar",
-				Frequency:     Biweekly,
+				Frequency:     biweekly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneDay * 15),
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     Biweekly,
+				Frequency:     biweekly,
 				Contributions: 100,
 				Saved:         100,
 				LastPaycheck:  fromNow(-oneDay),
@@ -153,13 +153,13 @@ func TestProcess(t *testing.T) {
 			name: "process_last_paycheck_monthly",
 			given: User{
 				Email:         "foobar",
-				Frequency:     Monthly,
+				Frequency:     monthly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneDay * 32),
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     Monthly,
+				Frequency:     monthly,
 				Contributions: 100,
 				Saved:         100,
 				LastPaycheck:  fromNow(-oneDay * 2),
@@ -169,12 +169,12 @@ func TestProcess(t *testing.T) {
 			name: "process_last_paycheck_twicemonthly_(15th)",
 			given: User{
 				Email:         "foobar",
-				Frequency:     TwiceMonthly,
+				Frequency:     twiceMonthly,
 				Contributions: 100,
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     TwiceMonthly,
+				Frequency:     twiceMonthly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneWeek),
 			},
@@ -183,12 +183,12 @@ func TestProcess(t *testing.T) {
 			name: "process_last_paycheck_twicemonthly_(1st)",
 			given: User{
 				Email:         "foobar",
-				Frequency:     TwiceMonthly,
+				Frequency:     twiceMonthly,
 				Contributions: 100,
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     TwiceMonthly,
+				Frequency:     twiceMonthly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneDay * 21),
 			},
@@ -201,7 +201,7 @@ func TestProcess(t *testing.T) {
 			name: "process_availability_weekly",
 			given: User{
 				Email:         "foobar",
-				Frequency:     Weekly,
+				Frequency:     weekly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneWeek * 2),
 				Purchases: []Purchase{
@@ -236,7 +236,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     Weekly,
+				Frequency:     weekly,
 				Contributions: 100,
 				Saved:         200,
 				LastPaycheck:  now(),
@@ -276,7 +276,7 @@ func TestProcess(t *testing.T) {
 			name: "process_availability_weekly_off_week",
 			given: User{
 				Email:         "foobar",
-				Frequency:     Weekly,
+				Frequency:     weekly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-(oneWeek + (oneDay))),
 				Purchases: []Purchase{
@@ -311,7 +311,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     Weekly,
+				Frequency:     weekly,
 				Contributions: 100,
 				Saved:         100,
 				LastPaycheck:  fromNow(-oneDay),
@@ -351,7 +351,7 @@ func TestProcess(t *testing.T) {
 			name: "process_availability_weekly_no_contributions",
 			given: User{
 				Email:        "foobar",
-				Frequency:    Weekly,
+				Frequency:    weekly,
 				LastPaycheck: now(),
 				Purchases: []Purchase{
 					{
@@ -367,7 +367,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:        "foobar",
-				Frequency:    Weekly,
+				Frequency:    weekly,
 				LastPaycheck: now(),
 				Purchases: []Purchase{
 					{
@@ -386,7 +386,7 @@ func TestProcess(t *testing.T) {
 			name: "process_availability_biweekly",
 			given: User{
 				Email:         "foobar",
-				Frequency:     Biweekly,
+				Frequency:     biweekly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneWeek * 2),
 				Purchases: []Purchase{
@@ -421,7 +421,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     Biweekly,
+				Frequency:     biweekly,
 				Contributions: 100,
 				Saved:         100,
 				LastPaycheck:  now(),
@@ -461,7 +461,7 @@ func TestProcess(t *testing.T) {
 			name: "process_availability_biweekly_off_week",
 			given: User{
 				Email:         "foobar",
-				Frequency:     Biweekly,
+				Frequency:     biweekly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-(oneWeek*2 + oneDay)),
 				Purchases: []Purchase{
@@ -496,7 +496,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     Biweekly,
+				Frequency:     biweekly,
 				Contributions: 100,
 				Saved:         100,
 				LastPaycheck:  fromNow(-oneDay),
@@ -536,7 +536,7 @@ func TestProcess(t *testing.T) {
 			name: "process_availability_biweekly_no_contributions",
 			given: User{
 				Email:        "foobar",
-				Frequency:    Biweekly,
+				Frequency:    biweekly,
 				LastPaycheck: now(),
 				Purchases: []Purchase{
 					{
@@ -552,7 +552,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:        "foobar",
-				Frequency:    Biweekly,
+				Frequency:    biweekly,
 				LastPaycheck: now(),
 				Purchases: []Purchase{
 					{
@@ -571,7 +571,7 @@ func TestProcess(t *testing.T) {
 			name: "process_availability_monthly",
 			given: User{
 				Email:         "foobar",
-				Frequency:     Monthly,
+				Frequency:     monthly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneWeek * 5),
 				Purchases: []Purchase{
@@ -606,7 +606,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     Monthly,
+				Frequency:     monthly,
 				Contributions: 100,
 				Saved:         100,
 				LastPaycheck:  fromNow(-oneWeek + oneDay*2),
@@ -646,7 +646,7 @@ func TestProcess(t *testing.T) {
 			name: "process_availability_twicemonthly_15th",
 			given: User{
 				Email:         "foobar",
-				Frequency:     TwiceMonthly,
+				Frequency:     twiceMonthly,
 				Contributions: 100,
 				LastPaycheck:  now(), // July 15th
 				Purchases: []Purchase{
@@ -681,7 +681,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     TwiceMonthly,
+				Frequency:     twiceMonthly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneWeek),
 				Purchases: []Purchase{
@@ -720,7 +720,7 @@ func TestProcess(t *testing.T) {
 			name: "process_availability_twicemonthly_1st",
 			given: User{
 				Email:         "foobar",
-				Frequency:     TwiceMonthly,
+				Frequency:     twiceMonthly,
 				Contributions: 100,
 				LastPaycheck:  fromNow(-oneWeek * 5),
 				Purchases: []Purchase{
@@ -755,7 +755,7 @@ func TestProcess(t *testing.T) {
 			},
 			expected: User{
 				Email:         "foobar",
-				Frequency:     TwiceMonthly,
+				Frequency:     twiceMonthly,
 				Contributions: 100,
 				Saved:         100,
 				LastPaycheck:  fromNow(-oneWeek * 3),

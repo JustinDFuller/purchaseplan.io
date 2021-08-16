@@ -10,6 +10,6 @@ var (
 )
 
 var (
-	ErrInvalidFrequency              = errors.New("invalid contribution frequency")
-	ErrInvalidAvailabilityCalculator = errors.New("invalid availability calculator")
+	ErrInvalidFrequency    = errors.New("invalid contribution frequency")
+	ErrInvalidAvailability = errors.New("invalid availability calculator")
 )

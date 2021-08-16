@@ -4,40 +4,40 @@ import (
 	"time"
 )
 
-type FrequencyCalculator interface {
-	Calculate(*Purchase) (*time.Time, error)
-	LastPaycheck() (*time.Time, error)
+type Frequency interface {
 	Saved() (int64, error)
+	LastPaycheck() (*time.Time, error)
+	PurchaseDate(*Purchase) (*time.Time, error)
 }
 
-func NewFrequencyCalculator(u *User) (FrequencyCalculator, error) {
+func NewFrequency(u *User) (Frequency, error) {
 	switch u.Frequency {
-	case Weekly:
-		return WeeklyCalculator{
+	case weekly:
+		return Weekly{
 			user: u,
 		}, nil
-	case Biweekly:
-		return BiWeeklyCalculator{
+	case biweekly:
+		return BiWeekly{
 			user: u,
 		}, nil
-	case Monthly:
-		return MonthlyCalculator{
+	case monthly:
+		return Monthly{
 			user: u,
 		}, nil
-	case TwiceMonthly:
-		return TwiceMonthlyCalculator{
+	case twiceMonthly:
+		return TwiceMonthly{
 			user: u,
 		}, nil
 	}
 
-	return nil, ErrInvalidAvailabilityCalculator
+	return nil, ErrInvalidAvailability
 }
 
-type WeeklyCalculator struct {
+type Weekly struct {
 	user *User
 }
 
-func (w WeeklyCalculator) Calculate(p *Purchase) (*time.Time, error) {
+func (w Weekly) PurchaseDate(p *Purchase) (*time.Time, error) {
 	var total int64
 
 	if p.Deleted || p.Purchased {
@@ -67,7 +67,7 @@ func (w WeeklyCalculator) Calculate(p *Purchase) (*time.Time, error) {
 	return n, nil
 }
 
-func (w WeeklyCalculator) LastPaycheck() (*time.Time, error) {
+func (w Weekly) LastPaycheck() (*time.Time, error) {
 	lastPaycheck := *w.user.LastPaycheck
 	n := now()
 
@@ -78,7 +78,7 @@ func (w WeeklyCalculator) LastPaycheck() (*time.Time, error) {
 	return &lastPaycheck, nil
 }
 
-func (w WeeklyCalculator) Saved() (int64, error) {
+func (w Weekly) Saved() (int64, error) {
 	saved := w.user.Saved
 	lastPaycheck := *w.user.LastPaycheck
 	n := now()
@@ -91,11 +91,11 @@ func (w WeeklyCalculator) Saved() (int64, error) {
 	return saved, nil
 }
 
-type BiWeeklyCalculator struct {
+type BiWeekly struct {
 	user *User
 }
 
-func (w BiWeeklyCalculator) Calculate(p *Purchase) (*time.Time, error) {
+func (w BiWeekly) PurchaseDate(p *Purchase) (*time.Time, error) {
 	var total int64
 
 	if p.Deleted || p.Purchased {
@@ -125,7 +125,7 @@ func (w BiWeeklyCalculator) Calculate(p *Purchase) (*time.Time, error) {
 	return n, nil
 }
 
-func (w BiWeeklyCalculator) LastPaycheck() (*time.Time, error) {
+func (w BiWeekly) LastPaycheck() (*time.Time, error) {
 	lastPaycheck := *w.user.LastPaycheck
 	n := now()
 
@@ -136,7 +136,7 @@ func (w BiWeeklyCalculator) LastPaycheck() (*time.Time, error) {
 	return &lastPaycheck, nil
 }
 
-func (w BiWeeklyCalculator) Saved() (int64, error) {
+func (w BiWeekly) Saved() (int64, error) {
 	saved := w.user.Saved
 	lastPaycheck := *w.user.LastPaycheck
 	n := now()
@@ -149,11 +149,11 @@ func (w BiWeeklyCalculator) Saved() (int64, error) {
 	return saved, nil
 }
 
-type MonthlyCalculator struct {
+type Monthly struct {
 	user *User
 }
 
-func (w MonthlyCalculator) Calculate(p *Purchase) (*time.Time, error) {
+func (w Monthly) PurchaseDate(p *Purchase) (*time.Time, error) {
 	var total int64
 
 	if p.Deleted || p.Purchased {
@@ -183,7 +183,7 @@ func (w MonthlyCalculator) Calculate(p *Purchase) (*time.Time, error) {
 	return n, nil
 }
 
-func (w MonthlyCalculator) LastPaycheck() (*time.Time, error) {
+func (w Monthly) LastPaycheck() (*time.Time, error) {
 	lastPaycheck := *w.user.LastPaycheck
 	n := now()
 
@@ -194,7 +194,7 @@ func (w MonthlyCalculator) LastPaycheck() (*time.Time, error) {
 	return &lastPaycheck, nil
 }
 
-func (w MonthlyCalculator) Saved() (int64, error) {
+func (w Monthly) Saved() (int64, error) {
 	saved := w.user.Saved
 	lastPaycheck := *w.user.LastPaycheck
 	n := now()
@@ -207,11 +207,11 @@ func (w MonthlyCalculator) Saved() (int64, error) {
 	return saved, nil
 }
 
-type TwiceMonthlyCalculator struct {
+type TwiceMonthly struct {
 	user *User
 }
 
-func (w TwiceMonthlyCalculator) Calculate(p *Purchase) (*time.Time, error) {
+func (w TwiceMonthly) PurchaseDate(p *Purchase) (*time.Time, error) {
 	var total int64
 
 	if p.Deleted || p.Purchased {
@@ -246,7 +246,7 @@ func (w TwiceMonthlyCalculator) Calculate(p *Purchase) (*time.Time, error) {
 	return n, nil
 }
 
-func (w TwiceMonthlyCalculator) LastPaycheck() (*time.Time, error) {
+func (w TwiceMonthly) LastPaycheck() (*time.Time, error) {
 	n := now()
 	l := w.user.LastPaycheck
 
@@ -261,7 +261,7 @@ func (w TwiceMonthlyCalculator) LastPaycheck() (*time.Time, error) {
 	return &d, nil
 }
 
-func (w TwiceMonthlyCalculator) Saved() (int64, error) {
+func (w TwiceMonthly) Saved() (int64, error) {
 	n := now()
 	saved := w.user.Saved
 	t := *w.user.LastPaycheck

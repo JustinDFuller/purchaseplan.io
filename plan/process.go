@@ -24,7 +24,7 @@ func ProcessDefaults(u *User) error {
 	// A quick google search shows that bi-weekly is the most
 	// common pay frequency in the US.
 	if u.Frequency == "" {
-		u.Frequency = Biweekly
+		u.Frequency = biweekly
 	}
 
 	// Can't process availabilities without last paycheck.
@@ -50,11 +50,11 @@ func ProcessValidation(u *User) error {
 		return ErrMissingEmail
 	}
 
-	frequencies := []Frequency{
-		Weekly,
-		Biweekly,
-		Monthly,
-		TwiceMonthly,
+	frequencies := []frequency{
+		weekly,
+		biweekly,
+		monthly,
+		twiceMonthly,
 	}
 
 	var found bool
@@ -86,13 +86,13 @@ func ProcessValidation(u *User) error {
 }
 
 func ProcessSaved(u *User) error {
-	f, err := NewFrequencyCalculator(u)
+	f, err := NewFrequency(u)
 	if err != nil {
 		return err
 	}
 
 	if f == nil {
-		return ErrInvalidAvailabilityCalculator
+		return ErrInvalidAvailability
 	}
 
 	saved, err := f.Saved()
@@ -105,13 +105,13 @@ func ProcessSaved(u *User) error {
 }
 
 func ProcessLastPaycheck(u *User) error {
-	f, err := NewFrequencyCalculator(u)
+	f, err := NewFrequency(u)
 	if err != nil {
 		return err
 	}
 
 	if f == nil {
-		return ErrInvalidAvailabilityCalculator
+		return ErrInvalidAvailability
 	}
 
 	lastPaycheck, err := f.LastPaycheck()
@@ -128,17 +128,17 @@ func ProcessPurchaseAvailability(u *User) error {
 		return nil
 	}
 
-	f, err := NewFrequencyCalculator(u)
+	f, err := NewFrequency(u)
 	if err != nil {
 		return err
 	}
 
 	if f == nil {
-		return ErrInvalidAvailabilityCalculator
+		return ErrInvalidAvailability
 	}
 
 	for i, p := range u.Purchases {
-		d, err := f.Calculate(&p)
+		d, err := f.PurchaseDate(&p)
 		if err != nil {
 			return err
 		}
