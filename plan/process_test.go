@@ -1,7 +1,9 @@
 package plan
 
 import (
+	"encoding/json"
 	"errors"
+	"io/ioutil"
 	"testing"
 	"time"
 
@@ -827,5 +829,30 @@ func TestProcess(t *testing.T) {
 				t.Errorf("(-expected +actual):\n%s", diff)
 			}
 		})
+	}
+}
+
+func TestProcessFixtures(t *testing.T) {
+	b, err := ioutil.ReadFile("./fixtures/example_1.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var want User
+	if err := json.Unmarshal(b, &want); err != nil {
+		t.Fatal(err)
+	}
+
+	var got User
+	if err := json.Unmarshal(b, &got); err != nil {
+		t.Fatal(err)
+	}
+
+	if err := Process(&got); err != nil {
+		t.Fatal(err)
+	}
+
+	if diff := cmp.Diff(want, got); diff != "" {
+		t.Errorf("(-expected +actual):\n%s", diff)
 	}
 }
