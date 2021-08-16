@@ -5,28 +5,28 @@ import (
 )
 
 type PurchaseCalculator interface {
-	Calculate(*User, *Purchase) (*time.Time, error)
-	LastPaycheck(*User) (*time.Time, error)
-	Saved(*User) (int64, error)
+	Calculate(*Purchase) (*time.Time, error)
+	LastPaycheck() (*time.Time, error)
+	Saved() (int64, error)
 }
 
 func GetPurchaseCalculator(u *User) (PurchaseCalculator, error) {
 	switch u.Frequency {
 	case Weekly:
 		return WeeklyCalculator{
-			Contributions: u.Contributions,
+			user: u,
 		}, nil
 	case Biweekly:
 		return BiWeeklyCalculator{
-			Contributions: u.Contributions,
+			user: u,
 		}, nil
 	case Monthly:
 		return MonthlyCalculator{
-			Contributions: u.Contributions,
+			user: u,
 		}, nil
 	case TwiceMonthly:
 		return TwiceMonthlyCalculator{
-			Contributions: u.Contributions,
+			user: u,
 		}, nil
 	}
 
@@ -34,17 +34,17 @@ func GetPurchaseCalculator(u *User) (PurchaseCalculator, error) {
 }
 
 type WeeklyCalculator struct {
-	Contributions int64
+	user *User
 }
 
-func (w WeeklyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
+func (w WeeklyCalculator) Calculate(p *Purchase) (*time.Time, error) {
 	var total int64
 
 	if p.Deleted || p.Purchased {
 		return nil, nil
 	}
 
-	for _, p := range u.Purchases {
+	for _, p := range w.user.Purchases {
 		if p.Deleted || p.Purchased {
 			continue
 		}
@@ -52,8 +52,8 @@ func (w WeeklyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
 		total += p.Quantity * p.Product.Price
 	}
 
-	s := u.Saved
-	n, err := w.LastPaycheck(u)
+	s := w.user.Saved
+	n, err := w.LastPaycheck()
 	if err != nil {
 		return nil, err
 	}
@@ -61,14 +61,14 @@ func (w WeeklyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
 	for s < total {
 		d := n.Add(oneWeek)
 		n = &d
-		s += u.Contributions
+		s += w.user.Contributions
 	}
 
 	return n, nil
 }
 
-func (w WeeklyCalculator) LastPaycheck(u *User) (*time.Time, error) {
-	lastPaycheck := *u.LastPaycheck
+func (w WeeklyCalculator) LastPaycheck() (*time.Time, error) {
+	lastPaycheck := *w.user.LastPaycheck
 	n := now()
 
 	for n.Sub(lastPaycheck) >= oneWeek {
@@ -78,31 +78,31 @@ func (w WeeklyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 	return &lastPaycheck, nil
 }
 
-func (w WeeklyCalculator) Saved(u *User) (int64, error) {
-	saved := u.Saved
-	lastPaycheck := *u.LastPaycheck
+func (w WeeklyCalculator) Saved() (int64, error) {
+	saved := w.user.Saved
+	lastPaycheck := *w.user.LastPaycheck
 	n := now()
 
 	for n.Sub(lastPaycheck) >= oneWeek {
 		lastPaycheck = lastPaycheck.Add(oneWeek)
-		saved += u.Contributions
+		saved += w.user.Contributions
 	}
 
 	return saved, nil
 }
 
 type BiWeeklyCalculator struct {
-	Contributions int64
+	user *User
 }
 
-func (w BiWeeklyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
+func (w BiWeeklyCalculator) Calculate(p *Purchase) (*time.Time, error) {
 	var total int64
 
 	if p.Deleted || p.Purchased {
 		return nil, nil
 	}
 
-	for _, p := range u.Purchases {
+	for _, p := range w.user.Purchases {
 		if p.Deleted || p.Purchased {
 			continue
 		}
@@ -110,8 +110,8 @@ func (w BiWeeklyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) 
 		total += p.Quantity * p.Product.Price
 	}
 
-	s := u.Saved
-	n, err := w.LastPaycheck(u)
+	s := w.user.Saved
+	n, err := w.LastPaycheck()
 	if err != nil {
 		return nil, err
 	}
@@ -119,14 +119,14 @@ func (w BiWeeklyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) 
 	for s < total {
 		d := n.Add(oneWeek * 2)
 		n = &d
-		s += u.Contributions
+		s += w.user.Contributions
 	}
 
 	return n, nil
 }
 
-func (w BiWeeklyCalculator) LastPaycheck(u *User) (*time.Time, error) {
-	lastPaycheck := *u.LastPaycheck
+func (w BiWeeklyCalculator) LastPaycheck() (*time.Time, error) {
+	lastPaycheck := *w.user.LastPaycheck
 	n := now()
 
 	for n.Sub(lastPaycheck) >= oneWeek*2 {
@@ -136,31 +136,31 @@ func (w BiWeeklyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 	return &lastPaycheck, nil
 }
 
-func (w BiWeeklyCalculator) Saved(u *User) (int64, error) {
-	saved := u.Saved
-	lastPaycheck := *u.LastPaycheck
+func (w BiWeeklyCalculator) Saved() (int64, error) {
+	saved := w.user.Saved
+	lastPaycheck := *w.user.LastPaycheck
 	n := now()
 
 	for n.Sub(lastPaycheck) >= oneWeek*2 {
 		lastPaycheck = lastPaycheck.Add(oneWeek * 2)
-		saved += u.Contributions
+		saved += w.user.Contributions
 	}
 
 	return saved, nil
 }
 
 type MonthlyCalculator struct {
-	Contributions int64
+	user *User
 }
 
-func (w MonthlyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
+func (w MonthlyCalculator) Calculate(p *Purchase) (*time.Time, error) {
 	var total int64
 
 	if p.Deleted || p.Purchased {
 		return nil, nil
 	}
 
-	for _, p := range u.Purchases {
+	for _, p := range w.user.Purchases {
 		if p.Deleted || p.Purchased {
 			continue
 		}
@@ -168,8 +168,8 @@ func (w MonthlyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
 		total += p.Quantity * p.Product.Price
 	}
 
-	s := u.Saved
-	n, err := w.LastPaycheck(u)
+	s := w.user.Saved
+	n, err := w.LastPaycheck()
 	if err != nil {
 		return nil, err
 	}
@@ -177,14 +177,14 @@ func (w MonthlyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
 	for s < total {
 		d := time.Date(n.Year(), n.Month()+1, n.Day(), n.Hour(), n.Minute(), n.Second(), n.Nanosecond(), time.UTC)
 		n = &d
-		s += u.Contributions
+		s += w.user.Contributions
 	}
 
 	return n, nil
 }
 
-func (w MonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
-	lastPaycheck := *u.LastPaycheck
+func (w MonthlyCalculator) LastPaycheck() (*time.Time, error) {
+	lastPaycheck := *w.user.LastPaycheck
 	n := now()
 
 	for lastPaycheck.AddDate(0, 1, 0).Before(*n) {
@@ -194,31 +194,31 @@ func (w MonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 	return &lastPaycheck, nil
 }
 
-func (w MonthlyCalculator) Saved(u *User) (int64, error) {
-	saved := u.Saved
-	lastPaycheck := *u.LastPaycheck
+func (w MonthlyCalculator) Saved() (int64, error) {
+	saved := w.user.Saved
+	lastPaycheck := *w.user.LastPaycheck
 	n := now()
 
 	for lastPaycheck.AddDate(0, 1, 0).Before(*n) {
 		lastPaycheck = lastPaycheck.AddDate(0, 1, 0)
-		saved += u.Contributions
+		saved += w.user.Contributions
 	}
 
 	return saved, nil
 }
 
 type TwiceMonthlyCalculator struct {
-	Contributions int64
+	user *User
 }
 
-func (w TwiceMonthlyCalculator) Calculate(u *User, p *Purchase) (*time.Time, error) {
+func (w TwiceMonthlyCalculator) Calculate(p *Purchase) (*time.Time, error) {
 	var total int64
 
 	if p.Deleted || p.Purchased {
 		return nil, nil
 	}
 
-	for _, p := range u.Purchases {
+	for _, p := range w.user.Purchases {
 		if p.Deleted || p.Purchased {
 			continue
 		}
@@ -226,8 +226,8 @@ func (w TwiceMonthlyCalculator) Calculate(u *User, p *Purchase) (*time.Time, err
 		total += p.Quantity * p.Product.Price
 	}
 
-	s := u.Saved
-	n, err := w.LastPaycheck(u)
+	s := w.user.Saved
+	n, err := w.LastPaycheck()
 	if err != nil {
 		return nil, err
 	}
@@ -240,15 +240,15 @@ func (w TwiceMonthlyCalculator) Calculate(u *User, p *Purchase) (*time.Time, err
 			d = time.Date(n.Year(), n.Month()+1, 1, n.Hour(), n.Minute(), n.Second(), n.Nanosecond(), time.UTC)
 		}
 		n = &d
-		s += u.Contributions
+		s += w.user.Contributions
 	}
 
 	return n, nil
 }
 
-func (w TwiceMonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
+func (w TwiceMonthlyCalculator) LastPaycheck() (*time.Time, error) {
 	n := now()
-	l := u.LastPaycheck
+	l := w.user.LastPaycheck
 
 	year, month, day := n.Date()
 
@@ -261,10 +261,10 @@ func (w TwiceMonthlyCalculator) LastPaycheck(u *User) (*time.Time, error) {
 	return &d, nil
 }
 
-func (w TwiceMonthlyCalculator) Saved(u *User) (int64, error) {
+func (w TwiceMonthlyCalculator) Saved() (int64, error) {
 	n := now()
-	saved := u.Saved
-	t := *u.LastPaycheck
+	saved := w.user.Saved
+	t := *w.user.LastPaycheck
 	for {
 		if t.Day() >= 15 {
 			t = time.Date(t.Year(), t.Month()+1, 1, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), time.UTC)
@@ -275,7 +275,7 @@ func (w TwiceMonthlyCalculator) Saved(u *User) (int64, error) {
 		if n.Before(t) {
 			return saved, nil
 		} else {
-			saved += u.Contributions
+			saved += w.user.Contributions
 		}
 	}
 }

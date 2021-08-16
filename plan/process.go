@@ -95,7 +95,7 @@ func ProcessSaved(u *User) error {
 		return ErrInvalidAvailabilityCalculator
 	}
 
-	saved, err := c.Saved(u)
+	saved, err := c.Saved()
 	if err != nil {
 		return err
 	}
@@ -114,7 +114,7 @@ func ProcessLastPaycheck(u *User) error {
 		return ErrInvalidAvailabilityCalculator
 	}
 
-	d, err := c.LastPaycheck(u)
+	d, err := c.LastPaycheck()
 	if err != nil {
 		return err
 	}
@@ -139,7 +139,7 @@ func ProcessPurchaseAvailability(u *User) error {
 	}
 
 	for i, p := range u.Purchases {
-		d, err := c.Calculate(u, &p)
+		d, err := c.Calculate(&p)
 		if err != nil {
 			return err
 		}
