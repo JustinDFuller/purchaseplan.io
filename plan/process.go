@@ -86,16 +86,16 @@ func ProcessValidation(u *User) error {
 }
 
 func ProcessSaved(u *User) error {
-	c, err := GetPurchaseCalculator(u)
+	f, err := NewFrequencyCalculator(u)
 	if err != nil {
 		return err
 	}
 
-	if c == nil {
+	if f == nil {
 		return ErrInvalidAvailabilityCalculator
 	}
 
-	saved, err := c.Saved()
+	saved, err := f.Saved()
 	if err != nil {
 		return err
 	}
@@ -105,22 +105,21 @@ func ProcessSaved(u *User) error {
 }
 
 func ProcessLastPaycheck(u *User) error {
-	c, err := GetPurchaseCalculator(u)
+	f, err := NewFrequencyCalculator(u)
 	if err != nil {
 		return err
 	}
 
-	if c == nil {
+	if f == nil {
 		return ErrInvalidAvailabilityCalculator
 	}
 
-	d, err := c.LastPaycheck()
+	lastPaycheck, err := f.LastPaycheck()
 	if err != nil {
 		return err
 	}
 
-	u.LastPaycheck = d
-
+	u.LastPaycheck = lastPaycheck
 	return nil
 }
 
@@ -129,17 +128,17 @@ func ProcessPurchaseAvailability(u *User) error {
 		return nil
 	}
 
-	c, err := GetPurchaseCalculator(u)
+	f, err := NewFrequencyCalculator(u)
 	if err != nil {
 		return err
 	}
 
-	if c == nil {
+	if f == nil {
 		return ErrInvalidAvailabilityCalculator
 	}
 
 	for i, p := range u.Purchases {
-		d, err := c.Calculate(&p)
+		d, err := f.Calculate(&p)
 		if err != nil {
 			return err
 		}

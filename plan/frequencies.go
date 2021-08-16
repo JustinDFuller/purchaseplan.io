@@ -4,13 +4,13 @@ import (
 	"time"
 )
 
-type PurchaseCalculator interface {
+type FrequencyCalculator interface {
 	Calculate(*Purchase) (*time.Time, error)
 	LastPaycheck() (*time.Time, error)
 	Saved() (int64, error)
 }
 
-func GetPurchaseCalculator(u *User) (PurchaseCalculator, error) {
+func NewFrequencyCalculator(u *User) (FrequencyCalculator, error) {
 	switch u.Frequency {
 	case Weekly:
 		return WeeklyCalculator{
