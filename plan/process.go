@@ -40,6 +40,10 @@ func ProcessDefaults(u *User) error {
 			}
 			u.Purchases[i].ID = id
 		}
+
+		if u.Purchases[i].Quantity < 1 {
+			u.Purchases[i].Quantity = 1
+		}
 	}
 
 	return nil

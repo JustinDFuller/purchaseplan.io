@@ -1,9 +1,7 @@
 package plan
 
 import (
-	"encoding/json"
 	"errors"
-	"io/ioutil"
 	"testing"
 	"time"
 
@@ -57,7 +55,8 @@ func TestProcess(t *testing.T) {
 				LastPaycheck: now(),
 				Purchases: []Purchase{
 					{
-						ID: "776867e6-c0e4-4911-9789-7dcee8a5678f",
+						ID:       "776867e6-c0e4-4911-9789-7dcee8a5678f",
+						Quantity: 1,
 						Product: Product{
 							Name:  "test",
 							URL:   "https://example.com",
@@ -86,7 +85,8 @@ func TestProcess(t *testing.T) {
 				Email: "foobar",
 				Purchases: []Purchase{
 					{
-						ID: "0747aef7-fd62-4daa-973f-733b1190961f",
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Quantity: 1,
 						Product: Product{
 							Name: "my product",
 						},
@@ -101,7 +101,8 @@ func TestProcess(t *testing.T) {
 				Email: "foobar",
 				Purchases: []Purchase{
 					{
-						ID: "0747aef7-fd62-4daa-973f-733b1190961f",
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Quantity: 1,
 						Product: Product{
 							Name:  "my product",
 							Price: 10,
@@ -208,8 +209,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneWeek * 2),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Quantity: 1,
+						Deleted:  true,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -218,6 +220,7 @@ func TestProcess(t *testing.T) {
 					},
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
+						Quantity:  1,
 						Purchased: true,
 						Product: Product{
 							URL:   "https://example.com",
@@ -244,8 +247,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  now(),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -255,6 +259,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -283,8 +288,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-(oneWeek + (oneDay))),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -294,6 +300,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -319,8 +326,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneDay),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -330,6 +338,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -393,8 +402,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneWeek * 2),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -404,6 +414,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -429,8 +440,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  now(),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -440,6 +452,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -468,8 +481,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-(oneWeek*2 + oneDay)),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -479,6 +493,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -504,8 +519,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneDay),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -515,6 +531,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -578,8 +595,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneWeek * 5),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -589,6 +607,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -614,8 +633,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneWeek + oneDay*2),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -625,6 +645,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -653,8 +674,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  now(), // July 15th
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -664,6 +686,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -688,8 +711,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneWeek),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -699,6 +723,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -727,8 +752,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneWeek * 5),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -738,6 +764,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -763,8 +790,9 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneWeek * 3),
 				Purchases: []Purchase{
 					{
-						ID:      "0747aef7-fd62-4daa-973f-733b1190961f",
-						Deleted: true,
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -774,6 +802,7 @@ func TestProcess(t *testing.T) {
 					{
 						ID:        "18a0dc32-b08e-495a-b0bc-bac0fb51e6e2",
 						Purchased: true,
+						Quantity:  1,
 						Product: Product{
 							URL:   "https://example.com",
 							Name:  "deleted",
@@ -829,30 +858,5 @@ func TestProcess(t *testing.T) {
 				t.Errorf("(-expected +actual):\n%s", diff)
 			}
 		})
-	}
-}
-
-func TestProcessFixtures(t *testing.T) {
-	b, err := ioutil.ReadFile("./fixtures/example_1.json")
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	var want User
-	if err := json.Unmarshal(b, &want); err != nil {
-		t.Fatal(err)
-	}
-
-	var got User
-	if err := json.Unmarshal(b, &got); err != nil {
-		t.Fatal(err)
-	}
-
-	if err := Process(&got); err != nil {
-		t.Fatal(err)
-	}
-
-	if diff := cmp.Diff(want, got); diff != "" {
-		t.Errorf("(-expected +actual):\n%s", diff)
 	}
 }

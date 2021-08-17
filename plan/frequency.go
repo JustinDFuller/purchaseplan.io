@@ -44,12 +44,16 @@ func (w Weekly) PurchaseDate(p *Purchase) (*time.Time, error) {
 		return nil, nil
 	}
 
-	for _, p := range w.user.Purchases {
-		if p.Deleted || p.Purchased {
+	for _, p2 := range w.user.Purchases {
+		if p2.Deleted || p2.Purchased {
 			continue
 		}
 
-		total += p.Quantity * p.Product.Price
+		total += p2.Quantity * p2.Product.Price
+
+		if p.ID == p2.ID {
+			break
+		}
 	}
 
 	s := w.user.Saved
@@ -102,12 +106,16 @@ func (w BiWeekly) PurchaseDate(p *Purchase) (*time.Time, error) {
 		return nil, nil
 	}
 
-	for _, p := range w.user.Purchases {
-		if p.Deleted || p.Purchased {
+	for _, p2 := range w.user.Purchases {
+		if p2.Deleted || p2.Purchased {
 			continue
 		}
 
-		total += p.Quantity * p.Product.Price
+		total += p2.Quantity * p2.Product.Price
+
+		if p.ID == p2.ID {
+			break
+		}
 	}
 
 	s := w.user.Saved
@@ -160,12 +168,16 @@ func (w Monthly) PurchaseDate(p *Purchase) (*time.Time, error) {
 		return nil, nil
 	}
 
-	for _, p := range w.user.Purchases {
-		if p.Deleted || p.Purchased {
+	for _, p2 := range w.user.Purchases {
+		if p2.Deleted || p2.Purchased {
 			continue
 		}
 
-		total += p.Quantity * p.Product.Price
+		total += p2.Quantity * p2.Product.Price
+
+		if p.ID == p2.ID {
+			break
+		}
 	}
 
 	s := w.user.Saved
@@ -218,12 +230,16 @@ func (w TwiceMonthly) PurchaseDate(p *Purchase) (*time.Time, error) {
 		return nil, nil
 	}
 
-	for _, p := range w.user.Purchases {
-		if p.Deleted || p.Purchased {
+	for _, p2 := range w.user.Purchases {
+		if p2.Deleted || p2.Purchased {
 			continue
 		}
 
-		total += p.Quantity * p.Product.Price
+		total += p2.Quantity * p2.Product.Price
+
+		if p.ID == p2.ID {
+			break
+		}
 	}
 
 	s := w.user.Saved
