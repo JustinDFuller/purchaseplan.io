@@ -117,6 +117,7 @@ steps:
       project: purchase-plan-dev
       dir: backend/cmd/cron
       app_file: app.yaml
+      cron_file: cron.yaml
       max_versions: 2
     when:
       event: push
@@ -209,6 +210,7 @@ steps:
       project: purchase-plan-prd
       dir: backend/cmd/cron
       app_file: app.yaml
+      cron_file: cron.yaml
       max_versions: 2
     when:
       event: tag
