@@ -13,27 +13,59 @@ const formatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
+function formatDate(d) {
+  let m = d.getMonth() + 1;
+  if (m < 10) {
+    m = `0${m}`;
+  } else {
+    m = String(m);
+  }
+
+  let dt = d.getDate();
+  if (dt < 10) {
+    dt = `0${dt}`;
+  } else {
+    dt = String(dt);
+  }
+
+  return `${d.getFullYear()}-${m}-${dt}`;
+}
+
 export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
   const [edit, setEdit] = useState(false);
 
-  function getDate() {
-    const d = user.lastPaycheck();
+  function formatLastPaycheck() {
+    return formatDate(user.lastPaycheck());
+  }
 
-    let m = d.getMonth() + 1;
-    if (m < 10) {
-      m = `0${m}`;
-    } else {
-      m = String(m);
+  function getMaxDate() {
+    return formatDate(new Date());
+  }
+
+  function getMinDate() {
+    const d = new Date();
+
+    switch (user.frequency()) {
+      case "Every 2 Weeks":
+        d.setDate(d.getDate() - 14);
+        break;
+      case "Once A Month":
+        d.setMonth(d.getMonth() - 1);
+        break;
+      case "1st and 15th":
+        if (d.getDate() >= 15) {
+          d.setDate(15);
+        } else {
+          d.setDate(1);
+        }
+        break;
+      case "Every Week":
+      default:
+        d.setDate(d.getDate() - 7);
+        break;
     }
 
-    let dt = d.getDate();
-    if (dt < 10) {
-      dt = `0${dt}`;
-    } else {
-      dt = String(dt);
-    }
-
-    return `${d.getFullYear()}-${m}-${dt}`;
+    return formatDate(d);
   }
 
   async function onSubmit(e) {
@@ -58,6 +90,7 @@ export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
               value={user.saved() ? user.saved().toString() : ""}
               onChange={(e) => setUser(user.setSaved(e.target.value))}
               className="form-control"
+              min="0"
             />
           </div>
           <div className="form-group">
@@ -70,11 +103,13 @@ export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
               }
               onChange={(e) => setUser(user.setContributions(e.target.value))}
               className="form-control"
+              min="0"
             />
             <select
               className="form-control mt-2"
               value={user.frequency()}
               onChange={(e) => setUser(user.setFrequency(e.target.value))}
+              required
             >
               {[
                 "Every Week",
@@ -94,9 +129,12 @@ export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
             <label className="form-label">Last Paycheck</label>
             <input
               type="date"
-              value={getDate()}
+              value={formatLastPaycheck()}
               onChange={(e) => setUser(user.setLastPaycheck(e.target.value))}
               className="form-control"
+              max={getMaxDate()}
+              min={getMinDate()}
+              required
             />
           </div>
           <div className="text-right">
