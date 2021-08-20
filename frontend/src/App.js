@@ -5,6 +5,7 @@ import * as Layout from "layout";
 import * as User from "user";
 import * as Auth from "auth";
 import * as styles from "styles";
+import * as Notifications from "notifications";
 
 export default function App() {
   const history = useHistory();
@@ -14,6 +15,22 @@ export default function App() {
       setUser(User.data.New());
       history.push(Auth.getLoginPath(history));
     })
+  );
+  const tokens = Notifications.Use();
+
+  useEffect(
+    function () {
+      async function effect() {
+        if (auth.isLoggedIn() && tokens !== null) {
+          const u = user.addPushNotificationTokens(tokens);
+          setUser(u);
+          const updated = await User.api.put(u);
+          setUser(u.from(updated));
+        }
+      }
+      effect();
+    },
+    [tokens, user, auth]
   );
 
   useEffect(function () {

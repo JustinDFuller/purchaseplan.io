@@ -12,6 +12,7 @@ const defaults = {
   contributions: 0,
   lastPaycheck: new Date(),
   purchases: Purchases.New(),
+  pushNotificationTokens: [],
 };
 
 export function New(data = defaults) {
@@ -75,6 +76,22 @@ export function New(data = defaults) {
     },
     remaining() {
       return data.saved - data.purchases.total();
+    },
+    addPushNotificationTokens(newTokens) {
+      const found = data.pushNotificationTokens.find(
+        (t) =>
+          t.deviceToken === newTokens.deviceToken ||
+          t.expoToken === newTokens.expoToken
+      );
+
+      const pushNotificationTokens = found
+        ? data.pushNotificationTokens
+        : [...data.pushNotificationTokens, newTokens];
+
+      return New({
+        ...data,
+        pushNotificationTokens,
+      });
     },
   };
 }

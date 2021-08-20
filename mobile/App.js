@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import {
   Linking,
   View,
@@ -15,7 +15,7 @@ import Svg, { Path } from "react-native-svg";
 
 import { useNotifications } from "./useNotifications";
 
-const host = "https://www.purchaseplan.io";
+const host = "http://192.168.86.128:3000";
 const entry = "/app/auth/login";
 const defaultURL = host + entry;
 
@@ -28,24 +28,47 @@ SplashScreen.preventAutoHideAsync().catch(() => {
 });
 
 export default function App() {
-  useNotifications();
   const [error, setError] = useState(null);
+  const webview = useRef(null);
+
+  const { tokens } = useNotifications();
+  useEffect(() => {
+    if (!webview.current) {
+      return;
+    }
+
+    if (!tokens) {
+      return;
+    }
+
+    console.log(tokens);
+
+    setTimeout(() => {
+      webview.current.injectJavaScript(`
+        window.PURCHASE_PLAN_TOKENS=${JSON.stringify(tokens)};
+        window.dispatchEvent(new Event("PURCHASE_PLAN_TOKENS"));
+      `);
+    }, 2000);
+  }, [tokens, webview]);
 
   const entry = useURL();
   const uri = entry && entry.includes(host) ? entry : defaultURL;
   const isAndroid = Platform.OS === "android";
 
-  function handleConnectionUpdate(state) {
-    if (!isAndroid) {
-      return;
-    }
+  const handleConnectionUpdate = useCallback(
+    (state) => {
+      if (!isAndroid) {
+        return;
+      }
 
-    if (state.isConnected) {
-      StatusBar.setBackgroundColor(defaultBackgroundColor);
-    } else {
-      StatusBar.setBackgroundColor(errorBackgroundColor);
-    }
-  }
+      if (state.isConnected) {
+        StatusBar.setBackgroundColor(defaultBackgroundColor);
+      } else {
+        StatusBar.setBackgroundColor(errorBackgroundColor);
+      }
+    },
+    [isAndroid]
+  );
 
   useEffect(
     function () {
@@ -62,7 +85,7 @@ export default function App() {
         unsubscribe();
       };
     },
-    [isAndroid]
+    [isAndroid, handleConnectionUpdate]
   );
 
   function handleWebViewLoad() {
@@ -85,9 +108,13 @@ export default function App() {
         <Error />
       ) : (
         <WebView
+          ref={(r) => (webview.current = r)}
           source={{ uri }}
           style={{ height: "100%", width: "100%", backgroundColor: "#1d1d42" }}
-          injectedJavaScriptBeforeContentLoaded="window.isNativeApp=true;"
+          injectedJavaScriptBeforeContentLoaded={`
+  window.isNativeApp=true;
+  document.cookie = "Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imp1c3RpbmRhbmllbGZ1bGxlckBnbWFpbC5jb20iLCJleHAiOiIyMDIyLTA4LTE3IDA5OjE5OjU1Ljc2MjgxMzQzMyAtMDQwMCBFRFQgbT0rMzE1MzYwMjIuMTY2MDQxNzk3IiwiaXNzdWVyIjoiZGlkOmV0aHI6MHg0OTNmMjY5RmQ2MzM5NjFkZmRjRmIxNDJGQjBjQzk0NWY2OTEyZjNkIiwicHVibGljQWRkcmVzcyI6IjB4NDkzZjI2OUZkNjMzOTYxZGZkY0ZiMTQyRkIwY0M5NDVmNjkxMmYzZCJ9.9Gpw63Ub79A0Y5Qlj7Or8-cFzgm6lUN0dHvipei_QzU;path=/;"
+        `}
           onLoad={handleWebViewLoad}
           onError={handleWebViewError}
           onShouldStartLoadWithRequest={(event) => {

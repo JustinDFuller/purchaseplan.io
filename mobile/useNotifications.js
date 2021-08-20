@@ -24,8 +24,6 @@ export function useNotifications() {
         return;
       }
 
-      console.log(tokens);
-
       setTokens(tokens);
     });
 
