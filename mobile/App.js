@@ -6,6 +6,8 @@ import * as SplashScreen from "expo-splash-screen";
 import NetInfo from "@react-native-community/netinfo";
 import Svg, { Path } from "react-native-svg";
 
+import { useNotifications } from "./useNotifications";
+
 const host = "https://www.purchaseplan.io";
 const entry = "/app/auth/login";
 const defaultURL = host + entry;
@@ -19,6 +21,7 @@ SplashScreen.preventAutoHideAsync().catch(() => {
 });
 
 export default function App() {
+  useNotifications();
   const [error, setError] = useState(null);
 
   const entry = useURL();

@@ -47,3 +47,4 @@ yarn-error.log*
 ## Cypress/Tests
 e2e/cypress/screenshots
 e2e/cypress/videos
+google-services.json

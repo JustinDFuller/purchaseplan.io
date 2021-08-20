@@ -51,3 +51,9 @@ resource "google_project_iam_binding" "drone-prd-iam-binding-storageobjectviewer
   role    = "roles/storage.objectViewer"
   members = ["serviceAccount:${google_service_account.drone-prd.email}"]
 }
+
+resource "google_project_iam_binding" "drone-prd-iam-binding-cloudscheduleradmin" {
+  project = google_project.purchase-plan-prd.id
+  role    = "roles/cloudscheduler.admin"
+  members = ["serviceAccount:${google_service_account.drone-prd.email}"]
+}
