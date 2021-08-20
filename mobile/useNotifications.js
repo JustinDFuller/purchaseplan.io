@@ -1,6 +1,7 @@
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
 import { useMemo, useState, useEffect, useRef } from "react";
+import { Platform } from "react-native";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -22,6 +23,8 @@ export function useNotifications() {
       if (!tokens) {
         return;
       }
+
+      console.log(tokens);
 
       setTokens(tokens);
     });
@@ -81,5 +84,6 @@ async function registerForPushNotificationsAsync() {
   return {
     expoToken: expoToken.data,
     deviceToken: deviceToken.data,
+    deviceTokenType: Platform.OS,
   };
 }

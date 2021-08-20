@@ -7,12 +7,13 @@ type (
 	// The data is stored in an object database, so purchases
 	// Are stored as a property on the user, rather than by association.
 	User struct {
-		Email         string     `json:"email"`
-		Saved         int64      `json:"saved,omitempty"`
-		Contributions int64      `json:"contributions,omitempty"`
-		Frequency     frequency  `json:"frequency,omitempty"`
-		LastPaycheck  *time.Time `json:"lastPaycheck,omitempty"`
-		Purchases     []Purchase `json:"purchases,omitempty"`
+		Email                  string                  `json:"email"`
+		Saved                  int64                   `json:"saved,omitempty"`
+		Contributions          int64                   `json:"contributions,omitempty"`
+		Frequency              frequency               `json:"frequency,omitempty"`
+		LastPaycheck           *time.Time              `json:"lastPaycheck,omitempty"`
+		Purchases              []Purchase              `json:"purchases,omitempty"`
+		PushNotificationTokens []PushNotificationToken `json:"pushNotificationTokens,omitempty"`
 	}
 
 	// Purchase is something a User wants to buy.
@@ -24,6 +25,7 @@ type (
 		Date        *time.Time `json:"date"`
 		Product     Product    `json:"product"`
 		Quantity    int64      `json:"quantity"`
+		Notified    bool       `json:"notified"`
 	}
 
 	// Product contains information about the thing a User wants to buy.
@@ -37,6 +39,18 @@ type (
 	}
 
 	frequency string
+
+	// PushNotificationToken is used to save a user's device and expo push tokens.
+	// It also stores the type of push token, which determines where to send manual
+	// push notifications to if expo notifications don't work.
+	PushNotificationToken struct {
+		// DeviceToken is the IOS or Android device's push notification token.
+		DeviceToken string `datastore:",noindex" json:"deviceToken,omitempty"`
+		// DeviceTokenType is "ios" or "android"
+		DeviceTokenType string `datastore:",noindex" json:"deviceTokenType,omitempty"`
+		// Expo token is used to send messages with expo's push notification service.
+		ExpoToken string `datastore:",noindex" json:"expoToken,omitempty"`
+	}
 )
 
 const (
