@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, SafeAreaView, Platform, StatusBar, Text } from "react-native";
+import {
+  Linking,
+  View,
+  SafeAreaView,
+  Platform,
+  StatusBar,
+  Text,
+} from "react-native";
 import { WebView } from "react-native-webview";
 import { useURL } from "expo-linking";
 import * as SplashScreen from "expo-splash-screen";
@@ -29,6 +36,10 @@ export default function App() {
   const isAndroid = Platform.OS === "android";
 
   function handleConnectionUpdate(state) {
+    if (!isAndroid) {
+      return;
+    }
+
     if (state.isConnected) {
       StatusBar.setBackgroundColor(defaultBackgroundColor);
     } else {
@@ -79,6 +90,13 @@ export default function App() {
           injectedJavaScriptBeforeContentLoaded="window.isNativeApp=true;"
           onLoad={handleWebViewLoad}
           onError={handleWebViewError}
+          onShouldStartLoadWithRequest={(event) => {
+            if (!event.url.includes("purchaseplan.io")) {
+              Linking.openURL(event.url);
+              return false;
+            }
+            return true;
+          }}
         />
       )}
     </SafeAreaView>
