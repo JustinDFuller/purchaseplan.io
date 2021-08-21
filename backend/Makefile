@@ -20,6 +20,9 @@ run-watch:
 run: datastore-start
 	@go run ./cmd/server/main.go;
 
+run-cron:
+	@go run ./cmd/cron/main.go;
+
 datastore-start:
 	@gcloud beta emulators datastore start --no-store-on-disk --quiet > /dev/null 2>&1 &
 	@gcloud beta emulators datastore env-init --quiet > /dev/null 2>&1;
