@@ -41,14 +41,10 @@ export default function App() {
       return;
     }
 
-    console.log(tokens);
-
-    setTimeout(() => {
-      webview.current.injectJavaScript(`
-        window.PURCHASE_PLAN_TOKENS=${JSON.stringify(tokens)};
-        window.dispatchEvent(new Event("PURCHASE_PLAN_TOKENS"));
-      `);
-    }, 2000);
+    webview.current.injectJavaScript(`
+      window.PURCHASE_PLAN_TOKENS=${JSON.stringify(tokens)};
+      window.dispatchEvent(new Event("PURCHASE_PLAN_TOKENS"));
+    `);
   }, [tokens, webview]);
 
   const entry = useURL();
@@ -111,10 +107,7 @@ export default function App() {
           ref={(r) => (webview.current = r)}
           source={{ uri }}
           style={{ height: "100%", width: "100%", backgroundColor: "#1d1d42" }}
-          injectedJavaScriptBeforeContentLoaded={`
-  window.isNativeApp=true;
-  document.cookie = "Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imp1c3RpbmRhbmllbGZ1bGxlckBnbWFpbC5jb20iLCJleHAiOiIyMDIyLTA4LTE3IDA5OjE5OjU1Ljc2MjgxMzQzMyAtMDQwMCBFRFQgbT0rMzE1MzYwMjIuMTY2MDQxNzk3IiwiaXNzdWVyIjoiZGlkOmV0aHI6MHg0OTNmMjY5RmQ2MzM5NjFkZmRjRmIxNDJGQjBjQzk0NWY2OTEyZjNkIiwicHVibGljQWRkcmVzcyI6IjB4NDkzZjI2OUZkNjMzOTYxZGZkY0ZiMTQyRkIwY0M5NDVmNjkxMmYzZCJ9.9Gpw63Ub79A0Y5Qlj7Or8-cFzgm6lUN0dHvipei_QzU;path=/;"
-        `}
+          injectedJavaScriptBeforeContentLoaded={`window.isNativeApp=true;`}
           onLoad={handleWebViewLoad}
           onError={handleWebViewError}
           onShouldStartLoadWithRequest={(event) => {

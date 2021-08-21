@@ -6,7 +6,7 @@ const themes = {
     cardBorderColor: "#0a0a24",
     borderColor: "white",
     textColor: "white",
-    textColorFaded: "#ccc",
+    textColorFaded: "#aaa",
     highlight: "#4e2ecf",
   },
   light: {

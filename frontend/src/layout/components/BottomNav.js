@@ -19,7 +19,7 @@ const buttonStyle = {
 const activeButtonStyle = {
   ...buttonStyle,
   borderTop: `2px solid ${theme.highlight}`,
-  fill: theme.highlight,
+  fill: theme.textColor,
 };
 
 export function BottomNav() {

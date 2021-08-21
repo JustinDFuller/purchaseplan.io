@@ -1,5 +1,6 @@
 import * as uuid from "uuid";
 
+import * as Notifications from "notifications";
 import { getterSetters } from "object/getterSetters";
 
 import * as Purchases from "./purchases";
@@ -18,6 +19,9 @@ const defaults = {
 export function New(data = defaults) {
   return {
     ...getterSetters(data, New),
+    isReady() {
+      return data.email && data.email !== "";
+    },
     from(user) {
       return New({
         ...defaults,
@@ -26,6 +30,9 @@ export function New(data = defaults) {
           ? new Date(user.lastPaycheck)
           : data.lastPaycheck,
         purchases: data.purchases.from(user.purchases),
+        pushNotificationTokens: user.pushNotificationTokens.map((t) =>
+          Notifications.New(t)
+        ),
       });
     },
     setLastPaycheck(lastPaycheck) {
@@ -78,15 +85,14 @@ export function New(data = defaults) {
       return data.saved - data.purchases.total();
     },
     addPushNotificationTokens(newTokens) {
-      const found = data.pushNotificationTokens.find(
-        (t) =>
-          t.deviceToken === newTokens.deviceToken ||
-          t.expoToken === newTokens.expoToken
+      const found = data.pushNotificationTokens.findIndex(
+        (t) => t.deviceToken() === newTokens.deviceToken()
       );
 
-      const pushNotificationTokens = found
-        ? data.pushNotificationTokens
-        : [...data.pushNotificationTokens, newTokens];
+      const pushNotificationTokens =
+        found > -1
+          ? data.pushNotificationTokens
+          : [...data.pushNotificationTokens, newTokens];
 
       return New({
         ...data,

@@ -16,21 +16,23 @@ export default function App() {
       history.push(Auth.getLoginPath(history));
     })
   );
-  const tokens = Notifications.Use();
 
+  const tokens = Notifications.Use();
+  const [updatedTokens, setUpdatedTokens] = useState(false);
   useEffect(
     function () {
       async function effect() {
-        if (auth.isLoggedIn() && tokens !== null) {
+        if (user.isReady() && tokens !== null && !updatedTokens) {
+          setUpdatedTokens(true);
+
           const u = user.addPushNotificationTokens(tokens);
-          setUser(u);
-          const updated = await User.api.put(u);
-          setUser(u.from(updated));
+          const updated = u.from(await User.api.put(u));
+          setUser(updated);
         }
       }
       effect();
     },
-    [tokens, user, auth]
+    [tokens, user, auth, updatedTokens]
   );
 
   useEffect(function () {
