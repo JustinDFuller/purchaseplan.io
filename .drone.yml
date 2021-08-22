@@ -106,7 +106,7 @@ steps:
       - backend-lint
       - terraform-dev
 
-  - name: deploy-cron-dev
+  - name: deploy-cron-service-dev
     image: nytimes/drone-gae
     pull: if-not-exists
     environment:
@@ -117,7 +117,6 @@ steps:
       project: purchase-plan-dev
       dir: backend/cmd/cron
       app_file: app.yaml
-      cron_file: cron.yaml
       max_versions: 2
     when:
       event: push
@@ -126,6 +125,24 @@ steps:
       - cron
       - backend-lint
       - terraform-dev
+
+  - name: deploy-cron-dev
+    image: nytimes/drone-gae
+    pull: if-not-exists
+    environment:
+      GAE_CREDENTIALS:
+        from_secret: DRONE_CREDENTIALS_DEV
+    settings:
+      action: deploy
+      project: purchase-plan-dev
+      dir: backend/cmd/cron
+      cron_file: cron.yaml
+      max_versions: 2
+    when:
+      event: push
+      branch: main
+    depends_on:
+      - deploy-cron-service-dev
 
   - name: e2e-dev
     image: cypress/included:6.4.0
@@ -199,7 +216,7 @@ steps:
       - backend-lint
       - terraform-prd
 
-  - name: deploy-cron-prd
+  - name: deploy-cron-service-prd
     image: nytimes/drone-gae
     pull: if-not-exists
     environment:
@@ -210,7 +227,6 @@ steps:
       project: purchase-plan-prd
       dir: backend/cmd/cron
       app_file: app.yaml
-      cron_file: cron.yaml
       max_versions: 2
     when:
       event: tag
@@ -218,24 +234,23 @@ steps:
       - cron
       - backend-lint
       - terraform-prd
- 
-  ## - name: publish-android
-  ##  image: node:15
-  ##  pull: if-not-exists
-  ##  environment:
-  ##    EXPO_TOKEN:
-  ##      from_secret: EXPO_TOKEN
-  ##  commands:
-  ##    - cd mobile
-  ##    - npm i -g expo-cli
-  ##    - expo login
-  ##    - expo upload:android --latest --track=internal
-  ##  depends_on:
-  ##    - build-android
-  ##    - deploy-prd
-  ##  when:
-  ##    event: [push, tag]
-  ##    branch: main
+
+  - name: deploy-cron-prd
+    image: nytimes/drone-gae
+    pull: if-not-exists
+    environment:
+      GAE_CREDENTIALS:
+        from_secret: DRONE_CREDENTIALS_PRD
+    settings:
+      action: deploy
+      project: purchase-plan-prd
+      dir: backend/cmd/cron
+      cron_file: cron.yaml
+      max_versions: 2
+    when:
+      event: tag
+    depends_on:
+      - deploy-cron-service-prd
 
   - name: slack-prd
     image: plugins/slack
