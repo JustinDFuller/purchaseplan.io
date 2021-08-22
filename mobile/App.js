@@ -15,7 +15,7 @@ import Svg, { Path } from "react-native-svg";
 
 import { useNotifications } from "./useNotifications";
 
-const host = "http://192.168.86.128:3000";
+const host = "https://www.purchaseplan.io";
 const entry = "/app/auth/login";
 const defaultURL = host + entry;
 
