@@ -53,6 +53,7 @@ steps:
     environment:
       EXPO_TOKEN:
         from_secret: EXPO_TOKEN
+      EAS_NO_VCS: 1
     commands:
       - cd mobile
       - npm ci
