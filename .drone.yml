@@ -57,7 +57,7 @@ steps:
       - cd mobile
       - npm ci
       - npm i -g eas-cli
-      - eas build --platform=all --profile=development
+      - eas build --platform=all --profile=development --non-interactive
 
   - name: setup-terraform
     image: bash
