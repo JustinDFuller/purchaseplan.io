@@ -47,7 +47,7 @@ steps:
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
 
-  - name: build-android
+  - name: build-mobile
     image: node:15
     pull: if-not-exists
     environment:
@@ -56,8 +56,8 @@ steps:
     commands:
       - cd mobile
       - npm ci
-      - npm i -g expo-cli
-      - expo build:android -t app-bundle --no-publish --no-wait
+      - npm i -g eas-cli
+      - eas build --platform=all --profile=development
 
   - name: setup-terraform
     image: bash
@@ -176,7 +176,7 @@ steps:
         {{/success}}
     depends_on:
       - e2e-dev
-      - build-android
+      - build-mobile
     when:
       event: push
       branch: main

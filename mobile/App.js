@@ -111,7 +111,8 @@ export default function App() {
           onLoad={handleWebViewLoad}
           onError={handleWebViewError}
           onShouldStartLoadWithRequest={(event) => {
-            if (!event.url.includes("purchaseplan.io")) {
+            const whitelist = ["purchaseplan.io", "magic.link"];
+            if (!whitelist.find((w) => event.url.includes(w))) {
               Linking.openURL(event.url);
               return false;
             }
