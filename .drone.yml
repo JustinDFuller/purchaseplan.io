@@ -54,6 +54,10 @@ steps:
       EXPO_TOKEN:
         from_secret: EXPO_TOKEN
       EAS_NO_VCS: 1
+      EXPO_APPLE_PASSWORD:
+        from_secret: APPLE_APP_PASSWORD_EAS_UPLOAD
+      EXPO_APPLE_APP_SPECIFIC_PASSWORD:
+        from_secret: APPLE_APP_PASSWORD_EAS_UPLOAD
     commands:
       - cd mobile
       - npm ci
