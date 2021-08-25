@@ -3,7 +3,14 @@
     "release": {},
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "android": {
+        "credentialsSource": "remote"
+      },
+      "ios": {
+        "autoIncrement": true,
+        "credentialsSource": "remote"
+      }
     }
   }
 }
