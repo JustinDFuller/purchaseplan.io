@@ -111,11 +111,18 @@ export default function App() {
           onLoad={handleWebViewLoad}
           onError={handleWebViewError}
           onShouldStartLoadWithRequest={(event) => {
+            const blacklist = ["blog.purchaseplan.io"];
+            if (blacklist.find((b) => event.url.includes(b))) {
+              Linking.openURL(event.url);
+              return false;
+            }
+
             const whitelist = ["purchaseplan.io", "magic.link"];
             if (!whitelist.find((w) => event.url.includes(w))) {
               Linking.openURL(event.url);
               return false;
             }
+
             return true;
           }}
         />

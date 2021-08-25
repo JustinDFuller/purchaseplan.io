@@ -47,17 +47,17 @@ steps:
       - mkdir ../backend/frontend/
       - cp -r ./build/ ../backend/frontend/
 
-  - name: build-mobile
-    image: node:15
-    pull: if-not-exists
-    environment:
-      EXPO_TOKEN:
-        from_secret: EXPO_TOKEN
-      EAS_NO_VCS: 1
-    commands:
-      - cd mobile
-      - npm ci
-      - npx eas-cli build --platform=all --profile=development --non-interactive
+  #- name: build-mobile
+  #  image: node:15
+  #  pull: if-not-exists
+  #  environment:
+  #    EXPO_TOKEN:
+  #      from_secret: EXPO_TOKEN
+  #    EAS_NO_VCS: 1
+  #  commands:
+  #    - cd mobile
+  #    - npm ci
+  #    - npx eas-cli build --platform=all --profile=development --non-interactive
 
   - name: setup-terraform
     image: bash
@@ -176,7 +176,7 @@ steps:
         {{/success}}
     depends_on:
       - e2e-dev
-      - build-mobile
+        # - build-mobile
     when:
       event: push
       branch: main
