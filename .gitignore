@@ -48,3 +48,6 @@ yarn-error.log*
 ## Cypress/Tests
 e2e/cypress/screenshots
 e2e/cypress/videos
+
+## Mobile
+pc-api*.json
