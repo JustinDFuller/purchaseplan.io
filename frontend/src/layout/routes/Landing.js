@@ -64,8 +64,7 @@ const samplePurchases = [
           name: "KitchenAid Refridgerator",
           description: "KitchenAid 5-Door French Door Refridgerator",
           price: 4099,
-          url:
-            "https://www.lowes.com/pd/KitchenAid-25-8-cu-ft-5-Door-French-Door-Refrigerator-with-Ice-Maker-Stainless-Steel/50413062",
+          url: "https://www.lowes.com/pd/KitchenAid-25-8-cu-ft-5-Door-French-Door-Refrigerator-with-Ice-Maker-Stainless-Steel/50413062",
           image:
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/bb62d5e907ce64be5280169ae7991219?alt=media",
         }),
@@ -77,8 +76,7 @@ const samplePurchases = [
           description:
             "KitchenAid 30-inch Self-Cleaning Combination Microwave and Wall Oven",
           price: 3899,
-          url:
-            "https://www.lowes.com/pd/KitchenAid-Self-Cleaning-Convection-Microwave-Wall-Oven-Combo-Stainless-Steel-30-in-Actual-30-in/50353220",
+          url: "https://www.lowes.com/pd/KitchenAid-Self-Cleaning-Convection-Microwave-Wall-Oven-Combo-Stainless-Steel-30-in-Actual-30-in/50353220",
           image:
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/0339bed0ce53e3bbab6a8f85636ac9ee?alt=media",
         }),
@@ -91,8 +89,7 @@ const samplePurchases = [
           image:
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/cbeb94818545ca6314704c5c28be50eb?alt=media",
           price: 3999,
-          url:
-            "https://www.lowes.com/pd/KitchenAid-48-in-6-Burners-Stainless-Steel-Gas-Cooktop-Common-48-in-Actual-48-in/1001227780",
+          url: "https://www.lowes.com/pd/KitchenAid-48-in-6-Burners-Stainless-Steel-Gas-Cooktop-Common-48-in-Actual-48-in/1001227780",
         }),
       }),
     ],
@@ -106,8 +103,7 @@ const samplePurchases = [
           name: "Zuma Outdoor Sectional",
           description: "Zuma three-piece sectional with ottoman",
           price: 3496,
-          url:
-            "https://www.crateandbarrel.com/zuma-outdoor-upholstered-3-piece-sectional-with-ottoman/s175683",
+          url: "https://www.crateandbarrel.com/zuma-outdoor-upholstered-3-piece-sectional-with-ottoman/s175683",
           image:
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/1d780a17877f7ec6e3dcbb3f45b93fae?alt=media",
         }),
@@ -119,8 +115,7 @@ const samplePurchases = [
           description:
             "ÄPPLARÖ Outdoor Table seats up to 8 chairs and has a hole in the middle for an umbrella.",
           price: 149,
-          url:
-            "https://www.ikea.com/us/en/p/aepplaroe-table-outdoor-brown-stained-70419787/",
+          url: "https://www.ikea.com/us/en/p/aepplaroe-table-outdoor-brown-stained-70419787/",
           image:
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/9d8a7496cc6cfa83226ac32d3b2802b1?alt=media",
         }),
@@ -131,8 +126,7 @@ const samplePurchases = [
           name: "White Rectangular Patio Umbrella",
           description: "10' rectangular umbrella from Crate & Barrel",
           price: 559,
-          url:
-            "https://www.crateandbarrel.com/rectangular-sunbrella-white-sand-patio-umbrella-with-eucalyptus-frame/s130474",
+          url: "https://www.crateandbarrel.com/rectangular-sunbrella-white-sand-patio-umbrella-with-eucalyptus-frame/s130474",
           image:
             "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-prd/o/bf29cc3d4817fa2ee56ff58145db731f?alt=media",
         }),

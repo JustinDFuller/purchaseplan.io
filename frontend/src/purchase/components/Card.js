@@ -116,21 +116,25 @@ export const Card = User.data.WithContext(function ({
                 alignItems: "center",
               }}
             >
-              <img
-                src={purchase.product().image()}
-                alt={purchase.product().description()}
-                style={{
-                  backgroundColor: "white",
-                  height: "auto",
-                  width: "auto",
-                  maxHeight: "100%",
-                  maxWidth: "100%",
-                }}
-                onError={(e) => {
-                  e.target.onError = null;
-                  e.target.src = `${process.env.PUBLIC_URL}/404.png`;
-                }}
-              />
+              {purchase.product().image() ? (
+                <img
+                  src={purchase.product().image()}
+                  alt={purchase.product().description()}
+                  style={{
+                    backgroundColor: "white",
+                    height: "auto",
+                    width: "auto",
+                    maxHeight: "100%",
+                    maxWidth: "100%",
+                  }}
+                  onError={(e) => {
+                    e.target.onError = null;
+                    e.target.src = `${process.env.PUBLIC_URL}/404.png`;
+                  }}
+                />
+              ) : (
+                <Product.components.Grid />
+              )}
             </div>
           </Col>
           <Col xs={12} sm={7} md={8}>
