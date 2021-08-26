@@ -13,7 +13,11 @@ export function ProductForm({
 }) {
   return (
     <form onSubmit={onSubmit}>
-      <h5 className="card-title">Does everything look correct?</h5>
+      <h5 className="card-title">
+        {product.url()
+          ? "Does everything look correct?"
+          : "What are you buying?"}
+      </h5>
       <div className="row">
         <div className="form-group col-12">
           <label className="form-label">Name</label>

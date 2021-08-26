@@ -3,6 +3,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 
 import * as layout from "layout";
 import * as form from "form";
+import * as styles from "styles";
 
 const messages = [
   "Trying to find the best image.",
@@ -11,7 +12,7 @@ const messages = [
   "Drag and drop purchases to rearrange them.",
 ];
 
-export function URL({ onSubmit, loading, error }) {
+export function URL({ onNoURL, onSubmit, loading, error }) {
   const [url, setUrl] = useState("");
   const [message, setMessage] = useState(0);
   const [progress, setProgress] = useState(60);
@@ -19,6 +20,11 @@ export function URL({ onSubmit, loading, error }) {
   function handleSubmit(e) {
     e.preventDefault();
     onSubmit(url);
+  }
+
+  function handleNoURL(e) {
+    e.preventDefault();
+    onNoURL();
   }
 
   useEffect(
@@ -41,7 +47,7 @@ export function URL({ onSubmit, loading, error }) {
   );
 
   return (
-    <layout.components.Card>
+    <layout.components.Card bodyClassName="pb-1">
       {error && (
         <div className="alert alert-danger" role="alert">
           Please make sure the URL is correct and try again.
@@ -49,9 +55,7 @@ export function URL({ onSubmit, loading, error }) {
       )}
       <form onSubmit={handleSubmit}>
         <div className="form-group mb-0">
-          <label className="form-label">
-            Enter the URL to the product you want to buy
-          </label>
+          <h5 className="card-title">What do you want to buy?</h5>
           <div className="row">
             {loading ? (
               <div className="col-12">
@@ -84,6 +88,16 @@ export function URL({ onSubmit, loading, error }) {
                 </div>
               </>
             )}
+            <div className="col-12">
+              <button
+                className="btn btn-link white px-0 mt-1"
+                style={styles.text}
+                type="button"
+                onClick={handleNoURL}
+              >
+                I don't have a link.
+              </button>
+            </div>
           </div>
         </div>
       </form>

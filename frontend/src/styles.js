@@ -122,5 +122,5 @@ export function classes(...inputs) {
     }
   }
 
-  return classNames;
+  return classNames.join(" ");
 }

@@ -1,6 +1,6 @@
 import * as styles from "../../styles";
 
-export function Card({ children, style, noBody, light }) {
+export function Card({ children, style, noBody, light, bodyClassName }) {
   return (
     <div
       className="card mb-4"
@@ -10,7 +10,9 @@ export function Card({ children, style, noBody, light }) {
         style
       )}
     >
-      <div className={noBody ? "" : "card-body"}>{children}</div>
+      <div className={styles.classes(noBody ? "" : "card-body", bodyClassName)}>
+        {children}
+      </div>
     </div>
   );
 }

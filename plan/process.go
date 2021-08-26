@@ -80,10 +80,6 @@ func ProcessValidation(u *User) error {
 		if p.Product.Price == 0 {
 			return ErrMissingProductPrice
 		}
-
-		if p.Product.URL == "" {
-			return ErrMissingProductURL
-		}
 	}
 
 	return nil

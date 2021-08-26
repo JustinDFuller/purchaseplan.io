@@ -10,6 +10,13 @@ workspace:
   path: src/github.com/justindfuller/purchase-plan
 
 steps:
+  - name: plan-test
+    image: golang/bullseye
+    pull: if-not-exists
+    commands:
+      - cd ./plan
+      - go test ./...
+
   - name: backend-lint
     image: golangci/golangci-lint
     pull: if-not-exists
@@ -69,6 +76,7 @@ steps:
       - ./scripts/setup
     depends_on:
       - backend
+      - plan-test
 
   - name: terraform-dev
     image: hashicorp/terraform:light

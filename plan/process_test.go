@@ -96,23 +96,6 @@ func TestProcess(t *testing.T) {
 			error: ErrMissingProductPrice,
 		},
 		{
-			name: "process_validation_purchase_product_URL",
-			given: User{
-				Email: "foobar",
-				Purchases: []Purchase{
-					{
-						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
-						Quantity: 1,
-						Product: Product{
-							Name:  "my product",
-							Price: 10,
-						},
-					},
-				},
-			},
-			error: ErrMissingProductURL,
-		},
-		{
 			name: "process_validation_frequency",
 			given: User{
 				Email:     "foobar",

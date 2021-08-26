@@ -43,6 +43,7 @@ export const Form = User.data.WithContext(function ({
     );
 
     const res = await User.api.put(u);
+    console.log(res);
     setUser(user.from(res));
     setError(NO_ERROR);
     setProduct(null);
@@ -55,9 +56,15 @@ export const Form = User.data.WithContext(function ({
     setQuantity(1);
   }
 
+  function handleNoURL() {
+    setProduct();
+    setProduct(Product.data.New());
+  }
+
   if (!product) {
     return (
       <URL
+        onNoURL={handleNoURL}
         onSubmit={handleSubmit}
         loading={loading}
         error={error === INVALID_SEARCH}
@@ -68,18 +75,20 @@ export const Form = User.data.WithContext(function ({
   return (
     <layout.components.Card>
       <div className="row">
-        <div className="col-12 col-md-4 mb-4">
-          <img
-            className="card-img-top"
-            src={product.image()}
-            alt={product.description()}
-            onError={(e) => {
-              e.target.onError = null;
-              e.target.src = `${process.env.PUBLIC_URL}/404.png`;
-            }}
-          />
-        </div>
-        <div className="col-12 col-md-8">
+        {product.url() && (
+          <div className="col-12 col-md-4 mb-4">
+            <img
+              className="card-img-top"
+              src={product.image()}
+              alt={product.description()}
+              onError={(e) => {
+                e.target.onError = null;
+                e.target.src = `${process.env.PUBLIC_URL}/404.png`;
+              }}
+            />
+          </div>
+        )}
+        <div className={product.url() ? "col-12 col-md-8" : "col-12"}>
           <ProductForm
             onSubmit={handleSubmitEdit}
             onCancel={handleCancel}

@@ -23,14 +23,18 @@ export function New(data = defaults) {
       return data.email && data.email !== "";
     },
     from(user) {
-      return New({
+      const d = {
         ...defaults,
+        ...data,
         ...user,
-        lastPaycheck: user.lastPaycheck
-          ? new Date(user.lastPaycheck)
-          : data.lastPaycheck,
-        purchases: data.purchases.from(user.purchases),
-        pushNotificationTokens: user.pushNotificationTokens.map((t) =>
+      };
+      return New({
+        ...data,
+        lastPaycheck: d.lastPaycheck
+          ? new Date(d.lastPaycheck)
+          : d.lastPaycheck,
+        purchases: data.purchases.from(d.purchases),
+        pushNotificationTokens: d.pushNotificationTokens.map((t) =>
           Notifications.New(t)
         ),
       });
