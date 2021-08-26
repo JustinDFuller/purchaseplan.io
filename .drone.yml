@@ -11,7 +11,7 @@ workspace:
 
 steps:
   - name: plan-test
-    image: golang/bullseye
+    image: golang:latest
     pull: if-not-exists
     commands:
       - cd ./plan
