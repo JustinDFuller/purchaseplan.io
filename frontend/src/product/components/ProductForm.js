@@ -68,9 +68,16 @@ export function ProductForm({
           </div>
         </div>
         <div className="row align-items-center">
-          <div className="col-12 text-right mt-4">
+          <div className="col-12 text-right mt-2">
             <div className="row">
-              <div className="col-12 col-md-6 p-0 mb-2 pr-md-3">
+              <div className="col-12 col-md-6 p-0 pr-md-3">
+                <form.components.Submit
+                  onClick={onSubmit}
+                  loading={loading}
+                  text="Save"
+                />
+              </div>
+              <div className="col-12 col-md-6 p-0 mt-3 mt-md-0 pl-md-3">
                 <button
                   type="button"
                   className="btn btn-danger mr-2 w-100"
@@ -79,13 +86,6 @@ export function ProductForm({
                 >
                   Cancel
                 </button>
-              </div>
-              <div className="col-12 col-md-6 p-0 pl-md-3">
-                <form.components.Submit
-                  onClick={onSubmit}
-                  loading={loading}
-                  text="Save"
-                />
               </div>
             </div>
           </div>

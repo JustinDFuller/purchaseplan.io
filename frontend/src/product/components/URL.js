@@ -90,7 +90,17 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
             )}
             <div className="col-12">
               <button
-                className="btn btn-link white px-0 mt-1"
+                className="btn btn-link white px-0 my-3 d-lg-none d-block w-100"
+                style={styles.combine(styles.text, {
+                  border: "1px solid white",
+                })}
+                type="button"
+                onClick={handleNoURL}
+              >
+                I don't have a link.
+              </button>
+              <button
+                className="btn btn-link white px-0 mt-1 d-lg-block d-none"
                 style={styles.text}
                 type="button"
                 onClick={handleNoURL}
