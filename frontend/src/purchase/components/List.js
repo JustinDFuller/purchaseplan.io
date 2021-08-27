@@ -46,6 +46,7 @@ export const List = User.data.WithContext(function ({ user, setUser }) {
     }
     const draggableId = update.draggableId;
     const destinationIndex = update.destination.index;
+    const sourceIndex = update.source.index;
 
     const domQuery = `[data-rbd-drag-handle-draggable-id='${draggableId}']`;
     const draggedDOM = document.querySelector(domQuery);
@@ -55,15 +56,19 @@ export const List = User.data.WithContext(function ({ user, setUser }) {
     }
     const { clientHeight, clientWidth } = draggedDOM;
 
-    const clientY =
-      parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) +
-      [...draggedDOM.parentNode.children]
-        .slice(0, destinationIndex)
-        .reduce((total, curr) => {
-          const style = curr.currentStyle || window.getComputedStyle(curr);
-          const marginBottom = parseFloat(style.marginBottom);
-          return total + curr.clientHeight + marginBottom;
-        }, 0);
+    const original = [...draggedDOM.parentNode.children];
+    const removed = original.splice(sourceIndex, 1);
+    const children = [
+      ...original.slice(0, destinationIndex),
+      removed,
+      ...original.slice(destinationIndex + 1),
+    ];
+
+    const clientY = children
+      .slice(0, destinationIndex)
+      .reduce((total, curr) => {
+        return total + curr.clientHeight;
+      }, 0);
 
     setPlaceholderProps({
       position: "absolute",
