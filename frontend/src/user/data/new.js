@@ -28,8 +28,9 @@ export function New(data = defaults) {
         ...data,
         ...user,
       };
+
       return New({
-        ...data,
+        ...d,
         lastPaycheck: d.lastPaycheck
           ? new Date(d.lastPaycheck)
           : d.lastPaycheck,
