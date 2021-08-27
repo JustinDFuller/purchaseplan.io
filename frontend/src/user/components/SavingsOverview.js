@@ -159,21 +159,21 @@ export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
           </div>
         </div>
         <div className="row mt-3">
-          <div className="col-12 col-xl-7">
+          <div className="col-12 col-xl-6">
             <strong style={styles.textDark}>Saved So Far</strong>
             <p>{formatter.format(user.saved())}</p>
           </div>
-          <div className="col-12 col-xl-5">
+          <div className="col-12 col-xl-6">
             <strong style={styles.textDark}>Planned Savings</strong>
             <p>
               {formatter.format(user.contributions())}/{user.frequency()}
             </p>
           </div>
-          <div className="col-12 col-xl-7">
+          <div className="col-12 col-xl-6">
             <strong style={styles.textDark}>Last Paycheck</strong>
             <p>{user.lastPaycheckDisplay()}</p>
           </div>
-          <div className="col-12 col-xl-5">
+          <div className="col-12 col-xl-6">
             <strong style={styles.textDark}>
               {user.remaining() >= 0 ? "Remaining Budget" : "Need To Save"}
             </strong>
