@@ -96,12 +96,12 @@ export const Card = User.data.WithContext(function ({
   }
 
   return (
-    <layout.components.Card noBody>
+    <layout.components.Card noBody noPadding>
       <a
-        href={purchase.product().url()}
+        href={purchase.product().url() || `?purchase=${purchase.id()}`}
         className="text-white"
-        target="_blank"
-        rel="noopener noreferrer"
+        target={purchase.product().url() ? "_blank" : ""}
+        rel={purchase.product().url() ? "noopener noreferrer" : ""}
       >
         <Row>
           <Col xs={12} sm={5} md={4}>

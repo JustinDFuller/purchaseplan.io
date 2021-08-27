@@ -1,9 +1,16 @@
 import * as styles from "../../styles";
 
-export function Card({ children, style, noBody, light, bodyClassName }) {
+export function Card({
+  noPadding,
+  children,
+  style,
+  noBody,
+  light,
+  bodyClassName,
+}) {
   return (
     <div
-      className="card mb-4"
+      className={styles.classes("card", noPadding ? "" : "mb-4")}
       style={styles.combine(
         light ? styles.darkLight : styles.darkAlt,
         styles.roundBorder,

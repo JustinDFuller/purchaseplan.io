@@ -70,10 +70,11 @@ export function Grid() {
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      {grid.map((row) => (
-        <div style={{ height: "12.5%", width: "100%" }}>
-          {row.map((column) => (
+      {grid.map((row, i) => (
+        <div key={i} style={{ height: "12.5%", width: "100%" }}>
+          {row.map((column, j) => (
             <div
+              key={j}
               style={{
                 display: "inline-block",
                 height: "100%",
