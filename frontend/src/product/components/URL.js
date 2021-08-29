@@ -68,7 +68,7 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
               </div>
             ) : (
               <>
-                <div className="col-12 col-lg-10">
+                <div className="col-12 col-lg-9">
                   <input
                     required
                     type="url"
@@ -79,7 +79,7 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
                     onChange={(e) => setUrl(e.target.value)}
                   />
                 </div>
-                <div className="col-12 col-lg-2 text-right mt-3 mt-lg-0">
+                <div className="col-12 col-lg-3 text-right mt-3 mt-lg-0">
                   <form.components.Submit
                     onClick={handleSubmit}
                     loading={loading}
