@@ -38,7 +38,7 @@ export function New(input = defaults) {
       });
     },
     hasAtLeastOne() {
-      return data.purchases.length >= 1;
+      return data.purchases.filter((p) => !p.shouldSkip()).length >= 1;
     },
     reorder(id, start, end) {
       const purchases = data.purchases.slice();

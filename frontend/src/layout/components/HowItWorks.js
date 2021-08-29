@@ -9,14 +9,13 @@ export function HowItWorks() {
           Edit your savings overview to adjust your plan.
         </li>
         <li className="list-group-item">
-          Add all the purchases that you're saving for.
+          Add a purchase that you're saving for.
         </li>
         <li className="list-group-item">
-          Drag and drop the purchases to arrange them in the order you plan to
-          buy them.
+          Drag and drop purchases in the order you plan to buy.
         </li>
         <li className="list-group-item">
-          Your purchase plan will remind you when you can buy something new!
+          Purchase plan will remind you when you can buy something!
         </li>
       </ul>
     </Card>

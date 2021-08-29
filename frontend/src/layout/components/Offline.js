@@ -27,9 +27,7 @@ export function Offline() {
       }}
     >
       <p style={{ color: "white", textAlign: "center", margin: 0 }}>
-        Are you offline?
-        <br />
-        Connect to the internet to continue using Purchase Plan.
+        Connect to the internet to use Purchase Plan.
       </p>
     </div>
   ) : null;

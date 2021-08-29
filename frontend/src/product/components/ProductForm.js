@@ -36,7 +36,6 @@ export function ProductForm({
             className="form-control"
             value={product.description()}
             onChange={(e) => setProduct(product.setDescription(e.target.value))}
-            required
           />
         </div>
       </div>
