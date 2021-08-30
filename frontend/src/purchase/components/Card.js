@@ -110,7 +110,7 @@ export const Card = User.data.WithContext(function ({
               style={{
                 background: "white",
                 width: "100%",
-                height: 250,
+                height: 200,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -119,7 +119,7 @@ export const Card = User.data.WithContext(function ({
               {purchase.product().image() ? (
                 <img
                   src={purchase.product().image()}
-                  alt={purchase.product().description()}
+                  alt={purchase.product().name()}
                   style={{
                     backgroundColor: "white",
                     height: "auto",
@@ -188,11 +188,6 @@ export const Card = User.data.WithContext(function ({
                   </Dropdown>
                 )}
               </div>
-
-              <p style={{ maxWidth: "90%" }}>
-                {purchase.product().description().slice(0, 150)}
-                {purchase.product().description().length > 150 && "..."}
-              </p>
               {purchase.quantity() > 1 && (
                 <>
                   <div>
