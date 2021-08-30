@@ -80,7 +80,7 @@ export function ProductForm({
                 <button
                   type="button"
                   className="btn btn-danger mr-2 w-100"
-                  style={styles.combine(styles.danger, styles.transparent)}
+                  style={styles.danger}
                   onClick={onCancel}
                 >
                   Cancel

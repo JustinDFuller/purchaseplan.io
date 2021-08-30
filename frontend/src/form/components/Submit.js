@@ -10,7 +10,7 @@ export function Submit({ loading, text, dataTestid, style }) {
       data-testid={dataTestid}
       type="submit"
       className="btn btn-success w-100 w-md-auto"
-      style={styles.combine(styles.success, styles.transparent, style, {
+      style={styles.combine(styles.success, style, {
         whiteSpace: "nowrap",
       })}
     >

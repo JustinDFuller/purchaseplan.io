@@ -61,11 +61,15 @@ export const textDark = {
 };
 
 export const success = {
-  color: "#6fcf97",
+  background: "#4d966b",
+  borderColor: "#4d966b",
+  color: "white",
 };
 
 export const danger = {
-  color: "#dc3545",
+  background: "#bb2e3b",
+  borderColor: "#bb2e3b",
+  color: "white",
 };
 
 export const transparent = {
