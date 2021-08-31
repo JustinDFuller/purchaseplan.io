@@ -18,7 +18,7 @@ export function ProductForm({
   loading,
   onCancel,
 }) {
-  const [description, setDescription] = useState(false);
+  const [showNote, setShowNote] = useState(false);
   const [showQuantity, setShowQuantity] = useState(false);
   // const [showImage, setShowImage] = useState(false);
 
@@ -40,7 +40,7 @@ export function ProductForm({
             required
           />
         </div>
-        {description && (
+        {showNote && (
           <div className="form-group col-12">
             <label className="form-label">Note</label>
             <textarea
@@ -82,43 +82,45 @@ export function ProductForm({
           </div>
         )}
       </div>
-      <div className="row mb-3">
-        <div className="col-12">
-          Add to purchase:
-          <div
-            style={{
-              display: "inline-block",
-              padding: "10px 20px",
-              marginLeft: 20,
-              background: "rgb(38, 38, 78)",
-              borderRadius: 5,
-            }}
-          >
-            {!description && (
-              <Pencil
-                style={{ cursor: "pointer", marginRight: 20 }}
-                onClick={() => setDescription(true)}
-                data-tip="Add a note"
-              />
-            )}
-            {!showQuantity && (
-              <Plus
-                style={{ cursor: "pointer" /* , marginRight: 20 */ }}
-                onClick={() => {
-                  setShowQuantity(true);
-                  setQuantity(2);
-                }}
-                data-tip="Increase quantity"
-              />
-            )}
-            {/*<Image
+      {(!showNote || !showQuantity) && (
+        <div className="row mb-3">
+          <div className="col-12">
+            Add to purchase:
+            <div
+              style={{
+                display: "inline-block",
+                padding: "10px 20px",
+                marginLeft: 20,
+                background: "rgb(38, 38, 78)",
+                borderRadius: 5,
+              }}
+            >
+              {!showNote && (
+                <Pencil
+                  style={{ cursor: "pointer", marginRight: 20 }}
+                  onClick={() => setShowNote(true)}
+                  data-tip="Add a note"
+                />
+              )}
+              {!showQuantity && (
+                <Plus
+                  style={{ cursor: "pointer" /* , marginRight: 20 */ }}
+                  onClick={() => {
+                    setShowQuantity(true);
+                    setQuantity(2);
+                  }}
+                  data-tip="Increase quantity"
+                />
+              )}
+              {/*<Image
               style={{ cursor: "pointer" }}
               onClick={() => setShowImage(true)}
               data-tip="Add an image"
             /> */}
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <div className="col-12 text-right mt-2">
         <div className="row">
           <div className="col-12 col-md-6 p-0 pr-md-3">

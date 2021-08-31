@@ -9,7 +9,7 @@ export const UndoRemove = User.data.WithContext(function ({
   return (
     <div className="card-body">
       <h5 className="card-title">Removed</h5>
-      <p>{purchase.product().name()}</p>
+      <p className="line-clamp-2">{purchase.product().name()}</p>
       <button
         className="btn btn-primary mb-2"
         onClick={async () => {
