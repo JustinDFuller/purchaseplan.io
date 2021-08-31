@@ -83,7 +83,7 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
                   <form.components.Submit
                     onClick={handleSubmit}
                     loading={loading}
-                    text="Download"
+                    text="Import"
                   />
                 </div>
               </>

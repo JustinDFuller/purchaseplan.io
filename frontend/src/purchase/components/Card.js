@@ -110,7 +110,7 @@ export const Card = User.data.WithContext(function ({
               style={{
                 background: "white",
                 width: "100%",
-                height: 200,
+                height: 250,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -188,6 +188,12 @@ export const Card = User.data.WithContext(function ({
                   </Dropdown>
                 )}
               </div>
+
+              {purchase.product().description() && (
+                <p className="line-clamp-2 m-0">
+                  {purchase.product().description()}
+                </p>
+              )}
               {purchase.quantity() > 1 && (
                 <>
                   <div>
