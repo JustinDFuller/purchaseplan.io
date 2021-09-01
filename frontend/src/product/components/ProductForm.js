@@ -22,63 +22,6 @@ export function ProductForm({
   const [showQuantity, setShowQuantity] = useState(false);
   // const [showImage, setShowImage] = useState(false);
 
-  const name = (
-    <div className="form-group col-12">
-      <label className="form-label">Name</label>
-      <input
-        type="text"
-        className="form-control"
-        value={product.name()}
-        onChange={(e) => setProduct(product.setName(e.target.value))}
-        required
-      />
-    </div>
-  );
-
-  const price = (
-    <div className="form-group col-12">
-      <label className="form-label">Price</label>
-      <input
-        type="number"
-        className="form-control"
-        placeholder="0"
-        value={product.price() ? product.price().toString() : ""}
-        onChange={(e) => setProduct(product.setPrice(e.target.value))}
-        required
-      />
-    </div>
-  );
-
-  const note = (
-    <div className="form-group col-12">
-      <label className="form-label">Note</label>
-      <textarea
-        type="text"
-        className="form-control"
-        value={product.description()}
-        onChange={(e) => setProduct(product.setDescription(e.target.value))}
-      />
-    </div>
-  );
-
-  const quantityInput = (
-    <div className="form-group col-12">
-      <label className="form-label">Quantity</label>
-      <input
-        type="number"
-        className="form-control"
-        placeholder="0"
-        min="1"
-        max="9999"
-        value={quantity.toString() || "1"}
-        onChange={(e) => setQuantity(Number(e.target.value))}
-        required
-      />
-    </div>
-  );
-
-  const [inputs, setInputs] = useState([name, price]);
-
   return (
     <form onSubmit={onSubmit}>
       <h5 className="card-title">
@@ -86,7 +29,59 @@ export function ProductForm({
           ? "Does everything look correct?"
           : "What are you buying?"}
       </h5>
-      <div className="row">{inputs}</div>
+      <div className="row">
+        <div className="form-group col-12">
+          <label className="form-label">Name</label>
+          <input
+            type="text"
+            className="form-control"
+            value={product.name()}
+            onChange={(e) => setProduct(product.setName(e.target.value))}
+            required
+          />
+        </div>
+      </div>
+      <div className="row">
+        <div className="form-group col-12">
+          <label className="form-label">Price</label>
+          <input
+            type="number"
+            className="form-control"
+            placeholder="0"
+            value={product.price() ? product.price().toString() : ""}
+            onChange={(e) => setProduct(product.setPrice(e.target.value))}
+            required
+          />
+        </div>
+        {showNote && (
+          <div className="form-group col-12">
+            <label className="form-label">Note</label>
+            <textarea
+              type="text"
+              className="form-control"
+              value={product.description()}
+              onChange={(e) =>
+                setProduct(product.setDescription(e.target.value))
+              }
+            />
+          </div>
+        )}
+        {showQuantity && (
+          <div className="form-group col-12">
+            <label className="form-label">Quantity</label>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="0"
+              min="1"
+              max="9999"
+              value={quantity.toString() || "1"}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              required
+            />
+          </div>
+        )}
+      </div>
       {(!showNote || !showQuantity) && (
         <div className="row mb-3">
           <div className="col-12">
@@ -104,10 +99,7 @@ export function ProductForm({
                 <Pencil
                   className="mx-2"
                   style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    setShowNote(true);
-                    setInputs([...inputs, note]);
-                  }}
+                  onClick={() => setShowNote(true)}
                   data-tip="Add a note"
                 />
               )}
@@ -118,17 +110,16 @@ export function ProductForm({
                   onClick={() => {
                     setShowQuantity(true);
                     setQuantity(2);
-                    setInputs([...inputs, quantityInput]);
                   }}
                   data-tip="Increase quantity"
                 />
               )}
               {/*<Image
               className="mx-2"
-                style={{ cursor: "pointer" }}
-                onClick={() => setShowImage(true)}
-                data-tip="Add an image"
-              /> */}
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowImage(true)}
+              data-tip="Add an image"
+            /> */}
             </div>
           </div>
         </div>
