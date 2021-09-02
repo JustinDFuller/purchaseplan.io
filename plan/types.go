@@ -7,6 +7,8 @@ type (
 	// The data is stored in an object database, so purchases
 	// Are stored as a property on the user, rather than by association.
 	User struct {
+		ID                     string                  `json:"id"`
+		Issuer                 string                  `json:"issuer"`
 		Email                  string                  `json:"email"`
 		Saved                  int64                   `json:"saved,omitempty"`
 		Contributions          int64                   `json:"contributions,omitempty"`
