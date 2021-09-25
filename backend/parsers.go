@@ -200,17 +200,27 @@ func (parser OpenGraphParser) Product() (Product, error) {
 		if ok {
 			switch attr {
 			case "og:title":
-				p.Name = content
+				if p.Name == "" {
+					p.Name = content
+				}
 			case "og:image":
-				p.Image = content
+				if p.Image == "" {
+					p.Image = content
+				}
 			case "og:description":
-				p.Description = content
+				if p.Description == "" {
+					p.Description = content
+				}
 			case "og:url":
-				p.URL = content
+				if p.URL == "" {
+					p.URL = content
+				}
 			case "product:price:amount", "PriceValue", "MSRPValue", "SalePriceValue":
 				f, err := strconv.ParseFloat(content, 64)
 				if err == nil {
-					p.Price = int64(f)
+					if p.Price == 0 {
+						p.Price = int64(f)
+					}
 				}
 			}
 		}

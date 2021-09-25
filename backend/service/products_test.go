@@ -8,11 +8,10 @@ import (
 	"net/http/httptest"
 	"net/url"
 	"path/filepath"
-	"reflect"
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
 	planner "github.com/justindfuller/purchaseplan.io/backend"
-	"github.com/kr/pretty"
 )
 
 type testProducts struct {
@@ -37,7 +36,7 @@ func TestService(t *testing.T) {
 			// This one has multiple images
 			url: "https://www.ikea.com/us/en/p/kolbjoern-cabinet-indoor-outdoor-green-00450347/",
 			product: planner.Product{
-				Name:          `KOLBJÖRN Cabinet, indoor/outdoor, green - IKEA`,
+				Name:          `KOLBJÖRN Cabinet, indoor/outdoor, green`,
 				Description:   `KOLBJÖRN Cabinet, indoor/outdoor, green. Suitable for both indoor and outdoor use. The cabinet is durable, easy to clean and protected from rust since it is made of powder-coated galvanized steel.`,
 				Price:         79,
 				URL:           "https://www.ikea.com/us/en/p/kolbjoern-cabinet-indoor-outdoor-green-00450347/",
@@ -140,6 +139,17 @@ func TestService(t *testing.T) {
 				Price:         2498,
 			},
 		},
+		{
+			url: "https://www.worldmarket.com/product/rattan-papasan-chair-frame.do",
+			product: planner.Product{
+				Name:          "Rattan Papasan Chair Frame",
+				Price:         99,
+				URL:           "https://www.worldmarket.com/product/rattan-papasan-chair-frame.do",
+				OriginalImage: "https://ii.worldmarket.com/fcgi-bin/iipsrv.fcgi?FIF=/images/worldmarket/source/101699_XXX_v1.tif&qlt=50&wid=650&cvt=jpeg",
+				Description:   "Our classic papasan chair frame is now available in two modern hues, both beautifully handcrafted in Indonesia of bent rattan secured with wrapped rattan&#45;peel binding. Its bends and curves are made by skilled artisans who have been crafting our signature papasan for years. The base is a separate piece that allows for easy adjustment of the seat angle. Add any of our plush papasan chair cushions to complete your cozy, classic relaxation spot.",
+				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/5db75fa096fb1a25da669340a4b6c504?alt=media",
+			},
+		},
 	}
 
 	s, err := New(WithHttpClient(&http.Client{
@@ -173,11 +183,8 @@ func TestService(t *testing.T) {
 				t.Fatal(err)
 			}
 
-			if !reflect.DeepEqual(p, test.product) {
-				for _, d := range pretty.Diff(p, test.product) {
-					t.Log(d)
-				}
-				t.Error("Did not receive expected product.")
+			if diff := cmp.Diff(test.product, p); diff != "" {
+				t.Errorf("Product mismatch (-want +got):\n%s", diff)
 			}
 		})
 	}

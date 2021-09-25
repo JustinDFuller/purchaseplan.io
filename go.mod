@@ -15,7 +15,7 @@ require (
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/kr/pretty v0.2.1
 	github.com/magiclabs/magic-admin-go v0.1.0
-	github.com/oliveroneill/exponent-server-sdk-golang v0.0.0-20210813074212-6ad56db8bf5c // indirect
+	github.com/oliveroneill/exponent-server-sdk-golang v0.0.0-20210813074212-6ad56db8bf5c
 	github.com/pkg/errors v0.9.1
 	google.golang.org/api v0.36.0
 )

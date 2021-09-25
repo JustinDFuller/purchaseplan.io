@@ -334,6 +334,29 @@ func New(opts ...Option) (S, error) {
 		}
 	}, c)).Methods(http.MethodGet, http.MethodOptions)
 
+	r.HandleFunc("/products/images", withAuthentication(func(w http.ResponseWriter, r *http.Request) {
+		var p plan.Product
+
+		if err := json.NewDecoder(r.Body).Decode(&p); err != nil {
+			log.Printf("Error decoding product: %s", err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+
+		image, err := st.PutImage(r.Context(), p.Image)
+		if err != nil {
+			log.Printf("Unable to save image: %s", err)
+		}
+		p.OriginalImage = ""
+		p.Image = image
+
+		if err := json.NewEncoder(w).Encode(p); err != nil {
+			log.Printf("Error encoding JSON: %s", err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+	}, c)).Methods(http.MethodPost, http.MethodOptions)
+
 	s.Router = r
 
 	return s, nil

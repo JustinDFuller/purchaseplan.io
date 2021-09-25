@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/justindfuller/purchaseplan.io/backend/service"
 )
@@ -15,7 +18,18 @@ func main() {
 	}
 	defer s.Close()
 
+	done := make(chan os.Signal, 1)
+	signal.Notify(done, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
+
 	http.Handle("/", s.Router)
-	log.Printf("Listening on port %d", s.Config.Port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", s.Config.Port), nil))
+
+	go func() {
+		log.Printf("Listening on port %d", s.Config.Port)
+		if err := http.ListenAndServe(fmt.Sprintf(":%d", s.Config.Port), nil); err != nil {
+			log.Printf("Error listening: %s", err)
+		}
+	}()
+
+	<-done
+	log.Print("Server Stopped")
 }
