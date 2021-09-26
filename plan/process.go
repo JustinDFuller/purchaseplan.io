@@ -1,5 +1,7 @@
 package plan
 
+import "html"
+
 type Processor func(*User) error
 
 var Processors = []Processor{
@@ -9,6 +11,7 @@ var Processors = []Processor{
 	ProcessSaved,
 	ProcessLastPaycheck,
 	ProcessPurchaseAvailability,
+	ProcessProducts,
 }
 
 func Process(u *User) error {
@@ -147,5 +150,13 @@ func ProcessPurchaseAvailability(u *User) error {
 		u.Purchases[i] = p
 	}
 
+	return nil
+}
+
+func ProcessProducts(u *User) error {
+	for i, purchase := range u.Purchases {
+		u.Purchases[i].Product.Name = html.UnescapeString(purchase.Product.Name)
+		u.Purchases[i].Product.Description = html.UnescapeString(purchase.Product.Description)
+	}
 	return nil
 }

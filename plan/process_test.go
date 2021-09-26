@@ -809,6 +809,48 @@ func TestProcess(t *testing.T) {
 				return &n
 			},
 		},
+		{
+			name: "process_product_html_strings",
+			given: User{
+				Email:         "foobar",
+				Frequency:     weekly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-oneWeek * 2),
+				Purchases: []Purchase{
+					{
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Quantity: 1,
+						Deleted:  true,
+						Product: Product{
+							URL:         "https://example.com",
+							Name:        "Irresistibly touch&#45;worthy",
+							Description: "Irresistibly touch&#45;worthy",
+							Price:       100,
+						},
+					},
+				},
+			},
+			expected: User{
+				Email:         "foobar",
+				Frequency:     weekly,
+				Contributions: 100,
+				Saved:         200,
+				LastPaycheck:  now(),
+				Purchases: []Purchase{
+					{
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
+						Product: Product{
+							URL:         "https://example.com",
+							Name:        "Irresistibly touch-worthy",
+							Description: "Irresistibly touch-worthy",
+							Price:       100,
+						},
+					},
+				},
+			},
+		},
 	}
 
 	for _, test := range tests {
