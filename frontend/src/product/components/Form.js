@@ -89,7 +89,7 @@ export function Form({
             <div
               style={{
                 display: "inline-block",
-                padding: "10px 20px",
+                padding: "5px 15px",
                 marginLeft: 20,
                 background: "rgb(38, 38, 78)",
                 borderRadius: 5,
@@ -97,6 +97,8 @@ export function Form({
             >
               {!showNote && (
                 <Pencil
+                  height="19"
+                  width="19"
                   className="mx-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => setShowNote(true)}
@@ -105,6 +107,8 @@ export function Form({
               )}
               {!showQuantity && (
                 <Plus
+                  height="17"
+                  width="19"
                   className="mx-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => {
