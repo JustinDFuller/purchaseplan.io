@@ -18,8 +18,8 @@ export function Form({
   loading,
   onCancel,
 }) {
-  const [showNote, setShowNote] = useState(false);
-  const [showQuantity, setShowQuantity] = useState(false);
+  const [showNote, setShowNote] = useState(product.description);
+  const [showQuantity, setShowQuantity] = useState(quantity > 1);
   // const [showImage, setShowImage] = useState(false);
 
   return (
