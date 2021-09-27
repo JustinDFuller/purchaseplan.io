@@ -83,7 +83,7 @@ export const Card = User.data.WithContext(function ({
   if (editing) {
     return (
       <layout.components.Card>
-        <Product.components.ProductForm
+        <Product.components.Form
           onSubmit={handleEditSubmit}
           onCancel={handleEditCancel}
           product={editProduct}

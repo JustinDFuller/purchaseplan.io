@@ -1,106 +1,157 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import * as User from "user";
-import * as Product from "product";
-import * as layout from "layout";
+import ReactTooltip from "react-tooltip";
+import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil-square.svg";
+// import { ReactComponent as Image } from "bootstrap-icons/icons/image.svg";
+import { ReactComponent as Plus } from "bootstrap-icons/icons/plus-square.svg";
 
-import { URL } from "./URL";
-import { ProductForm } from "./ProductForm";
+import * as styles from "styles";
+import * as form from "form";
 
-const NO_ERROR = 0;
-const INVALID_SEARCH = 1;
-
-export const Form = User.data.WithContext(function ({
-  user,
-  setUser,
-  productDefaults = null,
+export function Form({
+  onSubmit,
+  product,
+  setProduct,
+  error,
+  quantity,
+  setQuantity,
+  loading,
+  onCancel,
 }) {
-  const [loading, setLoading] = useState(false);
-  const [product, setProduct] = useState(productDefaults);
-  const [error, setError] = useState(false);
-  const [quantity, setQuantity] = useState(1);
-
-  async function handleSubmit(url) {
-    setLoading(true);
-    try {
-      const result = await Product.api.get(url);
-      setProduct(Product.data.New(result));
-      setError(NO_ERROR);
-    } catch (e) {
-      console.error(e);
-      setProduct(productDefaults);
-      setError(INVALID_SEARCH);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function handleSubmitEdit(e) {
-    e.preventDefault();
-
-    const u = user.addPurchase(
-      User.data.Purchase.New().setQuantity(quantity).setProduct(product)
-    );
-
-    const res = await User.api.put(u);
-    console.log(res);
-    setUser(user.from(res));
-    setError(NO_ERROR);
-    setProduct(null);
-    setQuantity(1);
-  }
-
-  function handleCancel(e) {
-    e.preventDefault();
-    setProduct(null);
-    setQuantity(1);
-  }
-
-  function handleNoURL() {
-    setProduct();
-    setProduct(Product.data.New());
-  }
-
-  if (!product) {
-    return (
-      <URL
-        onNoURL={handleNoURL}
-        onSubmit={handleSubmit}
-        loading={loading}
-        error={error === INVALID_SEARCH}
-      />
-    );
-  }
+  const [showNote, setShowNote] = useState(false);
+  const [showQuantity, setShowQuantity] = useState(false);
+  // const [showImage, setShowImage] = useState(false);
 
   return (
-    <layout.components.Card>
+    <form onSubmit={onSubmit}>
+      <h5 className="card-title">
+        {product.url()
+          ? "Does everything look correct?"
+          : "What are you buying?"}
+      </h5>
       <div className="row">
-        {product.url() && (
-          <div className="col-12 col-md-4 mb-4">
-            <img
-              className="card-img-top"
-              src={product.image()}
-              alt={product.description()}
-              onError={(e) => {
-                e.target.onError = null;
-                e.target.src = `${process.env.PUBLIC_URL}/404.png`;
-              }}
-            />
-          </div>
-        )}
-        <div className={product.url() ? "col-12 col-md-8" : "col-12"}>
-          <ProductForm
-            onSubmit={handleSubmitEdit}
-            onCancel={handleCancel}
-            loading={loading}
-            error={error}
-            product={product}
-            setProduct={setProduct}
-            quantity={quantity}
-            setQuantity={setQuantity}
+        <div className="form-group col-12">
+          <label className="form-label">Name</label>
+          <input
+            type="text"
+            className="form-control"
+            value={product.name()}
+            onChange={(e) => setProduct(product.setName(e.target.value))}
+            required
           />
         </div>
       </div>
-    </layout.components.Card>
+      <div className="row">
+        <div className="form-group col-12">
+          <label className="form-label">Price</label>
+          <input
+            type="number"
+            className="form-control"
+            placeholder="0"
+            value={product.price() ? product.price().toString() : ""}
+            onChange={(e) => setProduct(product.setPrice(e.target.value))}
+            required
+          />
+        </div>
+        {showNote && (
+          <div className="form-group col-12">
+            <label className="form-label">Note</label>
+            <textarea
+              type="text"
+              className="form-control"
+              value={product.description()}
+              onChange={(e) =>
+                setProduct(product.setDescription(e.target.value))
+              }
+            />
+          </div>
+        )}
+        {showQuantity && (
+          <div className="form-group col-12">
+            <label className="form-label">Quantity</label>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="0"
+              min="1"
+              max="9999"
+              value={quantity.toString() || "1"}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              required
+            />
+          </div>
+        )}
+      </div>
+      {(!showNote || !showQuantity) && (
+        <div className="row mb-3">
+          <div className="col-12">
+            Add to purchase:
+            <div
+              style={{
+                display: "inline-block",
+                padding: "10px 20px",
+                marginLeft: 20,
+                background: "rgb(38, 38, 78)",
+                borderRadius: 5,
+              }}
+            >
+              {!showNote && (
+                <Pencil
+                  className="mx-2"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setShowNote(true)}
+                  data-tip="Add a note"
+                />
+              )}
+              {!showQuantity && (
+                <Plus
+                  className="mx-2"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setShowQuantity(true);
+                    setQuantity(2);
+                  }}
+                  data-tip="Increase quantity"
+                />
+              )}
+              {/*<Image
+              className="mx-2"
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowImage(true)}
+              data-tip="Add an image"
+            /> */}
+            </div>
+          </div>
+        </div>
+      )}
+      <div className="col-12 text-right mt-2">
+        <div className="row">
+          <div className="col-12 col-md-6 p-0 pr-md-3">
+            <form.components.Submit
+              onClick={onSubmit}
+              loading={loading}
+              text="Save"
+            />
+          </div>
+          <div className="col-12 col-md-6 p-0 mt-3 mt-md-0 pl-md-3">
+            <button
+              type="button"
+              className="btn btn-danger mr-2 w-100"
+              style={styles.danger}
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+      <ReactTooltip
+        className="opaque"
+        place="top"
+        type="dark"
+        effect="solid"
+        backgroundColor="#0a0a24"
+      />
+    </form>
   );
-});
+}

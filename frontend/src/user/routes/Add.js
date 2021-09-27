@@ -4,7 +4,7 @@ export function Add() {
   return (
     <div className="row m-auto pt-4">
       <div className="col col-12">
-        <Product.components.Form />
+        <Product.components.Card />
       </div>
     </div>
   );
