@@ -48,6 +48,7 @@ export function Form({
             type="number"
             className="form-control"
             placeholder="0"
+            step="1"
             value={product.price() ? product.price().toString() : ""}
             onChange={(e) => setProduct(product.setPrice(e.target.value))}
             required
@@ -73,6 +74,7 @@ export function Form({
               type="number"
               className="form-control"
               placeholder="0"
+              step="1"
               min="1"
               max="9999"
               value={quantity.toString() || "1"}

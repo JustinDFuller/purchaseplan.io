@@ -28,6 +28,12 @@ export function New(data = purchaseDefaults) {
   return {
     ...getterSetters(data, New),
     quantity,
+    setQuantity(q) {
+      return New({
+        ...data,
+        quantity: Math.ceil(q),
+      });
+    },
     price() {
       return data.product.price() * quantity();
     },

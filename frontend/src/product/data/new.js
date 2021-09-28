@@ -9,5 +9,13 @@ const productDefaults = {
 };
 
 export function New(data = productDefaults) {
-  return getterSetters(data, New);
+  return {
+    ...getterSetters(data, New),
+    setPrice(p) {
+      return New({
+        ...data,
+        price: Math.ceil(p),
+      });
+    },
+  };
 }
