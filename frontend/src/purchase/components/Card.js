@@ -106,7 +106,7 @@ export const Card = User.data.WithContext(function ({
         <Row>
           <Col xs={12} sm={5} md={4}>
             <div
-              className="card-img-top"
+              className="card-img-top loader"
               style={{
                 background: "white",
                 width: "100%",
@@ -143,12 +143,12 @@ export const Card = User.data.WithContext(function ({
               style={{ position: "relative", height: "100%" }}
             >
               <strong className="price-bubble" style={styles.bubble}>
-                ${purchase.price()}
+                <span className="loader-hidden">${purchase.price()}</span>
               </strong>
 
               <div>
                 <h5
-                  className="card-title mt-3 mt-sm-0 d-inline-block"
+                  className="card-title mt-3 mt-sm-0 d-inline-block loader"
                   style={{
                     height: "1.4rem",
                     textOverflow: "ellipsis",
@@ -161,7 +161,7 @@ export const Card = User.data.WithContext(function ({
                 </h5>
 
                 {!readonly && (
-                  <Dropdown className="float-right mt-3 mt-sm-0">
+                  <Dropdown className="float-right mt-3 mt-sm-0 loader-hidden">
                     <Dropdown.Toggle variant="primary" as={Edit}>
                       Edit
                     </Dropdown.Toggle>
@@ -190,26 +190,26 @@ export const Card = User.data.WithContext(function ({
               </div>
 
               {purchase.product().description() && (
-                <p className="line-clamp-2 m-0">
+                <p className="line-clamp-2 m-0 loader">
                   {purchase.product().description()}
                 </p>
               )}
               {purchase.quantity() > 1 && (
                 <>
-                  <div>
+                  <div className="loader">
                     <strong style={{ marginRight: 3 }}>Quantity</strong>
                     <span>{purchase.quantity()}</span>
                   </div>
-                  <div style={{ marginTop: 10 }}>
+                  <div style={{ marginTop: 10 }} className="loader">
                     <strong style={{ marginRight: 3 }}>Individual Price</strong>
                     <span>${purchase.product().price()}</span>
                   </div>
                 </>
               )}
               {purchase.date() && (
-                <div style={{ marginTop: 10 }}>
+                <div style={{ marginTop: 10 }} className="loader">
                   <strong style={{ marginRight: 3 }}>Ready to buy</strong>
-                  <span className="availablity">{purchase.displayDate()}</span>
+                  <span>{purchase.displayDate()}</span>
                 </div>
               )}
             </div>

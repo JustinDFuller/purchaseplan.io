@@ -62,6 +62,9 @@ export default function App() {
           style={{ height: "100vh", width: "100vw" }}
           className={styles.classes("container-fluid", {
             "px-0 px-md-3": auth.isLoggedIn(),
+            loading:
+              auth.isLoggingIn() &&
+              window.location.pathname !== Layout.routes.Landing.path,
           })}
         >
           <Layout.components.Header />

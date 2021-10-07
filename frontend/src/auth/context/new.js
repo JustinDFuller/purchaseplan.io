@@ -1,7 +1,7 @@
 import { Magic } from "magic-sdk";
 import { OAuthExtension } from "@magic-ext/oauth";
 
-import * as User from "user";
+import * as User from "user/api";
 import { getterSetters } from "object/getterSetters";
 
 import { state } from "./state";
@@ -30,7 +30,7 @@ export function New(data = defaults) {
     ...getterSetters(data, New),
     async init() {
       try {
-        const response = await User.api.get();
+        const response = await User.get();
         // Don't return auth errors here. They just haven't logged in.
         return New({
           ...data,
@@ -111,10 +111,10 @@ export function New(data = defaults) {
     },
     async logout() {
       try {
+        data.onLogout();
         document.cookie =
           "Authorization=;expires=Thu, 01 Jan 1970 00:00:01 GMT";
         await Promise.all([m.user.logout(), api.logout()]);
-        data.onLogout();
 
         return New({
           ...data,

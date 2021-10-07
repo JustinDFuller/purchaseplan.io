@@ -5,8 +5,13 @@ import Row from "react-bootstrap/Row";
 import * as User from "user";
 
 import { Card } from "./Card";
+import { samplePurchases } from "../samplePurchases";
 
-export const List = User.data.WithContext(function ({ user, setUser }) {
+export const List = User.data.WithContext(function ({
+  user,
+  setUser,
+  loading,
+}) {
   const [placeholderProps, setPlaceholderProps] = useState({});
   function onDragStart() {
     if (window.navigator.vibrate) {
@@ -82,6 +87,10 @@ export const List = User.data.WithContext(function ({ user, setUser }) {
     });
   }
 
+  const purchases = loading
+    ? samplePurchases[0].products
+    : user.purchases().withoutSkippable();
+
   return (
     <DragDropContext
       onDragStart={onDragStart}
@@ -96,30 +105,27 @@ export const List = User.data.WithContext(function ({ user, setUser }) {
               ref={provided.innerRef}
               style={{ position: "relative" }}
             >
-              {user
-                .purchases()
-                .withoutSkippable()
-                .map((purchase, index) => (
-                  <Draggable
-                    key={purchase.id()}
-                    draggableId={purchase.id()}
-                    index={index}
-                  >
-                    {function (provided, snapshot) {
-                      return (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          className="col-12 py-2"
-                          key={purchase.id()}
-                        >
-                          <Card purchase={purchase} />
-                        </div>
-                      );
-                    }}
-                  </Draggable>
-                ))}
+              {purchases.map((purchase, index) => (
+                <Draggable
+                  key={purchase.id()}
+                  draggableId={purchase.id()}
+                  index={index}
+                >
+                  {function (provided, snapshot) {
+                    return (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className="col-12 py-2"
+                        key={purchase.id()}
+                      >
+                        <Card purchase={purchase} />
+                      </div>
+                    );
+                  }}
+                </Draggable>
+              ))}
               {provided.placeholder}
               <div style={placeholderProps} />
             </Row>

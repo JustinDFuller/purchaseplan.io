@@ -31,7 +31,11 @@ function formatDate(d) {
   return `${d.getFullYear()}-${m}-${dt}`;
 }
 
-export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
+export const SavingsOverview = data.WithContext(function ({
+  user,
+  setUser,
+  loading,
+}) {
   const [edit, setEdit] = useState(false);
 
   function formatLastPaycheck() {
@@ -147,40 +151,44 @@ export const SavingsOverview = data.WithContext(function ({ user, setUser }) {
 
   function View() {
     return (
-      <>
+      <div className={styles.classes({ loading })}>
         <div className="row">
           <div className="col-12">
             <h5 className="card-title d-inline">Savings Overview</h5>
-            <Pencil
-              className="float-right mt-2 cursor-pointer"
-              role="button"
-              onClick={() => setEdit(true)}
-            />
+            {!loading && (
+              <Pencil
+                className="float-right mt-2 cursor-pointer loader-hidden"
+                role="button"
+                onClick={() => setEdit(true)}
+              />
+            )}
           </div>
         </div>
         <div className="row mt-3">
           <div className="col-12 col-xl-6">
             <strong style={styles.textDark}>Saved So Far</strong>
-            <p>{formatter.format(user.saved())}</p>
+            <p className="loader">{formatter.format(user.saved())}</p>
           </div>
           <div className="col-12 col-xl-6">
             <strong style={styles.textDark}>Planned Savings</strong>
-            <p>
+            <p className="loader">
               {formatter.format(user.contributions())}/{user.frequency()}
             </p>
           </div>
           <div className="col-12 col-xl-6">
             <strong style={styles.textDark}>Last Paycheck</strong>
-            <p>{user.lastPaycheckDisplay()}</p>
+            <p className="loader">{user.lastPaycheckDisplay()}</p>
           </div>
           <div className="col-12 col-xl-6">
             <strong style={styles.textDark}>
               {user.remaining() >= 0 ? "Remaining Budget" : "Need To Save"}
             </strong>
-            <p>{formatter.format(Math.abs(user.remaining()))}</p>
+            <p className="loader">
+              {formatter.format(Math.abs(user.remaining()))}
+            </p>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 
