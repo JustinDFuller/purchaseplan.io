@@ -283,7 +283,7 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
-		req.Header.Add("user-agent", "Mozilla/5.0 (X11; CrOS x86_64 13421.89.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36")
+		req.Header.Add("user-agent", "Mozilla/5.0 (compatible; PurchasePlan/1.0; +https://www.purchaseplan.io/crawler)")
 
 		res, err := s.httpClient.Do(req)
 		if err != nil {
