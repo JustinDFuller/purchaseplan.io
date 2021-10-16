@@ -30,18 +30,20 @@ The system should account for robots.txt
 - [ ] The crawler should cache the robots.txt file for 24 hours.
   - [ ] A missing robots.txt should only be re-fetched every 24 hours. 
 - [ ] The crawler should continue to use a cached version of the file for non-404 errors (when trying to update the robots.txt)
-- [ ] robots.txt files should be ignored if they are larger than 1 megabyte.
+- [ ] Only the first 1 megabyte of the robots.txt file will be used.
 
 The system should not be usable for attacks on other systems.
 - [ ] It should only retrieve an URL once each day.
+  - [ ] A failed attempt (non-200 response code) counts as an attempt.
+- [ ] It should timeout after 10 seconds.
+  - [ ] A timeout will be recorded as a 408 (timeout).
+  - [ ] After a timeout, it should not be able to retry for one day.
 - [ ] It should normalize URLs to reduce the possibility of duplicate requests.
   - [ ] It should lowercase URLs
   - [ ] It should remove extra spaces
   - [ ] It should remove common query parameters like `utm_source`.
 - [ ] It should rate limit requests to 1 per second.
 - [ ] There should be a way to globally disable requests to certain domains. (This may be requested by other companies.)
-- [ ] It should timeout after 10 seconds.
-  - [ ] After a timeout, it should not be able to retry for 60 seconds.
 
 The system should only communicate over HTTPS, even if an HTTP protocol is requested by the user.
 
@@ -59,12 +61,13 @@ When retrieving data, the crawler should account for the following technical req
 
 #### Type: Domain
 
-| Property           | Type        | Description                                                                                                          | Example                  |
-|--------------------|-------------|----------------------------------------------------------------------------------------------------------------------|--------------------------|
-| Domain             | string      | The website domain                                                                                                   | purchaseplan.io          |
-| Disabled           | boolean     | Provides a way to manually disable this domain.                                                                      | false                    |
-| RobotsTxtAttempted | time.Time   | The last time the crawler attempted to fetch the robots.txt file.  This is used to limit requests to every 24 hours. | 2021-10-11T01:03:33.241Z |
-| RobotsTxt          | []RobotsTxt | All of the robots.txt files retrieved for this file. Recent entries at end of array. Limit to 10 entries.                                                                | See RobotsTxt type.      |
+| Property            | Type        | Description                                                                                                          | Example                  |
+|---------------------|-------------|----------------------------------------------------------------------------------------------------------------------|--------------------------|
+| Domain              | string      | The website domain                                                                                                   | purchaseplan.io          |
+| Disabled            | boolean     | Provides a way to manually disable this domain.                                                                      | false                    |
+| AttemptTime         | time.Time   | The last time the crawler attempted to fetch the robots.txt file.  This is used to limit requests to every 24 hours. | 2021-10-11T01:03:33.241Z |
+| AttemptResponseCode | int         | The response code of the request to the robots.txt file.                                                                            | 404                      |
+| RobotsTxt           | []RobotsTxt | All of the robots.txt files retrieved for this file. Recent entries at end of array. Limit to 10 entries.            | See RobotsTxt type.      |
 
 ### Type: RobotsTxt
 
@@ -75,6 +78,16 @@ When retrieving data, the crawler should account for the following technical req
 
 ### Type: URL
 
-| Property | Type   | Description               | Example                                 |
-|----------|--------|---------------------------|-----------------------------------------|
-| URL      | string | The normalized URL value. | https://purchaseplan.io/product/example |
+| Property            | Type                      | Description                                                    | Example                                   |
+|---------------------|---------------------------|----------------------------------------------------------------|-------------------------------------------|
+| URL                 | string                    | The normalized URL value.                                      | https://purchaseplan.io/product/example   |
+| Domain              | string                    | The normalized domain of this URL.                             | purchaseplan.io                           |
+| AttemptTime         | time.Time                 | The last time the URL was retrieved.                           | 2021-10-11T01:03:33.241Z                  |
+| AttemptResponseCode | int                       | The response code for the last attempt to this URL.            | 404                                       |
+| Products            | []map[CrawlerType]Product | All the products retrieved by every crawler type for this URL. | See crawler type and Product for details. |
+
+### Type: CrawlerType
+TODO
+
+### Type: Product
+TODO
