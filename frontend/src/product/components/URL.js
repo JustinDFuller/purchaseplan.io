@@ -101,6 +101,7 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
               <button
                 className="btn btn-link white px-0 my-3 d-lg-none d-block w-100 loader"
                 style={styles.combine(styles.text, {
+                  color: styles.theme.cardTextColor,
                   border: "1px solid white",
                 })}
                 type="button"

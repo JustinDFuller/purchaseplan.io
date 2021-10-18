@@ -3,11 +3,11 @@ body,
 #root {
   height: 100%;
   width: 100%;
-  color: white;
+  color: #e9e9ed;
 }
 
 body {
-  background: #fff;
+  background: #e9e9ed;
 }
 
 body.theme-dark {
@@ -40,7 +40,7 @@ body.theme-dark {
   &:after {
     content: "";
     flex: 1;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #e9e9ed;
   }
 
   &:not(:empty) {

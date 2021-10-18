@@ -11,15 +11,15 @@ const buttonStyle = {
   height: "100%",
   padding: "12px 0 11px",
   background: "transparent",
-  fill: theme.textColorFaded,
+  fill: colors.muted,
   border: 0,
   borderTop: `2px solid ${theme.borderColor}`,
 };
 
 const activeButtonStyle = {
   ...buttonStyle,
-  borderTop: `2px solid ${colors.primary}`,
-  fill: theme.textColor,
+  borderTop: `4px solid ${colors.primary}`,
+  fill: "white",
 };
 
 export function BottomNav() {
@@ -35,7 +35,7 @@ export function BottomNav() {
           bottom: 0,
           left: 0,
           right: 0,
-          background: theme.background,
+          background: colors.secondary,
           height: 50,
         }}
       >
