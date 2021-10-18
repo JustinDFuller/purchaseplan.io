@@ -1,38 +1,69 @@
-const themes = {
+export const colors = {
+  primary: "#573fb9",
+  secondary: "#26264e",
+  dark: "#141432",
+  light: "#fff",
+  success: "#4d966b",
+  failure: "#bb2e3b",
+  muted: "#9999a8",
+};
+
+export const themes = {
   dark: {
-    background: "#1d1d42",
-    backgroundDark: "#0a0a24",
-    backgroundLight: "#141432",
-    cardBorderColor: "#0a0a24",
-    borderColor: "white",
-    textColor: "white",
-    textColorFaded: "#aaa",
-    highlight: "#4e2ecf",
+    ...colors,
+    background: colors.secondary,
+    cardBackground: colors.secondary,
+    cardBorderColor: colors.dark,
+    cardTextColor: colors.light,
+    borderColor: colors.light,
+    textColor: colors.light,
+    textColorFaded: colors.muted,
+    addToPurchaseBackground: colors.dark,
+    addToPurchaseColor: colors.light,
   },
   light: {
-    background: "#eee",
-    backgroundDark: "#ddd",
-    backgroundLight: "#fff",
-    cardBorderColor: "black",
-    borderColor: "black",
-    textColor: "black",
-    textColorFaded: "#4e4e4e",
-    highlight: "#4e2ecf",
+    ...colors,
+    background: colors.light,
+    cardBackground: colors.secondary,
+    cardBorderColor: colors.dark,
+    cardTextColor: colors.light,
+    borderColor: colors.dark,
+    textColor: colors.dark,
+    textColorFaded: colors.muted,
+    addToPurchaseBackground: colors.dark,
+    addToPurchaseColor: colors.light,
   },
 };
 
-export const theme = themes.dark;
-/* window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? themes.dark
-    : themes.light; */
+const savedTheme = localStorage.getItem("theme");
+const preferrsDarkTheme =
+  window.matchMedia &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+if (savedTheme === "dark" || preferrsDarkTheme) {
+  document.body.classList.add("theme-dark");
+}
+
+export const theme =
+  themes[savedTheme] || (preferrsDarkTheme ? themes.dark : themes.light);
+
+console.log(savedTheme, preferrsDarkTheme, theme);
 
 export const dark = {
   background: theme.background,
   fontColor: theme.textColor,
 };
 
+export const card = {
+  borderRight: `3px solid ${theme.cardBorderColor}`,
+  borderBottom: `3px solid ${theme.cardBorderColor}`,
+  borderLeft: `1px solid ${theme.cardBorderColor}`,
+  borderTop: `1px solid ${theme.cardBorderColor}`,
+  background: theme.cardBackground,
+  color: theme.cardTextColor,
+};
+
 export const darkAlt = {
-  background: theme.backgroundLight,
   borderRight: `3px solid ${theme.cardBorderColor}`,
   borderBottom: `3px solid ${theme.cardBorderColor}`,
   borderLeft: `1px solid ${theme.cardBorderColor}`,
@@ -81,11 +112,12 @@ export const pointer = {
 };
 
 export const bubble = {
-  background: "#4e2ecf",
+  background: colors.primary,
   padding: "8px 20px",
   borderRadius: 4,
   minWidth: 90,
   textAlign: "center",
+  color: colors.light,
 };
 
 export const zIndex = {

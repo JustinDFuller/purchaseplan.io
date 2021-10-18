@@ -6,6 +6,14 @@ body,
   color: white;
 }
 
+body {
+  background: #fff;
+}
+
+body.theme-dark {
+  background: #141432;
+}
+
 .price-bubble {
   position: absolute;
   top: -20px;

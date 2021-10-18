@@ -93,7 +93,8 @@ export function Form({
                 display: "inline-block",
                 padding: "5px 15px",
                 marginLeft: 20,
-                background: "rgb(38, 38, 78)",
+                background: styles.theme.addToPurchaseBackground,
+                color: styles.theme.addToPurchaseColor,
                 borderRadius: 5,
               }}
             >

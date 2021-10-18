@@ -4,7 +4,7 @@ import { ReactComponent as PlusIcon } from "bootstrap-icons/icons/plus-circle-fi
 import { ReactComponent as GearIcon } from "bootstrap-icons/icons/gear.svg";
 
 import * as User from "user";
-import { theme } from "styles";
+import { theme, colors } from "styles";
 
 const buttonStyle = {
   width: "33.33%",
@@ -18,7 +18,7 @@ const buttonStyle = {
 
 const activeButtonStyle = {
   ...buttonStyle,
-  borderTop: `2px solid ${theme.highlight}`,
+  borderTop: `2px solid ${colors.primary}`,
   fill: theme.textColor,
 };
 
@@ -35,7 +35,7 @@ export function BottomNav() {
           bottom: 0,
           left: 0,
           right: 0,
-          background: theme.backgroundDark,
+          background: theme.background,
           height: 50,
         }}
       >

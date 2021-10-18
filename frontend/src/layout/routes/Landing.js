@@ -31,9 +31,21 @@ export function Landing() {
   }, []);
 
   return (
-    <>
-      <div className="row m-auto">
-        <div className="col-12 col-md-6 text-white pt-md-4 pl-lg-5">
+    <div
+      style={{
+        color: styles.theme.textColor,
+      }}
+    >
+      <div
+        className="row m-auto"
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+          minHeight: 250,
+        }}
+      >
+        <div className="col-12 col-md-6">
           <div className="m-auto" style={{ maxWidth: 424 }}>
             <h5>Purchase Plan</h5>
             <h1>
@@ -41,17 +53,18 @@ export function Landing() {
             </h1>
           </div>
         </div>
-        <div className="col-12 col-md-6 mt-4 mt-md-0">
+        <div className="col-12 col-md-6 mt-4">
           <Auth.components.Login />
         </div>
       </div>
       <div
-        className="row m-auto text-white my-md-4 py-4 px-1 px-md-3"
-        style={styles.combine(styles.darkLight, {
+        className="row m-auto my-md-4 py-4 px-1 px-md-3"
+        style={{
+          background: styles.colors.secondary,
           minHeight: 200,
           borderTop: "3px solid rgb(10, 10, 36)",
           borderBottom: "3px solid rgb(10, 10, 36)",
-        })}
+        }}
       >
         <div className="col-12 col-lg-8 col-xl-7 pt-3 order-2 order-lg-1">
           {Purchase.samplePurchases[sample].products.map((p) => (
@@ -64,7 +77,7 @@ export function Landing() {
             </div>
           ))}
         </div>
-        <div className="col-12 col-lg-4 col-xl-5 d-flex d-column align-items-md-center justify-content-md-center order-1 order-lg-2">
+        <div className="text-white col-12 col-lg-4 col-xl-5 d-flex d-column align-items-md-center justify-content-md-center order-1 order-lg-2">
           <h2 className="m-auto py-3 py-lg-0">
             Plan for <span className="d-none d-lg-inline-block">...</span>{" "}
             <br className="d-none d-lg-inline-block" />{" "}
@@ -73,7 +86,7 @@ export function Landing() {
         </div>
       </div>
       <components.Download />
-    </>
+    </div>
   );
 }
 

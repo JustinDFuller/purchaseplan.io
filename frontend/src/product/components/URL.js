@@ -88,7 +88,7 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
                   />
                   <button
                     className="btn btn-link white px-0 mt-1 d-lg-block d-none m-auto loader"
-                    style={styles.text}
+                    style={{ color: styles.theme.cardTextColor }}
                     type="button"
                     onClick={handleNoURL}
                   >

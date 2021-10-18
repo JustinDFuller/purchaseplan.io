@@ -11,11 +11,7 @@ export function Card({
   return (
     <div
       className={styles.classes("card", noPadding ? "" : "mb-4")}
-      style={styles.combine(
-        light ? styles.darkLight : styles.darkAlt,
-        styles.roundBorder,
-        style
-      )}
+      style={styles.combine(styles.card, style)}
     >
       <div className={styles.classes(noBody ? "" : "card-body", bodyClassName)}>
         {children}

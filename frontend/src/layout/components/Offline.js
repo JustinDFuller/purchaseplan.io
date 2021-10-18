@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { theme } from "styles";
+
 export function Offline() {
   const [offline, setOffline] = useState(window.navigator.onLine === false);
 
@@ -18,7 +20,7 @@ export function Offline() {
   return offline ? (
     <div
       style={{
-        backgroundColor: "#cf2e2e",
+        backgroundColor: theme.failure,
         padding: 10,
         width: "100%",
         position: "sticky",
@@ -26,7 +28,7 @@ export function Offline() {
         zIndex: 1,
       }}
     >
-      <p style={{ color: "white", textAlign: "center", margin: 0 }}>
+      <p style={{ color: theme.textColor, textAlign: "center", margin: 0 }}>
         Connect to the internet to use Purchase Plan.
       </p>
     </div>

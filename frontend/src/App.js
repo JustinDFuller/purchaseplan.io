@@ -58,6 +58,7 @@ export default function App() {
     <Auth.context.Context.Provider value={{ auth, setAuth }}>
       <User.data.Context.Provider value={{ user, setUser }}>
         <Layout.components.Offline />
+        <Layout.components.Header />
         <div
           style={{ height: "100vh", width: "100vw" }}
           className={styles.classes("container-fluid", {
@@ -67,7 +68,6 @@ export default function App() {
               window.location.pathname !== Layout.routes.Landing.path,
           })}
         >
-          <Layout.components.Header />
           <Switch>
             <Route path={User.routes.List.path}>
               <User.routes.List />
@@ -86,6 +86,9 @@ export default function App() {
             </Route>
             <Route path={Auth.routes.Email.path}>
               <Auth.routes.Email />
+            </Route>
+            <Route path={Layout.routes.StyleGuide.path}>
+              <Layout.routes.StyleGuide />
             </Route>
             <Route path={Layout.routes.Landing.path}>
               <Layout.routes.Landing />

@@ -103,7 +103,7 @@ export const List = User.data.WithContext(function ({
             <Row
               {...provided.droppableProps}
               ref={provided.innerRef}
-              style={{ position: "relative" }}
+              style={{ position: "relative", marginTop: "-1rem" }}
             >
               {purchases.map((purchase, index) => (
                 <Draggable
@@ -117,7 +117,7 @@ export const List = User.data.WithContext(function ({
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="col-12 py-2"
+                        className="col-12 py-3"
                         key={purchase.id()}
                       >
                         <Card purchase={purchase} />

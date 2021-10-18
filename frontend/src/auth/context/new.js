@@ -155,6 +155,7 @@ export function New(data = defaults) {
     },
     isNotAuthPath() {
       switch (window.location.pathname) {
+        case "/app/styleguide":
         case "/app/auth/email":
         case "/app/auth/google":
           return false;

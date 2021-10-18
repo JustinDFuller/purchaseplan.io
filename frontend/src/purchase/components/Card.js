@@ -98,8 +98,8 @@ export const Card = User.data.WithContext(function ({
   return (
     <layout.components.Card noBody noPadding>
       <a
+        style={{ color: styles.theme.cardTextColor }}
         href={purchase.product().url() || `?purchase=${purchase.id()}`}
-        className="text-white"
         target={purchase.product().url() ? "_blank" : ""}
         rel={purchase.product().url() ? "noopener noreferrer" : ""}
       >
