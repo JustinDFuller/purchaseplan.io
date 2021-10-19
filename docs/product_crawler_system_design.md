@@ -65,8 +65,7 @@ When retrieving data, the crawler should account for the following technical req
 |---------------------|-------------|----------------------------------------------------------------------------------------------------------------------|--------------------------|
 | Domain              | string      | The website domain                                                                                                   | purchaseplan.io          |
 | Disabled            | boolean     | Provides a way to manually disable this domain.                                                                      | false                    |
-| AttemptTime         | time.Time   | The last time the crawler attempted to fetch the robots.txt file.  This is used to limit requests to every 24 hours. | 2021-10-11T01:03:33.241Z |
-| AttemptResponseCode | int         | The response code of the request to the robots.txt file.                                                                            | 404                      |
+| Attempt         | Attempt   | Used to evaluate the last time this domain's robot.txt was requeted. | See Attempt type description. |
 | RobotsTxt           | []RobotsTxt | All of the robots.txt files retrieved for this file. Recent entries at end of array. Limit to 10 entries.            | See RobotsTxt type.      |
 
 ### Type: RobotsTxt
@@ -82,12 +81,24 @@ When retrieving data, the crawler should account for the following technical req
 |---------------------|---------------------------|----------------------------------------------------------------|-------------------------------------------|
 | URL                 | string                    | The normalized URL value.                                      | https://purchaseplan.io/product/example   |
 | Domain              | string                    | The normalized domain of this URL.                             | purchaseplan.io                           |
-| AttemptTime         | time.Time                 | The last time the URL was retrieved.                           | 2021-10-11T01:03:33.241Z                  |
-| AttemptResponseCode | int                       | The response code for the last attempt to this URL.            | 404                                       |
+| Attempt         | Attempt                 | Used to evaluate the last time this URL was requested.                           | See Attempt type description.                  |
 | Products            | []map[CrawlerType]Product | All the products retrieved by every crawler type for this URL. | See crawler type and Product for details. |
 
+### Type: Attempt
+
+| Property            | Type      | Description                                                                                                          | Example                  |
+|---------------------|-----------|----------------------------------------------------------------------------------------------------------------------|--------------------------|
+| AttemptTime     | time.Time | The last time the crawler attempted to fetch the robots.txt file.  This is used to limit requests to every 24 hours. | 2021-10-11T01:03:33.241Z |
+| AttemptResponseCode | int       | The response code of the request to the robots.txt file.                                                             | 404 |
+
 ### Type: CrawlerType
-TODO
+
+| String Enum |
+|-------------|
+| SchemaOrg   |
+| OpenGraph   |
+| MetaTags    |
+| HTML        |
 
 ### Type: Product
 TODO
