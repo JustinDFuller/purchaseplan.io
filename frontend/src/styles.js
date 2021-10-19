@@ -35,7 +35,7 @@ export const themes = {
   },
 };
 
-const savedTheme = localStorage.getItem("theme");
+const savedTheme = "dark"; // localStorage.getItem("theme");
 const preferrsDarkTheme =
   window.matchMedia &&
   window.matchMedia("(prefers-color-scheme: dark)").matches;
