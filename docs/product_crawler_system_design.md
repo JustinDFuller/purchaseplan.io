@@ -118,3 +118,7 @@ The point of the arrays here is to be able to capture all possible values for th
 |:-----------:|:------:|:-----------------------------------------:|:--------------------------------------:|
 | OriginalURL | string | The original URL as found on the website. | https://example.com/product-image.png  |
 | BucketURL   | string | The image URL stored in cloud storage.    | https://cloud.google.com/path/to/image |
+
+## Testing
+
+TODO
