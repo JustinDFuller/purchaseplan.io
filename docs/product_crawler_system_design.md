@@ -101,4 +101,20 @@ When retrieving data, the crawler should account for the following technical req
 | HTML        |
 
 ### Type: Product
-TODO
+
+The point of the arrays here is to be able to capture all possible values for the product. Perhaps the user can select the best one, or an algorithm can. That algorithm (or the user) could even choose a better option later.
+
+|   Property   |   Type   |             Description            |                                 Example                                 |
+|:------------:|:--------:|:----------------------------------:|:-----------------------------------------------------------------------:|
+| Images       | []Image  | All images for this product.       | See Image type.                                                         |
+| Prices       | []int64  | All prices for this product.       | []{0.99,3.99}                                                           |
+| Names        | []string | All names for this product.        | []{"IKEA - cool thing", "cool thing"}                                   |
+| URLs         | []string | All URLs for this product.         | []{"http://example.com/canonical-url", "http://example.com/actual-url"} |
+| Descriptions | []string | All descriptions for this product. | []{"First description found", "another description found"}              |
+
+### Type: Image
+
+|   Property  |  Type  |                Description                |                 Example                |
+|:-----------:|:------:|:-----------------------------------------:|:--------------------------------------:|
+| OriginalURL | string | The original URL as found on the website. | https://example.com/product-image.png  |
+| BucketURL   | string | The image URL stored in cloud storage.    | https://cloud.google.com/path/to/image |
