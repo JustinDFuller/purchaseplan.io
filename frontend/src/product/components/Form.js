@@ -116,7 +116,7 @@ export function Form({
                   style={{ cursor: "pointer" }}
                   onClick={() => {
                     setShowQuantity(true);
-                    setQuantity(2);
+                    setShowQuantity(true);
                   }}
                   data-tip="Increase quantity"
                 />

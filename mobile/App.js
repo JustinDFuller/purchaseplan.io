@@ -16,10 +16,10 @@ import Svg, { Path } from "react-native-svg";
 import { useNotifications } from "./useNotifications";
 
 const host = "https://www.purchaseplan.io";
-const entry = "/app/auth/login";
+const entry = "/app/user/list";
 const defaultURL = host + entry;
 
-const defaultBackgroundColor = "#1d1d42";
+const defaultBackgroundColor = "#141432";
 const errorBackgroundColor = "#cf2e2e";
 
 // Instruct SplashScreen not to hide yet, we want to do this manually
@@ -97,7 +97,7 @@ export default function App() {
       style={{
         flex: 1,
         paddingTop: isAndroid ? StatusBar.currentHeight : 0,
-        backgroundColor: "#1d1d42",
+        backgroundColor: "#141432",
       }}
     >
       {error ? (
@@ -106,7 +106,7 @@ export default function App() {
         <WebView
           ref={(r) => (webview.current = r)}
           source={{ uri }}
-          style={{ height: "100%", width: "100%", backgroundColor: "#1d1d42" }}
+          style={{ height: "100%", width: "100%", backgroundColor: "#141432" }}
           injectedJavaScriptBeforeContentLoaded={`window.isNativeApp=true;`}
           onLoad={handleWebViewLoad}
           onError={handleWebViewError}

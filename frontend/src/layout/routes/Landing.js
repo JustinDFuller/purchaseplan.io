@@ -37,7 +37,7 @@ export function Landing() {
       }}
     >
       <div
-        className="row m-auto"
+        className="row m-auto px-0 px-md-3"
         style={{
           display: "flex",
           justifyContent: "space-around",
@@ -53,7 +53,7 @@ export function Landing() {
             </h1>
           </div>
         </div>
-        <div className="col-12 col-md-6 mt-4">
+        <div className="col-12 col-md-6 mt-4 px-0">
           <Auth.components.Login />
         </div>
       </div>

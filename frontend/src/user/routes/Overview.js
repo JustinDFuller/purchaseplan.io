@@ -10,8 +10,8 @@ export function Overview() {
   const { auth, setAuth } = Auth.context.Use();
 
   return (
-    <div className="row m-auto pt-4">
-      <div className="col col-12">
+    <div className="row m-auto">
+      <div className="col-12 px-0">
         <SavingsOverview />
         <ul className="list-group list-group-flush">
           <li className="list-group-item">

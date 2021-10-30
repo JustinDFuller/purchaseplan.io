@@ -2,8 +2,8 @@ import * as Product from "product";
 
 export function Add() {
   return (
-    <div className="row m-auto pt-4">
-      <div className="col col-12">
+    <div className="row m-auto">
+      <div className="col col-12 px-0">
         <Product.components.Card />
       </div>
     </div>

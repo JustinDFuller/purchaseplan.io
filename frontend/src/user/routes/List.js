@@ -9,8 +9,8 @@ export const List = Auth.context.With(function ({ auth }) {
   const { user } = data.Use();
 
   return (
-    <div className="row m-auto pt-4">
-      <div className="col col-12">
+    <div className="row m-auto mx-0">
+      <div className="col-12 px-0">
         {auth.isLoggedIn() && !user.purchases().hasAtLeastOne() ? (
           <Layout.components.HowItWorks />
         ) : (

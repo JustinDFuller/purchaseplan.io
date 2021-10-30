@@ -13,7 +13,7 @@ const buttonStyle = {
   background: "transparent",
   fill: colors.muted,
   border: 0,
-  borderTop: `2px solid ${theme.borderColor}`,
+  borderTop: `4px solid ${theme.borderColor}`,
 };
 
 const activeButtonStyle = {
@@ -27,50 +27,48 @@ export function BottomNav() {
   const location = useLocation();
 
   return (
-    <>
-      <div
-        className="d-flex justify-content-between align-items-stretch"
-        style={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          background: colors.secondary,
-          height: 50,
-        }}
+    <div
+      className="d-flex justify-content-between align-items-stretch"
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        background: colors.secondary,
+        height: 50,
+        width: "100vw",
+      }}
+    >
+      <ListIcon
+        onClick={() => history.push(User.routes.List.path)}
+        style={
+          location.pathname === User.routes.List.path
+            ? activeButtonStyle
+            : buttonStyle
+        }
       >
-        <ListIcon
-          onClick={() => history.push(User.routes.List.path)}
-          style={
-            location.pathname === User.routes.List.path
-              ? activeButtonStyle
-              : buttonStyle
-          }
-        >
-          List
-        </ListIcon>
-        <PlusIcon
-          onClick={() => history.push(User.routes.Add.path)}
-          style={
-            location.pathname === User.routes.Add.path
-              ? activeButtonStyle
-              : buttonStyle
-          }
-        >
-          Add
-        </PlusIcon>
-        <GearIcon
-          onClick={() => history.push(User.routes.Overview.path)}
-          style={
-            location.pathname === User.routes.Overview.path
-              ? activeButtonStyle
-              : buttonStyle
-          }
-        >
-          Overview
-        </GearIcon>
-      </div>
-      <div style={{ height: 50 }} />
-    </>
+        List
+      </ListIcon>
+      <PlusIcon
+        onClick={() => history.push(User.routes.Add.path)}
+        style={
+          location.pathname === User.routes.Add.path
+            ? activeButtonStyle
+            : buttonStyle
+        }
+      >
+        Add
+      </PlusIcon>
+      <GearIcon
+        onClick={() => history.push(User.routes.Overview.path)}
+        style={
+          location.pathname === User.routes.Overview.path
+            ? activeButtonStyle
+            : buttonStyle
+        }
+      >
+        Overview
+      </GearIcon>
+    </div>
   );
 }
