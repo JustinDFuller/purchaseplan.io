@@ -2,11 +2,6 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject",
-    "build:android": "expo build:android",
     "lint": "eslint --fix ./**/*.js",
     "pretty": "prettier --write ./*.js"
   },

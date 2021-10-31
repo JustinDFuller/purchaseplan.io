@@ -1,6 +1,14 @@
 {
   "build": {
-    "release": {},
+    "release": {
+      "android": {
+        "credentialsSource": "remote"
+      },
+      "ios": {
+        "autoIncrement": true,
+        "credentialsSource": "remote"
+      }
+    },
     "development": {
       "developmentClient": true,
       "distribution": "internal",
