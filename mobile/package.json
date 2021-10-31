@@ -21,6 +21,7 @@
     "eas": "^0.1.0",
     "eas-cli": "^0.23.0",
     "expo": "~42.0.0",
+    "expo-dev-client": "^0.6.3",
     "expo-linking": "^2.3.1",
     "expo-notifications": "~0.12.3",
     "expo-splash-screen": "^0.11.2",
