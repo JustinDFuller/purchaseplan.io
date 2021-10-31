@@ -9,22 +9,10 @@
         "autoIncrement": true,
         "credentialsSource": "remote"
       }
-    },
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal",
-      "android": {
-        "autoIncrement": true,
-        "credentialsSource": "remote"
-      },
-      "ios": {
-        "autoIncrement": true,
-        "credentialsSource": "remote"
-      }
     }
   },
   "submit": {
-    "development": {
+    "production": {
       "android": {
         "serviceAccountKeyPath": "./pc-api-7029889209910912721-552-1bc24bfcfd7d.json",
         "track": "internal"

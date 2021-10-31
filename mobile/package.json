@@ -2,9 +2,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "build:development": "eas build --platform=all --profile=development",
     "build:production": "eas build --platform=all --profile=production",
-    "submit:development": "eas submit --platform=all --profile=development",
+    "submit:production": "eas submit --platform=all --profile=production",
     "lint": "eslint --fix ./**/*.js",
     "pretty": "prettier --write ./*.js"
   },
