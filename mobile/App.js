@@ -96,7 +96,6 @@ export default function App() {
     <SafeAreaView
       style={{
         flex: 1,
-        paddingTop: isAndroid ? StatusBar.currentHeight : 0,
         backgroundColor: "#141432",
       }}
     >
@@ -106,7 +105,12 @@ export default function App() {
         <WebView
           ref={(r) => (webview.current = r)}
           source={{ uri }}
-          style={{ height: "100%", width: "100%", backgroundColor: "#141432" }}
+          style={{
+            height: "100%",
+            width: "100%",
+            backgroundColor: "#141432",
+            marginTop: StatusBar.currentHeight || 10,
+          }}
           injectedJavaScriptBeforeContentLoaded={`window.isNativeApp=true;`}
           onLoad={handleWebViewLoad}
           onError={handleWebViewError}

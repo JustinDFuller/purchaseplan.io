@@ -1,6 +1,6 @@
 {
   "build": {
-    "release": {
+    "production": {
       "android": {
         "autoIncrement": true,
         "credentialsSource": "remote"
@@ -20,6 +20,19 @@
       "ios": {
         "autoIncrement": true,
         "credentialsSource": "remote"
+      }
+    }
+  },
+  "submit": {
+    "development": {
+      "android": {
+        "serviceAccountKeyPath": "./pc-api-7029889209910912721-552-1bc24bfcfd7d.json",
+        "track": "internal"
+      },
+      "ios": {
+        "appleId": "justin@purchaseplan.io",
+        "ascAppId": "1582360378",
+        "appleTeamId": "Q7RT2J2P3W"
       }
     }
   }
