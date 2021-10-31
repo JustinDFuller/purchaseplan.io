@@ -2,7 +2,7 @@
   "expo": {
     "name": "Purchase Plan",
     "slug": "PurchasePlan",
-    "version": "0.0.58",
+    "version": "0.0.14",
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",
     "splash": {
@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.purchaseplan.ios",
-      "buildNumber": "0.0.63"
+      "buildNumber": "0.0.14"
     },
     "android": {
       "googleServicesFile": "./google-services.json",

@@ -3,7 +3,7 @@
   "scripts": {
     "start": "expo start",
     "build:production": "eas build --platform=all --profile=production",
-    "submit:production": "eas submit --platform=all --profile=production",
+    "submit:production": "eas submit --platform=all --profile=production --latest",
     "lint": "eslint --fix ./**/*.js",
     "pretty": "prettier --write ./*.js"
   },
