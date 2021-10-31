@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.purchaseplan.ios",
-      "buildNumber": "0.0.59"
+      "buildNumber": "0.0.60"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
