@@ -8,10 +8,13 @@ import * as data from "../data";
 export const List = Auth.context.With(function ({ auth }) {
   const { user } = data.Use();
 
+  const shouldShowHowItWorks =
+    auth.isLoggedIn() && !user.purchases().hasAtLeastOne();
+
   return (
-    <div className="row m-auto mx-0">
+    <div className="row m-auto mx-0 pb-5">
       <div className="col-12 px-0">
-        {auth.isLoggedIn() && !user.purchases().hasAtLeastOne() ? (
+        {shouldShowHowItWorks ? (
           <Layout.components.HowItWorks />
         ) : (
           <Purchase.components.List loading={auth.isLoggingIn()} />

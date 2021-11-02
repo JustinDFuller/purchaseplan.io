@@ -2,7 +2,7 @@
   "expo": {
     "name": "Purchase Plan",
     "slug": "PurchasePlan",
-    "version": "0.0.14",
+    "version": "0.0.16",
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",
     "splash": {

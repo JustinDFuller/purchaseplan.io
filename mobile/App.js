@@ -19,7 +19,7 @@ const host = "https://www.purchaseplan.io";
 const entry = "/app/user/list";
 const defaultURL = host + entry;
 
-const defaultBackgroundColor = "#141432";
+const defaultBackgroundColor = "black";
 const errorBackgroundColor = "#cf2e2e";
 
 // Instruct SplashScreen not to hide yet, we want to do this manually
@@ -93,12 +93,7 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: "#141432",
-      }}
-    >
+    <SafeAreaView style={{ flex: 1 }}>
       {error ? (
         <Error />
       ) : (
@@ -108,10 +103,11 @@ export default function App() {
           style={{
             height: "100%",
             width: "100%",
-            backgroundColor: "#141432",
-            marginTop: StatusBar.currentHeight || 10,
+            marginTop: StatusBar.currentHeight || 0,
           }}
-          injectedJavaScriptBeforeContentLoaded={`window.isNativeApp=true;`}
+          injectedJavaScriptBeforeContentLoaded={`
+            window.isNativeApp=true;
+          `}
           onLoad={handleWebViewLoad}
           onError={handleWebViewError}
           onShouldStartLoadWithRequest={(event) => {
@@ -143,6 +139,7 @@ function Error() {
         alignItems: "center",
         justifyContent: "center",
         padding: 20,
+        background: "#141432",
       }}
     >
       <Svg
