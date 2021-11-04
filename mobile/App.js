@@ -93,18 +93,21 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        height: "100%",
+        width: "100%",
+        backgroundColor: defaultBackgroundColor,
+        paddingTop: isAndroid ? StatusBar.currentHeight : 0,
+      }}
+    >
       {error ? (
         <Error />
       ) : (
         <WebView
           ref={(r) => (webview.current = r)}
           source={{ uri }}
-          style={{
-            height: "100%",
-            width: "100%",
-            marginTop: StatusBar.currentHeight || 0,
-          }}
           injectedJavaScriptBeforeContentLoaded={`
             window.isNativeApp=true;
           `}
@@ -139,7 +142,7 @@ function Error() {
         alignItems: "center",
         justifyContent: "center",
         padding: 20,
-        background: "#141432",
+        backgroundColor: "#141432",
       }}
     >
       <Svg
