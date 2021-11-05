@@ -1,17 +1,11 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import {
-  Linking,
-  View,
-  SafeAreaView,
-  Platform,
-  StatusBar,
-  Text,
-} from "react-native";
+import { Linking, View, SafeAreaView, Platform, Text } from "react-native";
 import { WebView } from "react-native-webview";
 import { useURL } from "expo-linking";
 import * as SplashScreen from "expo-splash-screen";
 import NetInfo from "@react-native-community/netinfo";
 import Svg, { Path } from "react-native-svg";
+import { StatusBar } from "expo-status-bar";
 
 import { useNotifications } from "./useNotifications";
 
@@ -19,12 +13,10 @@ const host = "https://www.purchaseplan.io";
 const entry = "/app/user/list";
 const defaultURL = host + entry;
 
-const defaultBackgroundColor = "black";
-const errorBackgroundColor = "#cf2e2e";
+const defaultBackgroundColor = "#141432";
 
-// Instruct SplashScreen not to hide yet, we want to do this manually
 SplashScreen.preventAutoHideAsync().catch(() => {
-  /* reloading the app might trigger some race conditions, ignore them */
+  /* ignore errors */
 });
 
 export default function App() {
@@ -51,41 +43,9 @@ export default function App() {
   const uri = entry && entry.includes(host) ? entry : defaultURL;
   const isAndroid = Platform.OS === "android";
 
-  const handleConnectionUpdate = useCallback(
-    (state) => {
-      if (!isAndroid) {
-        return;
-      }
-
-      if (state.isConnected) {
-        StatusBar.setBackgroundColor(defaultBackgroundColor);
-      } else {
-        StatusBar.setBackgroundColor(errorBackgroundColor);
-      }
-    },
-    [isAndroid]
-  );
-
-  useEffect(
-    function () {
-      if (isAndroid) {
-        StatusBar.setBackgroundColor(defaultBackgroundColor);
-      }
-      StatusBar.setBarStyle("light-content");
-
-      // Fetch network status and subscribe to updates.
-      NetInfo.fetch().then(handleConnectionUpdate);
-      const unsubscribe = NetInfo.addEventListener(handleConnectionUpdate);
-
-      return function () {
-        unsubscribe();
-      };
-    },
-    [isAndroid, handleConnectionUpdate]
-  );
-
   function handleWebViewLoad() {
     SplashScreen.hideAsync().catch(() => {});
+    setError(false);
   }
 
   function handleWebViewError(error) {
@@ -96,17 +56,25 @@ export default function App() {
     <SafeAreaView
       style={{
         flex: 1,
-        height: "100%",
-        width: "100%",
         backgroundColor: defaultBackgroundColor,
-        paddingTop: isAndroid ? StatusBar.currentHeight : 0,
       }}
     >
+      <StatusBar
+        style="light"
+        backgroundColor={defaultBackgroundColor}
+        translucent={false}
+      />
       {error ? (
         <Error />
       ) : (
         <WebView
           ref={(r) => (webview.current = r)}
+          style={{
+            flex: 1,
+            height: "100%",
+            width: "100%",
+            marginTop: isAndroid ? StatusBar.currentHeight : 0,
+          }}
           source={{ uri }}
           injectedJavaScriptBeforeContentLoaded={`
             window.isNativeApp=true;
