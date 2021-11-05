@@ -23,5 +23,9 @@
         "appleTeamId": "Q7RT2J2P3W"
       }
     }
+  },
+  "cli": {
+    "version": ">= 0.34.1",
+    "requireCommit": true
   }
 }
