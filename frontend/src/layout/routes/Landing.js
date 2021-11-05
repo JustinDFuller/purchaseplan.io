@@ -43,6 +43,7 @@ export function Landing() {
           justifyContent: "space-around",
           alignItems: "center",
           minHeight: 250,
+          background: styles.colors.secondary,
         }}
       >
         <div className="col-12 col-md-6">
@@ -60,10 +61,7 @@ export function Landing() {
       <div
         className="row m-auto my-md-4 py-4 px-1 px-md-3"
         style={{
-          background: styles.colors.secondary,
           minHeight: 200,
-          borderTop: "3px solid rgb(10, 10, 36)",
-          borderBottom: "3px solid rgb(10, 10, 36)",
         }}
       >
         <div className="col-12 col-lg-8 col-xl-7 pt-3 order-2 order-lg-1">
