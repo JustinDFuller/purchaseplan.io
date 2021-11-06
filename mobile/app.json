@@ -19,12 +19,12 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.purchaseplan.ios",
-      "buildNumber": "0.0.16"
+      "buildNumber": "0.0.18"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "com.purchaseplan.android",
-      "versionCode": 16,
+      "versionCode": 18,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1d1d42"

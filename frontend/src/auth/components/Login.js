@@ -49,9 +49,7 @@ export const Login = context.With(
         )}
         <form onSubmit={handleSubmit}>
           <div className="form-group margin-auto">
-            <label className="form-label">
-              To get started, log in with your email address.
-            </label>
+            <label className="form-label">Log in with your email address</label>
             <div className="row">
               <div className="col-12 col-lg-9">
                 <input
