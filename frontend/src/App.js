@@ -61,7 +61,8 @@ export default function App() {
         <Layout.components.Header />
         <div
           style={{ height: "100vh", width: "100vw" }}
-          className={styles.classes("container-fluid px-0 px-md-3", {
+          className={styles.classes("container-fluid px-0", {
+            "px-md-3": window.location.pathname !== Layout.routes.Landing.path,
             loading:
               auth.isLoggingIn() &&
               window.location.pathname !== Layout.routes.Landing.path,

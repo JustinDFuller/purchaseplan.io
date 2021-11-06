@@ -16,7 +16,7 @@ export function Header() {
 
   return (
     <div
-      className="container-fluid mb-4"
+      className="container-fluid"
       style={{
         background: styles.colors.secondary,
         color: styles.colors.light,
