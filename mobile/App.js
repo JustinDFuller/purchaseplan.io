@@ -40,7 +40,7 @@ export default function App() {
   }, [tokens, webview]);
 
   const entry = useURL();
-  const uri = entry && entry.includes(host) ? entry : defaultURL;
+  const uri = entry && entry.startsWith(host) ? entry : defaultURL;
   const isAndroid = Platform.OS === "android";
 
   function handleWebViewLoad() {
