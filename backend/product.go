@@ -1,6 +1,7 @@
 package planner
 
 import (
+	"html"
 	"net/url"
 	"sync"
 )
@@ -98,6 +99,9 @@ func (p Product) Normalize(requestURL string) (Product, error) {
 		return p, err
 	}
 	p.URL = u
+
+	p.Name = html.UnescapeString(p.Name)
+	p.Description = html.UnescapeString(p.Description)
 
 	return p, nil
 }
