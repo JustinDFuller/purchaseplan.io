@@ -823,8 +823,8 @@ func TestProcess(t *testing.T) {
 						Deleted:  true,
 						Product: Product{
 							URL:         "https://example.com",
-							Name:        "Irresistibly touch&#45;worthy",
-							Description: "Irresistibly touch&#45;worthy",
+							Name:        "Irresistibly touch&#45;worthy 14&#34; laptop.",
+							Description: "Irresistibly touch&#45;worthy 14&#34; laptop.",
 							Price:       100,
 						},
 					},
@@ -843,8 +843,8 @@ func TestProcess(t *testing.T) {
 						Quantity: 1,
 						Product: Product{
 							URL:         "https://example.com",
-							Name:        "Irresistibly touch-worthy",
-							Description: "Irresistibly touch-worthy",
+							Name:        `Irresistibly touch-worthy 14" laptop.`,
+							Description: `Irresistibly touch-worthy 14" laptop.`,
 							Price:       100,
 						},
 					},
