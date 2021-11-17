@@ -16,6 +16,10 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "associatedDomains": [
+      "purchaseplan.io",
+      "www.purchaseplan.io"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.purchaseplan.ios",
