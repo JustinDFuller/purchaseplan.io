@@ -14,7 +14,7 @@ export function New(data = productDefaults) {
     setPrice(p) {
       return New({
         ...data,
-        price: Math.ceil(p),
+        price: Math.round(p),
       });
     },
   };
