@@ -28,7 +28,7 @@
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "com.purchaseplan.android",
-      "versionCode": 19,
+      "versionCode": 20,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1d1d42"
