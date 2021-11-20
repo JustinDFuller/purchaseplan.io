@@ -16,14 +16,14 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "associatedDomains": [
-      "purchaseplan.io",
-      "www.purchaseplan.io"
-    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.purchaseplan.ios",
-      "buildNumber": "0.0.20"
+      "buildNumber": "0.0.20",
+      "associatedDomains": [
+        "applinks:purchaseplan.io",
+        "applinks:www.purchaseplan.io"
+      ]
     },
     "android": {
       "googleServicesFile": "./google-services.json",
