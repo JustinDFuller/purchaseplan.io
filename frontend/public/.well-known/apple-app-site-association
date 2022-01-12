@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appIDs": ["com.purchaseplan.ios"]
+        "appIDs": ["com.purchaseplan.ios"],
         "components": [
           {
             "/": "*",
@@ -25,7 +25,7 @@
             "/": "/app/user/*",
             "comment": "all /user pages"
           }
-        ],
+        ]
       },
       {
         "appID": "com.purchaseplan.ios",
