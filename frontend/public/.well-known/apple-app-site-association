@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appIDs": ["com.purchaseplan.ios"],
+        "appIDs": ["Q7RT2J2P3W.com.purchaseplan.ios"],
         "components": [
           {
             "/": "*",
@@ -28,14 +28,15 @@
         ]
       },
       {
-        "appID": "com.purchaseplan.ios",
+        "appID": "Q7RT2J2P3W.com.purchaseplan.ios",
         "paths": ["*", "/*", "/app/*", "/app/auth/*", "/app/user/*"]
       }
     ]
   },
   "activitycontinuation": {
     "apps": [
-      "com.purchaseplan.ios"
+      "com.purchaseplan.ios",
+      "Q7RT2J2P3W.com.purchaseplan.ios"
     ]
   }
 }
