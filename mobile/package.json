@@ -10,27 +10,27 @@
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
     "@ide/backoff": "^1.0.0",
-    "@react-native-community/netinfo": "^6.0.6",
-    "expo": "^43.0.1",
-    "expo-dev-client": "^0.6.3",
-    "expo-linking": "^2.3.1",
-    "expo-notifications": "^0.13.3",
-    "expo-splash-screen": "^0.13.5",
-    "expo-status-bar": "^1.1.0",
-    "qs": "^6.10.1",
+    "@react-native-community/netinfo": "^6.2.1",
+    "expo": "^44.0.5",
+    "expo-dev-client": "^0.8.0",
+    "expo-linking": "^3.0.0",
+    "expo-notifications": "^0.14.0",
+    "expo-splash-screen": "^0.14.1",
+    "expo-status-bar": "^1.2.0",
+    "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-native": "^0.66.2",
+    "react-native": "^0.66.4",
     "react-native-svg": "^12.1.1",
-    "react-native-webview": "^11.14.2"
+    "react-native-webview": "^11.16.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "eas-cli": "^0.34.1",
-    "eslint": "^8.1.0",
-    "eslint-config-react-app": "^6.0.0",
-    "expo-cli": "^4.12.12",
-    "prettier": "^2.3.2"
+    "@babel/core": "^7.16.7",
+    "eas-cli": "^0.44.1",
+    "eslint": "^8.6.0",
+    "eslint-config-react-app": "^7.0.0",
+    "expo-cli": "^5.0.3",
+    "prettier": "^2.5.1"
   },
   "private": true,
   "eslintConfig": {
