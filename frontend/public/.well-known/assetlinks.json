@@ -3,6 +3,9 @@
     "target": {
       "namespace": "android_app",
       "package_name": "com.purchaseplan.android",
-      "sha256_cert_fingerprints": ["52:3D:4D:8A:5A:09:DF:FA:F4:5E:3B:5F:45:45:B2:8F:95:40:47:DA:C6:2A:46:6E:67:FA:DD:94:3C:93:77:17"]
+      "sha256_cert_fingerprints": [
+        "2F:79:E0:57:B9:1F:CE:F0:9B:BE:CB:22:47:65:01:01:9C:39:6B:DA:39:CF:C7:1E:48:FD:B8:42:64:0D:F3:63",
+        "52:3D:4D:8A:5A:09:DF:FA:F4:5E:3B:5F:45:45:B2:8F:95:40:47:DA:C6:2A:46:6E:67:FA:DD:94:3C:93:77:17"
+      ]
     }
 }]
