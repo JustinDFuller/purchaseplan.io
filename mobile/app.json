@@ -2,7 +2,7 @@
   "expo": {
     "name": "Purchase Plan",
     "slug": "PurchasePlan",
-    "version": "0.0.61",
+    "version": "0.0.63",
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",
     "splash": {
@@ -19,16 +19,18 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.purchaseplan.ios",
-      "buildNumber": "0.0.20",
+      "buildNumber": "0.0.21",
       "associatedDomains": [
         "applinks:purchaseplan.io",
-        "applinks:www.purchaseplan.io"
+        "applinks:www.purchaseplan.io",
+        "applinks:https://purchaseplan.io",
+        "applinks:https://www.purchaseplan.io"
       ]
     },
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "com.purchaseplan.android",
-      "versionCode": 20,
+      "versionCode": 21,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1d1d42"
