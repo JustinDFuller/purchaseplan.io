@@ -44,8 +44,6 @@ export default function App() {
       if (a.user()) {
         setUser(user.from(a.user()));
         history.push(User.getDashboardPath());
-      } else {
-        history.push(Auth.getLoginPath());
       }
     }
 
@@ -58,7 +56,7 @@ export default function App() {
     <Auth.context.Context.Provider value={{ auth, setAuth }}>
       <User.data.Context.Provider value={{ user, setUser }}>
         <Layout.components.Offline />
-        <Layout.components.Header />
+        {auth.isNotAuthPath() && <Layout.components.Header />}
         <div
           style={{ height: "100vh", width: "100vw" }}
           className={styles.classes("container-fluid px-0", {
@@ -84,8 +82,8 @@ export default function App() {
             <Route path={Auth.routes.Login.path}>
               <Auth.routes.Login />
             </Route>
-            <Route path={Auth.routes.Email.path}>
-              <Auth.routes.Email />
+            <Route path={Auth.routes.Magic.path}>
+              <Auth.routes.Magic />
             </Route>
             <Route path={Layout.routes.StyleGuide.path}>
               <Layout.routes.StyleGuide />

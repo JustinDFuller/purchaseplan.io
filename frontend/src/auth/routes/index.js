@@ -1,2 +1,2 @@
 export { Login } from "./Login";
-export { Email } from "./Email";
+export { Magic } from "./Magic";

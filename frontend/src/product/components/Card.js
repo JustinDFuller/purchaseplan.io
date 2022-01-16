@@ -43,7 +43,6 @@ export const Card = User.data.WithContext(function ({
     );
 
     const res = await User.api.put(u);
-    console.log(res);
     setUser(user.from(res));
     setError(NO_ERROR);
     setProduct(null);

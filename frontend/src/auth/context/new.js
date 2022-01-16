@@ -49,17 +49,9 @@ export function New(data = defaults) {
         });
       }
     },
-    async initEmail() {
+    async handleMagicCallback({ idToken }) {
       try {
-        const params = new URLSearchParams(window.location.search);
-        const didToken = params.get("magic_credential");
-        const response = await api.login(didToken);
-        params.delete("magic_credential");
-        window.history.replaceState(
-          null,
-          null,
-          window.location.pathname + params.toString()
-        );
+        const response = await api.login(idToken);
         return New({
           ...data,
           ...response,
@@ -76,38 +68,6 @@ export function New(data = defaults) {
           state: state.LOGGED_OUT,
         });
       }
-    },
-    async login({ email }) {
-      const redirectURI = `${window.location.origin}/app/auth/email`;
-
-      try {
-        const didToken = await m.auth.loginWithMagicLink({
-          email,
-          redirectURI,
-        });
-        const response = await api.login(didToken);
-        return New({
-          ...data,
-          ...response,
-          user: response.data,
-          state:
-            response.data && !response.error
-              ? state.LOGGED_IN
-              : state.LOGGED_OUT,
-        });
-      } catch (error) {
-        return New({
-          ...data,
-          error,
-          state: state.LOGGED_OUT,
-        });
-      }
-    },
-    async loginWithGoogle() {
-      await m.oauth.loginWithRedirect({
-        provider: "google",
-        redirectURI: `${window.location.origin}/app/auth/google`,
-      });
     },
     async logout() {
       try {
@@ -155,9 +115,8 @@ export function New(data = defaults) {
     },
     isNotAuthPath() {
       switch (window.location.pathname) {
-        case "/app/styleguide":
-        case "/app/auth/email":
-        case "/app/auth/google":
+        case "/app/auth/login":
+        case "/app/auth/magic":
           return false;
         default:
           return true;
