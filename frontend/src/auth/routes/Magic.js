@@ -25,11 +25,9 @@ export function Magic() {
 
   useEffect(function () {
     const listener = window.addEventListener("@magic/ready", async (event) => {
-      const { magic, idToken, userMetadata, oauth } = event.detail;
-      console.log({ magic, idToken, userMetadata, oauth });
+      const { idToken } = event.detail;
 
       const a = await auth.handleMagicCallback({ idToken });
-
       if (a.user()) {
         setUser(user.from(a.user()));
         history.push(User.getDashboardPath());

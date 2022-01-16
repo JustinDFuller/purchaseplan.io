@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory, useLocation } from "react-router-dom";
 
 import * as Layout from "layout";
 import * as User from "user";
@@ -9,6 +9,7 @@ import * as Notifications from "notifications";
 
 export default function App() {
   const history = useHistory();
+  const loc = useLocation();
   const [user, setUser] = useState(User.data.New());
   const [auth, setAuth] = useState(
     Auth.context.New().onLogout(function () {
@@ -44,10 +45,12 @@ export default function App() {
       if (a.user()) {
         setUser(user.from(a.user()));
         history.push(User.getDashboardPath());
+      } else if (history.location.pathname !== "/") {
+        history.push(Auth.getLoginPath());
       }
     }
 
-    if (auth.isNotAuthPath()) {
+    if (auth.isNotAuthPath(loc)) {
       init();
     }
   }, []); // eslint-disable-line
@@ -56,7 +59,7 @@ export default function App() {
     <Auth.context.Context.Provider value={{ auth, setAuth }}>
       <User.data.Context.Provider value={{ user, setUser }}>
         <Layout.components.Offline />
-        {auth.isNotAuthPath() && <Layout.components.Header />}
+        {auth.isNotAuthPath(loc) && <Layout.components.Header />}
         <div
           style={{ height: "100vh", width: "100vw" }}
           className={styles.classes("container-fluid px-0", {
