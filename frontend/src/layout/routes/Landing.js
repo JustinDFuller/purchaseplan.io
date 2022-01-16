@@ -66,7 +66,7 @@ export function Landing() {
       >
         <div className="col-12 col-lg-8 col-xl-7 pt-3 order-2 order-lg-1">
           {Purchase.samplePurchases[sample].products.map((p) => (
-            <div className="mb-3">
+            <div className="mb-3" key={p.product().name()}>
               <Purchase.components.Card
                 purchase={p}
                 readonly

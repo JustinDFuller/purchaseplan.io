@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import { ReactComponent as Moon } from "bootstrap-icons/icons/moon-stars-fill.svg";
-import { ReactComponent as Sun } from "bootstrap-icons/icons/sun-fill.svg";
 
 import * as styles from "styles";
 import * as Auth from "auth";
@@ -34,17 +32,17 @@ export function Header() {
             </a>
             <ul className="navbar-nav float-end">
               <li className="nav-item">
-                <Moon
-                  style={{
-                    height: 16,
-                    width: 16,
-                    cursor: "pointer",
-                  }}
-                  className="btn btn-link nav-link"
-                />
-              </li>
-              <li className="nav-item">
-                <Sun className="btn btn-link nav-link" />
+                {auth.isLoggedIn() && (
+                  <button
+                    className="btn btn-link nav-link"
+                    style={styles.combine(styles.text, {
+                      color: styles.colors.light,
+                    })}
+                    onClick={async () => setAuth(await auth.logout())}
+                  >
+                    Log Out
+                  </button>
+                )}
               </li>
               <li className="nav-item">
                 <a
@@ -59,19 +57,6 @@ export function Header() {
                 >
                   Blog
                 </a>
-              </li>
-              <li className="nav-item">
-                {auth.isLoggedIn() && (
-                  <button
-                    className="btn btn-link nav-link"
-                    style={styles.combine(styles.text, {
-                      color: styles.colors.light,
-                    })}
-                    onClick={async () => setAuth(await auth.logout())}
-                  >
-                    Log Out
-                  </button>
-                )}
               </li>
             </ul>
           </nav>

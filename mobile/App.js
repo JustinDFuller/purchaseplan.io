@@ -1,9 +1,8 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Linking, View, SafeAreaView, Platform, Text } from "react-native";
 import { WebView } from "react-native-webview";
 import { useURL } from "expo-linking";
 import * as SplashScreen from "expo-splash-screen";
-import NetInfo from "@react-native-community/netinfo";
 import Svg, { Path } from "react-native-svg";
 import { StatusBar } from "expo-status-bar";
 
