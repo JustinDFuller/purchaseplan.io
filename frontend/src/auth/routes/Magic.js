@@ -5,6 +5,8 @@ import * as User from "user";
 
 import * as context from "../context";
 
+const src = "https://auth.magic.link/pnp/callback";
+
 export function Magic() {
   const history = useHistory();
   const { auth, setAuth } = context.Use();
@@ -12,7 +14,7 @@ export function Magic() {
 
   useEffect(function () {
     const s = document.createElement("script");
-    s.src = "https://auth.magic.link/pnp/callback";
+    s.src = src;
     s.setAttribute(
       "data-magic-publishable-api-key",
       "pk_live_06BF9798B97B7BB7"
@@ -21,6 +23,13 @@ export function Magic() {
     s.async = true;
     s.defer = true;
     document.body.append(s);
+
+    return function () {
+      const iframe = document.querySelector("iframe.magic-iframe");
+      if (iframe && typeof iframe.remove === "function") {
+        iframe.remove();
+      }
+    };
   }, []);
 
   useEffect(function () {

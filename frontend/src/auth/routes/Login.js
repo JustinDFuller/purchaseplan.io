@@ -2,10 +2,12 @@ import { useEffect } from "react";
 
 import { Magic } from "./Magic";
 
+const src = "https://auth.magic.link/pnp/login";
+
 export function Login() {
   useEffect(function () {
     const s = document.createElement("script");
-    s.src = "https://auth.magic.link/pnp/login";
+    s.src = src;
     s.setAttribute(
       "data-magic-publishable-api-key",
       "pk_live_06BF9798B97B7BB7"
