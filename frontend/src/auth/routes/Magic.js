@@ -13,6 +13,8 @@ export function Magic() {
   const { user, setUser } = User.data.Use();
 
   useEffect(function () {
+    document.body.classList.remove("hide-magic-iframe");
+
     const s = document.createElement("script");
     s.src = src;
     s.setAttribute(
@@ -25,10 +27,17 @@ export function Magic() {
     document.body.append(s);
 
     return function () {
+      const script = document.querySelector(`script[src="${src}"]`);
+      if (script && typeof script.remove === "function") {
+        script.remove();
+      }
+
       const iframe = document.querySelector("iframe.magic-iframe");
       if (iframe && typeof iframe.remove === "function") {
         iframe.remove();
       }
+
+      document.body.classList.add("hide-magic-iframe");
     };
   }, []);
 
