@@ -45,12 +45,12 @@ export default function App() {
       if (a.user()) {
         setUser(user.from(a.user()));
         history.push(User.getDashboardPath());
-      } else if (history.location.pathname !== "/") {
+      } else if (Auth.pathShouldRedirectToLogin(loc)) {
         history.push(Auth.getLoginPath());
       }
     }
 
-    if (auth.isNotAuthPath(loc)) {
+    if (Auth.pathCanLogin(loc)) {
       init();
     }
   }, []); // eslint-disable-line
@@ -59,7 +59,7 @@ export default function App() {
     <Auth.context.Context.Provider value={{ auth, setAuth }}>
       <User.data.Context.Provider value={{ user, setUser }}>
         <Layout.components.Offline />
-        {auth.isNotAuthPath(loc) && <Layout.components.Header />}
+        {!Auth.pathShowsLogin(loc) && <Layout.components.Header />}
         <div
           style={{ height: "100vh", width: "100vw" }}
           className={styles.classes("container-fluid px-0", {
