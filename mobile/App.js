@@ -67,6 +67,7 @@ export default function App() {
         <Error />
       ) : (
         <WebView
+          userAgent="Mozilla/5.0 (compatible; PurchasePlan/1.0; +https://www.purchaseplan.io/mobile)"
           ref={(r) => (webview.current = r)}
           style={{
             flex: 1,
