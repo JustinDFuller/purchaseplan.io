@@ -1,12 +1,51 @@
-import * as components from "../components";
+import { useEffect } from "react";
+
+import { Magic } from "./Magic";
+
+const src = "https://auth.magic.link/pnp/login";
 
 export function Login() {
+  useEffect(function () {
+    const s = document.createElement("script");
+    s.src = src;
+    s.setAttribute(
+      "data-magic-publishable-api-key",
+      "pk_live_06BF9798B97B7BB7"
+    );
+    s.setAttribute("data-terms-of-service-uri", "/app/terms-of-service");
+    s.setAttribute("data-privacy-policy-uri", "/app/privacy-policy");
+    s.setAttribute("data-redirect-uri", Magic.path);
+    s.async = true;
+    s.defer = true;
+    document.body.append(s);
+  }, []);
+
   return (
     <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: "100%" }}
+      style={{
+        height: 600,
+        width: 400,
+        boxShadow: "0 12px 56px rgb(119 118 122 / 15%)",
+        borderRadius: 28,
+        marginLeft: "auto",
+        marginRight: "auto",
+        top: 48,
+        position: "relative",
+        background: "#323233",
+      }}
     >
-      <components.Login style={{ width: "100%", margin: 0 }} />
+      <div
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div className="spinner-grow mt-1" role="status" />
+      </div>
     </div>
   );
 }

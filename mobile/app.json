@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "purchaseplan",
     "name": "Purchase Plan",
     "slug": "PurchasePlan",
     "version": "0.0.63",
@@ -22,9 +23,7 @@
       "buildNumber": "0.0.22",
       "associatedDomains": [
         "applinks:purchaseplan.io",
-        "applinks:www.purchaseplan.io",
-        "applinks:https://purchaseplan.io",
-        "applinks:https://www.purchaseplan.io"
+        "applinks:www.purchaseplan.io"
       ]
     },
     "android": {

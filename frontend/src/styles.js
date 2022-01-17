@@ -47,8 +47,6 @@ if (savedTheme === "dark" || preferrsDarkTheme) {
 export const theme =
   themes[savedTheme] || (preferrsDarkTheme ? themes.dark : themes.light);
 
-console.log(savedTheme, preferrsDarkTheme, theme);
-
 export const dark = {
   background: theme.background,
   fontColor: theme.textColor,

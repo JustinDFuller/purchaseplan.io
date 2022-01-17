@@ -49,37 +49,19 @@ export const Login = context.With(
         )}
         <form onSubmit={handleSubmit}>
           <div className="form-group margin-auto">
-            <label className="form-label">Log in with your email address</label>
+            <label className="form-label">
+              Get started with just an email.
+            </label>
             <div className="row">
-              <div className="col-12 col-lg-9">
-                <input
-                  required
-                  data-testid="login-input"
-                  className="form-control"
-                  type="email"
-                  name="email"
-                  value={user.email()}
-                  placeholder="email@example.com"
-                  disabled={auth.isLoggingIn()}
-                  onChange={(e) => setUser(user.setEmail(e.target.value))}
-                />
+              <div className="col-12">
+                <a
+                  href="/app/auth/login"
+                  data-testid="login-button"
+                  className="btn btn-success w-100 w-md-auto"
+                >
+                  Log in
+                </a>
               </div>
-              <div className="col-12 col-lg-3 text-right mt-3 mt-lg-0">
-                <form.components.Submit
-                  onClick={handleSubmit}
-                  disabled={auth.isLoggingIn()}
-                  loading={auth.isLoggingIn()}
-                  text="Log in"
-                  dataTestid="login-button"
-                />
-              </div>
-              {/*
-         <div className="col-12 mt-3 separator">or</div>
-              <div className="mt-3 col-12 d-flex flex-column align-items-center justify-content-center">
-                <GoogleLoginButton onClick={() => auth.loginWithGoogle()} />
-                <AppleLoginButton />
-              </div>
-         */}
             </div>
           </div>
         </form>
