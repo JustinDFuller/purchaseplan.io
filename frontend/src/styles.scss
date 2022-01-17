@@ -110,3 +110,9 @@ body.theme-dark {
     visibility: hidden !important;
   }
 }
+
+.hide-magic-iframe {
+  .magic-iframe {
+    display: none !important;
+  }
+}

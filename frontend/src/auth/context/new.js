@@ -113,14 +113,5 @@ export function New(data = defaults) {
         state: state.LOGGING_IN,
       });
     },
-    isNotAuthPath(loc = window.location) {
-      switch (loc.pathname) {
-        case "/app/auth/login":
-        case "/app/auth/magic":
-          return false;
-        default:
-          return true;
-      }
-    },
   };
 }

@@ -6,6 +6,8 @@ const src = "https://auth.magic.link/pnp/login";
 
 export function Login() {
   useEffect(function () {
+    document.body.classList.remove("hide-magic-iframe")
+
     const s = document.createElement("script");
     s.src = src;
     s.setAttribute(
@@ -18,6 +20,20 @@ export function Login() {
     s.async = true;
     s.defer = true;
     document.body.append(s);
+
+    return function () {
+      const script = document.querySelector(`script[src="${src}"]`);
+      if (script && typeof script.remove === "function") {
+        script.remove();
+      }
+
+      const iframe = document.querySelector("iframe.magic-iframe");
+      if (iframe && typeof iframe.remove === "function") {
+        iframe.remove();
+      }
+
+      document.body.classList.add("hide-magic-iframe")
+    };
   }, []);
 
   return (
