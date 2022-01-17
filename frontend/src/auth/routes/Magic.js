@@ -62,7 +62,7 @@ export function Magic() {
   return (
     <div
       style={{
-        height: 600,
+        height: 500,
         width: 400,
         boxShadow: "0 12px 56px rgb(119 118 122 / 15%)",
         borderRadius: 28,

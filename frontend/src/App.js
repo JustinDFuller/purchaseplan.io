@@ -13,6 +13,7 @@ export default function App() {
   const [user, setUser] = useState(User.data.New());
   const [auth, setAuth] = useState(
     Auth.context.New().onLogout(function () {
+      setAuth(auth.setLoggingOut());
       setUser(User.data.New());
       history.push(Auth.getLoginPath(history));
     })

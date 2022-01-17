@@ -67,6 +67,7 @@ export default function App() {
         <Error />
       ) : (
         <WebView
+          userAgent="Mozilla/5.0 (X11; CrOS x86_64 14268.51.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.77 Safari/537.36"
           ref={(r) => (webview.current = r)}
           style={{
             flex: 1,

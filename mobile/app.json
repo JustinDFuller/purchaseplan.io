@@ -3,7 +3,7 @@
     "scheme": "purchaseplan",
     "name": "Purchase Plan",
     "slug": "PurchasePlan",
-    "version": "0.0.63",
+    "version": "0.0.65",
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",
     "splash": {
@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.purchaseplan.ios",
-      "buildNumber": "0.0.22",
+      "buildNumber": "0.0.23",
       "associatedDomains": [
         "applinks:purchaseplan.io",
         "applinks:www.purchaseplan.io"
@@ -29,7 +29,7 @@
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "com.purchaseplan.android",
-      "versionCode": 22,
+      "versionCode": 24,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1d1d42"
