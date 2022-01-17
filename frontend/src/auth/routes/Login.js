@@ -6,7 +6,7 @@ const src = "https://auth.magic.link/pnp/login";
 
 export function Login() {
   useEffect(function () {
-    document.body.classList.remove("hide-magic-iframe")
+    document.body.classList.remove("hide-magic-iframe");
 
     const s = document.createElement("script");
     s.src = src;
@@ -32,14 +32,14 @@ export function Login() {
         iframe.remove();
       }
 
-      document.body.classList.add("hide-magic-iframe")
+      document.body.classList.add("hide-magic-iframe");
     };
   }, []);
 
   return (
     <div
       style={{
-        height: 600,
+        height: 500,
         width: 400,
         boxShadow: "0 12px 56px rgb(119 118 122 / 15%)",
         borderRadius: 28,

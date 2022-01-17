@@ -113,5 +113,11 @@ export function New(data = defaults) {
         state: state.LOGGING_IN,
       });
     },
+    setLoggingOut() {
+      return New({
+        ...data,
+        state: state.LOGGING_OUT,
+      });
+    },
   };
 }
