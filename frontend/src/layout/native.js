@@ -11,5 +11,9 @@ export function isNativeApp() {
     return false;
   }
 
-  return window.localStorage.getItem("isNativeApp");
+  try {
+    return window.localStorage.getItem("isNativeApp");
+  } catch (e) {
+    return false;
+  }
 }
