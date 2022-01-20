@@ -35,6 +35,16 @@ handlers:
     upload: frontend/build/index\.html
     secure: always
 
+  - url: /app/legal/privacy-policy
+    static_files: frontend/build/privacy-policy.html
+    upload: frontend/build/privacy-policy\.html
+    secure: always
+
+  - url: /app/legal/terms-of-service
+    static_files: frontend/build/terms-of-service.html
+    upload: frontend/build/terms-of-service\.html
+    secure: always
+
   - url: /
     static_files: frontend/build/index.html
     upload: frontend/build/index\.html
