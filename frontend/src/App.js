@@ -6,6 +6,7 @@ import * as User from "user";
 import * as Auth from "auth";
 import * as styles from "styles";
 import * as Notifications from "notifications";
+import * as Legal from 'legal';
 
 export default function App() {
   const history = useHistory();
@@ -91,6 +92,9 @@ export default function App() {
             </Route>
             <Route path={Layout.routes.StyleGuide.path}>
               <Layout.routes.StyleGuide />
+            </Route>
+            <Route path={Legal.routes.PrivacyPolicy.path}>
+              <Legal.routes.PrivacyPolicy />
             </Route>
             <Route path={Layout.routes.Landing.path}>
               <Layout.routes.Landing />
