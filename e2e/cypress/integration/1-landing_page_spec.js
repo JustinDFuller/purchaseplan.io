@@ -17,12 +17,9 @@ describe('Landing Page', function () {
   it("Logs In", function() {
     cy.visit("/")
 
-    dataTestId("login-input")
-      .type("e2e-tests@purchaseplan.io")
-
     dataTestId("login-button")
       .click()
 
-    cy.get('[data-magic-iframe-label="auth.magic.link"]')
+    cy.url().should("include", '/app/auth/login')
   })
 })
