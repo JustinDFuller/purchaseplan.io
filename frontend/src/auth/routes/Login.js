@@ -14,8 +14,8 @@ export function Login() {
       "data-magic-publishable-api-key",
       "pk_live_06BF9798B97B7BB7"
     );
-    s.setAttribute("data-terms-of-service-uri", "/app/terms-of-service");
-    s.setAttribute("data-privacy-policy-uri", "/app/privacy-policy");
+    s.setAttribute("data-terms-of-service-uri", "/app/legal/terms-of-service");
+    s.setAttribute("data-privacy-policy-uri", "/app/legal/privacy-policy");
     s.setAttribute("data-redirect-uri", Magic.path);
     s.async = true;
     s.defer = true;
