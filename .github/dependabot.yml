@@ -10,7 +10,22 @@ updates:
     schedule:
       interval: "weekly"
       
-  - package-ecosystem: "go"
+  - package-ecosystem: "npm"
+    directory: "/mobile"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "gomod"
     directory: "/backend"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "gomod"
+    directory: "/plan"
+    schedule:
+      interval: "weekly"
+      
+  - package-ecosystem: "terraform"
+    directory: "/terraform"
     schedule:
       interval: "weekly"
