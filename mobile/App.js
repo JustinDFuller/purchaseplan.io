@@ -8,7 +8,7 @@ import { StatusBar } from "expo-status-bar";
 
 import { useNotifications } from "./useNotifications";
 
-const host = "http://192.168.86.184:3000";
+const host = "https://www.purchaseplan.io";
 const entry = "/app/user/list";
 const defaultURL = host + entry;
 
