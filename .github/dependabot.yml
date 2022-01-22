@@ -16,12 +16,7 @@ updates:
       interval: "weekly"
       
   - package-ecosystem: "gomod"
-    directory: "/backend"
-    schedule:
-      interval: "weekly"
-      
-  - package-ecosystem: "gomod"
-    directory: "/plan"
+    directory: "/"
     schedule:
       interval: "weekly"
       
