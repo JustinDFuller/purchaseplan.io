@@ -60,7 +60,7 @@
     ]
   },
   "devDependencies": {
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^12.2.2",
     "prettier": "^2.2.1"
   },
   "proxy": "http://localhost:8080"
