@@ -8,11 +8,11 @@ import { StatusBar } from "expo-status-bar";
 
 import { useNotifications } from "./useNotifications";
 
-const host = "https://www.purchaseplan.io";
+const host = "http://192.168.86.184:3000";
 const entry = "/app/user/list";
 const defaultURL = host + entry;
 
-const defaultBackgroundColor = "#141432";
+const defaultBackgroundColor = "#0a0a1a";
 
 SplashScreen.preventAutoHideAsync().catch(() => {
   /* ignore errors */
@@ -110,7 +110,7 @@ function Error() {
         alignItems: "center",
         justifyContent: "center",
         padding: 20,
-        backgroundColor: "#141432",
+        backgroundColor: "#0a0a1a",
       }}
     >
       <Svg
