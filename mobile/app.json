@@ -7,9 +7,9 @@
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_transparent.png",
       "resizeMode": "contain",
-      "backgroundColor": "#141432"
+      "backgroundColor": "#0a0a1a"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.purchaseplan.ios",
-      "buildNumber": "0.0.23",
+      "buildNumber": "0.0.24",
       "associatedDomains": [
         "applinks:purchaseplan.io",
         "applinks:www.purchaseplan.io"
@@ -29,7 +29,7 @@
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "com.purchaseplan.android",
-      "versionCode": 24,
+      "versionCode": 25,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1d1d42"
