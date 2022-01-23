@@ -8,7 +8,7 @@ require (
 	cloud.google.com/go/storage v1.10.0
 	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/google/go-cmp v0.5.4
+	github.com/google/go-cmp v0.5.7
 	github.com/google/uuid v1.1.2
 	github.com/gorilla/mux v1.8.0
 	github.com/justindfuller/secretmanager v0.0.3
