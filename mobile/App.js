@@ -5,7 +5,6 @@ import { useURL } from "expo-linking";
 import * as SplashScreen from "expo-splash-screen";
 import Svg, { Path } from "react-native-svg";
 import { StatusBar } from "expo-status-bar";
-import * as WebBrowser from "expo-web-browser";
 
 import { useNotifications } from "./useNotifications";
 
@@ -17,13 +16,6 @@ const defaultBackgroundColor = "#0a0a1a";
 
 SplashScreen.preventAutoHideAsync().catch(() => {
   /* ignore errors */
-});
-
-Linking.addEventListener("url", function (event) {
-  console.log("linking", event.url);
-  if (event.url.includes("purchaseplan.io")) {
-    WebBrowser.dismissBrowser();
-  }
 });
 
 export default function App() {
@@ -47,9 +39,7 @@ export default function App() {
   }, [tokens, webview]);
 
   const entry = useURL();
-  const [uri, setURI] = useState(
-    entry && entry.includes(host) ? entry : defaultURL
-  );
+  const uri = entry && entry.includes(host) ? entry : defaultURL;
   const isAndroid = Platform.OS === "android";
 
   function handleWebViewLoad() {
@@ -92,33 +82,15 @@ export default function App() {
           onLoad={handleWebViewLoad}
           onError={handleWebViewError}
           onShouldStartLoadWithRequest={(event) => {
-            const auth = ["auth.magic.link/v1/oauth2/google"];
-            if (auth.find((a) => event.url.includes(a))) {
-              WebBrowser.openBrowserAsync(event.url)
-                .then(() => {
-                  setURI("https://www.purchaseplan.io/app/auth/login");
-                })
-                .catch(() => {
-                  WebView.reload();
-                });
-              return false;
-            }
-
-            console.log("Didn't intercept auth", event.url);
-
             const blacklist = ["blog.purchaseplan.io"];
             if (blacklist.find((b) => event.url.includes(b))) {
-              WebBrowser.openBrowserAsync(event.url)
-                .then(console.log)
-                .catch(console.error);
+              Linking.openURL(event.url);
               return false;
             }
 
             const whitelist = ["purchaseplan.io", "magic.link"];
             if (!whitelist.find((w) => event.url.includes(w))) {
-              WebBrowser.openBrowserAsync(event.url)
-                .then(console.log)
-                .catch(console.error);
+              Linking.openURL(event.url);
               return false;
             }
 
