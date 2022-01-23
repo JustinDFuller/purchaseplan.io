@@ -23,7 +23,9 @@
       "buildNumber": "0.0.24",
       "associatedDomains": [
         "applinks:purchaseplan.io",
-        "applinks:www.purchaseplan.io"
+        "applinks:www.purchaseplan.io",
+        "activitycontinuation:purchaseplan.io",
+        "activitycontinuation:www.purchaseplan.io"
       ]
     },
     "android": {
@@ -41,23 +43,19 @@
           "data": [
             {
               "scheme": "https",
-              "host": "*.purchaseplan.io",
-              "pathPrefix": "/"
+              "host": "*.purchaseplan.io"
             },
             {
               "scheme": "http",
-              "host": "*.purchaseplan.io",
-              "pathPrefix": "/"
+              "host": "*.purchaseplan.io"
             },
             {
               "scheme": "https",
-              "host": "purchaseplan.io",
-              "pathPrefix": "/"
+              "host": "purchaseplan.io"
             },
             {
               "scheme": "http",
-              "host": "purchaseplan.io",
-              "pathPrefix": "/"
+              "host": "purchaseplan.io"
             }
           ],
           "category": [
