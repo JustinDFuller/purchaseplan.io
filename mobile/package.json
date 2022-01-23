@@ -12,7 +12,7 @@
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
     "@ide/backoff": "^1.0.0",
-    "@react-native-community/netinfo": "^6.2.1",
+    "@react-native-community/netinfo": "^7.1.7",
     "expo": "^44.0.5",
     "expo-dev-client": "^0.8.0",
     "expo-linking": "^3.0.0",
