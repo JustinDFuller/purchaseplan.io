@@ -22,13 +22,13 @@
     "qs": "^6.10.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-native": "^0.66.4",
+    "react-native": "^0.67.1",
     "react-native-svg": "^12.1.1",
     "react-native-webview": "^11.17.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
-    "eas-cli": "^0.44.1",
+    "eas-cli": "^0.45.1",
     "eslint": "^8.7.0",
     "eslint-config-react-app": "^7.0.0",
     "expo-cli": "^5.0.3",
