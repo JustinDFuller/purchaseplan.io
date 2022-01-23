@@ -7,7 +7,7 @@ require (
 	cloud.google.com/go/datastore v1.3.0
 	cloud.google.com/go/iam v0.1.1 // indirect
 	cloud.google.com/go/secretmanager v1.0.0 // indirect
-	cloud.google.com/go/storage v1.10.0
+	cloud.google.com/go/storage v1.18.2
 	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/google/go-cmp v0.5.7
