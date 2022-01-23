@@ -20,7 +20,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.purchaseplan.ios",
-      "buildNumber": "0.0.24",
+      "buildNumber": "0.0.25",
       "associatedDomains": [
         "applinks:purchaseplan.io",
         "applinks:www.purchaseplan.io",
