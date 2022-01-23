@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@magic-ext/oauth": "^0.8.0",
+    "@magic-ext/oauth": "^1.0.0",
     "@sentry/react": "^6.3.5",
     "@sentry/tracing": "^6.3.5",
     "@testing-library/jest-dom": "^5.12.0",
