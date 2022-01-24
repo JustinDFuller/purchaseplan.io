@@ -198,18 +198,15 @@ func processAffiliateURL(original string) string {
 		return ""
 	}
 
-	if path := paths[0]; path != "" {
-		log.Printf("invalid path: first path should be empty string, got %s", path)
-		return ""
+	var foundASIN bool
+	for i, path := range paths {
+		if len(path) == 10 && paths[i-1] == "dp" {
+			foundASIN = true
+		}
 	}
 
-	if path := paths[1]; path != "dp" {
-		log.Printf("invalid path: first path should be dp, got %s", path)
-		return ""
-	}
-
-	if path := paths[2]; path == "" || len(path) != 10 {
-		log.Printf("invalid path: second path should be ASIN code, got %s", path)
+	if !foundASIN {
+		log.Printf("invalid path: asin not found: %s", u)
 		return ""
 	}
 
