@@ -4,6 +4,7 @@ const productDefaults = {
   name: "",
   price: 0,
   url: "",
+  affiliateURL: "",
   description: "",
   image: "",
 };
@@ -16,6 +17,9 @@ export function New(data = productDefaults) {
         ...data,
         price: Math.round(p),
       });
+    },
+    url() {
+      return data.affiliateURL || data.url;
     },
   };
 }

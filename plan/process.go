@@ -1,6 +1,11 @@
 package plan
 
-import "html"
+import (
+	"html"
+	"log"
+	"net/url"
+	"strings"
+)
 
 type Processor func(*User) error
 
@@ -157,6 +162,57 @@ func ProcessProducts(u *User) error {
 	for i, purchase := range u.Purchases {
 		u.Purchases[i].Product.Name = html.UnescapeString(purchase.Product.Name)
 		u.Purchases[i].Product.Description = html.UnescapeString(purchase.Product.Description)
+		u.Purchases[i].Product.AffiliateURL = processAffiliateURL(purchase.Product.URL)
 	}
 	return nil
+}
+
+func processAffiliateURL(original string) string {
+	u, err := url.Parse(original)
+	if err != nil {
+		log.Printf("error parsing original url: %s", err)
+		return ""
+	}
+
+	domains := []string{
+		"amazon.com",
+		"www.amazon.com",
+		"smile.amazon.com",
+	}
+
+	var found bool
+	for _, domain := range domains {
+		if domain == u.Hostname() {
+			found = true
+			break
+		}
+	}
+
+	if !found {
+		return ""
+	}
+
+	paths := strings.Split(u.Path, "/")
+	if l := len(paths); l < 3 {
+		log.Printf("invalid path: not enough paths: expected 3, got %d", l)
+		return ""
+	}
+
+	var foundASIN bool
+	for i, path := range paths {
+		if len(path) == 10 && paths[i-1] == "dp" {
+			foundASIN = true
+		}
+	}
+
+	if !foundASIN {
+		log.Printf("invalid path: asin not found: %s", u)
+		return ""
+	}
+
+	q := u.Query()
+	q.Set("tag", "justinfuller-20")
+	u.RawQuery = q.Encode()
+
+	return u.String()
 }

@@ -68,5 +68,8 @@ export function New(data = purchaseDefaults) {
 
       return d.toLocaleDateString("en-US") ?? "";
     },
+    url() {
+      return data.product.url() || `?purchase=${data.id}`;
+    },
   };
 }
