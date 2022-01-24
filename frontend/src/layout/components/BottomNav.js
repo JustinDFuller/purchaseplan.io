@@ -28,7 +28,7 @@ export function BottomNav() {
 
   return (
     <div
-      className="d-flex justify-content-between align-items-stretch"
+      className="d-flex d-xl-none justify-content-between align-items-stretch"
       style={{
         position: "fixed",
         bottom: 0,
@@ -40,9 +40,10 @@ export function BottomNav() {
       }}
     >
       <ListIcon
-        onClick={() => history.push(User.routes.List.path)}
+        onClick={() => history.push(User.getDashboardPath())}
         style={
-          location.pathname === User.routes.List.path
+          location.pathname === User.routes.List.path ||
+          location.pathname === User.routes.Dashboard.path
             ? activeButtonStyle
             : buttonStyle
         }
