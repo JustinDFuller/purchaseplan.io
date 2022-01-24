@@ -6,11 +6,13 @@ import (
 	"html"
 	"io/ioutil"
 	"log"
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/pkg/errors"
 )
 
 type (
@@ -55,16 +57,23 @@ type (
 		URL  string
 		Body []byte
 	}
+
+	// AmazonPAPIParser parses amazon.com links with their Product API.
+	AmazonPAPIParser struct {
+		URL  string
+		Body []byte
+	}
 )
 
 // NewDefaultParser creates a new parser than combines other parsers.
 func NewDefaultParser(url string, body []byte) DefaultParser {
 	return DefaultParser{
-		AmazonParser:    AmazonParser{url, body},
-		SchemaOrgParser: SchemaOrgParser{url, body},
-		OpenGraphParser: OpenGraphParser{url, body},
-		MetaTagParser:   MetaTagParser{url, body},
-		HTMLParser:      HTMLParser{url, body},
+		AmazonPAPIParser: AmazonPAPIParser{url, body},
+		AmazonParser:     AmazonParser{url, body},
+		SchemaOrgParser:  SchemaOrgParser{url, body},
+		OpenGraphParser:  OpenGraphParser{url, body},
+		MetaTagParser:    MetaTagParser{url, body},
+		HTMLParser:       HTMLParser{url, body},
 	}
 }
 
@@ -428,6 +437,52 @@ func (parser AmazonParser) Product() (Product, error) {
 			p.Image = src
 		}
 	})
+
+	return p, nil
+}
+
+func (parser AmazonPAPIParser) Product() (Product, error) {
+	var p Product
+
+	u, err := url.Parse(parser.URL)
+	if err != nil {
+		return p, err
+	}
+
+	domains := []string{
+		"amazon.com",
+		"www.amazon.com",
+		"smile.amazon.com",
+	}
+
+	var found bool
+	for _, domain := range domains {
+		if domain == u.Hostname() {
+			found = true
+			break
+		}
+	}
+
+	if !found {
+		return p, nil
+	}
+
+	paths := strings.Split(u.Path)
+	if l := len(paths); l < 3 {
+		return p, errors.Errorf("invalid path: not enough paths: expected 3, got %d", l)
+	}
+
+	if path := paths[0]; path != "" {
+		return p, errors.Errorf("invalid path: first path should be empty string, got %s", path)
+	}
+
+	if path := paths[1]; path != "dp" {
+		return p, errors.Errorf("invalid path: first path should be dp, got %s", path)
+	}
+
+	if path := paths[2]; path == "" || len(path) != 10 {
+		return p, errors.Errorf("invalid path: second path should be ASIN code, got %s", path)
+	}
 
 	return p, nil
 }
