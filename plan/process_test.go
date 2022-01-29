@@ -886,7 +886,7 @@ func TestProcess(t *testing.T) {
 							Name:         "The Art of Happiness (Penguin Classics)",
 							Price:        15,
 							URL:          "https://www.amazon.com/dp/0143107216",
-							AffiliateURL: "https://www.amazon.com/dp/0143107216?tag=justinfuller-20",
+							AffiliateURL: "https://www.amazon.com/dp/0143107216?tag=purchaseplan-20",
 						},
 					},
 				},
