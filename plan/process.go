@@ -211,7 +211,7 @@ func processAffiliateURL(original string) string {
 	}
 
 	q := u.Query()
-	q.Set("tag", "justinfuller-20")
+	q.Set("tag", "purchaseplan-20")
 	u.RawQuery = q.Encode()
 
 	return u.String()
