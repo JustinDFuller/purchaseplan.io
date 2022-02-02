@@ -72,7 +72,7 @@ export const Card = User.data.WithContext(function ({
   }
 
   return (
-    <layout.components.Card style={{ width: "100%" }}>
+    <layout.components.Card style={{ width: "100%" }} className="pb-5 pb-xl-0">
       <div className="row">
         {product.url() && (
           <div className="col-12 col-md-4 mb-4">
