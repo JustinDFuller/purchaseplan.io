@@ -72,10 +72,19 @@ export const Card = User.data.WithContext(function ({
   }
 
   return (
-    <layout.components.Card style={{ width: "100%" }} className="pb-5 pb-xl-0">
+    <layout.components.Card
+      style={{ width: "100%" }}
+      className={product.url() && product.image() ? "pb-5 pb-xl-0" : ""}
+    >
       <div className="row">
-        {product.url() && (
-          <div className="col-12 col-md-4 mb-4">
+        {product.image() && product.url() && (
+          <div
+            className={
+              product.url() && product.image()
+                ? "col-12 col-md-4 mb-4"
+                : "col-12 mb-4"
+            }
+          >
             <img
               className="card-img-top"
               src={product.image()}
@@ -87,7 +96,11 @@ export const Card = User.data.WithContext(function ({
             />
           </div>
         )}
-        <div className={product.url() ? "col-12 col-md-8" : "col-12"}>
+        <div
+          className={
+            product.image() && product.url() ? "col-12 col-md-8" : "col-12"
+          }
+        >
           <Form
             onSubmit={handleSubmitEdit}
             onCancel={handleCancel}
