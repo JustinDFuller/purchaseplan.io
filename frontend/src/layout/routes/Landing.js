@@ -83,7 +83,22 @@ export function Landing() {
           </h2>
         </div>
       </div>
-      <components.Download />
+      <div className="d-flex justify-content-center align-items-center">
+        <components.Download />
+        <a
+          href="https://www.producthunt.com/posts/purchase-plan?utm_source=badge-review&utm_medium=badge&utm_souce=badge-purchase-plan#discussion-body"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="https://api.producthunt.com/widgets/embed-image/v1/review.svg?post_id=330492&theme=dark"
+            alt="Purchase Plan - Not a wish list but a plan | Product Hunt"
+            style={{ width: 250, height: 54 }}
+            width="250"
+            height="54"
+          />
+        </a>
+      </div>
     </div>
   );
 }
