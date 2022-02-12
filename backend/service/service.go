@@ -300,7 +300,7 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
-		p, err := planner.NewDefaultParser(u, b).Product()
+		p, err := planner.NewDefaultParser(u, b, s.Config).Product(ctx)
 		if err != nil {
 			log.Printf("Error parsing product: %s", err)
 			w.WriteHeader(http.StatusInternalServerError)
