@@ -36,6 +36,7 @@ type (
 		Description   string `datastore:",noindex" json:"description"`
 		Price         int64  `json:"price"`
 		URL           string `datastore:",noindex" json:"url"`
+		AffiliateURL  string `datastore:",noindex" json:"affiliateURL"`
 		Image         string `datastore:",noindex" json:"image"`
 		OriginalImage string `datastore:",noindex" json:"originalImage"`
 	}

@@ -448,6 +448,17 @@ func (parser AmazonParser) Product(_ context.Context) (Product, error) {
 		}
 	})
 
+	doc.Find("#imgBlkFront").Each(func(i int, s *goquery.Selection) {
+		if p.Image != "" {
+			return
+		}
+
+		src, ok := s.Attr("src")
+		if ok && src != "" && len(src) < 1500 {
+			p.Image = src
+		}
+	})
+
 	return p, nil
 }
 

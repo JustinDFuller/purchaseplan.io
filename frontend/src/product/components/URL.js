@@ -47,7 +47,7 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
   );
 
   return (
-    <layout.components.Card bodyClassName="pb-1">
+    <layout.components.Card bodyClassName="pb-1" style={{ width: "100%" }}>
       {error && (
         <div className="alert alert-danger" role="alert">
           Please make sure the URL is correct and try again.

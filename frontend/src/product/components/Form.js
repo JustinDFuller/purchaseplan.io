@@ -3,6 +3,7 @@ import { useState } from "react";
 import ReactTooltip from "react-tooltip";
 import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil-square.svg";
 import { ReactComponent as Plus } from "bootstrap-icons/icons/plus-square.svg";
+import Alert from "react-bootstrap/Alert";
 
 import * as styles from "styles";
 import * as form from "form";
@@ -19,9 +20,21 @@ export function Form({
 }) {
   const [showNote, setShowNote] = useState(product.description);
   const [showQuantity, setShowQuantity] = useState(quantity > 1);
+  // Cache product.missing so it doesn't update as the user edits the form.
+  const [missingText] = useState(product.missing());
 
   return (
     <form onSubmit={onSubmit}>
+      {product.url() && missingText && (
+        <Alert variant="danger">
+          <div className="mb-2">
+            🤦 Looks like there's no <strong>{missingText}</strong> for this
+            product.
+          </div>
+          Sorry about that. We'll try to improve Purchase Plan's ability to
+          understand this website.
+        </Alert>
+      )}
       <h5 className="card-title">
         {product.url()
           ? "Does everything look correct?"

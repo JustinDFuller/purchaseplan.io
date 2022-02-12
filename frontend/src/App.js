@@ -64,7 +64,7 @@ export default function App() {
         <div
           style={{ height: "100vh", width: "100vw" }}
           className={styles.classes("container-fluid px-0", {
-            "px-md-3": window.location.pathname !== Layout.routes.Landing.path,
+            "px-xl-3": window.location.pathname !== Layout.routes.Landing.path,
             loading:
               auth.isLoggingIn() &&
               window.location.pathname !== Layout.routes.Landing.path,
@@ -96,7 +96,7 @@ export default function App() {
               <Layout.routes.Landing />
             </Route>
           </Switch>
-          {auth.isLoggedIn() && Layout.isNativeApp() && (
+          {auth.isLoggedIn() && (
             <Layout.components.BottomNav />
           )}
         </div>

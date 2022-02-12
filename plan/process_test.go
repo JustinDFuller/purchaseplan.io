@@ -851,6 +851,47 @@ func TestProcess(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "adds_amazon_affiliate_link",
+			given: User{
+				Email:         "foobar",
+				Frequency:     weekly,
+				Contributions: 100,
+				LastPaycheck:  fromNow(-oneWeek * 2),
+				Purchases: []Purchase{
+					{
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Quantity: 1,
+						Deleted:  true,
+						Product: Product{
+							Name:  "The Art of Happiness (Penguin Classics)",
+							Price: 15,
+							URL:   "https://www.amazon.com/dp/0143107216",
+						},
+					},
+				},
+			},
+			expected: User{
+				Email:         "foobar",
+				Frequency:     weekly,
+				Contributions: 100,
+				Saved:         200,
+				LastPaycheck:  now(),
+				Purchases: []Purchase{
+					{
+						ID:       "0747aef7-fd62-4daa-973f-733b1190961f",
+						Deleted:  true,
+						Quantity: 1,
+						Product: Product{
+							Name:         "The Art of Happiness (Penguin Classics)",
+							Price:        15,
+							URL:          "https://www.amazon.com/dp/0143107216",
+							AffiliateURL: "https://www.amazon.com/dp/0143107216?tag=purchaseplan-20",
+						},
+					},
+				},
+			},
+		},
 	}
 
 	for _, test := range tests {
