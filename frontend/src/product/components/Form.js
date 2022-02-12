@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import ReactTooltip from "react-tooltip";
 import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil-square.svg";
-// import { ReactComponent as Image } from "bootstrap-icons/icons/image.svg";
 import { ReactComponent as Plus } from "bootstrap-icons/icons/plus-square.svg";
 import Alert from "react-bootstrap/Alert";
 
@@ -21,7 +20,6 @@ export function Form({
 }) {
   const [showNote, setShowNote] = useState(product.description);
   const [showQuantity, setShowQuantity] = useState(quantity > 1);
-
   // Cache product.missing so it doesn't update as the user edits the form.
   const [missingText] = useState(product.missing());
 

@@ -24,8 +24,16 @@ export const Card = User.data.WithContext(function ({
     setLoading(true);
     try {
       const result = await Product.api.get(url);
-      setProduct(Product.data.New(result));
-      setError(NO_ERROR);
+
+      if (result) {
+        setProduct(Product.data.New(result));
+        setError(NO_ERROR);
+      }
+
+      if (!result) {
+        setProduct(productDefaults);
+        setError(INVALID_SEARCH);
+      }
     } catch (e) {
       console.error(e);
       setProduct(productDefaults);

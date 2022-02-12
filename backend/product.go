@@ -1,6 +1,7 @@
 package planner
 
 import (
+	"context"
 	"html"
 	"net/url"
 	"sync"
@@ -9,10 +10,10 @@ import (
 // Producter is an interface for retrieving products.
 type Producter interface {
 	// Product returns a Product and an error.
-	Product() (Product, error)
+	Product(ctx context.Context) (Product, error)
 }
 
-func mergeProducts(producters ...Producter) (Product, error) {
+func mergeProducts(ctx context.Context, producters ...Producter) (Product, error) {
 	var wg sync.WaitGroup
 	var m sync.Mutex
 
@@ -28,7 +29,7 @@ func mergeProducts(producters ...Producter) (Product, error) {
 		go func() {
 			defer wg.Done()
 
-			p, err := p.Product()
+			p, err := p.Product(ctx)
 			m.Lock()
 			defer m.Unlock()
 			if err != nil {
