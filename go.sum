@@ -248,8 +248,8 @@ github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af/go.mod h1:Nht
 github.com/jstemmer/go-junit-report v0.0.0-20190106144839-af01ea7f8024/go.mod h1:6v2b51hI/fHJwM22ozAgKL4VKDeJcHhJFhtBdhmNjmU=
 github.com/jstemmer/go-junit-report v0.9.1/go.mod h1:Brl9GWCQeLvo8nXZwPNNblvFj/XSXhF0NWZEnDohbsk=
 github.com/julienschmidt/httprouter v1.1.1-0.20170430222011-975b5c4c7c21/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
-github.com/justindfuller/secretmanager v0.0.3 h1:5YqeEPVIPGSTckyXswPODcrmmFVjHGpriH+8W3Uyx88=
-github.com/justindfuller/secretmanager v0.0.3/go.mod h1:BnbXy+v7tP4YM/tX2DPQju81z21ERCqB3Eo9wElgWe8=
+github.com/justindfuller/secretmanager v0.0.4 h1:no2wf912Y7HCXaMLNSI0Ar3xdtTM7KLiWdad+0VTqP8=
+github.com/justindfuller/secretmanager v0.0.4/go.mod h1:BnbXy+v7tP4YM/tX2DPQju81z21ERCqB3Eo9wElgWe8=
 github.com/karalabe/usb v0.0.0-20190919080040-51dc0efba356/go.mod h1:Od972xHfMJowv7NGVDiWVxk2zxnWgjLlJzE+F4F7AGU=
 github.com/kelseyhightower/envconfig v1.4.0 h1:Im6hONhd3pLkfDFsbRgu68RDNkGF1r3dvMUtDTo2cv8=
 github.com/kelseyhightower/envconfig v1.4.0/go.mod h1:cccZRl6mQpaq41TPp5QxidR+Sa3axMbJDNb//FQX6Gg=
