@@ -13,7 +13,7 @@ require (
 	github.com/google/go-cmp v0.5.7
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
-	github.com/justindfuller/secretmanager v0.0.3
+	github.com/justindfuller/secretmanager v0.0.4
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/kr/pretty v0.2.1 // indirect
 	github.com/magiclabs/magic-admin-go v0.1.0
