@@ -3,7 +3,7 @@ module github.com/justindfuller/purchaseplan.io
 go 1.15
 
 require (
-	cloud.google.com/go/bigquery v1.8.0
+	cloud.google.com/go/bigquery v1.27.0
 	cloud.google.com/go/datastore v1.6.0
 	cloud.google.com/go/secretmanager v1.0.0 // indirect
 	cloud.google.com/go/storage v1.20.0
