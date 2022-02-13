@@ -12,7 +12,7 @@ require (
 	github.com/aws/aws-sdk-go v1.25.48
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/google/go-cmp v0.5.7
-	github.com/google/uuid v1.1.2
+	github.com/google/uuid v1.3.0
 	github.com/gorilla/mux v1.8.0
 	github.com/justindfuller/secretmanager v0.0.3
 	github.com/kelseyhightower/envconfig v1.4.0
