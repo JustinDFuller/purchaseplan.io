@@ -2,15 +2,23 @@ package planner
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"html"
 	"io/ioutil"
 	"log"
+	"net/http"
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/aws/aws-sdk-go/aws/credentials"
+	signer "github.com/aws/aws-sdk-go/aws/signer/v4"
+	"github.com/justindfuller/purchaseplan.io/backend/config"
+	"github.com/pkg/errors"
 )
 
 type (
@@ -43,11 +51,12 @@ type (
 
 	// DefaultParser combines the above parsers in a single convenient parser.
 	DefaultParser struct {
-		AmazonParser    AmazonParser
-		SchemaOrgParser SchemaOrgParser
-		OpenGraphParser OpenGraphParser
-		HTMLParser      HTMLParser
-		MetaTagParser   MetaTagParser
+		AmazonPAPIParser AmazonPAPIParser
+		AmazonParser     AmazonParser
+		SchemaOrgParser  SchemaOrgParser
+		OpenGraphParser  OpenGraphParser
+		HTMLParser       HTMLParser
+		MetaTagParser    MetaTagParser
 	}
 
 	// AmazonParser is made specifically for parsing Amazon.com
@@ -55,24 +64,34 @@ type (
 		URL  string
 		Body []byte
 	}
+
+	// AmazonPAPIParser parses amazon.com links with their Product API.
+	AmazonPAPIParser struct {
+		URL    string
+		Body   []byte
+		config config.C
+	}
 )
 
 // NewDefaultParser creates a new parser than combines other parsers.
-func NewDefaultParser(url string, body []byte) DefaultParser {
+func NewDefaultParser(url string, body []byte, c config.C) DefaultParser {
 	return DefaultParser{
-		AmazonParser:    AmazonParser{url, body},
-		SchemaOrgParser: SchemaOrgParser{url, body},
-		OpenGraphParser: OpenGraphParser{url, body},
-		MetaTagParser:   MetaTagParser{url, body},
-		HTMLParser:      HTMLParser{url, body},
+		AmazonPAPIParser: AmazonPAPIParser{url, body, c},
+		AmazonParser:     AmazonParser{url, body},
+		SchemaOrgParser:  SchemaOrgParser{url, body},
+		OpenGraphParser:  OpenGraphParser{url, body},
+		MetaTagParser:    MetaTagParser{url, body},
+		HTMLParser:       HTMLParser{url, body},
 	}
 }
 
 // Product returns the result of combining other Producters.
-func (parser DefaultParser) Product() (Product, error) {
+func (parser DefaultParser) Product(ctx context.Context) (Product, error) {
 	// the order here is important. Top takes precedence,
 	// so the more accurate parsers should go first.
 	return mergeProducts(
+		ctx,
+		parser.AmazonPAPIParser,
 		parser.AmazonParser,
 		parser.OpenGraphParser,
 		parser.SchemaOrgParser,
@@ -82,7 +101,7 @@ func (parser DefaultParser) Product() (Product, error) {
 }
 
 // Product parses the HTML for a product.
-func (parser HTMLParser) Product() (Product, error) {
+func (parser HTMLParser) Product(_ context.Context) (Product, error) {
 	var p Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
@@ -149,7 +168,7 @@ func (parser HTMLParser) Product() (Product, error) {
 }
 
 // Product parses meta tags for product information.
-func (parser MetaTagParser) Product() (Product, error) {
+func (parser MetaTagParser) Product(_ context.Context) (Product, error) {
 	var p Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
@@ -182,7 +201,7 @@ func (parser MetaTagParser) Product() (Product, error) {
 }
 
 // Product parses opengraph meta tags for product information.
-func (parser OpenGraphParser) Product() (Product, error) {
+func (parser OpenGraphParser) Product(_ context.Context) (Product, error) {
 	var p Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
@@ -233,11 +252,11 @@ type (
 	// graph is the top level of schema.org data.
 	// This data is used to retrieve a Product from a URL.
 	graph struct {
-		Contexts []context `json:"@graph"`
+		Contexts []graphContext `json:"@graph"`
 	}
 
 	// context is one of many schema contexts that a website can have.
-	context struct {
+	graphContext struct {
 		Context     string      `json:"@context"`
 		Type        string      `json:"@type"`
 		Description string      `json:"description"`
@@ -253,7 +272,7 @@ type (
 	}
 )
 
-func (c context) toProduct() Product {
+func (c graphContext) toProduct() Product {
 	var price int64
 
 	var offers []offer
@@ -355,7 +374,7 @@ func (c context) toProduct() Product {
 }
 
 // Product parses schema org JSON for data about a product.
-func (parser SchemaOrgParser) Product() (Product, error) {
+func (parser SchemaOrgParser) Product(_ context.Context) (Product, error) {
 	var p Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
@@ -365,7 +384,7 @@ func (parser SchemaOrgParser) Product() (Product, error) {
 
 	doc.Find(`script[type="application/ld+json"]`).Each(func(i int, s *goquery.Selection) {
 
-		var c context
+		var c graphContext
 
 		if err := json.Unmarshal([]byte(s.Text()), &c); err == nil {
 			if c.Type == "Product" {
@@ -393,7 +412,7 @@ func (parser SchemaOrgParser) Product() (Product, error) {
 }
 
 // Product parses amazon.com html for product information.
-func (parser AmazonParser) Product() (Product, error) {
+func (parser AmazonParser) Product(_ context.Context) (Product, error) {
 	var p Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
@@ -439,6 +458,149 @@ func (parser AmazonParser) Product() (Product, error) {
 			p.Image = src
 		}
 	})
+
+	return p, nil
+}
+
+type PAPIResponse struct {
+	Errors []struct {
+		Message string
+	}
+	ItemsResult struct {
+		Items []struct {
+			DetailPageURL string
+			ItemInfo      struct {
+				Title struct {
+					DisplayValue string
+				}
+			}
+			Offers struct {
+				Listings []struct {
+					Price struct {
+						Amount float64
+					}
+				}
+			}
+			Images struct {
+				Primary struct {
+					Large struct {
+						URL string
+					}
+				}
+			}
+		}
+	}
+}
+
+type PAPIRequest struct {
+	ItemIds     []string
+	PartnerTag  string
+	PartnerType string
+	Marketplace string
+	Operation   string
+	Resources   []string
+}
+
+func (parser AmazonPAPIParser) Product(ctx context.Context) (Product, error) {
+	var p Product
+
+	u, err := url.Parse(parser.URL)
+	if err != nil {
+		return p, err
+	}
+
+	domains := []string{
+		"amazon.com",
+		"www.amazon.com",
+		"smile.amazon.com",
+	}
+
+	var found bool
+	for _, domain := range domains {
+		if domain == u.Hostname() {
+			found = true
+			break
+		}
+	}
+
+	if !found {
+		return p, nil
+	}
+
+	paths := strings.Split(u.Path, "/")
+	if l := len(paths); l < 3 {
+		return p, errors.Errorf("invalid path: not enough paths: expected 3, got %d", l)
+	}
+
+	var asin int
+	for i, path := range paths {
+		if path == "dp" {
+			asin = i + 1
+		}
+	}
+
+	if asin == 0 || len(paths)-1 < asin {
+		return p, errors.Errorf("invalid path: should contain dp, got %s", u.Path)
+	}
+
+	if path := paths[asin]; path == "" || len(path) != 10 {
+		return p, errors.Errorf("invalid path: second path should be ASIN code, got %s", path)
+	}
+
+	body, err := json.Marshal(&PAPIRequest{
+		ItemIds:     []string{paths[asin]},
+		PartnerTag:  "purchaseplan-20",
+		PartnerType: "Associates",
+		Marketplace: "www.amazon.com",
+		Operation:   "GetItems",
+		Resources: []string{
+			"ItemInfo.Title",
+			"Images.Primary.Large",
+			"Offers.Listings.Price",
+		},
+	})
+	if err != nil {
+		return p, errors.Wrap(err, "unable to create PAPI request")
+	}
+
+	b := bytes.NewReader(body)
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, "https://webservices.amazon.com/paapi5/getitems", b)
+	if err != nil {
+		return p, errors.Wrap(err, "error making PAPI request")
+	}
+
+	req.Header.Set("Accept", "application/json, text/javascript")
+	req.Header.Set("Accept-Language", "en-US")
+	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
+	req.Header.Set("X-Amz-Target", "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.GetItems")
+	req.Header.Set("Content-Encoding", "amz-1.0")
+
+	creds := credentials.NewStaticCredentials(parser.config.AmazonPAPIAccessKey, parser.config.AmazonPAPISecretKey, "")
+	if _, err := signer.NewSigner(creds).Sign(req, b, "ProductAdvertisingAPI", "us-east-1", time.Now()); err != nil {
+		return p, errors.Wrap(err, "unable to sign PAPI request")
+	}
+
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return p, errors.Wrap(err, "error sending request to PAPI")
+	}
+
+	var r PAPIResponse
+	if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
+		return p, errors.Wrap(err, "error decoding PAPI response")
+	}
+
+	if len(r.ItemsResult.Items) == 0 {
+		return p, errors.New("PAPI returned no items")
+	}
+
+	p.Name = r.ItemsResult.Items[0].ItemInfo.Title.DisplayValue
+	p.URL = r.ItemsResult.Items[0].DetailPageURL
+	p.Image = r.ItemsResult.Items[0].Images.Primary.Large.URL
+
+	if len(r.ItemsResult.Items[0].Offers.Listings) > 0 {
+		p.Price = int64(r.ItemsResult.Items[0].Offers.Listings[0].Price.Amount)
+	}
 
 	return p, nil
 }

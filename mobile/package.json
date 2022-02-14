@@ -12,9 +12,9 @@
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
     "@ide/backoff": "^1.0.0",
-    "@react-native-community/netinfo": "^6.2.1",
+    "@react-native-community/netinfo": "^8.0.0",
     "expo": "^44.0.5",
-    "expo-dev-client": "^0.8.0",
+    "expo-dev-client": "^0.8.4",
     "expo-linking": "^3.0.0",
     "expo-notifications": "^0.14.0",
     "expo-splash-screen": "^0.14.1",
@@ -27,9 +27,9 @@
     "react-native-webview": "^11.17.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "eas-cli": "^0.45.1",
-    "eslint": "^8.7.0",
+    "@babel/core": "^7.17.2",
+    "eas-cli": "^0.47.0",
+    "eslint": "^8.9.0",
     "eslint-config-react-app": "^7.0.0",
     "expo-cli": "^5.0.3",
     "prettier": "^2.5.1"
