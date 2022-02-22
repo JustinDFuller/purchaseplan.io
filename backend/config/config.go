@@ -15,6 +15,8 @@ type C struct {
 	AmazonPAPISecretKey string `secretmanager:"AMAZON_PAPI_SECRET_KEY"`
 	MagicSecretKey      string `secretmanager:"MAGIC_SECRET_KEY"`
 	JwtSecret           string `secretmanager:"JWT_SECRET"`
+	PlaidClientID       string `secretmanager:"PlaidClientID"`
+	PlaidSecretKey      string `secretmanager:"PlaidSecretKey"`
 }
 
 // New parses config values from environment variables.

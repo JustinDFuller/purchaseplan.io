@@ -1,13 +1,16 @@
 export GOOGLE_APPLICATION_CREDENTIALS=$(HOME)/.config/gcloud/application_default_credentials.json
 
 init:
-	@(cd ./frontend && npm install) & (cd ./e2e && npm install) & (cd ./backend && go mod download);
+	@(cd ./budget && npm install) && @(cd ./purchase && npm install) & (cd ./e2e && npm install) & (cd ./backend && go mod download);
 
-run:
-	@(cd ./frontend && make run) & (cd ./backend && make run-watch);
+run-budget:
+	@(cd ./budget && make run) & (cd ./backend && make run-watch);
 
-build-frontend:
-	@cd ./frontend && make build;
+run-purchase:
+	@(cd ./purchase && make run) & (cd ./backend && make run-watch);
+
+build-purchase:
+	@cd ./purchase && make build;
 
 build-backend:
 	@cd ./backend && make build-server;

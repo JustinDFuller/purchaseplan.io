@@ -18,6 +18,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	signer "github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/justindfuller/purchaseplan.io/backend/config"
+	"github.com/justindfuller/purchaseplan.io/plan"
 	"github.com/pkg/errors"
 )
 
@@ -86,7 +87,7 @@ func NewDefaultParser(url string, body []byte, c config.C) DefaultParser {
 }
 
 // Product returns the result of combining other Producters.
-func (parser DefaultParser) Product(ctx context.Context) (Product, error) {
+func (parser DefaultParser) Product(ctx context.Context) (plan.Product, error) {
 	// the order here is important. Top takes precedence,
 	// so the more accurate parsers should go first.
 	return mergeProducts(
@@ -101,8 +102,8 @@ func (parser DefaultParser) Product(ctx context.Context) (Product, error) {
 }
 
 // Product parses the HTML for a product.
-func (parser HTMLParser) Product(_ context.Context) (Product, error) {
-	var p Product
+func (parser HTMLParser) Product(_ context.Context) (plan.Product, error) {
+	var p plan.Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
 	if err != nil {
@@ -168,8 +169,8 @@ func (parser HTMLParser) Product(_ context.Context) (Product, error) {
 }
 
 // Product parses meta tags for product information.
-func (parser MetaTagParser) Product(_ context.Context) (Product, error) {
-	var p Product
+func (parser MetaTagParser) Product(_ context.Context) (plan.Product, error) {
+	var p plan.Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
 	if err != nil {
@@ -201,8 +202,8 @@ func (parser MetaTagParser) Product(_ context.Context) (Product, error) {
 }
 
 // Product parses opengraph meta tags for product information.
-func (parser OpenGraphParser) Product(_ context.Context) (Product, error) {
-	var p Product
+func (parser OpenGraphParser) Product(_ context.Context) (plan.Product, error) {
+	var p plan.Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
 	if err != nil {
@@ -272,7 +273,7 @@ type (
 	}
 )
 
-func (c graphContext) toProduct() Product {
+func (c graphContext) toProduct() plan.Product {
 	var price int64
 
 	var offers []offer
@@ -364,7 +365,7 @@ func (c graphContext) toProduct() Product {
 		}
 	}
 
-	return Product{
+	return plan.Product{
 		Name:        strings.TrimSpace(c.Name),
 		Description: strings.TrimSpace(c.Description),
 		Price:       price,
@@ -374,8 +375,8 @@ func (c graphContext) toProduct() Product {
 }
 
 // Product parses schema org JSON for data about a product.
-func (parser SchemaOrgParser) Product(_ context.Context) (Product, error) {
-	var p Product
+func (parser SchemaOrgParser) Product(_ context.Context) (plan.Product, error) {
+	var p plan.Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
 	if err != nil {
@@ -412,8 +413,8 @@ func (parser SchemaOrgParser) Product(_ context.Context) (Product, error) {
 }
 
 // Product parses amazon.com html for product information.
-func (parser AmazonParser) Product(_ context.Context) (Product, error) {
-	var p Product
+func (parser AmazonParser) Product(_ context.Context) (plan.Product, error) {
+	var p plan.Product
 
 	doc, err := goquery.NewDocumentFromReader(ioutil.NopCloser(bytes.NewBuffer(parser.Body)))
 	if err != nil {
@@ -501,8 +502,8 @@ type PAPIRequest struct {
 	Resources   []string
 }
 
-func (parser AmazonPAPIParser) Product(ctx context.Context) (Product, error) {
-	var p Product
+func (parser AmazonPAPIParser) Product(ctx context.Context) (plan.Product, error) {
+	var p plan.Product
 
 	u, err := url.Parse(parser.URL)
 	if err != nil {

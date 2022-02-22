@@ -10,12 +10,13 @@ type (
 		ID                     string                  `json:"id"`
 		Issuer                 string                  `json:"issuer"`
 		Email                  string                  `json:"email"`
-		Saved                  int64                   `json:"saved,omitempty"`
-		Contributions          int64                   `json:"contributions,omitempty"`
-		Frequency              frequency               `json:"frequency,omitempty"`
-		LastPaycheck           *time.Time              `json:"lastPaycheck,omitempty"`
-		Purchases              []Purchase              `json:"purchases,omitempty"`
-		PushNotificationTokens []PushNotificationToken `json:"pushNotificationTokens,omitempty"`
+		Saved                  int64                   `json:"saved"`
+		Contributions          int64                   `json:"contributions"`
+		Frequency              frequency               `json:"frequency"`
+		LastPaycheck           *time.Time              `json:"lastPaycheck"`
+		Purchases              []Purchase              `json:"purchases"`
+		PushNotificationTokens []PushNotificationToken `json:"pushNotificationTokens"`
+		Budgets                []Budget
 	}
 
 	// Purchase is something a User wants to buy.
@@ -53,6 +54,42 @@ type (
 		DeviceTokenType string `datastore:",noindex" json:"deviceTokenType,omitempty"`
 		// Expo token is used to send messages with expo's push notification service.
 		ExpoToken string `datastore:",noindex" json:"expoToken,omitempty"`
+	}
+
+	Budget struct {
+		ID           string
+		Start        time.Time
+		End          time.Time
+		Categories   []Category
+		Transactions []Transaction
+	}
+
+	Category struct {
+		ID    string
+		Name  string
+		Group string
+		// PlannedInCents represents the planned amount * 100 (12.50 === 1250)
+		// This helps avoid floating point issues with float64.
+		PlannedInCents int64
+	}
+
+	Transaction struct {
+		ID          string
+		CategoryIDs []string
+		// AmountInCents represents the price * 100 (12.50 === 1250)
+		// This helps avoid floating point issues with float64.
+		AmountInCents int64
+		Time          TransactionTime
+		Merchant      Merchant
+	}
+
+	TransactionTime struct {
+		Created   time.Time
+		Completed time.Time
+	}
+
+	Merchant struct {
+		Name string
 	}
 )
 
