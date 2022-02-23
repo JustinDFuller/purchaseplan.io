@@ -9,6 +9,10 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
 
   const budget = user.Budgets().last();
 
+  if (!auth.isLoggedIn()) {
+    return null;
+  }
+
   return (
     <>
       <div className="d-flex row m-auto pt-4" style={{ maxWidth: 1500 }}>
@@ -31,7 +35,7 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                       <div>
                         <h5 className="card-title d-inline">{g.name}</h5>{" "}
                         <strong className="float-right" style={styles.textDark}>
-                          Remaining
+                          Planned
                         </strong>
                       </div>
                     </li>
