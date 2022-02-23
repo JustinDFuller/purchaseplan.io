@@ -17,6 +17,10 @@ export function iterator(data = [], constructor) {
       return isArray() && data[data.length - 1];
     },
     from(d) {
+      if (d === null || d === undefined) {
+        return constructor();
+      }
+
       if (Array.isArray(d)) {
         return constructor(d);
       }

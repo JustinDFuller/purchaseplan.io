@@ -4,27 +4,19 @@ import * as Notifications from "notifications";
 import * as styles from "styles";
 import * as Layout from "layout";
 
-import { List } from "./List";
-
 export const Dashboard = Auth.context.With(function ({ auth }) {
   const { user } = User.data.Use();
 
-  const budget = user.budgets().last();
+  const budget = user.Budgets().last();
 
   return (
     <>
-      <span className="d-block d-xl-none">
-        <List auth={auth} />
-      </span>
-      <div
-        className="d-none d-xl-flex row m-auto pt-4"
-        style={{ maxWidth: 1500 }}
-      >
-        {user.budgets().isEmpty() ? (
+      <div className="d-flex row m-auto pt-4" style={{ maxWidth: 1500 }}>
+        {user.Budgets().isEmpty() ? (
           <User.components.SavingsOverview />
         ) : (
           <>
-            <Layout.components.Card>
+            <Layout.components.Card className="col-12">
               <div>Budget started: {budget.startDisplay()}</div>
               <div>Budget ends: {budget.endDisplay()}</div>
               <div>Budget frequency: {user.frequency()}</div>
@@ -33,12 +25,11 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
               .Categories()
               .groups()
               .map((g) => (
-                <Layout.components.Card key={g.name}>
-                  <strong>{g.name}</strong>
-                  <ul className="list-group list-group-flush mt-3">
+                <Layout.components.Card key={g.name} className="col-12">
+                  <ul className="list-group list-group-flush">
                     <li className="list-group-item pl-0 text-white">
                       <div>
-                        <strong>Category</strong>
+                        <h5 className="card-title d-inline">{g.name}</h5>{" "}
                         <strong className="float-right" style={styles.textDark}>
                           Remaining
                         </strong>

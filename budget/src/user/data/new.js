@@ -10,7 +10,7 @@ const defaults = {
   frequency: "Every 2 Weeks",
   lastPaycheck: new Date(),
   pushNotificationTokens: [],
-  budgets: Budget.list(),
+  Budgets: Budget.list(),
 };
 
 export function New(data = defaults) {
@@ -26,6 +26,10 @@ export function New(data = defaults) {
         ...user,
       };
 
+      if (d.Budgets && d.Budgets.length) {
+        d.Budgets = d.Budgets.map((b) => Budget.New().from(b));
+      }
+
       return New({
         ...d,
         lastPaycheck: d.lastPaycheck
@@ -34,7 +38,7 @@ export function New(data = defaults) {
         pushNotificationTokens: d.pushNotificationTokens.map((t) =>
           Notifications.New(t)
         ),
-        budgets: Budget.list().from(d.budgets),
+        Budgets: Budget.list().from(d.Budgets),
       });
     },
     setLastPaycheck(lastPaycheck) {

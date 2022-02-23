@@ -16,7 +16,6 @@ import (
 	"github.com/justindfuller/purchaseplan.io/backend/analytics"
 	"github.com/justindfuller/purchaseplan.io/backend/config"
 	"github.com/justindfuller/purchaseplan.io/backend/datastore"
-	"github.com/justindfuller/purchaseplan.io/backend/plaid"
 	"github.com/justindfuller/purchaseplan.io/backend/storage"
 	"github.com/justindfuller/purchaseplan.io/plan"
 	"github.com/magiclabs/magic-admin-go"
@@ -85,10 +84,10 @@ func New(opts ...Option) (S, error) {
 	r := mux.NewRouter()
 	r.Use(mux.CORSMethodMiddleware(r))
 
-	plaid, err := plaid.New(cfg)
+	/* plaid, err := plaid.New(c)
 	if err != nil {
 		return s, errors.Wrap(err, "error initializing plaid client")
-	}
+	} */
 
 	r.Use(func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

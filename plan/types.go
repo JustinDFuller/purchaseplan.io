@@ -10,12 +10,12 @@ type (
 		ID                     string                  `json:"id"`
 		Issuer                 string                  `json:"issuer"`
 		Email                  string                  `json:"email"`
-		Saved                  int64                   `json:"saved"`
-		Contributions          int64                   `json:"contributions"`
-		Frequency              frequency               `json:"frequency"`
-		LastPaycheck           *time.Time              `json:"lastPaycheck"`
-		Purchases              []Purchase              `json:"purchases"`
-		PushNotificationTokens []PushNotificationToken `json:"pushNotificationTokens"`
+		Saved                  int64                   `json:"saved,omitempty"`
+		Contributions          int64                   `json:"contributions,omitempty"`
+		Frequency              frequency               `json:"frequency,omitempty"`
+		LastPaycheck           *time.Time              `json:"lastPaycheck,omitempty"`
+		Purchases              []Purchase              `json:"purchases,omitempty"`
+		PushNotificationTokens []PushNotificationToken `json:"pushNotificationTokens,omitempty"`
 		Budgets                []Budget
 	}
 

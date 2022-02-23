@@ -67,8 +67,6 @@ export const SavingsOverview = data.WithContext(function ({
   async function onSubmit(e) {
     e.preventDefault();
 
-    console.log(user.lastPaycheck(), user.frequency());
-
     const end = new Date(user.lastPaycheck().getTime());
     if (user.frequency() === "Every Week") {
       end.setDate(end.getDate() + 7);
@@ -85,19 +83,18 @@ export const SavingsOverview = data.WithContext(function ({
       }
     }
 
-    console.log(end);
-
     const budget = Budget.New()
       .setStart(user.lastPaycheck())
       .setEnd(end)
       .initialize();
-    const budgets = user.budgets().add(budget);
-    setUser(user.setBudgets(budgets));
-    api.put(user);
+    const budgets = user.Budgets().add(budget);
+    const u = user.setBudgets(budgets);
+    setUser(u);
+    api.put(u);
   }
 
   return (
-    <layout.components.Card>
+    <layout.components.Card className="col-12">
       <div className="row">
         <div className="col-12">
           <h5 className="card-title d-inline">Edit Savings Overview</h5>

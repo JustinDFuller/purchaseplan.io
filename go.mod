@@ -19,6 +19,7 @@ require (
 	github.com/magiclabs/magic-admin-go v0.1.0
 	github.com/oliveroneill/exponent-server-sdk-golang v0.0.0-20210813074212-6ad56db8bf5c
 	github.com/pkg/errors v0.9.1
+	github.com/plaid/plaid-go v1.10.0
 	github.com/plaid/plaid-go/v2 v2.0.1 // indirect
 	google.golang.org/api v0.66.0
 )

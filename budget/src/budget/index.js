@@ -17,6 +17,27 @@ export function New(data = defaults) {
 
   return {
     ...getterSetters(data, New),
+    from(budget) {
+      const d = {
+        ...data,
+        ...budget,
+      };
+
+      d.Start = new Date(d.Start);
+      d.End = new Date(d.End);
+
+      if (d.Categories && d.Categories.length) {
+        d.Categories = Categories(d.Categories.map((c) => Category(c)));
+      }
+
+      if (d.Transactions && d.Transactions.length) {
+        d.Transactions = Transactions(
+          d.Transactions.map((t) => Transaction(t))
+        );
+      }
+
+      return New(d);
+    },
     initialize() {
       return New({
         ...data,
@@ -160,6 +181,10 @@ function Categories(data = []) {
       return arr;
     },
   };
+}
+
+function Transaction() {
+  return {};
 }
 
 function Transactions(data = []) {

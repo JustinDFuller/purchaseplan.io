@@ -1,17 +1,15 @@
 package plaid
 
 import (
-	"context"
-
 	"github.com/justindfuller/purchaseplan.io/backend/config"
-	p "github.com/plaid/plaid-go/plaid/v2"
+	p "github.com/plaid/plaid-go/plaid"
 )
 
 type Client struct {
 	client *p.APIClient
 }
 
-func New(c config.C) {
+func New(c config.C) Client {
 	cfg := p.NewConfiguration()
 	cfg.AddDefaultHeader("PLAID-CLIENT-ID", c.PlaidClientID)
 	cfg.AddDefaultHeader("PLAID-SECRET", c.PlaidSecretKey)
@@ -21,6 +19,8 @@ func New(c config.C) {
 		client: p.NewAPIClient(cfg),
 	}
 }
+
+/*
 
 func (c Client) Link(ctx context.Context, user string) (string, error) {
 	user := p.LinkTokenCreateRequestUser{
@@ -51,3 +51,5 @@ func (c Client) Link(ctx context.Context, user string) (string, error) {
 	linkToken := resp.GetLinkToken()
 	return linkToken, nil
 }
+
+*/
