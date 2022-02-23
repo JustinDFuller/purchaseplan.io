@@ -76,5 +76,17 @@ export function New(data = defaults) {
         pushNotificationTokens,
       });
     },
+    setBudget(b) {
+      return New({
+        ...data,
+        Budgets: data.Budgets.setBudget(b),
+      });
+    },
+    setCategory(id, fn) {
+      return New({
+        ...data,
+        Budgets: data.Budgets.setCategory(id, fn),
+      });
+    },
   };
 }

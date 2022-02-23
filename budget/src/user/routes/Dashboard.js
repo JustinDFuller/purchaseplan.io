@@ -5,7 +5,7 @@ import * as styles from "styles";
 import * as Layout from "layout";
 
 export const Dashboard = Auth.context.With(function ({ auth }) {
-  const { user } = User.data.Use();
+  const { user, setUser } = User.data.Use();
 
   const budget = user.Budgets().last();
 
@@ -42,7 +42,24 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                       >
                         <div>
                           {c.Name()}
-                          <span className="float-right">{c.planned()}</span>
+                          <span className="float-right">
+                            <input
+                              className="form-control-plaintext text-white text-right"
+                              type="number"
+                              value={c.planned() ? c.planned().toString() : ""}
+                              placeholder="0"
+                              min="0"
+                              onChange={(e) => {
+                                const u = user.setBudget(
+                                  budget.setCategory(c.ID(), (cat) =>
+                                    cat.setPlanned(e.target.value)
+                                  )
+                                );
+                                setUser(u);
+                                User.api.put(u);
+                              }}
+                            />
+                          </span>
                         </div>
                       </li>
                     ))}

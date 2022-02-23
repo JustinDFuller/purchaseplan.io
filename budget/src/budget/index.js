@@ -72,17 +72,23 @@ export function New(data = defaults) {
 
       return l.toLocaleDateString("en-US");
     },
+    setCategory(id, fn) {
+      return New({
+        ...data,
+        Categories: data.Categories.setCategory(id, fn),
+      });
+    },
   };
 }
 
 export function list(data = []) {
-  return iterator(data, list);
+  return {
+    ...iterator(data, list),
+    setBudget(budget) {
+      return list(data.map((b) => (b.ID() === budget.ID() ? budget : b)));
+    },
+  };
 }
-
-const currency = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
 
 const categoryDefaults = {
   ID: "",
@@ -103,7 +109,13 @@ function Category(data = categoryDefaults) {
   return {
     ...getterSetters(data, Category),
     planned() {
-      return currency.format(data.PlannedInCents / 100);
+      return data.PlannedInCents / 100;
+    },
+    setPlanned(planned) {
+      return Category({
+        ...data,
+        PlannedInCents: Number(planned) * 100,
+      });
     },
   };
 }
@@ -179,6 +191,9 @@ function Categories(data = []) {
       }
 
       return arr;
+    },
+    setCategory(id, fn) {
+      return Categories(data.map((c) => (c.ID() === id ? fn(c) : c)));
     },
   };
 }
