@@ -46,7 +46,19 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                         className="list-group-item pl-0 text-white"
                       >
                         <div>
-                          {c.Name()}
+                          <input
+                            className="d-inline-block form-control-plaintext text-white w-auto"
+                            value={c.Name()}
+                            onChange={(e) => {
+                              const u = user.setBudget(
+                                budget.setCategory(c.ID(), (cat) =>
+                                  cat.setName(e.target.value)
+                                )
+                              );
+                              setUser(u);
+                              User.api.put(u);
+                            }}
+                          />
                           <span className="float-right">
                             $
                             <input

@@ -11,11 +11,17 @@ const defaults = {
 
 export function New(data = defaults) {
   if (!data.ID) {
-    data.ID = uuid.v4();
+    data = {
+      ...data,
+      ID: uuid.v4(),
+    };
   }
 
   if (!data.PlannedInCents) {
-    data.PlannedInCents = 0;
+    data = {
+      ...data,
+      PlannedInCents: 0,
+    };
   }
 
   return {
