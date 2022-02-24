@@ -16,7 +16,10 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
 
   return (
     <>
-      <div className="d-flex row m-auto pt-4" style={{ maxWidth: 1500 }}>
+      <div
+        className="d-flex row m-auto pt-xl-4 pb-5"
+        style={{ maxWidth: 1500 }}
+      >
         {user.Budgets().isEmpty() ? (
           <User.components.SavingsOverview />
         ) : (

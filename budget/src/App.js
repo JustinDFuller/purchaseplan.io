@@ -71,17 +71,11 @@ export default function App() {
           })}
         >
           <Switch>
-            <Route path={User.routes.List.path}>
-              <User.routes.List />
-            </Route>
             <Route path={User.routes.Overview.path}>
               <User.routes.Overview />
             </Route>
             <Route path={User.routes.Dashboard.path}>
               <User.routes.Dashboard />
-            </Route>
-            <Route path={User.routes.Add.path}>
-              <User.routes.Add />
             </Route>
             <Route path={Auth.routes.Login.path}>
               <Auth.routes.Login />
@@ -96,9 +90,7 @@ export default function App() {
               <Layout.routes.Landing />
             </Route>
           </Switch>
-          {auth.isLoggedIn() && (
-            <Layout.components.BottomNav />
-          )}
+          {auth.isLoggedIn() && <Layout.components.BottomNav />}
         </div>
       </User.data.Context.Provider>
     </Auth.context.Context.Provider>
