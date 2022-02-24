@@ -122,6 +122,10 @@ export const zIndex = {
   zIndex: 999,
 };
 
+export const colorSuccess = {
+  color: theme.success,
+};
+
 export function combine(...styles) {
   return Object.assign({}, ...styles);
 }

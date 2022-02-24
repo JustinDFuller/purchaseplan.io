@@ -3,6 +3,7 @@ import * as User from "user";
 import * as Notifications from "notifications";
 import * as styles from "styles";
 import * as Layout from "layout";
+import * as Category from "category";
 
 export const Dashboard = Auth.context.With(function ({ auth }) {
   const { user, setUser } = User.data.Use();
@@ -47,8 +48,16 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                         <div>
                           {c.Name()}
                           <span className="float-right">
+                            $
                             <input
-                              className="form-control-plaintext text-white text-right"
+                              size={Math.max(c.planned().toString().length, 1)}
+                              style={{
+                                width:
+                                  Math.max(c.planned().toString().length, 1) *
+                                    8 +
+                                  16,
+                              }}
+                              className="d-inline-block form-control-plaintext text-white"
                               type="number"
                               value={c.planned() ? c.planned().toString() : ""}
                               placeholder="0"
@@ -68,6 +77,25 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                       </li>
                     ))}
                   </ul>
+                  <div>
+                    <button
+                      className="btn btn-link px-0"
+                      style={styles.colorSuccess}
+                      onClick={() => {
+                        const u = user.setBudget(
+                          budget.addCategory(
+                            Category.New()
+                              .setName("New Category")
+                              .setGroup(g.name)
+                          )
+                        );
+                        setUser(u);
+                        User.api.put(u);
+                      }}
+                    >
+                      Add Category
+                    </button>
+                  </div>
                 </Layout.components.Card>
               ))}
           </>

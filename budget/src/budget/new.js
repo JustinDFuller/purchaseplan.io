@@ -74,6 +74,12 @@ export function New(data = defaults) {
 
       return l.toLocaleDateString("en-US");
     },
+    addCategory(c) {
+      return New({
+        ...data,
+        Categories: data.Categories.add(c),
+      });
+    },
     setCategory(id, fn) {
       return New({
         ...data,
