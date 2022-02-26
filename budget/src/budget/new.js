@@ -47,32 +47,16 @@ export function New(data = defaults) {
       });
     },
     startDisplay() {
-      const t = new Date();
-      const l = data.Start;
-
-      if (
-        l.getYear() === t.getYear() &&
-        l.getMonth() === t.getMonth() &&
-        l.getDate() === t.getDate()
-      ) {
-        return "Today";
-      }
-
-      return l.toLocaleDateString("en-US");
+      return new Intl.DateTimeFormat("en-US", {
+        day: "numeric",
+        month: "long",
+      }).format(data.Start);
     },
     endDisplay() {
-      const t = new Date();
-      const l = data.End;
-
-      if (
-        l.getYear() === t.getYear() &&
-        l.getMonth() === t.getMonth() &&
-        l.getDate() === t.getDate()
-      ) {
-        return "Today";
-      }
-
-      return l.toLocaleDateString("en-US");
+      return new Intl.DateTimeFormat("en-US", {
+        day: "numeric",
+        month: "long",
+      }).format(data.End);
     },
     addCategory(c) {
       return New({
@@ -85,6 +69,9 @@ export function New(data = defaults) {
         ...data,
         Categories: data.Categories.setCategory(id, fn),
       });
+    },
+    remaining() {
+      return "0";
     },
   };
 }
