@@ -70,8 +70,8 @@ export function New(data = defaults) {
         Categories: data.Categories.setCategory(id, fn),
       });
     },
-    remaining() {
-      return "0";
+    remaining(category) {
+      return 0;
     },
   };
 }

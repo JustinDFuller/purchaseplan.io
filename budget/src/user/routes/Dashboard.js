@@ -96,7 +96,7 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                                 User.api.put(u);
                               }}
                             />
-                            <span>
+                            <span className="d-flex align-items-center justify-content-end">
                               $
                               {view === views.planned && (
                                 <input
@@ -134,13 +134,13 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                               {view === views.remaining && (
                                 <input
                                   size={Math.max(
-                                    c.planned().toString().length,
+                                    budget.remaining(c).toString().length,
                                     1
                                   )}
                                   style={{
                                     width:
                                       Math.max(
-                                        c.planned().toString().length,
+                                        budget.remaining(c).toString().length,
                                         1
                                       ) *
                                         8 +
@@ -149,7 +149,7 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                                   disabled
                                   className="d-inline-block form-control-plaintext text-white"
                                   type="number"
-                                  value={"0"}
+                                  value={budget.remaining(c)}
                                   placeholder="0"
                                   min="0"
                                 />
