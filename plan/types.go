@@ -74,8 +74,8 @@ type (
 	}
 
 	Transaction struct {
-		ID          string
-		CategoryIDs []string
+		ID         string
+		CategoryID string
 		// AmountInCents represents the price * 100 (12.50 === 1250)
 		// This helps avoid floating point issues with float64.
 		AmountInCents int64

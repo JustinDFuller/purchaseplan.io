@@ -6,6 +6,7 @@ import * as Notifications from "notifications";
 import * as styles from "styles";
 import * as Layout from "layout";
 import * as Category from "category";
+import * as Transaction from "transaction";
 
 const views = {
   planned: 0,
@@ -20,6 +21,10 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
 
   if (!auth.isLoggedIn()) {
     return null;
+  }
+
+  function handleTransactionSubmit(transaction) {
+    setUser(user.setBudget(budget.AddTransaction(transaction)));
   }
 
   return (
@@ -58,6 +63,10 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                   </button>
                 </div>
               </Layout.components.Card>
+              <Transaction.components.Card
+                budget={budget}
+                onSubmit={handleTransactionSubmit}
+              />
             </div>
             <div className="col-12 col-xl-8">
               {budget
