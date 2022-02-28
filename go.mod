@@ -8,7 +8,7 @@ require (
 	cloud.google.com/go/secretmanager v1.0.0 // indirect
 	cloud.google.com/go/storage v1.20.0
 	github.com/PuerkitoBio/goquery v1.8.0
-	github.com/aws/aws-sdk-go v1.42.52
+	github.com/aws/aws-sdk-go v1.43.7
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/google/go-cmp v0.5.7
 	github.com/google/uuid v1.3.0
