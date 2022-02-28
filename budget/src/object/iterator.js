@@ -10,8 +10,8 @@ export function iterator(data = [], constructor) {
     isEmpty() {
       return !isArray() || data.length === 0;
     },
-    add(budget) {
-      return constructor([...data, budget]);
+    add(item) {
+      return constructor([...data, item]);
     },
     last() {
       return isArray() && data[data.length - 1];

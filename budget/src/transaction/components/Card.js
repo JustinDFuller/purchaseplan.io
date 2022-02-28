@@ -19,10 +19,12 @@ export function Card({ budget, onSubmit }) {
   return (
     <Layout.components.Card>
       <h5 className="card-title d-inline">Transactions</h5>
-      <Plus
-        className="float-right cursor-pointer"
-        onClick={() => setEditing(true)}
-      />
+      {!editing && (
+        <Plus
+          className="float-right cursor-pointer"
+          onClick={() => setEditing(true)}
+        />
+      )}
 
       {editing && (
         <Form budget={budget} onSubmit={handleSubmit} onCancel={handleCancel} />

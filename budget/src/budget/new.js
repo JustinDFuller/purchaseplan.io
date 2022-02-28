@@ -21,6 +21,7 @@ export function New(data = defaults) {
     ...getterSetters(data, New),
     from(budget) {
       const d = {
+        ...defaults,
         ...data,
         ...budget,
       };
@@ -28,14 +29,20 @@ export function New(data = defaults) {
       d.Start = new Date(d.Start);
       d.End = new Date(d.End);
 
-      if (d.Categories && d.Categories.length) {
-        d.Categories = Category.List(d.Categories.map((c) => Category.New(c)));
+      if (budget.Categories && budget.Categories.length) {
+        d.Categories = Category.List(
+          budget.Categories.map((c) => Category.New(c))
+        );
+      } else {
+        d.Categories = Category.List();
       }
 
-      if (d.Transactions && d.Transactions.length) {
+      if (budget.Transactions && budget.Transactions.length) {
         d.Transactions = Transaction.List(
-          d.Transactions.map((t) => Transaction.New(t))
+          budget.Transactions.map((t) => Transaction.New(t))
         );
+      } else {
+        d.Transactions = Transaction.List();
       }
 
       return New(d);
@@ -72,6 +79,12 @@ export function New(data = defaults) {
     },
     remaining(category) {
       return 0;
+    },
+    addTransaction(transaction) {
+      return New({
+        ...data,
+        Transactions: data.Transactions.add(transaction),
+      });
     },
   };
 }

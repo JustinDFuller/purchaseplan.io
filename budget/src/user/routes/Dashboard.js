@@ -7,6 +7,7 @@ import * as styles from "styles";
 import * as Layout from "layout";
 import * as Category from "category";
 import * as Transaction from "transaction";
+import * as api from "../api";
 
 const views = {
   planned: 0,
@@ -24,7 +25,9 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
   }
 
   function handleTransactionSubmit(transaction) {
-    setUser(user.setBudget(budget.AddTransaction(transaction)));
+    const u = user.setBudget(budget.addTransaction(transaction));
+    setUser(u);
+    api.put(u);
   }
 
   return (

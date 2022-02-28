@@ -6,8 +6,8 @@ const defaults = Object.freeze({
   CategoryID: "",
   AmountInCents: 0,
   Time: {
-    Created: "",
-    Completed: "",
+    Created: null,
+    Completed: null,
   },
   Merchant: {
     Name: "",
@@ -45,7 +45,7 @@ export function New(data = defaults) {
       });
     },
     inputTime() {
-      if (data.Time.Completed === "") {
+      if (!data.Time.Completed) {
         return "";
       }
 
