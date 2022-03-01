@@ -1,6 +1,4 @@
-import * as User from "user";
-
-export function Planned({ budget, category, user, setUser }) {
+export function Planned({ budget, category, user, onChange }) {
   return (
     <>
       $
@@ -20,8 +18,7 @@ export function Planned({ budget, category, user, setUser }) {
               cat.setPlanned(e.target.value)
             )
           );
-          setUser(u);
-          User.api.put(u);
+          onChange(u);
         }}
       />
     </>
