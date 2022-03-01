@@ -125,11 +125,9 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                                           Math.max(
                                             c.planned().toString().length,
                                             1
-                                          ) *
-                                            8 +
-                                          16,
+                                          ) * 9,
                                       }}
-                                      className="d-inline-block form-control-plaintext text-white"
+                                      className="d-inline-block form-control-plaintext text-white text-right"
                                       type="number"
                                       value={
                                         c.planned()
@@ -153,24 +151,19 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                                 {view === views.remaining && (
                                   <input
                                     size={Math.max(
-                                      budget.formattedRemaining(c).toString()
-                                        .length,
+                                      budget.formattedRemaining(c).length,
                                       1
                                     )}
                                     style={{
                                       width:
                                         Math.max(
-                                          budget
-                                            .formattedRemaining(c)
-                                            .toString().length,
+                                          budget.formattedRemaining(c).length,
                                           1
-                                        ) *
-                                          8 +
-                                        16,
+                                        ) * 9,
                                     }}
                                     disabled
                                     className={styles.classes(
-                                      "d-inline-block form-control-plaintext text-white",
+                                      "d-inline-block form-control-plaintext text-white text-right",
                                       {
                                         "text-danger": budget.remaining(c) < 0,
                                         "text-success": budget.remaining(c) > 0,
