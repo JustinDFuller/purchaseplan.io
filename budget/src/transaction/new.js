@@ -21,8 +21,12 @@ export function New(data = defaults) {
       ID: uuid.v4(),
     };
   }
+
   return {
     ...getterSetters(data, New),
+    displayAmount() {
+      return (data.AmountInCents / 100).toFixed(2);
+    },
     amount() {
       return data.AmountInCents / 100;
     },
@@ -75,6 +79,12 @@ export function New(data = defaults) {
           Completed: new Date(time + "T00:00:00"),
         },
       });
+    },
+    displayTime() {
+      return new Intl.DateTimeFormat("en-US", {
+        day: "numeric",
+        month: "long",
+      }).format(new Date(data.Time.Completed));
     },
   };
 }

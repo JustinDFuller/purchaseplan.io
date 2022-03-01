@@ -111,11 +111,13 @@ export const pointer = {
 
 export const bubble = {
   background: colors.primary,
-  padding: "8px 20px",
+  padding: "8px 0",
   borderRadius: 4,
-  minWidth: 90,
   textAlign: "center",
   color: colors.light,
+  width: 100,
+  overflow: "hidden",
+  textOverflow: "ellipsis",
 };
 
 export const zIndex = {
