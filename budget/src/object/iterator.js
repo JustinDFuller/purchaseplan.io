@@ -7,6 +7,9 @@ export function iterator(data = [], constructor) {
     getById(id) {
       return data.find((d) => d.ID() === id);
     },
+    filter(fn) {
+      return data.filter(fn);
+    },
     map(fn) {
       return isArray() ? data.map(fn) : [];
     },

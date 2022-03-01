@@ -112,61 +112,72 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                                 }}
                               />
                               <span className="d-flex align-items-center justify-content-end">
-                                $
                                 {view === views.planned && (
-                                  <input
-                                    size={Math.max(
-                                      c.planned().toString().length,
-                                      1
-                                    )}
-                                    style={{
-                                      width:
-                                        Math.max(
-                                          c.planned().toString().length,
-                                          1
-                                        ) *
-                                          8 +
-                                        16,
-                                    }}
-                                    className="d-inline-block form-control-plaintext text-white"
-                                    type="number"
-                                    value={
-                                      c.planned() ? c.planned().toString() : ""
-                                    }
-                                    placeholder="0"
-                                    min="0"
-                                    onChange={(e) => {
-                                      const u = user.setBudget(
-                                        budget.setCategory(c.ID(), (cat) =>
-                                          cat.setPlanned(e.target.value)
-                                        )
-                                      );
-                                      setUser(u);
-                                      User.api.put(u);
-                                    }}
-                                  />
+                                  <>
+                                    $
+                                    <input
+                                      size={Math.max(
+                                        c.planned().toString().length,
+                                        1
+                                      )}
+                                      style={{
+                                        width:
+                                          Math.max(
+                                            c.planned().toString().length,
+                                            1
+                                          ) *
+                                            8 +
+                                          16,
+                                      }}
+                                      className="d-inline-block form-control-plaintext text-white"
+                                      type="number"
+                                      value={
+                                        c.planned()
+                                          ? c.planned().toString()
+                                          : ""
+                                      }
+                                      placeholder="0"
+                                      min="0"
+                                      onChange={(e) => {
+                                        const u = user.setBudget(
+                                          budget.setCategory(c.ID(), (cat) =>
+                                            cat.setPlanned(e.target.value)
+                                          )
+                                        );
+                                        setUser(u);
+                                        User.api.put(u);
+                                      }}
+                                    />
+                                  </>
                                 )}
                                 {view === views.remaining && (
                                   <input
                                     size={Math.max(
-                                      budget.remaining(c).toString().length,
+                                      budget.formattedRemaining(c).toString()
+                                        .length,
                                       1
                                     )}
                                     style={{
                                       width:
                                         Math.max(
-                                          budget.remaining(c).toString().length,
+                                          budget
+                                            .formattedRemaining(c)
+                                            .toString().length,
                                           1
                                         ) *
                                           8 +
                                         16,
                                     }}
                                     disabled
-                                    className="d-inline-block form-control-plaintext text-white"
-                                    type="number"
-                                    value={budget.remaining(c)}
-                                    placeholder="0"
-                                    min="0"
+                                    className={styles.classes(
+                                      "d-inline-block form-control-plaintext text-white",
+                                      {
+                                        "text-danger": budget.remaining(c) < 0,
+                                        "text-success": budget.remaining(c) > 0,
+                                      }
+                                    )}
+                                    type="text"
+                                    value={budget.formattedRemaining(c)}
                                   />
                                 )}
                               </span>

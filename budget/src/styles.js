@@ -150,9 +150,9 @@ export function classes(...inputs) {
         break;
       case "object":
         for (const key in i) {
-          const truthy = i[key];
+          const value = i[key];
 
-          if (truthy) {
+          if (value) {
             classNames.push(key);
           }
         }

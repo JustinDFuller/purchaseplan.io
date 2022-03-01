@@ -17,6 +17,20 @@ export function New(data = defaults) {
     data.ID = uuid.v4();
   }
 
+  function remaining(category) {
+    const p = category.PlannedInCents();
+
+    const transactions = data.Transactions.filter(
+      (t) => t.CategoryID() === category.ID()
+    );
+
+    const difference = transactions.reduce((sum, val) => {
+      return sum - val.AmountInCents();
+    }, p);
+
+    return difference / 100;
+  }
+
   return {
     ...getterSetters(data, New),
     from(budget) {
@@ -77,9 +91,14 @@ export function New(data = defaults) {
         Categories: data.Categories.setCategory(id, fn),
       });
     },
-    remaining(category) {
-      return 0;
+    formattedRemaining(category) {
+      const f = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+      return f.format(remaining(category));
     },
+    remaining,
     addTransaction(transaction) {
       return New({
         ...data,
