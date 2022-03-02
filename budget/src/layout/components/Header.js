@@ -32,19 +32,6 @@ export function Header() {
             </a>
             <ul className="navbar-nav float-end">
               <li className="nav-item">
-                {auth.isLoggedIn() && (
-                  <button
-                    className="btn btn-link nav-link"
-                    style={styles.combine(styles.text, {
-                      color: styles.colors.light,
-                    })}
-                    onClick={async () => setAuth(await auth.logout())}
-                  >
-                    Log Out
-                  </button>
-                )}
-              </li>
-              <li className="nav-item">
                 <a
                   className="btn btn-link nav-link"
                   style={styles.combine(styles.text, {
@@ -57,6 +44,33 @@ export function Header() {
                 >
                   Blog
                 </a>
+              </li>
+              <li className="nav-item">
+                {auth.isLoggedIn() && (
+                  <a
+                    className="btn btn-link nav-link"
+                    style={styles.combine(styles.text, {
+                      color: styles.colors.light,
+                    })}
+                    href="/app"
+                    target="_blank"
+                  >
+                    Purchases
+                  </a>
+                )}
+              </li>
+              <li className="nav-item">
+                {auth.isLoggedIn() && (
+                  <button
+                    className="btn btn-link nav-link"
+                    style={styles.combine(styles.text, {
+                      color: styles.colors.light,
+                    })}
+                    onClick={async () => setAuth(await auth.logout())}
+                  >
+                    Log Out
+                  </button>
+                )}
               </li>
             </ul>
           </nav>
