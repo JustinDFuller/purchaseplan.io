@@ -64,6 +64,7 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                   borderColor: "#424265",
                   borderWidth: 1,
                   borderStyle: "dotted",
+                  fontSize: 18,
                 }}
                 onClick={() => {
                   const groups = budget
