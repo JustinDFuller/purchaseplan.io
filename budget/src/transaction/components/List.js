@@ -1,8 +1,4 @@
-import * as styles from "styles";
-
-function upperFirst(s) {
-  return s[0].toUpperCase() + s.slice(1);
-}
+import { Row } from "./Row";
 
 export function List({ budget }) {
   return (
@@ -10,21 +6,12 @@ export function List({ budget }) {
       {budget
         .Transactions()
         .sortByAsc()
-        .map((t) => (
-          <li
-            key={t.ID()}
-            className="list-group-item px-0 d-flex align-items-center"
-          >
-            <div>
-              <div style={styles.bubble}>
-                {budget.Categories().getById(t.CategoryID()).Name()}
-              </div>
-            </div>
-            <span className="pl-3">
-              <strong>{upperFirst(t.merchantName())}</strong> for $
-              {t.displayAmount()} on {t.displayTime()}.
-            </span>
-          </li>
+        .map((transaction) => (
+          <Row
+            transaction={transaction}
+            budget={budget}
+            key={transaction.ID()}
+          />
         ))}
     </ul>
   );
