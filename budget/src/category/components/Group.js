@@ -84,6 +84,9 @@ export function Group({ group, view, user, budget, onChange }) {
             zIndex: 2,
             borderBottomLeftRadius: 4,
             borderBottomRightRadius: 4,
+            borderColor: "#424265",
+            borderWidth: 1,
+            borderStyle: "dotted",
             cursor: "pointer",
             opacity: 0.95,
           }}
