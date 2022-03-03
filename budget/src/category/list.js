@@ -77,5 +77,10 @@ export function New(data = []) {
     setCategory(id, fn) {
       return New(data.map((c) => (c.ID() === id ? fn(c) : c)));
     },
+    setGroup(oldGroup, newGroup) {
+      return New(
+        data.map((c) => (c.Group() === oldGroup ? c.setGroup(newGroup) : c))
+      );
+    },
   };
 }

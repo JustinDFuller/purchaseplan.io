@@ -10,8 +10,23 @@ export function Group({ group, view, user, budget, onChange }) {
       <ul className="list-group list-group-flush">
         <li className="list-group-item pl-0 text-white">
           <div className="row">
-            <div className="col-12 d-flex justify-content-between">
-              <h5 className="card-title d-inline">{group.name}</h5>{" "}
+            <div className="col-12 d-flex justify-content-between align-items-center">
+              <h5 className="card-title d-inline mb-0">
+                <input
+                  onChange={(e) => {
+                    const u = user.setBudget(
+                      budget.setCategories(
+                        budget.Categories().setGroup(group.name, e.target.value)
+                      )
+                    );
+                    onChange(u);
+                  }}
+                  className="form-control-plaintext text-white p-0 m-0"
+                  style={{ fontSize: "1.25rem" }}
+                  type="text"
+                  value={group.name}
+                />
+              </h5>
               {view === Layout.views.planned && (
                 <strong style={styles.textDark}>Planned</strong>
               )}
