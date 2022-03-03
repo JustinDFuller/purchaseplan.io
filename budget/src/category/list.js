@@ -82,5 +82,8 @@ export function New(data = []) {
         data.map((c) => (c.Group() === oldGroup ? c.setGroup(newGroup) : c))
       );
     },
+    deleteGroup(group) {
+      return New(data.filter((c) => c.Group() !== group));
+    },
   };
 }

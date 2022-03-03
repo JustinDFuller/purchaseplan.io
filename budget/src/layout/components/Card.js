@@ -8,9 +8,13 @@ export function Card({
   light,
   bodyClassName,
   className = "",
+  onMouseOver,
+  onMouseLeave,
 }) {
   return (
     <div
+      onMouseOver={onMouseOver}
+      onMouseLeave={onMouseLeave}
       className={styles.classes("card", noPadding ? "" : "mb-4", className)}
       style={styles.combine(styles.card, style)}
     >
