@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import * as form from "form";
 import { New } from "../new";
 
-export function Form({ budget, onSubmit, onCancel }) {
+export function Form({ user, budget, onSubmit, onCancel }) {
   const [group, setGroup] = useState("");
   const [transaction, setTransaction] = useState(New());
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit(transaction);
+    const u = user.setBudget(budget.addTransaction(transaction));
+    onSubmit(u);
   }
 
   return (

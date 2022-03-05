@@ -5,7 +5,7 @@ import * as Layout from "layout";
 import { Form } from "./Form";
 import { List } from "./List";
 
-export function Card({ budget, onSubmit }) {
+export function Card({ user, budget, onSubmit }) {
   const [editing, setEditing] = useState(false);
 
   function handleCancel() {
@@ -28,7 +28,12 @@ export function Card({ budget, onSubmit }) {
       )}
 
       {editing && (
-        <Form budget={budget} onSubmit={handleSubmit} onCancel={handleCancel} />
+        <Form
+          user={user}
+          budget={budget}
+          onSubmit={handleSubmit}
+          onCancel={handleCancel}
+        />
       )}
 
       {!editing && <List budget={budget} />}

@@ -15,14 +15,13 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
 
   const budget = user.Budgets().last();
 
-  if (!auth.isLoggedIn()) {
-    return null;
-  }
-
-  function handleTransactionSubmit(transaction) {
-    const u = user.setBudget(budget.addTransaction(transaction));
+  function handleUserChange(u) {
     setUser(u);
     api.put(u);
+  }
+
+  if (!auth.isLoggedIn()) {
+    return null;
   }
 
   return (
@@ -43,7 +42,8 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
               />
               <Transaction.components.Card
                 budget={budget}
-                onSubmit={handleTransactionSubmit}
+                onSubmit={handleUserChange}
+                user={user}
               />
             </div>
             <div className="col-12 col-xl-8">
@@ -51,18 +51,12 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                 budget={budget}
                 view={view}
                 user={user}
-                onChange={(u) => {
-                  setUser(u);
-                  User.api.put(u);
-                }}
+                onChange={handleUserChange}
               />
               <Category.components.NewGroup
                 budget={budget}
                 user={user}
-                onChange={(u) => {
-                  setUser(u);
-                  User.api.put(u);
-                }}
+                onChange={handleUserChange}
               />
             </div>
           </>
