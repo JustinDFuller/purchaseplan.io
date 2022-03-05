@@ -3,7 +3,7 @@ import { ReactComponent as Trophy } from "bootstrap-icons/icons/trophy-fill.svg"
 export function Remaining({ budget }) {
   if (budget.remainingToPlan() === 0) {
     return (
-      <h5 className="mt-2 text-center">
+      <h5 style={{ fontWeight: "normal" }} className="mt-2 text-center">
         <Trophy style={{ color: "gold" }} className="mb-1" /> It's a perfect
         budget!
       </h5>
@@ -12,7 +12,7 @@ export function Remaining({ budget }) {
 
   if (budget.remainingToPlan() > 0) {
     return (
-      <h5 className="mt-2 text-center">
+      <h5 style={{ fontWeight: "normal" }} className="mt-2 text-center">
         <strong className="text-success">
           {budget.formattedRemainingToPlan()}
         </strong>{" "}
@@ -22,7 +22,7 @@ export function Remaining({ budget }) {
   }
 
   return (
-    <h5 className="mt-2 text-center">
+    <h5 style={{ fontWeight: "normal" }} className="mt-2 text-center">
       <strong className="text-danger">
         {budget.formattedRemainingToPlan()}
       </strong>{" "}
