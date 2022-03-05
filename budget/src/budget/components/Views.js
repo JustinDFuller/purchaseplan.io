@@ -3,7 +3,7 @@ import * as styles from "styles";
 
 export function Views({ view, setView }) {
   return (
-    <div className="btn-group w-100 mt-3" role="group">
+    <div className="btn-group w-100" role="group">
       <button
         className={styles.classes("btn btn-primary", {
           active: view === Layout.views.planned,
