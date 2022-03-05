@@ -68,6 +68,7 @@ type (
 		ID    string
 		Name  string
 		Group string
+		Type  CategoryType
 		// PlannedInCents represents the planned amount * 100 (12.50 === 1250)
 		// This helps avoid floating point issues with float64.
 		PlannedInCents int64
@@ -98,4 +99,11 @@ const (
 	biweekly               = "Every 2 Weeks"
 	monthly                = "Once A Month"
 	twiceMonthly           = "1st and 15th"
+)
+
+type CategoryType string
+
+const (
+	expense CategoryType = "Expense"
+	income               = "Income"
 )

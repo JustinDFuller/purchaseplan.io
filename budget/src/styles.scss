@@ -129,3 +129,18 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+input[type="text"].form-control-plaintext {
+&:hover, &:focus {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}
+
+input.form-control-plaintext {
+  border-radius: 8px;
+  &:hover, &:focus {
+    outline: 3px solid #37376a;
+    background: #1a1a3b;
+  }
+}

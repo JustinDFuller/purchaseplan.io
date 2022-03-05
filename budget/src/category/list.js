@@ -8,6 +8,11 @@ export function New(data = []) {
     initialize() {
       return New([
         Category({
+          Name: "Paycheck",
+          Group: "Income",
+          Type: "Income",
+        }),
+        Category({
           Name: "Emergency Fund",
           Group: "Savings",
         }),
@@ -50,6 +55,14 @@ export function New(data = []) {
         Category({
           Name: "Restaurants",
           Group: "Fun",
+        }),
+        Category({
+          Name: "Credit Card",
+          Group: "Debt",
+        }),
+        Category({
+          Name: "Auto Loan",
+          Group: "Debt",
         }),
       ]);
     },

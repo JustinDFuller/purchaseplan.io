@@ -6,6 +6,7 @@ const defaults = {
   ID: "",
   Name: "",
   Group: "",
+  Type: "Expense",
   PlannedInCents: 0,
 };
 

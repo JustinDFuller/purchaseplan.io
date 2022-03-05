@@ -1,6 +1,7 @@
 export function Name({ category, user, budget, onChange }) {
   return (
     <input
+      type="text"
       className="d-inline-block form-control-plaintext text-white w-auto"
       value={category.Name()}
       onChange={(e) => {
