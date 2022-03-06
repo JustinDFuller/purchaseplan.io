@@ -18,7 +18,7 @@ steps:
       - go test ./...
 
   - name: backend-lint
-    image: golangci/golangci-lint:1.44.2
+    image: golangci/golangci-lint
     pull: if-not-exists
     commands:
       - cd backend
