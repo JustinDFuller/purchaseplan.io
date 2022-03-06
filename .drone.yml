@@ -11,7 +11,7 @@ workspace:
 
 steps:
   - name: plan-test
-    image: golang:latest
+    image: golang:1.16
     pull: if-not-exists
     commands:
       - cd ./plan
@@ -25,7 +25,7 @@ steps:
       - golangci-lint run
 
   - name: backend
-    image: nytimes/golang-gcloud-sdk:latest
+    image: nytimes/golang-gcloud-sdk:1.16.0
     pull: if-not-exists
     environment:
       GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
@@ -37,7 +37,7 @@ steps:
       - make build-server
 
   - name: cron
-    image: nytimes/golang-gcloud-sdk:latest
+    image: nytimes/golang-gcloud-sdk:1.16.0
     pull: if-not-exists
     commands:
       - ./scripts/setup
