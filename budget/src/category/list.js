@@ -98,8 +98,5 @@ export function New(data = []) {
     deleteGroup(group) {
       return New(data.filter((c) => c.Group() !== group));
     },
-    reduce(...args) {
-      return data.reduce(...args);
-    },
   };
 }

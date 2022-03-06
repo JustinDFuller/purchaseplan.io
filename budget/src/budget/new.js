@@ -43,6 +43,26 @@ export function New(data = defaults) {
     return remainingCents / 100;
   }
 
+  function remainingToSpend() {
+    const income = data.Categories.reduce((sum, category) => {
+      if (category.Type() === "Income") {
+        return sum + category.PlannedInCents();
+      }
+
+      return sum;
+    }, 0);
+
+    const spent = data.Transactions.reduce((sum, transaction) => {
+      const category = data.Categories.getById(transaction.CategoryID());
+      if (category && category.Type() !== "Income") {
+        return sum + transaction.AmountInCents();
+      }
+      return sum;
+    }, 0);
+
+    return (income - spent) / 100;
+  }
+
   return {
     ...getterSetters(data, New),
     from(budget) {
@@ -124,6 +144,14 @@ export function New(data = defaults) {
         currency: "USD",
       });
       return f.format(remainingToPlan());
+    },
+    remainingToSpend,
+    formattedRemainingToSpend() {
+      const f = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+      return f.format(remainingToSpend());
     },
   };
 }

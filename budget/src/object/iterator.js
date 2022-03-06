@@ -4,6 +4,9 @@ export function iterator(data = [], constructor) {
   }
 
   return {
+    reduce(...args) {
+      return data.reduce(...args);
+    },
     getById(id) {
       return data.find((d) => d.ID() === id);
     },
