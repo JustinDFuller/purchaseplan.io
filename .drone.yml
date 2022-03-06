@@ -156,7 +156,7 @@ steps:
     image: cypress/included:6.4.0
     pull: if-not-exists
     commands:
-      - cd e2e
+      - cd purchase/e2e
       - npm ci
       - npm test -- --config baseUrl=https://dev.purchaseplan.io
     when:
