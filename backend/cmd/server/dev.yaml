@@ -7,19 +7,19 @@ env_variables:
 
 handlers:
   - url: /static/css
-    static_dir: frontend/build/static/css
+    static_dir: purchase/frontend/build/static/css
     secure: always
 
   - url: /static/js
-    static_dir: frontend/build/static/js
+    static_dir: purchase/frontend/build/static/js
     secure: always
 
   - url: /static/media
-    static_dir: frontend/build/static/media
+    static_dir: purchase/frontend/build/static/media
     secure: always
 
   - url: /static
-    static_dir: frontend/build/static
+    static_dir: purchase/frontend/build/static
     secure: always
 
   - url: /v1/.*
@@ -27,25 +27,25 @@ handlers:
     secure: always
 
   - url: /public
-    static_dir: frontend/build
+    static_dir: purchase/frontend/build
     secure: always
 
   - url: /app/legal/privacy-policy
-    static_files: frontend/build/privacy-policy.html
-    upload: frontend/build/privacy-policy\.html
+    static_files: purchase/frontend/build/privacy-policy.html
+    upload: purchase/frontend/build/privacy-policy\.html
     secure: always
 
   - url: /app/legal/terms-of-service
-    static_files: frontend/build/terms-of-service.html
-    upload: frontend/build/terms-of-service\.html
+    static_files: purchase/frontend/build/terms-of-service.html
+    upload: purchase/frontend/build/terms-of-service\.html
     secure: always
 
   - url: /app/.*
-    static_files: frontend/build/index.html
-    upload: frontend/build/index\.html
+    static_files: purchase/frontend/build/index.html
+    upload: purchase/frontend/build/index\.html
     secure: always
 
   - url: /
-    static_files: frontend/build/index.html
-    upload: frontend/build/index\.html
+    static_files: purchase/frontend/build/index.html
+    upload: purchase/frontend/build/index\.html
     secure: always
