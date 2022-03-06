@@ -13,7 +13,7 @@ export const themes = {
     ...colors,
     background: colors.secondary,
     cardBackground: colors.secondary,
-    cardBorderColor: colors.dark,
+    cardBorderColor: "rgb(55 55 106)",
     cardTextColor: colors.light,
     borderColor: colors.light,
     textColor: colors.light,
