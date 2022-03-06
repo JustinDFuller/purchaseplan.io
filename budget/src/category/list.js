@@ -15,54 +15,67 @@ export function New(data = []) {
         Category({
           Name: "Emergency Fund",
           Group: "Savings",
+          Type: "Expense",
         }),
         Category({
           Name: "Rent",
           Group: "Bills",
+          Type: "Expense",
         }),
         Category({
           Name: "Eletricity",
           Group: "Bills",
+          Type: "Expense",
         }),
         Category({
           Name: "Water",
           Group: "Bills",
+          Type: "Expense",
         }),
         Category({
           Name: "Phone",
           Group: "Bills",
+          Type: "Expense",
         }),
         Category({
           Name: "Internet",
           Group: "Bills",
+          Type: "Expense",
         }),
         Category({
           Name: "Groceries",
           Group: "Expenses",
+          Type: "Expense",
         }),
         Category({
           Name: "Car Gas",
           Group: "Expenses",
+          Type: "Expense",
         }),
         Category({
           Name: "Clothes",
           Group: "Expenses",
+          Type: "Expense",
         }),
         Category({
           Name: "Restaurants",
           Group: "Fun",
+          Type: "Expense",
         }),
         Category({
           Name: "Restaurants",
           Group: "Fun",
+          Type: "Expense",
         }),
         Category({
           Name: "Credit Card",
           Group: "Debt",
+          Type: "Expense",
         }),
         Category({
           Name: "Auto Loan",
           Group: "Debt",
+          Type: "Expense",
         }),
       ]);
     },

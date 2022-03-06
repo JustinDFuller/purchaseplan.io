@@ -31,12 +31,7 @@ export function NewGroup({ budget, user, onChange }) {
         }
 
         const u = user.setBudget(
-          budget.addCategory(
-            New({
-              Name: "New Category",
-              Group: newGroup,
-            })
-          )
+          budget.addCategory(New().setName("New Category").setGroup(newGroup))
         );
         onChange(u);
       }}

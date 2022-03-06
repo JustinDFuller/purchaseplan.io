@@ -58,6 +58,7 @@ type (
 
 	Budget struct {
 		ID           string
+		View         BudgetView
 		Start        time.Time
 		End          time.Time
 		Categories   []Category
@@ -106,4 +107,11 @@ type CategoryType string
 const (
 	expense CategoryType = "Expense"
 	income               = "Income"
+)
+
+type BudgetView int
+
+const (
+	planned BudgetView = iota
+	remaining
 )

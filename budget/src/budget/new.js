@@ -1,5 +1,6 @@
 import * as uuid from "uuid";
 
+import { views } from "layout/views";
 import * as Category from "category";
 import * as Transaction from "transaction";
 import { getterSetters } from "object";
@@ -8,6 +9,7 @@ const defaults = {
   ID: "",
   Start: null,
   End: null,
+  View: views.planned,
   Categories: Category.List(),
   Transactions: Transaction.List(),
 };
