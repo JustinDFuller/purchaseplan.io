@@ -1,20 +1,17 @@
-import React, { useState } from "react";
-
 import * as form from "form";
-import { New } from "../new";
 
-export function Form({ user, budget, onSubmit, onCancel }) {
-  const [group, setGroup] = useState("");
-  const [transaction, setTransaction] = useState(New());
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const u = user.setBudget(budget.addTransaction(transaction));
-    onSubmit(u);
-  }
-
+export function Form({
+  user,
+  budget,
+  onSubmit,
+  onCancel,
+  transaction,
+  setTransaction,
+  group,
+  setGroup,
+}) {
   return (
-    <form className="mt-3" onSubmit={handleSubmit}>
+    <form className="mt-3 w-100" onSubmit={onSubmit}>
       <label>Choose a budget category.</label>
       <select
         required

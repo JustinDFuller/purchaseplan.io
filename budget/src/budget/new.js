@@ -153,5 +153,11 @@ export function New(data = defaults) {
       });
       return f.format(remainingToSpend());
     },
+    setTransaction(transaction) {
+      return New({
+        ...data,
+        Transactions: data.Transactions.setTransaction(transaction),
+      });
+    },
   };
 }

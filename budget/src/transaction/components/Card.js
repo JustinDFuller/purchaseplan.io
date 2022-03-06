@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ReactComponent as Plus } from "bootstrap-icons/icons/plus-circle-fill.svg";
 
 import * as Layout from "layout";
-import { Form } from "./Form";
+import { Add } from "./Add";
 import { List } from "./List";
 
 export function Card({ user, budget, onSubmit }) {
@@ -28,7 +28,7 @@ export function Card({ user, budget, onSubmit }) {
       )}
 
       {editing && (
-        <Form
+        <Add
           user={user}
           budget={budget}
           onSubmit={handleSubmit}
@@ -36,7 +36,7 @@ export function Card({ user, budget, onSubmit }) {
         />
       )}
 
-      {!editing && <List budget={budget} />}
+      {!editing && <List user={user} budget={budget} onSubmit={onSubmit} />}
     </Layout.components.Card>
   );
 }
