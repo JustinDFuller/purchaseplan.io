@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
+	plan "github.com/justindfuller/purchaseplan.io/backend"
 	"github.com/justindfuller/purchaseplan.io/backend/config"
 	"github.com/justindfuller/purchaseplan.io/backend/datastore"
-	"github.com/justindfuller/purchaseplan.io/plan"
 	expo "github.com/oliveroneill/exponent-server-sdk-golang/sdk"
 	"github.com/pkg/errors"
 )

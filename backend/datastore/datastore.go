@@ -5,7 +5,7 @@ import (
 
 	"cloud.google.com/go/datastore"
 	ds "cloud.google.com/go/datastore"
-	"github.com/justindfuller/purchaseplan.io/plan"
+	plan "github.com/justindfuller/purchaseplan.io/backend"
 	"google.golang.org/api/iterator"
 )
 

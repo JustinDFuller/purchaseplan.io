@@ -1,4 +1,4 @@
-module github.com/justindfuller/purchaseplan.io
+module github.com/justindfuller/purchaseplan.io/backend
 
 go 1.16
 

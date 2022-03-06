@@ -1,13 +1,13 @@
 export GOOGLE_APPLICATION_CREDENTIALS=$(HOME)/.config/gcloud/application_default_credentials.json
 
-init:
-	@(cd ./frontend && npm install) & (cd ./e2e && npm install) & (cd ./backend && go mod download);
+init-purchase:
+	@(cd ./purchase/frontend && npm install) & (cd ./purchase/e2e && npm install) & (cd ./backend && go mod download);
 
-run:
-	@(cd ./frontend && make run) & (cd ./backend && make run-watch);
+run-purchase:
+	@(cd ./purchase/frontend && make run) & (cd ./backend && make run-watch);
 
-build-frontend:
-	@cd ./frontend && make build;
+build-purchase-frontend:
+	@cd ./purchase/frontend && make build;
 
 build-backend:
 	@cd ./backend && make build-server;
@@ -15,8 +15,8 @@ build-backend:
 build-cron:
 	@cd ./backend && make build-cron;
 
-test:
-	@($(MAKE) run) & (sleep 10 && cd ./e2e && npm test);
+test-purchase:
+	@($(MAKE) run) & (sleep 10 && cd ./purchase/e2e && npm test);
 
 stop:
 	@kill -9 `sudo netstat -nlp | grep :3000 | awk '{print $7}' | cut -d'/' -f1`;
