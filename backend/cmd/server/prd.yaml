@@ -1,4 +1,4 @@
-runtime: go115
+runtime: go116
 service: default
 
 env_variables:
@@ -6,34 +6,38 @@ env_variables:
   ENV: "production"
 
 handlers:
-  - url: /static/css
-    static_dir: purchase/frontend/build/static/css
-    secure: always
-
-  - url: /static/js
-    static_dir: purchase/frontend/build/static/js
-    secure: always
-
-  - url: /static/media
-    static_dir: purchase/frontend/build/static/media
-    secure: always
-
-  - url: /static
-    static_dir: purchase/frontend/build/static
-    secure: always
-
-  - url: /v1/.*
-    script: auto
-    secure: always
-
-  - url: /public
-    static_dir: purchase/frontend/build
-    secure: always
-
+  ## .well-known holds files for IOS and Android (prod only)
   - url: /.well-known
     static_dir: purchase/frontend/build/.well-known
     secure: always
 
+  ## All API requests are prefixed with /v1
+  - url: /v1/.*
+    script: auto
+    secure: always
+
+  ## All Purchase Plan static files begin with /purchase
+  - url: /purchase/static/css
+    static_dir: purchase/frontend/build/static/css
+    secure: always
+
+  - url: /purchase/static/js
+    static_dir: purchase/frontend/build/static/js
+    secure: always
+
+  - url: /purchase/static/media
+    static_dir: purchase/frontend/build/static/media
+    secure: always
+
+  - url: /purchase/static
+    static_dir: purchase/frontend/build/static
+    secure: always
+  
+  - url: /purchase
+    static_dir: purchase/frontend/build
+    secure: always
+
+  ## All Purchase Plan Routes begin with /app
   - url: /app/legal/privacy-policy
     static_files: purchase/frontend/build/privacy-policy.html
     upload: purchase/frontend/build/privacy-policy\.html
@@ -44,13 +48,13 @@ handlers:
     upload: purchase/frontend/build/terms-of-service\.html
     secure: always
 
-  - url: /
-    static_files: purchase/frontend/build/index.html
-    upload: purchase/frontend/build/index\.html
-    secure: always
-
   - url: /app/.*
     static_files: purchase/frontend/build/index.html
     upload: purchase/frontend/build/index\.html
     secure: always
-
+  
+  ## Serve purchase plan index.html by default
+  - url: /
+    static_files: purchase/frontend/build/index.html
+    upload: purchase/frontend/build/index\.html
+    secure: always
