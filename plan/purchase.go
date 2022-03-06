@@ -10,6 +10,9 @@ func (p Purchase) CanNotify() bool {
 	if p.Deleted {
 		return false
 	}
+	if p.Date == nil {
+		return false
+	}
 	n := now()
 	if n.Before(*p.Date) {
 		return false
