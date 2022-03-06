@@ -48,11 +48,11 @@ steps:
     image: node:15
     pull: if-not-exists
     commands:
-      - cd frontend
+      - cd purchase/frontend
       - npm ci
       - npm run build
-      - mkdir ../backend/frontend/
-      - cp -r ./build/ ../backend/frontend/
+      - mkdir -p ../backend/purchase/frontend/
+      - cp -r ./build/ ../backend/purchase/frontend/
 
   #- name: build-mobile
   #  image: node:15
