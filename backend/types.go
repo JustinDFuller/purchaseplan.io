@@ -58,7 +58,7 @@ type (
 
 const (
 	weekly       frequency = "Every Week"
-	biweekly               = "Every 2 Weeks"
-	monthly                = "Once A Month"
-	twiceMonthly           = "1st and 15th"
+	biweekly     frequency = "Every 2 Weeks"
+	monthly      frequency = "Once A Month"
+	twiceMonthly frequency = "1st and 15th"
 )
