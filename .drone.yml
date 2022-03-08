@@ -233,7 +233,7 @@ steps:
     when:
       event: tag
     depends_on:
-      - deploy-prod
+      - deploy-prd
 
   - name: deploy-cron-prd
     image: nytimes/drone-gae
