@@ -60,8 +60,8 @@ func TestService(t *testing.T) {
 			// This one doesn't include price :(
 			url: "https://www.target.com/p/ellis-tripod-floor-lamp-brass-project-62-153/-/A-53321427",
 			product: planner.Product{
-				Name:          "Ellis Tripod Floor Lamp Brass - Project 62&#153;",
-				Description:   "Read reviews and buy Ellis Tripod Floor Lamp Brass - Project 62&#153; at Target. Choose from contactless Same Day Delivery, Drive Up and more.",
+				Name:          "Ellis Tripod Floor Lamp Brass - Project 62™",
+				Description:   "Read reviews and buy Ellis Tripod Floor Lamp Brass - Project 62™ at Target. Choose from contactless Same Day Delivery, Drive Up and more.",
 				URL:           "https://www.target.com/p/ellis-tripod-floor-lamp-brass-project-62-153/-/A-53321427",
 				OriginalImage: "//target.scene7.com/is/image/Target/GUEST_51ec9b9d-ece7-4b45-b699-590cabd2c2ba",
 				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/76a17ca6ba38adf6a3898d671ee25970?alt=media",
@@ -146,7 +146,7 @@ func TestService(t *testing.T) {
 				Price:         99,
 				URL:           "https://www.worldmarket.com/product/rattan-papasan-chair-frame.do",
 				OriginalImage: "https://ii.worldmarket.com/fcgi-bin/iipsrv.fcgi?FIF=/images/worldmarket/source/101699_XXX_v1.tif&qlt=50&wid=650&cvt=jpeg",
-				Description:   "Our classic papasan chair frame is now available in two modern hues, both beautifully handcrafted in Indonesia of bent rattan secured with wrapped rattan&#45;peel binding. Its bends and curves are made by skilled artisans who have been crafting our signature papasan for years. The base is a separate piece that allows for easy adjustment of the seat angle. Add any of our plush papasan chair cushions to complete your cozy, classic relaxation spot.",
+				Description:   "Our classic papasan chair frame is now available in two modern hues, both beautifully handcrafted in Indonesia of bent rattan secured with wrapped rattan-peel binding. Its bends and curves are made by skilled artisans who have been crafting our signature papasan for years. The base is a separate piece that allows for easy adjustment of the seat angle. Add any of our plush papasan chair cushions to complete your cozy, classic relaxation spot.",
 				Image:         "https://storage.googleapis.com/download/storage/v1/b/purchase-plan-images-local/o/5db75fa096fb1a25da669340a4b6c504?alt=media",
 			},
 		},

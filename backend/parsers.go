@@ -527,6 +527,11 @@ func (parser AmazonPAPIParser) Product(ctx context.Context) (Product, error) {
 		return p, nil
 	}
 
+	// gp/product is a valid path that I don't know about yet.
+	if strings.Contains(u.Path, "gp/product") {
+		return p, nil
+	}
+
 	paths := strings.Split(u.Path, "/")
 	if l := len(paths); l < 3 {
 		return p, errors.Errorf("invalid path: not enough paths: expected 3, got %d", l)
