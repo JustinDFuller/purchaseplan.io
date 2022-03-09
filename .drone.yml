@@ -27,18 +27,13 @@ steps:
     image: golangci/golangci-lint
     pull: if-not-exists
     commands:
-      - cd backend
+      - cd ./backend
       - golangci-lint run
 
   - name: backend-build
     image: nytimes/golang-gcloud-sdk:1.16.0
     pull: if-not-exists
-    environment:
-      GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
-      SERVICE_ACCOUNT_CREDENTIALS:
-        from_secret: APP_ENGINE_CREDENTIALS_DEV
     commands:
-      - ./scripts/setup
       - cd ./backend
       - make build-server
 
@@ -46,7 +41,6 @@ steps:
     image: nytimes/golang-gcloud-sdk:1.16.0
     pull: if-not-exists
     commands:
-      - ./scripts/setup
       - cd ./backend
       - make build-cron
 
