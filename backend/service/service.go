@@ -12,12 +12,12 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/mux"
+	plan "github.com/justindfuller/purchaseplan.io/backend"
 	planner "github.com/justindfuller/purchaseplan.io/backend"
 	"github.com/justindfuller/purchaseplan.io/backend/analytics"
 	"github.com/justindfuller/purchaseplan.io/backend/config"
 	"github.com/justindfuller/purchaseplan.io/backend/datastore"
 	"github.com/justindfuller/purchaseplan.io/backend/storage"
-	"github.com/justindfuller/purchaseplan.io/plan"
 	"github.com/magiclabs/magic-admin-go"
 	"github.com/magiclabs/magic-admin-go/client"
 	"github.com/magiclabs/magic-admin-go/token"

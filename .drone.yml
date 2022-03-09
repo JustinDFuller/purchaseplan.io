@@ -10,41 +10,43 @@ workspace:
   path: src/github.com/justindfuller/purchase-plan
 
 steps:
-  - name: plan-test
+  - name: backend-test
     image: golang:1.16
     pull: if-not-exists
-    commands:
-      - cd ./plan
-      - go test ./...
-
-  - name: backend-lint
-    image: golangci/golangci-lint
-    pull: if-not-exists
-    commands:
-      - cd backend
-      - golangci-lint run
-
-  - name: backend
-    image: nytimes/golang-gcloud-sdk:1.16.0
-    pull: if-not-exists
     environment:
+      GOOGLE_CLOUD_PROJECT: purchase-plan-dev
       GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
       SERVICE_ACCOUNT_CREDENTIALS:
         from_secret: APP_ENGINE_CREDENTIALS_DEV
     commands:
       - ./scripts/setup
       - cd ./backend
-      - make build-server
+      - go test ./...
+    when:
+      branch: main
 
-  - name: cron
+  - name: backend-lint
+    image: golangci/golangci-lint
+    pull: if-not-exists
+    commands:
+      - cd ./backend
+      - golangci-lint run
+
+  - name: backend-build
     image: nytimes/golang-gcloud-sdk:1.16.0
     pull: if-not-exists
     commands:
-      - ./scripts/setup
+      - cd ./backend
+      - make build-server
+
+  - name: cron-build
+    image: nytimes/golang-gcloud-sdk:1.16.0
+    pull: if-not-exists
+    commands:
       - cd ./backend
       - make build-cron
 
-  - name: frontend
+  - name: frontend-build
     image: node:15
     pull: if-not-exists
     commands:
@@ -75,8 +77,11 @@ steps:
     commands:
       - ./scripts/setup
     depends_on:
-      - backend
-      - plan-test
+      - backend-test
+      - backend-lint
+      - backend-build
+      - cron-build
+      - frontend-build
 
   - name: terraform-dev
     image: hashicorp/terraform:light
@@ -109,9 +114,6 @@ steps:
       event: push
       branch: main
     depends_on:
-      - frontend
-      - backend
-      - backend-lint
       - terraform-dev
 
   - name: deploy-cron-service-dev
@@ -130,8 +132,6 @@ steps:
       event: push
       branch: main
     depends_on:
-      - cron
-      - backend-lint
       - terraform-dev
 
   - name: deploy-cron-dev
@@ -166,7 +166,6 @@ steps:
       branch: main
     depends_on:
       - deploy-dev
-      - deploy-cron-dev
   
   - name: slack-dev
     image: plugins/slack
@@ -184,7 +183,7 @@ steps:
         {{/success}}
     depends_on:
       - e2e-dev
-        # - build-mobile
+      - deploy-cron-service-dev
     when:
       event: push
       branch: main
@@ -219,9 +218,6 @@ steps:
     when:
       event: tag
     depends_on:
-      - frontend
-      - backend
-      - backend-lint
       - terraform-prd
 
   - name: deploy-cron-service-prd
@@ -239,9 +235,7 @@ steps:
     when:
       event: tag
     depends_on:
-      - cron
-      - backend-lint
-      - terraform-prd
+      - deploy-prd
 
   - name: deploy-cron-prd
     image: nytimes/drone-gae

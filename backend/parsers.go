@@ -1,4 +1,4 @@
-package planner
+package plan
 
 import (
 	"bytes"
@@ -524,6 +524,11 @@ func (parser AmazonPAPIParser) Product(ctx context.Context) (Product, error) {
 	}
 
 	if !found {
+		return p, nil
+	}
+
+	// gp/product is a valid path that I don't know about yet.
+	if strings.Contains(u.Path, "gp/product") {
 		return p, nil
 	}
 
