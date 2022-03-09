@@ -22,6 +22,8 @@ steps:
       - ./scripts/setup
       - cd ./backend
       - go test ./...
+    when:
+      branch: main
 
   - name: backend-lint
     image: golangci/golangci-lint
