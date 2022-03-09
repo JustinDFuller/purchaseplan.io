@@ -13,7 +13,13 @@ steps:
   - name: backend-test
     image: golang:1.16
     pull: if-not-exists
+    environment:
+      GOOGLE_CLOUD_PROJECT: purchase-plan-dev
+      GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
+      SERVICE_ACCOUNT_CREDENTIALS:
+        from_secret: APP_ENGINE_CREDENTIALS_DEV
     commands:
+      - ./scripts/setup
       - cd ./backend
       - go test ./...
 
