@@ -19,7 +19,7 @@ steps:
       SERVICE_ACCOUNT_CREDENTIALS:
         from_secret: APP_ENGINE_CREDENTIALS_DEV
     commands:
-      - ./scripts/setup
+      - ./operations/scripts/setup
       - cd ./backend
       - go test ./...
     when:
@@ -75,7 +75,7 @@ steps:
       SERVICE_ACCOUNT_CREDENTIALS:
         from_secret: TERRAFORM_CREDENTIALS
     commands:
-      - ./scripts/setup
+      - ./operations/scripts/setup
     depends_on:
       - backend-test
       - backend-lint
