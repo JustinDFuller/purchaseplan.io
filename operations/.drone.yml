@@ -14,6 +14,7 @@ steps:
     image: golang:1.16
     pull: if-not-exists
     environment:
+      PURCHASE_PLAN_IMAGE_BUCKET: purchase-plan-images-local
       GOOGLE_CLOUD_PROJECT: purchase-plan-dev
       GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
       SERVICE_ACCOUNT_CREDENTIALS:
