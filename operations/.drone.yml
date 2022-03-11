@@ -14,16 +14,17 @@ steps:
     image: golang:1.16
     pull: if-not-exists
     environment:
+      ENV: test
+      PORT: 8080
+      PURCHASE_PLAN_IMAGE_BUCKET: purchase-plan-images-local
       GOOGLE_CLOUD_PROJECT: purchase-plan-dev
       GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
       SERVICE_ACCOUNT_CREDENTIALS:
         from_secret: APP_ENGINE_CREDENTIALS_DEV
     commands:
-      - ./scripts/setup
+      - ./operations/scripts/setup
       - cd ./backend
       - go test ./...
-    when:
-      branch: main
 
   - name: backend-lint
     image: golangci/golangci-lint
@@ -75,7 +76,7 @@ steps:
       SERVICE_ACCOUNT_CREDENTIALS:
         from_secret: TERRAFORM_CREDENTIALS
     commands:
-      - ./scripts/setup
+      - ./operations/scripts/setup
     depends_on:
       - backend-test
       - backend-lint
