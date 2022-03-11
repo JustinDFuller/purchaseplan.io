@@ -14,7 +14,7 @@ steps:
     image: golang:1.16
     pull: if-not-exists
     environment:
-      ENV: development
+      ENV: test
       PORT: 8080
       PURCHASE_PLAN_IMAGE_BUCKET: purchase-plan-images-local
       GOOGLE_CLOUD_PROJECT: purchase-plan-dev
