@@ -54,8 +54,8 @@ steps:
       - cd purchase/frontend
       - npm ci
       - npm run build
-      - mkdir -p ../backend/purchase/frontend/
-      - cp -r ./build/ ../backend/purchase/frontend/
+      - mkdir -p ../../backend/purchase/frontend/
+      - cp -r ./build/ ../../backend/purchase/frontend/
 
   #- name: build-mobile
   #  image: node:15
