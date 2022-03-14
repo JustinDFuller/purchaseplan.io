@@ -104,14 +104,20 @@ const (
 
 type CategoryType string
 
+/*
+TODO verify
 const (
 	expense CategoryType = "Expense"
 	income               = "Income"
 )
+*/
 
 type BudgetView int
 
+/*
+TODO verify
 const (
 	planned BudgetView = iota
 	remaining
 )
+*/
