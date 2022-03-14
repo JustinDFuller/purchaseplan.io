@@ -1,0 +1,26 @@
+import * as styles from "styles";
+
+export function Card({
+  noPadding,
+  children,
+  style,
+  noBody,
+  light,
+  bodyClassName,
+  className = "",
+  onMouseOver,
+  onMouseLeave,
+}) {
+  return (
+    <div
+      onMouseOver={onMouseOver}
+      onMouseLeave={onMouseLeave}
+      className={styles.classes("card", noPadding ? "" : "mb-4", className)}
+      style={styles.combine(styles.card, style)}
+    >
+      <div className={styles.classes(noBody ? "" : "card-body", bodyClassName)}>
+        {children}
+      </div>
+    </div>
+  );
+}

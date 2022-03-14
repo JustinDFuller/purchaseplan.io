@@ -1,0 +1,68 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@magic-ext/oauth": "^2.0.1",
+    "@sentry/react": "^6.3.5",
+    "@sentry/tracing": "^6.3.5",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^13.1.8",
+    "bootstrap": "^4.6.1",
+    "bootstrap-icons": "^1.4.1",
+    "classnames": "^2.3.1",
+    "magic-sdk": "^4.2.1",
+    "node-sass": "^5.0.0",
+    "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^17.0.2",
+    "react-plaid-link": "^3.3.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-social-login-buttons": "^3.5.0",
+    "react-toastify": "^7.0.4",
+    "react-tooltip": "^4.2.21",
+    "uuid": "^8.3.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "PUBLIC_URL=/budget/public react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src/**/*.js",
+    "pretty": "prettier --write ./src"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 2 safari version"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier -w",
+      "eslint",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "lint-staged": "^12.3.1",
+    "prettier": "^2.5.1"
+  },
+  "proxy": "http://localhost:8080"
+}

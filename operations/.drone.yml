@@ -47,7 +47,7 @@ steps:
       - cd ./backend
       - make build-cron
 
-  - name: frontend-build
+  - name: purchase-frontend-build
     image: node:15
     pull: if-not-exists
     commands:
@@ -56,6 +56,16 @@ steps:
       - npm run build
       - mkdir -p ../../backend/purchase/frontend/
       - cp -r ./build/ ../../backend/purchase/frontend/
+
+  - name: budget-frontend-build
+    image: node:15
+    pull: if-not-exists
+    commands:
+      - cd budget/frontend
+      - npm ci
+      - npm run build
+      - mkdir -p ../../backend/budget/frontend/
+      - cp -r ./build/ ../../backend/budget/frontend/
 
   #- name: build-mobile
   #  image: node:15
@@ -82,7 +92,8 @@ steps:
       - backend-lint
       - backend-build
       - cron-build
-      - frontend-build
+      - purchase-frontend-build
+      - budget-frontend-build
 
   - name: terraform-dev
     image: hashicorp/terraform:light
