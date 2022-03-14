@@ -16,6 +16,7 @@ type (
 		LastPaycheck           *time.Time              `json:"lastPaycheck,omitempty"`
 		Purchases              []Purchase              `json:"purchases,omitempty"`
 		PushNotificationTokens []PushNotificationToken `json:"pushNotificationTokens,omitempty"`
+		Budgets                []Budget
 	}
 
 	// Purchase is something a User wants to buy.
@@ -54,6 +55,44 @@ type (
 		// Expo token is used to send messages with expo's push notification service.
 		ExpoToken string `datastore:",noindex" json:"expoToken,omitempty"`
 	}
+
+	Budget struct {
+		ID           string
+		View         BudgetView
+		Start        time.Time
+		End          time.Time
+		Categories   []Category
+		Transactions []Transaction
+	}
+
+	Category struct {
+		ID    string
+		Name  string
+		Group string
+		Type  CategoryType
+		// PlannedInCents represents the planned amount * 100 (12.50 === 1250)
+		// This helps avoid floating point issues with float64.
+		PlannedInCents int64
+	}
+
+	Transaction struct {
+		ID         string
+		CategoryID string
+		// AmountInCents represents the price * 100 (12.50 === 1250)
+		// This helps avoid floating point issues with float64.
+		AmountInCents int64
+		Time          TransactionTime
+		Merchant      Merchant
+	}
+
+	TransactionTime struct {
+		Created   time.Time
+		Completed time.Time
+	}
+
+	Merchant struct {
+		Name string
+	}
 )
 
 const (
@@ -61,4 +100,25 @@ const (
 	biweekly     frequency = "Every 2 Weeks"
 	monthly      frequency = "Once A Month"
 	twiceMonthly frequency = "1st and 15th"
+)
+
+const (
+	weekly       frequency = "Every Week"
+	biweekly               = "Every 2 Weeks"
+	monthly                = "Once A Month"
+	twiceMonthly           = "1st and 15th"
+)
+
+type CategoryType string
+
+const (
+	expense CategoryType = "Expense"
+	income               = "Income"
+)
+
+type BudgetView int
+
+const (
+	planned BudgetView = iota
+	remaining
 )

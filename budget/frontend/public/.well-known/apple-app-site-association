@@ -1,0 +1,42 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["Q7RT2J2P3W.com.purchaseplan.ios"],
+        "components": [
+          {
+            "/": "*",
+            "comment": "home page"
+          },
+          {
+            "/": "/",
+            "comment": "home page"
+          },
+          {
+            "/": "/app/*",
+            "comment": "all /app pages"
+          },
+          {
+            "/": "/app/auth/*",
+            "comment": "all /auth pages"
+          },
+          {
+            "/": "/app/user/*",
+            "comment": "all /user pages"
+          }
+        ]
+      },
+      {
+        "appID": "Q7RT2J2P3W.com.purchaseplan.ios",
+        "paths": ["*", "/*", "/app/*", "/app/auth/*", "/app/user/*"]
+      }
+    ]
+  },
+  "activitycontinuation": {
+    "apps": [
+      "com.purchaseplan.ios",
+      "Q7RT2J2P3W.com.purchaseplan.ios"
+    ]
+  }
+}
