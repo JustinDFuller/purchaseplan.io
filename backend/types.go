@@ -102,13 +102,6 @@ const (
 	twiceMonthly frequency = "1st and 15th"
 )
 
-const (
-	weekly       frequency = "Every Week"
-	biweekly               = "Every 2 Weeks"
-	monthly                = "Once A Month"
-	twiceMonthly           = "1st and 15th"
-)
-
 type CategoryType string
 
 const (
