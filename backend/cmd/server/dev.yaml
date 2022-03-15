@@ -49,26 +49,31 @@ handlers:
     secure: always
 
   ## All Budget files begin with /budget
-  - url: /budget/static/css
+  - url: /budget/public/static/css
     static_dir: budget/frontend/build/static/css
     secure: always
 
-  - url: /budget/static/js
+  - url: /budget/public/static/js
     static_dir: budget/frontend/build/static/js
     secure: always
 
-  - url: /budget/static/media
+  - url: /budget/public/static/media
     static_dir: budget/frontend/build/static/media
     secure: always
 
-  - url: /budget/static
+  - url: /budget/public/static
     static_dir: budget/frontend/build/static
     secure: always
-  
-    # - url: /budget
-    # static_dir: budget/frontend/build
-    # secure: always
 
+  - url: /budget/public
+    static_dir: budget/frontend/build
+    secure: always
+
+  - url: /budget
+    static_files: budget/frontend/build/index.html
+    upload: budget/frontend/build/index\.html
+    secure: always
+    
   - url: /budget/.*
     static_files: budget/frontend/build/index.html
     upload: budget/frontend/build/index\.html
