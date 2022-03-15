@@ -207,7 +207,7 @@ steps:
     environment:
       GOOGLE_APPLICATION_CREDENTIALS: /drone/service_account_credentials.json
     commands:
-      - cd ./operatoins/terraform/prd
+      - cd ./operations/terraform/prd
       - terraform init
       # - terraform apply -auto-approve
     when:
