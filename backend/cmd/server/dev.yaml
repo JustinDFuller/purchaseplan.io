@@ -73,7 +73,6 @@ handlers:
     static_files: budget/frontend/build/index.html
     upload: budget/frontend/build/index\.html
     secure: always
-
     
   - url: /budget/.*
     static_files: budget/frontend/build/index.html

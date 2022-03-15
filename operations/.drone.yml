@@ -106,7 +106,7 @@ steps:
       # - terraform apply -auto-approve
     when:
       event: push
-      # branch: main
+      branch: main
     depends_on:
       - setup-terraform
 
@@ -124,7 +124,7 @@ steps:
       max_versions: 2
     when:
       event: push
-      # branch: main
+      branch: main
     depends_on:
       - terraform-dev
 
