@@ -65,7 +65,7 @@ handlers:
     static_dir: budget/frontend/build/static
     secure: always
 
-   - url: /budget/public
+  - url: /budget/public
     static_dir: budget/frontend/build
     secure: always
 
