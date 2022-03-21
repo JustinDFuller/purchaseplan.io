@@ -80,8 +80,7 @@ export function Header() {
                         role="button"
                         aria-label="announcements"
                         style={{ marginBottom: 3 }}
-                      />{" "}
-                      Blog
+                      />
                     </a>
                   </li>
                   <li className="nav-item">
@@ -92,7 +91,11 @@ export function Header() {
                       })}
                       onClick={async () => setAuth(await auth.logout())}
                     >
-                      <Door role="button" aria-label="log out" /> Log Out
+                      <Door
+                        role="button"
+                        aria-label="log out"
+                        style={{ marginBottom: 3 }}
+                      />
                     </button>
                   </li>
                 </>
