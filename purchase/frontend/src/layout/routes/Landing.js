@@ -46,12 +46,18 @@ export function Landing() {
           background: styles.colors.secondary,
         }}
       >
-        <div className="col-12 col-md-6">
-          <div className="m-auto" style={{ maxWidth: 424 }}>
+        <div className="col-12 col-md-6 pt-3 pt-xl-0">
+          <div className="m-auto" style={{ maxWidth: 480 }}>
             <h5>Purchase Plan</h5>
-            <h1>
-              Not a wish list — <br className="d-lg-none" /> a plan.
-            </h1>
+            <div className="row">
+              <h1 className="col-9">
+                Wave goodbye to <br className="d-none d-block-xs" /> impulse
+                purchases
+              </h1>
+              <h1 className="pl-0 ml-0 col-3 d-flex justify-content-start align-items-center">
+                👋
+              </h1>
+            </div>
           </div>
         </div>
         <div className="col-12 col-md-6 mt-4 px-0">
@@ -83,7 +89,7 @@ export function Landing() {
           </h2>
         </div>
       </div>
-      <div className="d-flex justify-content-center align-items-center">
+      <div className="d-flex justify-content-center align-items-center flex-wrap pb-5">
         <components.Download />
         <a
           href="https://www.producthunt.com/posts/purchase-plan?utm_source=badge-review&utm_medium=badge&utm_souce=badge-purchase-plan#discussion-body"

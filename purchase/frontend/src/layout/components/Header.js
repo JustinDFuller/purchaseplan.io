@@ -1,7 +1,11 @@
 import React, { useContext } from "react";
+import { ReactComponent as Megaphone } from "bootstrap-icons/icons/megaphone-fill.svg";
+import { ReactComponent as Door } from "bootstrap-icons/icons/door-open-fill.svg";
 
 import * as styles from "styles";
 import * as Auth from "auth";
+
+import * as routes from "../routes";
 
 import { isNativeApp } from "../native";
 
@@ -14,7 +18,10 @@ export function Header() {
 
   return (
     <div
-      className="container-fluid d-none d-xl-block"
+      className={styles.classes("container-fluid", {
+        "d-none d-xl-block": window.location.pathname !== routes.Landing.path,
+        "d-block": window.location.pathname === routes.Landing.path,
+      })}
       style={{
         background: styles.colors.secondary,
         color: styles.colors.light,
@@ -31,33 +38,65 @@ export function Header() {
               />
             </a>
             <ul className="navbar-nav float-end">
+              {auth.isLoggedIn() &&
+                window.location.pathname === routes.Landing.path && (
+                  <li className="nav-item">
+                    <a
+                      className="btn btn-link nav-link text-white"
+                      href="/app/user/dashboard"
+                    >
+                      Dashboard
+                    </a>
+                  </li>
+                )}
+
               <li className="nav-item">
-                {auth.isLoggedIn() && (
-                  <button
+                {auth.isLoggedOut() && (
+                  <a
                     className="btn btn-link nav-link"
                     style={styles.combine(styles.text, {
                       color: styles.colors.light,
                     })}
-                    onClick={async () => setAuth(await auth.logout())}
+                    href="/app/auth/login"
                   >
-                    Log Out
-                  </button>
+                    Log In
+                  </a>
                 )}
               </li>
-              <li className="nav-item">
-                <a
-                  className="btn btn-link nav-link"
-                  style={styles.combine(styles.text, {
-                    color: styles.colors.light,
-                  })}
-                  href="https://blog.purchaseplan.io"
-                  target="_blank"
-                  rel="noreferrer"
-                  data-testid="blog"
-                >
-                  Blog
-                </a>
-              </li>
+              {auth.isLoggedIn() && (
+                <>
+                  <li className="nav-item">
+                    <a
+                      className="btn btn-link nav-link"
+                      style={styles.combine(styles.text, {
+                        color: styles.colors.light,
+                      })}
+                      href="https://blog.purchaseplan.io"
+                      target="_blank"
+                      rel="noreferrer"
+                      data-testid="blog"
+                    >
+                      <Megaphone
+                        role="button"
+                        aria-label="announcements"
+                        style={{ marginBottom: 3 }}
+                      />{" "}
+                      Blog
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <button
+                      className="btn btn-link nav-link"
+                      style={styles.combine(styles.text, {
+                        color: styles.colors.light,
+                      })}
+                      onClick={async () => setAuth(await auth.logout())}
+                    >
+                      <Door role="button" aria-label="log out" /> Log Out
+                    </button>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
         </div>

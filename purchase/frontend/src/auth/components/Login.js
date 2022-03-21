@@ -13,8 +13,6 @@ import * as layout from "layout";
 import * as form from "form";
 import * as styles from "styles";
 
-import { LoggingIn } from "./LoggingIn";
-
 export const Login = context.With(
   User.data.WithContext(function ({ user, setUser, auth, setAuth, style }) {
     const history = useHistory();
@@ -32,13 +30,12 @@ export const Login = context.With(
       }
     }
 
-    if (auth.isLoggingIn()) {
-      return <LoggingIn style={style} />;
-    }
-
     return (
       <layout.components.Card
-        style={styles.combine({ maxWidth: 500, margin: "0 auto" }, style)}
+        style={styles.combine(
+          { maxWidth: 500, margin: "0 auto", border: 0 },
+          style
+        )}
       >
         {(auth.serverError() || auth.unauthorized()) && (
           <Alert variant="danger" style={{ borderRadius: 0 }}>
@@ -49,17 +46,14 @@ export const Login = context.With(
         )}
         <form onSubmit={handleSubmit}>
           <div className="form-group margin-auto">
-            <label className="form-label">
-              Get started with just an email.
-            </label>
             <div className="row">
               <div className="col-12">
                 <a
                   href="/app/auth/login"
                   data-testid="login-button"
-                  className="btn btn-success w-100 w-md-auto"
+                  className="btn btn-success w-100 w-md-auto p-3"
                 >
-                  Log in
+                  Get started for <strong>free</strong>
                 </a>
               </div>
             </div>
