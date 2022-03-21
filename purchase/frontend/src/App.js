@@ -45,7 +45,7 @@ export default function App() {
 
       if (a.user()) {
         setUser(user.from(a.user()));
-        history.push(User.getDashboardPath());
+        // history.push(User.getDashboardPath());
       } else if (Auth.pathShouldRedirectToLogin(loc)) {
         history.push(Auth.getLoginPath());
       }
@@ -96,9 +96,7 @@ export default function App() {
               <Layout.routes.Landing />
             </Route>
           </Switch>
-          {auth.isLoggedIn() && (
-            <Layout.components.BottomNav />
-          )}
+          {auth.isLoggedIn() && <Layout.components.BottomNav />}
         </div>
       </User.data.Context.Provider>
     </Auth.context.Context.Provider>
