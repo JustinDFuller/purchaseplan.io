@@ -47,8 +47,7 @@ export function Landing() {
         }}
       >
         <div className="col-12 col-md-6 pt-3 pt-xl-0">
-          <div className="m-auto" style={{ maxWidth: 480 }}>
-            <h5>Purchase Plan</h5>
+          <div className="m-auto mr-xl-0" style={{ maxWidth: 480 }}>
             <div className="row">
               <h1 className="col-9">
                 Wave goodbye to <br className="d-none d-block-xs" /> impulse
@@ -61,7 +60,7 @@ export function Landing() {
           </div>
         </div>
         <div className="col-12 col-md-6 mt-4 px-0">
-          <Auth.components.Login />
+          <Auth.components.Login className="ml-xl-0" />
         </div>
       </div>
       <div

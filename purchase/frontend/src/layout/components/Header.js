@@ -18,9 +18,9 @@ export function Header() {
 
   return (
     <div
-      className={styles.classes("container-fluid", {
-        "d-none d-xl-block": window.location.pathname !== routes.Landing.path,
-        "d-block": window.location.pathname === routes.Landing.path,
+      className={styles.classes("container-fluid px-0", {
+        "d-none d-xl-block": auth.isLoggedIn(),
+        "d-block": !auth.isLoggedIn(),
       })}
       style={{
         background: styles.colors.secondary,
@@ -30,12 +30,18 @@ export function Header() {
       <div className="row m-auto" style={{ maxWidth: 1500 }}>
         <div className="col col-12">
           <nav className="navbar navbar-expand navbark-dark py-3 m-auto d-flex justify-content-between p-0">
-            <a className="navbard-brand" href="/">
+            <a
+              className="navbard-brand d-flex align-items-center justify-content-space-between"
+              href="/"
+            >
               <img
                 src={`${process.env.PUBLIC_URL}/logo.png`}
-                alt="logo"
+                alt="Purchase Plan"
                 style={styles.logo}
               />
+              <h5 className="d-none d-xl-inline-block text-white mb-0 ml-2 mt-2">
+                Purchase Plan
+              </h5>
             </a>
             <ul className="navbar-nav float-end">
               {auth.isLoggedIn() &&
