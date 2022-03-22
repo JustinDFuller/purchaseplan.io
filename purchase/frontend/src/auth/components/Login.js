@@ -14,7 +14,14 @@ import * as form from "form";
 import * as styles from "styles";
 
 export const Login = context.With(
-  User.data.WithContext(function ({ user, setUser, auth, setAuth, style }) {
+  User.data.WithContext(function ({
+    user,
+    setUser,
+    auth,
+    setAuth,
+    style,
+    className,
+  }) {
     const history = useHistory();
 
     async function handleSubmit(e) {
@@ -32,6 +39,7 @@ export const Login = context.With(
 
     return (
       <layout.components.Card
+        className={className}
         style={styles.combine(
           { maxWidth: 500, margin: "0 auto", border: 0 },
           style
@@ -49,11 +57,21 @@ export const Login = context.With(
             <div className="row">
               <div className="col-12">
                 <a
-                  href="/app/auth/login"
+                  href={
+                    auth.isLoggedIn()
+                      ? "/app/user/dashboard"
+                      : "/app/auth/login"
+                  }
                   data-testid="login-button"
                   className="btn btn-success w-100 w-md-auto p-3"
                 >
-                  Get started for <strong>free</strong>
+                  {auth.isLoggedIn() ? (
+                    "Get started"
+                  ) : (
+                    <span>
+                      Get started for <strong>free</strong>
+                    </span>
+                  )}
                 </a>
               </div>
             </div>
