@@ -12,7 +12,7 @@ const messages = [
   "Drag and drop purchases to rearrange them.",
 ];
 
-export function URL({ onNoURL, onSubmit, loading, error }) {
+export function URL({ onNoURL, onSubmit, loading, error, disabled }) {
   const [url, setUrl] = useState("");
   const [message, setMessage] = useState(0);
   const [progress, setProgress] = useState(60);
@@ -53,7 +53,7 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
           Please make sure the URL is correct and try again.
         </div>
       )}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} disabled={disabled}>
         <div className="form-group mb-0">
           <h5 className="card-title">What do you want to buy?</h5>
           <div className="row">
@@ -74,7 +74,7 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
                     type="url"
                     className="form-control loader"
                     value={url}
-                    disabled={loading}
+                    disabled={loading || disabled}
                     placeholder="Paste a link here"
                     onChange={(e) => setUrl(e.target.value)}
                   />
@@ -85,12 +85,14 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
                     loading={loading}
                     text="Import"
                     className="loader"
+                    disabled={loading || disabled}
                   />
                   <button
                     className="btn btn-link white px-0 mt-1 d-lg-block d-none m-auto loader"
                     style={{ color: styles.theme.cardTextColor }}
                     type="button"
                     onClick={handleNoURL}
+                    disabled={loading || disabled}
                   >
                     I don't have a link
                   </button>
@@ -106,6 +108,7 @@ export function URL({ onNoURL, onSubmit, loading, error }) {
                 })}
                 type="button"
                 onClick={handleNoURL}
+                disabled={loading || disabled}
               >
                 I don't have a link
               </button>

@@ -14,6 +14,7 @@ export const Card = User.data.WithContext(function ({
   user,
   setUser,
   productDefaults = null,
+  disabled,
 }) {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState(productDefaults);
@@ -71,6 +72,7 @@ export const Card = User.data.WithContext(function ({
   if (!product) {
     return (
       <URL
+        disabled={disabled}
         onNoURL={handleNoURL}
         onSubmit={handleSubmit}
         loading={loading}
@@ -118,6 +120,7 @@ export const Card = User.data.WithContext(function ({
             setProduct={setProduct}
             quantity={quantity}
             setQuantity={setQuantity}
+            disabled={disabled}
           />
         </div>
       </div>

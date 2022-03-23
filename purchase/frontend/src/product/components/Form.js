@@ -17,6 +17,7 @@ export function Form({
   setQuantity,
   loading,
   onCancel,
+  disabled,
 }) {
   const [showNote, setShowNote] = useState(product.description);
   const [showQuantity, setShowQuantity] = useState(quantity > 1);
@@ -24,7 +25,7 @@ export function Form({
   const [missingText] = useState(product.missing());
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} disabled={disabled}>
       {product.url() && missingText && (
         <Alert variant="danger">
           <div className="mb-2">
@@ -44,6 +45,7 @@ export function Form({
         <div className="form-group col-12">
           <label className="form-label">Name</label>
           <input
+            disabled={disabled}
             type="text"
             className="form-control"
             value={product.name()}
@@ -56,6 +58,7 @@ export function Form({
         <div className="form-group col-12">
           <label className="form-label">Price</label>
           <input
+            disabled={disabled}
             type="number"
             className="form-control"
             placeholder="0"
@@ -69,6 +72,7 @@ export function Form({
           <div className="form-group col-12">
             <label className="form-label">Note</label>
             <textarea
+              disabled={disabled}
               type="text"
               className="form-control"
               value={product.description()}
@@ -82,6 +86,7 @@ export function Form({
           <div className="form-group col-12">
             <label className="form-label">Quantity</label>
             <input
+              disabled={disabled}
               type="number"
               className="form-control"
               placeholder="0"
@@ -95,7 +100,7 @@ export function Form({
           </div>
         )}
       </div>
-      {(!showNote || !showQuantity) && (
+      {!disabled && (!showNote || !showQuantity) && (
         <div className="row mb-3">
           <div className="col-12">
             Add to purchase:
@@ -146,6 +151,7 @@ export function Form({
         <div className="row">
           <div className="col-12 col-md-6 p-0 pr-md-3">
             <form.components.Submit
+              disabled={disabled}
               onClick={onSubmit}
               loading={loading}
               text="Save"
@@ -153,6 +159,7 @@ export function Form({
           </div>
           <div className="col-12 col-md-6 p-0 mt-3 mt-md-0 pl-md-3">
             <button
+              disabled={disabled}
               type="button"
               className="btn btn-danger mr-2 w-100"
               style={styles.danger}
