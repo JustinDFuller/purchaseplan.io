@@ -10,6 +10,7 @@ describe('Landing Page', function () {
     cy.visit("/")
 
     dataTestId("login-button")
+      .first()
       .click()
 
     cy.url().should("include", '/app/auth/login')
