@@ -35,8 +35,10 @@ export const SavingsOverview = data.WithContext(function ({
   user,
   setUser,
   loading,
+  disabled,
+  forceEdit = false,
 }) {
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(forceEdit);
 
   function formatLastPaycheck() {
     return formatDate(user.lastPaycheck());
@@ -89,6 +91,7 @@ export const SavingsOverview = data.WithContext(function ({
           <div className="form-group">
             <label className="form-label">Saved So Far</label>
             <input
+              disabled={disabled}
               type="number"
               placeholder="0"
               value={user.saved() ? user.saved().toString() : ""}
@@ -100,6 +103,7 @@ export const SavingsOverview = data.WithContext(function ({
           <div className="form-group">
             <label className="form-label">Planned Savings</label>
             <input
+              disabled={disabled}
               type="number"
               placeholder="0"
               value={
@@ -110,6 +114,7 @@ export const SavingsOverview = data.WithContext(function ({
               min="0"
             />
             <select
+              disabled={disabled}
               className="form-control mt-2"
               value={user.frequency()}
               onChange={(e) => setUser(user.setFrequency(e.target.value))}
@@ -132,6 +137,7 @@ export const SavingsOverview = data.WithContext(function ({
           <div className="form-group">
             <label className="form-label">Last Paycheck</label>
             <input
+              disabled={disabled}
               type="date"
               value={formatLastPaycheck()}
               onChange={(e) => setUser(user.setLastPaycheck(e.target.value))}
@@ -142,7 +148,7 @@ export const SavingsOverview = data.WithContext(function ({
             />
           </div>
           <div className="text-right">
-            <form.components.Submit text="Save" />
+            <form.components.Submit text="Save" disabled={disabled} />
           </div>
         </form>
       </div>

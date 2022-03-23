@@ -3,8 +3,13 @@ import React, { useEffect, useState, useRef } from "react";
 import * as Auth from "auth";
 import * as styles from "styles";
 import * as Purchase from "purchase";
+import * as Product from "product";
+import * as User from "user";
 
 import * as components from "../components";
+
+const oneWeekAgo = new Date();
+oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
 export function Landing() {
   const [sample, setSample] = useState(0);
@@ -88,7 +93,81 @@ export function Landing() {
           </h2>
         </div>
       </div>
-      <div className="d-flex justify-content-center align-items-center flex-wrap pb-5">
+      <div
+        style={{
+          background: styles.colors.secondary,
+          minHeight: 250,
+        }}
+      >
+        <div
+          className="row d-flex justify-content-space-around align-items-center px-3 px-xl-5 py-5 m-auto"
+          style={{ maxWidth: 1500 }}
+        >
+          <div className="col-12 col-xl-4">
+            <h5 className="text-center text-xl-left">
+              If you're shopping online or in person, Purchase Plan can help.
+            </h5>
+          </div>
+          <div className="col-12 col-xl-8">
+            <Product.components.Card loading={false} disabled={true} />
+          </div>
+          <div className="col-12 col-xl-4 pt-5">
+            <h5 className="text-center text-xl-left">
+              Purchase Plan finds information about your purchase.
+            </h5>
+          </div>
+
+          <div className="col-12 col-xl-8">
+            <Product.components.Card
+              disabled
+              productDefaults={Purchase.samplePurchases[2].products[0].product()}
+            />
+          </div>
+          <div className="col-12 col-xl-4 pt-5">
+            <h5 className="text-center text-xl-left">
+              Then, Purchase Plan shows when you'll have enough saved.
+            </h5>
+          </div>
+
+          <div className="col-12 col-xl-8">
+            <Purchase.components.Card
+              purchase={Purchase.samplePurchases[2].products[0]}
+              readonly
+            />
+          </div>
+
+          <div className="col-12 col-xl-4 pt-5">
+            <h5 className="text-center text-xl-left">
+              You can edit your savings plan any time.
+            </h5>
+          </div>
+
+          <div className="col-12 col-xl-8 pt-4">
+            <User.components.SavingsOverview
+              disabled
+              forceEdit
+              user={User.data.New({
+                saved: 500,
+                frequency: "Every 2 Weeks",
+                contributions: 100,
+                lastPaycheck: oneWeekAgo,
+              })}
+            />
+          </div>
+
+          <div className="col-12 col-xl-4 pt-5 pt-xl-2 pr-xl-0 mr-xl-0">
+            <h5 className="text-center text-xl-left">
+              Log In to begin your Plan
+              <span className="ml-3 d-none d-xl-inline-block">👉</span>
+            </h5>
+          </div>
+
+          <div className="col-12 col-xl-8 pt-xl-4 pl-xl-0 ml-xl-0">
+            <Auth.components.Login />
+          </div>
+        </div>
+      </div>
+      <div className="d-flex justify-content-center align-items-center flex-wrap py-5">
         <components.Download />
         <a
           href="https://www.producthunt.com/posts/purchase-plan?utm_source=badge-review&utm_medium=badge&utm_souce=badge-purchase-plan#discussion-body"
