@@ -108,28 +108,28 @@ export function Landing() {
               If you're shopping online or in person, Purchase Plan can help.
             </h5>
           </div>
-          <div className="col-12 col-xl-8">
+          <div className="col-12 col-xl-8 pt-4 pt-xl-0">
             <Product.components.Card loading={false} disabled={true} />
           </div>
-          <div className="col-12 col-xl-4 pt-5">
+          <div className="col-12 col-xl-4 pt-3 pt-xl-5">
             <h5 className="text-center text-xl-left">
               Purchase Plan finds information about your purchase.
             </h5>
           </div>
 
-          <div className="col-12 col-xl-8">
+          <div className="col-12 col-xl-8 pt-4 pt-xl-0">
             <Product.components.Card
               disabled
               productDefaults={Purchase.samplePurchases[2].products[0].product()}
             />
           </div>
-          <div className="col-12 col-xl-4 pt-5">
+          <div className="col-12 col-xl-4 pt-3 pt-xl-5">
             <h5 className="text-center text-xl-left">
               Then, Purchase Plan shows when you'll have enough saved.
             </h5>
           </div>
 
-          <div className="col-12 col-xl-8">
+          <div className="col-12 col-xl-8 pt-4 pt-xl-0">
             <Purchase.components.Card
               purchase={Purchase.samplePurchases[2].products[0]}
               readonly
@@ -157,7 +157,7 @@ export function Landing() {
 
           <div className="col-12 col-xl-4 pt-5 pt-xl-2 pr-xl-0 mr-xl-0">
             <h5 className="text-center text-xl-left">
-              Log In to begin your Plan
+              Are you ready to start planning?
               <span className="ml-3 d-none d-xl-inline-block">👉</span>
             </h5>
           </div>

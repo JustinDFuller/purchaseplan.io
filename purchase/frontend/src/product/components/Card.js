@@ -84,7 +84,9 @@ export const Card = User.data.WithContext(function ({
   return (
     <layout.components.Card
       style={{ width: "100%" }}
-      className={product.url() && product.image() ? "pb-5 pb-xl-0" : ""}
+      className={
+        !disabled && product.url() && product.image() ? "pb-5 pb-xl-0" : ""
+      }
     >
       <div className="row">
         {product.image() && product.url() && (
