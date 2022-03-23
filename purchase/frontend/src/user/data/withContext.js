@@ -6,7 +6,7 @@ export function WithContext(Component) {
   return function WithUserContext(props) {
     const { user, setUser } = useContext(Context);
 
-    return <Component {...props} user={user} setUser={setUser} />;
+    return <Component user={user} setUser={setUser} {...props} />;
   };
 }
 
