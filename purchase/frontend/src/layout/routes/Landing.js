@@ -72,6 +72,7 @@ export function Landing() {
         className="row m-auto my-md-4 py-4 px-1 px-md-3"
         style={{
           minHeight: 200,
+          maxWidth: 1500,
         }}
       >
         <div className="col-12 col-lg-8 col-xl-7 pt-3 order-2 order-lg-1">
@@ -105,7 +106,9 @@ export function Landing() {
         >
           <div className="col-12 col-xl-4">
             <h5 className="text-center text-xl-left">
-              If you're shopping online or in person, Purchase Plan can help.
+              If you're shopping online or in person,{" "}
+              <br className="d-none d-xl-block" />
+              Purchase Plan can help.
             </h5>
           </div>
           <div className="col-12 col-xl-8 pt-4 pt-xl-0">
@@ -113,7 +116,9 @@ export function Landing() {
           </div>
           <div className="col-12 col-xl-4 pt-3 pt-xl-5">
             <h5 className="text-center text-xl-left">
-              Purchase Plan finds information about your purchase.
+              Purchase Plan finds information{" "}
+              <br className="d-none d-xl-block" />
+              about your purchase.
             </h5>
           </div>
 
@@ -125,7 +130,9 @@ export function Landing() {
           </div>
           <div className="col-12 col-xl-4 pt-3 pt-xl-5">
             <h5 className="text-center text-xl-left">
-              Then, Purchase Plan shows when you'll have enough saved.
+              Then, Purchase Plan shows when{" "}
+              <br className="d-none d-xl-block" />
+              you'll have enough saved.
             </h5>
           </div>
 
