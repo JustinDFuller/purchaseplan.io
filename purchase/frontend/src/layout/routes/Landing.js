@@ -5,6 +5,7 @@ import * as styles from "styles";
 import * as Purchase from "purchase";
 import * as Product from "product";
 import * as User from "user";
+import * as Tracking from "tracking";
 
 import * as components from "../components";
 
@@ -14,6 +15,7 @@ oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 export function Landing() {
   const [sample, setSample] = useState(0);
   const ref = useRef();
+  Tracking.hooks.useOnce({ type: "page_view", name: "landing_page" });
 
   useEffect(function () {
     if (ref.current) {

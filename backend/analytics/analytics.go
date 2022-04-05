@@ -5,13 +5,14 @@ import (
 	"net/url"
 
 	"cloud.google.com/go/bigquery"
-	planner "github.com/justindfuller/purchaseplan.io/backend"
+	plan "github.com/justindfuller/purchaseplan.io/backend"
 	"github.com/pkg/errors"
 )
 
 // Client encapsulates connections to bigquery.
 type Client struct {
 	products *bigquery.Table
+	tracking *bigquery.Table
 }
 
 // New creates a new Client.
@@ -23,7 +24,9 @@ func New(ctx context.Context, project string) (Client, error) {
 		return c, err
 	}
 
-	c.products = client.Dataset("default").Table("products")
+	d := client.Dataset("default")
+	c.products = d.Table("products")
+	c.tracking = d.Table("tracking")
 
 	return c, nil
 }
@@ -39,7 +42,7 @@ type product struct {
 }
 
 // PutProduct will save a product to bigquery.
-func (c Client) PutProduct(ctx context.Context, requestURL string, p planner.Product) error {
+func (c Client) PutProduct(ctx context.Context, requestURL string, p plan.Product) error {
 	u, err := url.Parse(requestURL)
 	if err != nil {
 		return errors.Wrap(err, "product analytics unable to parse requestURL")
@@ -55,6 +58,13 @@ func (c Client) PutProduct(ctx context.Context, requestURL string, p planner.Pro
 		Image:       p.OriginalImage,
 	}); err != nil {
 		return errors.Wrap(err, "unable to save product to analytics")
+	}
+	return nil
+}
+
+func (c Client) Track(ctx context.Context, t *plan.Tracking) error {
+	if err := c.tracking.Inserter().Put(ctx, t); err != nil {
+		return errors.Wrap(err, "unable to save tracking to analytics")
 	}
 	return nil
 }

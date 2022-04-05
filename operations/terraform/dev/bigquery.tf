@@ -57,3 +57,48 @@ resource "google_bigquery_table" "products" {
 EOF
 }
 
+resource "google_bigquery_table" "tracking" {
+  dataset_id = google_bigquery_dataset.default.dataset_id
+  table_id   = "tracking"
+
+  schema = <<EOF
+[
+  {
+    "name": "UserID",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The User's ID."
+  },
+  {
+    "name": "PageViewID",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The unique ID for this page view."
+  },
+  {
+    "name": "Type",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The type of event being tracked."
+  },
+  {
+    "name": "Name",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The human-readable name of the event being tracked."
+  },
+  {
+    "name": "Time",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "The time of the event."
+  },
+  {
+    "name": "URL",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The URL of the event."
+  }
+]
+EOF
+}

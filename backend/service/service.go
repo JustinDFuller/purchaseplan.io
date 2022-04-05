@@ -334,6 +334,54 @@ func New(opts ...Option) (S, error) {
 		}
 	}, c)).Methods(http.MethodGet, http.MethodOptions)
 
+	r.HandleFunc("/v1/tracking", func(w http.ResponseWriter, r *http.Request) {
+		var tracking plan.Tracking
+		if json.NewDecoder(r.Body).Decode(&tracking); err != nil {
+			log.Printf("Error decoding tracking request: %s", err)
+			http.Error(w, "Error decoding tracking request", http.StatusInternalServerError)
+			return
+		}
+
+		if tracking.PageViewID == "" {
+			msg := "Missing PageViewID"
+			log.Printf("%s: %s", msg, err)
+			http.Error(w, msg, http.StatusBadRequest)
+			return
+		}
+
+		if tracking.Type == "" {
+			msg := "Missing Type"
+			log.Printf("%s: %s", msg, err)
+			http.Error(w, msg, http.StatusBadRequest)
+			return
+		}
+
+		if tracking.Name == "" {
+			msg := "Missing Name"
+			log.Printf("%s: %s", msg, err)
+			http.Error(w, msg, http.StatusBadRequest)
+			return
+		}
+
+		if tracking.URL == "" {
+			msg := "Missing URL"
+			log.Printf("%s: %s", msg, err)
+			http.Error(w, msg, http.StatusBadRequest)
+			return
+		}
+
+		if tracking.Time.IsZero() {
+			msg := "Missing Time"
+			log.Printf("%s: %s", msg, err)
+			http.Error(w, msg, http.StatusBadRequest)
+			return
+		}
+
+		if err := a.Track(context.Background(), &tracking); err != nil {
+			log.Printf("Unable to save tracking analytics: %s", err)
+		}
+	}).Methods(http.MethodPost, http.MethodOptions)
+
 	s.Router = r
 
 	return s, nil
