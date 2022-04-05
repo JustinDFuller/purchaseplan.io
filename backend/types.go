@@ -109,6 +109,18 @@ type (
 		Time time.Time
 		// URL is the URL where the tracking happened
 		URL string
+		// UserAgent is the User-Agent header set in the request
+		UserAgent string
+		// Host is the Host header set in the request
+		Host string
+		// Referer is the Referer header set in the request
+		Referer string
+		// Country is the country where the request originated
+		Country string
+		// Region is the region where the request originated (ex. CA = California in the US)
+		Region string
+		// Trace is the unique ID for the request
+		Trace string
 	}
 )
 

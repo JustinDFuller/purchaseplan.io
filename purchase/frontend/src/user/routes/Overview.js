@@ -3,11 +3,13 @@ import { ReactComponent as BookIcon } from "bootstrap-icons/icons/book.svg";
 
 import * as styles from "styles";
 import * as Auth from "auth";
+import * as Tracking from "tracking";
 
 import { SavingsOverview } from "../components";
 
 export function Overview() {
   const { auth, setAuth } = Auth.context.Use();
+  Tracking.hooks.useOnce({ type: "page_view", name: "user_overview" });
 
   return (
     <div className="row m-auto">

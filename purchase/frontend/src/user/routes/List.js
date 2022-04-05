@@ -2,11 +2,13 @@ import * as Auth from "auth";
 import * as Notifications from "notifications";
 import * as Purchase from "purchase";
 import * as Layout from "layout";
+import * as Tracking from "tracking";
 
 import * as data from "../data";
 
 export const List = Auth.context.With(function ({ auth }) {
   const { user } = data.Use();
+  Tracking.hooks.useOnce({ type: "page_view", name: "user_list" });
 
   const shouldShowHowItWorks =
     auth.isLoggedIn() && !user.purchases().hasAtLeastOne();

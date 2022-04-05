@@ -3,12 +3,15 @@ import * as Product from "product";
 import * as User from "user";
 import * as Notifications from "notifications";
 import * as Purchase from "purchase";
+import * as Tracking from "tracking";
 
 import * as Layout from "layout";
 
 import { List } from "./List";
 
 export const Dashboard = Auth.context.With(function ({ auth }) {
+  Tracking.hooks.useOnce({ type: "page_view", name: "user_dashboard" });
+
   return (
     <>
       <span className="d-block d-xl-none">

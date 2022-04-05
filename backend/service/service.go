@@ -377,6 +377,13 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
+		tracking.UserAgent = r.Header.Get("User-Agent")
+		tracking.Host = r.Header.Get("Host")
+		tracking.Referer = r.Header.Get("Referer")
+		tracking.Country = r.Header.Get("X-Appengine-Country")
+		tracking.Region = r.Header.Get("X-Appengine-Region")
+		tracking.Trace = r.Header.Get("X-Cloud-Trace-Context")
+
 		if err := a.Track(context.Background(), &tracking); err != nil {
 			log.Printf("Unable to save tracking analytics: %s", err)
 		}
