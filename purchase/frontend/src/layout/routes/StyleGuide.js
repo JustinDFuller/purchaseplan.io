@@ -1,6 +1,8 @@
 import * as Layout from "layout";
 import { colors, theme, themes } from "styles";
 
+import * as Tracking from "tracking";
+
 function Blocks({ obj, omit = {} }) {
   return (
     <div
@@ -52,6 +54,8 @@ function Blocks({ obj, omit = {} }) {
 }
 
 export function StyleGuide() {
+  Tracking.hooks.useOnce({ type: "page_view", name: "layout_styleguide" });
+
   return (
     <>
       <Layout.components.Card>

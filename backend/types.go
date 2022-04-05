@@ -1,6 +1,8 @@
 package plan
 
-import "time"
+import (
+	"time"
+)
 
 type (
 	// User is the top level struct for, you guessed it, user data.
@@ -92,6 +94,33 @@ type (
 
 	Merchant struct {
 		Name string
+	}
+
+	Tracking struct {
+		// UserID, if available, is the ID of the current user
+		UserID string
+		// PageviewID is a random ID for the current page view
+		PageViewID string
+		// Type is the type of tracking, such as a view or a click
+		Type string
+		// Name is some human-readable name to inform which event is happening
+		Name string
+		// Time is when the tracking happened
+		Time time.Time
+		// URL is the URL where the tracking happened
+		URL string
+		// UserAgent is the User-Agent header set in the request
+		UserAgent string
+		// Host is the Host header set in the request
+		Host string
+		// Referer is the Referer header set in the request
+		Referer string
+		// Country is the country where the request originated
+		Country string
+		// Region is the region where the request originated (ex. CA = California in the US)
+		Region string
+		// Trace is the unique ID for the request
+		Trace string
 	}
 )
 

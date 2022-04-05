@@ -57,3 +57,84 @@ resource "google_bigquery_table" "products" {
 EOF
 }
 
+resource "google_bigquery_table" "tracking" {
+  dataset_id = google_bigquery_dataset.default.dataset_id
+  table_id   = "tracking"
+
+  schema = <<EOF
+[
+  {
+    "name": "UserID",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The User's ID."
+  },
+  {
+    "name": "PageViewID",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The unique ID for this page view."
+  },
+  {
+    "name": "Type",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The type of event being tracked."
+  },
+  {
+    "name": "Name",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The human-readable name of the event being tracked."
+  },
+  {
+    "name": "Time",
+    "type": "TIMESTAMP",
+    "mode": "REQUIRED",
+    "description": "The time of the event."
+  },
+  {
+    "name": "URL",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The URL of the event."
+  },
+  {
+    "name": "UserAgent",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The User-Agent header from the request."
+  },
+  {
+    "name": "Host",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The Host header from the request."
+  },
+  {
+    "name": "Referer",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The Referer header from the request."
+  },
+  {
+    "name": "Country",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The Country where the request originated."
+  },
+  {
+    "name": "Region",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The Region (US-CA) where the request originated."
+  },
+  {
+    "name": "Trace",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The request's unique Trace ID."
+  }
+]
+EOF
+}
