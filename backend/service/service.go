@@ -336,7 +336,7 @@ func New(opts ...Option) (S, error) {
 
 	r.HandleFunc("/v1/tracking", func(w http.ResponseWriter, r *http.Request) {
 		var tracking plan.Tracking
-		if json.NewDecoder(r.Body).Decode(&tracking); err != nil {
+		if err := json.NewDecoder(r.Body).Decode(&tracking); err != nil {
 			log.Printf("Error decoding tracking request: %s", err)
 			http.Error(w, "Error decoding tracking request", http.StatusInternalServerError)
 			return
