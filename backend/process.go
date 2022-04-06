@@ -5,6 +5,9 @@ import (
 	"log"
 	"net/url"
 	"strings"
+
+	"github.com/google/uuid"
+	"github.com/pkg/errors"
 )
 
 type Processor func(*User) error
@@ -29,6 +32,14 @@ func Process(u *User) error {
 }
 
 func ProcessDefaults(u *User) error {
+	if u.ID == "" {
+		id, err := uuid.NewRandom()
+		if err != nil {
+			return errors.Wrap(err, "error creating user ID")
+		}
+		u.ID = id.String()
+	}
+
 	// A quick google search shows that bi-weekly is the most
 	// common pay frequency in the US.
 	if u.Frequency == "" {
