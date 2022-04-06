@@ -6,7 +6,6 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/google/uuid"
 	"github.com/pkg/errors"
 )
 
@@ -33,11 +32,11 @@ func Process(u *User) error {
 
 func ProcessDefaults(u *User) error {
 	if u.ID == "" {
-		id, err := uuid.NewRandom()
+		id, err := newID()
 		if err != nil {
 			return errors.Wrap(err, "error creating user ID")
 		}
-		u.ID = id.String()
+		u.ID = id
 	}
 
 	// A quick google search shows that bi-weekly is the most

@@ -50,6 +50,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:           "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:        "foobar",
 				Frequency:    biweekly,
 				LastPaycheck: now(),
@@ -112,6 +113,7 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneDay * 8),
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     weekly,
 				Contributions: 100,
@@ -128,6 +130,7 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneDay * 15),
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     biweekly,
 				Contributions: 100,
@@ -144,6 +147,7 @@ func TestProcess(t *testing.T) {
 				LastPaycheck:  fromNow(-oneDay * 32),
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     monthly,
 				Contributions: 100,
@@ -159,6 +163,7 @@ func TestProcess(t *testing.T) {
 				Contributions: 100,
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     twiceMonthly,
 				Contributions: 100,
@@ -173,6 +178,7 @@ func TestProcess(t *testing.T) {
 				Contributions: 100,
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     twiceMonthly,
 				Contributions: 100,
@@ -223,6 +229,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     weekly,
 				Contributions: 100,
@@ -302,6 +309,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     weekly,
 				Contributions: 100,
@@ -360,6 +368,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:           "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:        "foobar",
 				Frequency:    weekly,
 				LastPaycheck: now(),
@@ -416,6 +425,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     biweekly,
 				Contributions: 100,
@@ -495,6 +505,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     biweekly,
 				Contributions: 100,
@@ -553,6 +564,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:           "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:        "foobar",
 				Frequency:    biweekly,
 				LastPaycheck: now(),
@@ -609,6 +621,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     monthly,
 				Contributions: 100,
@@ -688,6 +701,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     twiceMonthly,
 				Contributions: 100,
@@ -766,6 +780,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     twiceMonthly,
 				Contributions: 100,
@@ -831,6 +846,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     weekly,
 				Contributions: 100,
@@ -872,6 +888,7 @@ func TestProcess(t *testing.T) {
 				},
 			},
 			expected: User{
+				ID:            "776867e6-c0e4-4911-9789-7dcee8a5678f",
 				Email:         "foobar",
 				Frequency:     weekly,
 				Contributions: 100,
