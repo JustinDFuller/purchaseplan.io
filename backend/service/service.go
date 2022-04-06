@@ -110,7 +110,6 @@ func New(opts ...Option) (S, error) {
 
 		did := r.Header.Get(headerAuthorization)[len(authBearer)+1:]
 		if did == "" {
-			log.Printf("Missing DID token: %s", r.Header.Get(headerAuthorization))
 			w.WriteHeader(http.StatusUnauthorized)
 			return
 		}
@@ -334,7 +333,7 @@ func New(opts ...Option) (S, error) {
 		}
 	}, c)).Methods(http.MethodGet, http.MethodOptions)
 
-	r.HandleFunc("/v1/tracking", func(w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/v1/tracking", withOptionalAuthentication(func(w http.ResponseWriter, r *http.Request) {
 		var tracking plan.Tracking
 		if err := json.NewDecoder(r.Body).Decode(&tracking); err != nil {
 			log.Printf("Error decoding tracking request: %s", err)
@@ -377,17 +376,27 @@ func New(opts ...Option) (S, error) {
 			return
 		}
 
+		tracking.Host = r.Host
 		tracking.UserAgent = r.Header.Get("User-Agent")
-		tracking.Host = r.Header.Get("Host")
 		tracking.Referer = r.Header.Get("Referer")
 		tracking.Country = r.Header.Get("X-Appengine-Country")
 		tracking.Region = r.Header.Get("X-Appengine-Region")
 		tracking.Trace = r.Header.Get("X-Cloud-Trace-Context")
 
-		if err := a.Track(context.Background(), &tracking); err != nil {
+		val := r.Context().Value(emailContextKey)
+		email, ok := val.(string)
+		if ok {
+			u, err := ds.GetUser(r.Context(), email)
+			if err != nil {
+				log.Printf("Couldn't find user from context: %s", err)
+			}
+			tracking.UserID = u.ID
+		}
+
+		if err := a.Track(r.Context(), &tracking); err != nil {
 			log.Printf("Unable to save tracking analytics: %s", err)
 		}
-	}).Methods(http.MethodPost, http.MethodOptions)
+	}, c)).Methods(http.MethodPost, http.MethodOptions)
 
 	s.Router = r
 

@@ -1,6 +1,9 @@
 import * as Product from "product";
+import * as Tracking from "tracking";
 
 export function Add() {
+  Tracking.hooks.useOnce({ type: "page_view", name: "user_add" });
+
   return (
     <div className="row m-auto">
       <div className="col-12 px-0" style={{ height: "94vh" }}>
