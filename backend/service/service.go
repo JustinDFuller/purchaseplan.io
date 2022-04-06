@@ -110,7 +110,6 @@ func New(opts ...Option) (S, error) {
 
 		did := r.Header.Get(headerAuthorization)[len(authBearer)+1:]
 		if did == "" {
-			log.Printf("Missing DID token: %s", r.Header.Get(headerAuthorization))
 			w.WriteHeader(http.StatusUnauthorized)
 			return
 		}
