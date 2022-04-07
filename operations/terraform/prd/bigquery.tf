@@ -52,6 +52,12 @@ resource "google_bigquery_table" "products" {
     "type": "STRING",
     "mode": "NULLABLE",
     "description": "The product image that was found"
+  },
+  {
+    "name": "Time",
+    "type": "TIMESTAMP",
+    "mode": "NULLABLE",
+    "description": "The time of the event."
   }
 ]
 EOF

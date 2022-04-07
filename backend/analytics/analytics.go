@@ -3,6 +3,7 @@ package analytics
 import (
 	"context"
 	"net/url"
+	"time"
 
 	"cloud.google.com/go/bigquery"
 	plan "github.com/justindfuller/purchaseplan.io/backend"
@@ -39,6 +40,7 @@ type product struct {
 	Price       int64
 	URL         string
 	Image       string
+	Time        time.Time
 }
 
 // PutProduct will save a product to bigquery.
@@ -56,6 +58,7 @@ func (c Client) PutProduct(ctx context.Context, requestURL string, p plan.Produc
 		Price:       p.Price,
 		URL:         p.URL,
 		Image:       p.OriginalImage,
+		Time:        time.Now(),
 	}); err != nil {
 		return errors.Wrap(err, "unable to save product to analytics")
 	}
