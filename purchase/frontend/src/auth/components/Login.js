@@ -60,8 +60,7 @@ export const Login = context.With(
               <div className="col-12">
                 <a
                   onClick={() =>
-                    Tracking.api.track({
-                      Type: "action",
+                    Tracking.api.action({
                       Name: auth.isLoggedIn()
                         ? "Auth Get Started For Free Button"
                         : "Auth Get Started Button",

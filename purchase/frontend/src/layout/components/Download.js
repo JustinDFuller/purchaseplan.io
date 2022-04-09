@@ -9,7 +9,7 @@ export function Download() {
           target="_blank"
           rel="noreferrer"
           onClick={() =>
-            Tracking.api.track({ Type: "action", Name: "Google Play" })
+            Tracking.api.action({ Name: "Google Play" })
           }
         >
           <img

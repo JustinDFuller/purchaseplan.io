@@ -18,7 +18,7 @@ export const UndoPurchase = User.data.WithContext(function ({
           const u = user.undoPurchase(purchase);
           const res = await User.api.put(u);
           setUser(user.from(res));
-          Tracking.api.track({ Type: "action", Name: "Click Undo Purchase" })
+          Tracking.api.action({ Type: "action", Name: "Click Undo Purchase" });
         }}
       >
         Undo

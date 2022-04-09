@@ -122,8 +122,7 @@ export function Form({
                   className="mx-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => {
-                    Tracking.api.track({
-                      Type: "action",
+                    Tracking.api.action({
                       Name: "Click show note icon",
                     });
                     setShowNote(true);
@@ -138,8 +137,7 @@ export function Form({
                   className="mx-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => {
-                    Tracking.api.track({
-                      Type: "action",
+                    Tracking.api.action({
                       Name: "Click show quantity icon",
                     });
                     setShowQuantity(true);

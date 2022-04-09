@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import * as User from "user";
 import * as Product from "product";
 import * as layout from "layout";
-import * as Tracking from 'tracking';
+import * as Tracking from "tracking";
 
 import { URL } from "./URL";
 import { Form } from "./Form";
@@ -26,7 +26,7 @@ export const Card = User.data.WithContext(function ({
     setLoading(true);
 
     try {
-      Tracking.api.track({ Type: "action", Name: "Click import URL Button" });
+      Tracking.api.action({ Name: "Click import URL Button" });
 
       const result = await Product.api.get(url);
 
@@ -60,20 +60,22 @@ export const Card = User.data.WithContext(function ({
     setError(NO_ERROR);
     setProduct(null);
     setQuantity(1);
-    Tracking.api.track({ Type: "action", Name: "Click submit edit product form" });
+    Tracking.api.action({
+      Name: "Click submit edit product form",
+    });
   }
 
   function handleCancel(e) {
     e.preventDefault();
     setProduct(null);
     setQuantity(1);
-    Tracking.api.track({ Type: "action", Name: "Click Cancel URL Form" })
+    Tracking.api.action({ Name: "Click Cancel URL Form" });
   }
 
   function handleNoURL() {
     setProduct();
     setProduct(Product.data.New());
-    Tracking.api.track({ Type: "action", Name: "Click no URL Button" });
+    Tracking.api.action({ Name: "Click no URL Button" });
   }
 
   if (!product) {

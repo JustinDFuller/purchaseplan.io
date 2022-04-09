@@ -42,8 +42,7 @@ export function BottomNav() {
     >
       <ListIcon
         onClick={() => {
-          Tracking.api.track({
-            Type: "action",
+          Tracking.api.action({
             Name: "Bottom Nav Dashboard Link",
           });
           history.push(User.getDashboardPath());
@@ -59,8 +58,7 @@ export function BottomNav() {
       </ListIcon>
       <PlusIcon
         onClick={() => {
-          Tracking.api.track({
-            Type: "action",
+          Tracking.api.action({
             Name: "Bottom Nav Add Link",
           });
           history.push(User.routes.Add.path);
@@ -75,8 +73,7 @@ export function BottomNav() {
       </PlusIcon>
       <GearIcon
         onClick={() => {
-          Tracking.api.track({
-            Type: "action",
+          Tracking.api.action({
             Name: "Bottom Nav Overview Link",
           });
           history.push(User.routes.Overview.path);

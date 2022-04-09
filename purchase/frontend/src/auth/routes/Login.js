@@ -6,7 +6,7 @@ import * as Tracking from "tracking";
 const src = "https://auth.magic.link/pnp/login";
 
 export function Login() {
-  Tracking.hooks.useOnce({ Type: "view", name: "auth_login" });
+  Tracking.hooks.useView({ name: "auth_login" });
 
   useEffect(function () {
     document.body.classList.remove("hide-magic-iframe");

@@ -2,7 +2,7 @@ import * as Product from "product";
 import * as Tracking from "tracking";
 
 export function Add() {
-  Tracking.hooks.useOnce({ Type: "view", name: "user_add" });
+  Tracking.hooks.useView({ name: "user_add" });
 
   return (
     <div className="row m-auto">

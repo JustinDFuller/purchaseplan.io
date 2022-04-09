@@ -2,8 +2,8 @@ import { useEffect } from "react";
 
 import * as api from "./api";
 
-export function useOnce(options) {
+export function useView(options) {
   useEffect(() => {
-    api.track(options);
+    api.view(options);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 }

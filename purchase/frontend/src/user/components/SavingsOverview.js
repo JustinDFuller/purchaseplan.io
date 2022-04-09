@@ -80,7 +80,7 @@ export const SavingsOverview = data.WithContext(function ({
     setEdit(false);
     const res = await api.put(user);
     setUser(user.from(res));
-    Tracking.api.track({ Type: "action", name: "Submit Savings Overview" });
+    Tracking.api.action({ name: "Submit Savings Overview" });
   }
 
   function Edit() {
@@ -168,8 +168,7 @@ export const SavingsOverview = data.WithContext(function ({
                 className="float-right mt-2 cursor-pointer loader-hidden"
                 role="button"
                 onClick={() => {
-                  Tracking.api.track({
-                    Type: "action",
+                  Tracking.api.action({
                     name: "Click Edit Savings Overview",
                   });
                   setEdit(true);

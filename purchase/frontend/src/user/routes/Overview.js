@@ -9,7 +9,7 @@ import { SavingsOverview } from "../components";
 
 export function Overview() {
   const { auth, setAuth } = Auth.context.Use();
-  Tracking.hooks.useOnce({ Type: "view", name: "user_overview" });
+  Tracking.hooks.useView({ name: "user_overview" });
 
   return (
     <div className="row m-auto">
@@ -25,8 +25,7 @@ export function Overview() {
               rel="noreferrer"
               data-testid="blog"
               onClick={() => {
-                Tracking.api.track({
-                  Type: "action",
+                Tracking.api.action({
                   name: "Savings Overview Click Blog Link",
                 });
               }}
@@ -41,8 +40,7 @@ export function Overview() {
                 className="btn btn-link"
                 style={styles.text}
                 onClick={async () => {
-                  Tracking.api.track({
-                    Type: "action",
+                  Tracking.api.action({
                     name: "Savings Overview Click Log Out",
                   });
                   setAuth(await auth.logout());

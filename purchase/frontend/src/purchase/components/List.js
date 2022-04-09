@@ -41,7 +41,7 @@ export const List = User.data.WithContext(function ({
     // Optimistically change it to avoid shuffling.
     const u = user.setPurchases(purchases);
     setUser(u);
-    Tracking.api.track({ Type: "action", Name: "Drag and Drop Purchase" });
+    Tracking.api.action({ Name: "Drag and Drop Purchase" });
     const res = await User.api.put(u);
     // reset it just in case backend changed
     setUser(user.from(res));

@@ -54,7 +54,7 @@ function Blocks({ obj, omit = {} }) {
 }
 
 export function StyleGuide() {
-  Tracking.hooks.useOnce({ Type: "view", name: "layout_styleguide" });
+  Tracking.hooks.useView({ name: "layout_styleguide" });
 
   return (
     <>

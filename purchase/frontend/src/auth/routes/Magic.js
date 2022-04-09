@@ -12,7 +12,7 @@ export function Magic() {
   const history = useHistory();
   const { auth, setAuth } = context.Use();
   const { user, setUser } = User.data.Use();
-  Tracking.hooks.useOnce({ Type: "view", name: "auth_magic" });
+  Tracking.hooks.useView({ name: "auth_magic" });
 
   useEffect(function () {
     document.body.classList.remove("hide-magic-iframe");

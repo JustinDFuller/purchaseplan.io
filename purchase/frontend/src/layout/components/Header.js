@@ -35,8 +35,7 @@ export function Header() {
               className="navbard-brand d-flex align-items-center justify-content-space-between"
               href="/"
               onClick={() =>
-                Tracking.api.track({
-                  Type: "action",
+                Tracking.api.action({
                   Name: "Header Brand Icon Link",
                 })
               }
@@ -58,8 +57,7 @@ export function Header() {
                       className="btn btn-link nav-link text-white"
                       href="/app/user/dashboard"
                       onClick={() =>
-                        Tracking.api.track({
-                          Type: "action",
+                        Tracking.api.action({
                           Name: "Header Dashboard Link",
                         })
                       }
@@ -78,8 +76,7 @@ export function Header() {
                     })}
                     href="/app/auth/login"
                     onClick={() =>
-                      Tracking.api.track({
-                        Type: "action",
+                      Tracking.api.action({
                         Name: "Header Log In Link",
                       })
                     }
@@ -101,8 +98,7 @@ export function Header() {
                       rel="noreferrer"
                       data-testid="blog"
                       onClick={() =>
-                        Tracking.api.track({
-                          Type: "action",
+                        Tracking.api.action({
                           Name: "Header Blog Link",
                         })
                       }
@@ -121,8 +117,7 @@ export function Header() {
                         color: styles.colors.light,
                       })}
                       onClick={async () => {
-                        Tracking.api.track({
-                          Type: "action",
+                        Tracking.api.action({
                           Name: "Header Log Out Link",
                         });
                         setAuth(await auth.logout());

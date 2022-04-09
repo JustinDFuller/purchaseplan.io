@@ -15,7 +15,7 @@ oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 export function Landing() {
   const [sample, setSample] = useState(0);
   const ref = useRef();
-  Tracking.hooks.useOnce({ Type: "view", name: "landing_page" });
+  Tracking.hooks.useView({ name: "landing_page" });
 
   useEffect(function () {
     if (ref.current) {
@@ -181,9 +181,7 @@ export function Landing() {
           href="https://www.producthunt.com/posts/purchase-plan?utm_source=badge-review&utm_medium=badge&utm_souce=badge-purchase-plan#discussion-body"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() =>
-            Tracking.api.track({ Type: "action", Name: "Product Hunt Badge" })
-          }
+          onClick={() => Tracking.api.action({ Name: "Product Hunt Badge" })}
         >
           <img
             src="https://api.producthunt.com/widgets/embed-image/v1/review.svg?post_id=330492&theme=dark"

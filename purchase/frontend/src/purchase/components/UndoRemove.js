@@ -19,7 +19,7 @@ export const UndoRemove = User.data.WithContext(function ({
           const u = user.setPurchases(purchases);
           const res = await User.api.put(u);
           setUser(user.from(res));
-          Tracking.api.track({ Type: "action", Name: "Click Undo Remove Purchase" })
+          Tracking.api.action({ Name: "Click Undo Remove Purchase" })
         }}
       >
         Undo
