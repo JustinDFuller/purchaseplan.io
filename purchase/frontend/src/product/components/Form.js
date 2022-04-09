@@ -7,6 +7,7 @@ import Alert from "react-bootstrap/Alert";
 
 import * as styles from "styles";
 import * as form from "form";
+import * as Tracking from "tracking";
 
 export function Form({
   onSubmit,
@@ -120,7 +121,13 @@ export function Form({
                   width="19"
                   className="mx-2"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setShowNote(true)}
+                  onClick={() => {
+                    Tracking.api.track({
+                      Type: "action",
+                      Name: "Click show note icon",
+                    });
+                    setShowNote(true);
+                  }}
                   data-tip="Add a note"
                 />
               )}
@@ -131,6 +138,10 @@ export function Form({
                   className="mx-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => {
+                    Tracking.api.track({
+                      Type: "action",
+                      Name: "Click show quantity icon",
+                    });
                     setShowQuantity(true);
                     setShowQuantity(true);
                   }}

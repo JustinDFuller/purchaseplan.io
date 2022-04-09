@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import * as User from "user";
 import * as Product from "product";
 import * as layout from "layout";
+import * as Tracking from 'tracking';
 
 import { URL } from "./URL";
 import { Form } from "./Form";
@@ -23,7 +24,10 @@ export const Card = User.data.WithContext(function ({
 
   async function handleSubmit(url) {
     setLoading(true);
+
     try {
+      Tracking.api.track({ Type: "action", Name: "Click import URL Button" });
+
       const result = await Product.api.get(url);
 
       if (result) {
@@ -56,17 +60,20 @@ export const Card = User.data.WithContext(function ({
     setError(NO_ERROR);
     setProduct(null);
     setQuantity(1);
+    Tracking.api.track({ Type: "action", Name: "Click submit edit product form" });
   }
 
   function handleCancel(e) {
     e.preventDefault();
     setProduct(null);
     setQuantity(1);
+    Tracking.api.track({ Type: "action", Name: "Click Cancel URL Form" })
   }
 
   function handleNoURL() {
     setProduct();
     setProduct(Product.data.New());
+    Tracking.api.track({ Type: "action", Name: "Click no URL Button" });
   }
 
   if (!product) {

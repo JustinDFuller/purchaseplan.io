@@ -24,6 +24,12 @@ export function Overview() {
               target="_blank"
               rel="noreferrer"
               data-testid="blog"
+              onClick={() => {
+                Tracking.api.track({
+                  Type: "action",
+                  name: "Savings Overview Click Blog Link",
+                });
+              }}
             >
               <BookIcon className="mr-2" />
               <span style={{ position: "relative", top: 1 }}>Blog</span>
@@ -34,7 +40,13 @@ export function Overview() {
               <button
                 className="btn btn-link"
                 style={styles.text}
-                onClick={async () => setAuth(await auth.logout())}
+                onClick={async () => {
+                  Tracking.api.track({
+                    Type: "action",
+                    name: "Savings Overview Click Log Out",
+                  });
+                  setAuth(await auth.logout());
+                }}
               >
                 <LogOutIcon className="mr-2" />
                 <span style={{ position: "relative", top: 1 }}>Log Out</span>
