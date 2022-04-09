@@ -4,6 +4,7 @@ import { ReactComponent as PlusIcon } from "bootstrap-icons/icons/plus-circle-fi
 import { ReactComponent as GearIcon } from "bootstrap-icons/icons/gear.svg";
 
 import * as User from "user";
+import * as Tracking from "tracking";
 import { theme, colors } from "styles";
 
 const buttonStyle = {
@@ -40,7 +41,13 @@ export function BottomNav() {
       }}
     >
       <ListIcon
-        onClick={() => history.push(User.getDashboardPath())}
+        onClick={() => {
+          Tracking.api.track({
+            Type: "action",
+            Name: "Bottom Nav Dashboard Link",
+          });
+          history.push(User.getDashboardPath());
+        }}
         style={
           location.pathname === User.routes.List.path ||
           location.pathname === User.routes.Dashboard.path
@@ -51,7 +58,13 @@ export function BottomNav() {
         List
       </ListIcon>
       <PlusIcon
-        onClick={() => history.push(User.routes.Add.path)}
+        onClick={() => {
+          Tracking.api.track({
+            Type: "action",
+            Name: "Bottom Nav Add Link",
+          });
+          history.push(User.routes.Add.path);
+        }}
         style={
           location.pathname === User.routes.Add.path
             ? activeButtonStyle
@@ -61,7 +74,13 @@ export function BottomNav() {
         Add
       </PlusIcon>
       <GearIcon
-        onClick={() => history.push(User.routes.Overview.path)}
+        onClick={() => {
+          Tracking.api.track({
+            Type: "action",
+            Name: "Bottom Nav Overview Link",
+          });
+          history.push(User.routes.Overview.path);
+        }}
         style={
           location.pathname === User.routes.Overview.path
             ? activeButtonStyle

@@ -1,5 +1,6 @@
 import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router-dom";
+
 /*
 import {
   GoogleLoginButton,
@@ -12,6 +13,7 @@ import * as User from "user";
 import * as layout from "layout";
 import * as form from "form";
 import * as styles from "styles";
+import * as Tracking from "tracking";
 
 export const Login = context.With(
   User.data.WithContext(function ({
@@ -57,6 +59,14 @@ export const Login = context.With(
             <div className="row">
               <div className="col-12">
                 <a
+                  onClick={() =>
+                    Tracking.api.track({
+                      Type: "action",
+                      Name: auth.isLoggedIn()
+                        ? "Auth Get Started For Free Button"
+                        : "Auth Get Started Button",
+                    })
+                  }
                   href={
                     auth.isLoggedIn()
                       ? "/app/user/dashboard"

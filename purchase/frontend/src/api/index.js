@@ -1,4 +1,4 @@
-function withHost(url) {
+export function withHost(url) {
   return `//${window.location.host}${url}`;
 }
 

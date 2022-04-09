@@ -1,3 +1,5 @@
+import * as Tracking from "tracking";
+
 export function Download() {
   return (
     <div className="row py-3">
@@ -6,6 +8,9 @@ export function Download() {
           href="https://play.google.com/store/apps/details?id=com.purchaseplan.android&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"
           target="_blank"
           rel="noreferrer"
+          onClick={() =>
+            Tracking.api.track({ Type: "action", Name: "Google Play" })
+          }
         >
           <img
             alt="Get it on Google Play"

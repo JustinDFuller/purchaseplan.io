@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Row from "react-bootstrap/Row";
 
 import * as User from "user";
+import * as Tracking from "tracking";
 
 import { Card } from "./Card";
 import { samplePurchases } from "../samplePurchases";
@@ -40,6 +41,7 @@ export const List = User.data.WithContext(function ({
     // Optimistically change it to avoid shuffling.
     const u = user.setPurchases(purchases);
     setUser(u);
+    Tracking.api.track({ Type: "action", Name: "Drag and Drop Purchase" });
     const res = await User.api.put(u);
     // reset it just in case backend changed
     setUser(user.from(res));

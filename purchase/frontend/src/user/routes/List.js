@@ -8,7 +8,7 @@ import * as data from "../data";
 
 export const List = Auth.context.With(function ({ auth }) {
   const { user } = data.Use();
-  Tracking.hooks.useOnce({ type: "page_view", name: "user_list" });
+  Tracking.hooks.useOnce({ Type: "view", name: "user_list" });
 
   const shouldShowHowItWorks =
     auth.isLoggedIn() && !user.purchases().hasAtLeastOne();

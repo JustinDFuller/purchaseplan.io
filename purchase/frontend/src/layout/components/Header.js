@@ -4,6 +4,7 @@ import { ReactComponent as Door } from "bootstrap-icons/icons/door-open-fill.svg
 
 import * as styles from "styles";
 import * as Auth from "auth";
+import * as Tracking from "tracking";
 
 import * as routes from "../routes";
 
@@ -33,6 +34,12 @@ export function Header() {
             <a
               className="navbard-brand d-flex align-items-center justify-content-space-between"
               href="/"
+              onClick={() =>
+                Tracking.api.track({
+                  Type: "action",
+                  Name: "Header Brand Icon Link",
+                })
+              }
             >
               <img
                 src={`${process.env.PUBLIC_URL}/logo.png`}
@@ -50,6 +57,12 @@ export function Header() {
                     <a
                       className="btn btn-link nav-link text-white"
                       href="/app/user/dashboard"
+                      onClick={() =>
+                        Tracking.api.track({
+                          Type: "action",
+                          Name: "Header Dashboard Link",
+                        })
+                      }
                     >
                       Dashboard
                     </a>
@@ -64,6 +77,12 @@ export function Header() {
                       color: styles.colors.light,
                     })}
                     href="/app/auth/login"
+                    onClick={() =>
+                      Tracking.api.track({
+                        Type: "action",
+                        Name: "Header Log In Link",
+                      })
+                    }
                   >
                     Log In
                   </a>
@@ -81,6 +100,12 @@ export function Header() {
                       target="_blank"
                       rel="noreferrer"
                       data-testid="blog"
+                      onClick={() =>
+                        Tracking.api.track({
+                          Type: "action",
+                          Name: "Header Blog Link",
+                        })
+                      }
                     >
                       <Megaphone
                         role="button"
@@ -95,7 +120,13 @@ export function Header() {
                       style={styles.combine(styles.text, {
                         color: styles.colors.light,
                       })}
-                      onClick={async () => setAuth(await auth.logout())}
+                      onClick={async () => {
+                        Tracking.api.track({
+                          Type: "action",
+                          Name: "Header Log Out Link",
+                        });
+                        setAuth(await auth.logout());
+                      }}
                     >
                       <Door
                         role="button"

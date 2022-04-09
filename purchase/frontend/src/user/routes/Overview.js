@@ -9,7 +9,7 @@ import { SavingsOverview } from "../components";
 
 export function Overview() {
   const { auth, setAuth } = Auth.context.Use();
-  Tracking.hooks.useOnce({ type: "page_view", name: "user_overview" });
+  Tracking.hooks.useOnce({ Type: "view", name: "user_overview" });
 
   return (
     <div className="row m-auto">
