@@ -4,6 +4,7 @@ import { ReactComponent as Pencil } from "bootstrap-icons/icons/pencil.svg";
 import * as styles from "styles";
 import * as layout from "layout";
 import * as form from "form";
+import * as Tracking from "tracking";
 
 import * as data from "../data";
 import * as api from "../api";
@@ -79,6 +80,7 @@ export const SavingsOverview = data.WithContext(function ({
     setEdit(false);
     const res = await api.put(user);
     setUser(user.from(res));
+    Tracking.api.action({ name: "Submit Savings Overview" });
   }
 
   function Edit() {
@@ -115,7 +117,7 @@ export const SavingsOverview = data.WithContext(function ({
             />
             <select
               disabled={disabled}
-              className="form-control mt-2"
+              className="form-control mt-1"
               value={user.frequency()}
               onChange={(e) => setUser(user.setFrequency(e.target.value))}
               required
@@ -165,7 +167,12 @@ export const SavingsOverview = data.WithContext(function ({
               <Pencil
                 className="float-right mt-2 cursor-pointer loader-hidden"
                 role="button"
-                onClick={() => setEdit(true)}
+                onClick={() => {
+                  Tracking.api.action({
+                    name: "Click Edit Savings Overview",
+                  });
+                  setEdit(true);
+                }}
               />
             )}
           </div>

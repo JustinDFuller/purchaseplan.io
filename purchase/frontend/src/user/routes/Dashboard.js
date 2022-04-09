@@ -10,7 +10,7 @@ import * as Layout from "layout";
 import { List } from "./List";
 
 export const Dashboard = Auth.context.With(function ({ auth }) {
-  Tracking.hooks.useOnce({ type: "page_view", name: "user_dashboard" });
+  Tracking.hooks.useView({ name: "user_dashboard" });
 
   return (
     <>

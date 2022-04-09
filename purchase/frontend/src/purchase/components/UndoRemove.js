@@ -1,4 +1,5 @@
 import * as User from "user";
+import * as Tracking from "tracking";
 
 export const UndoRemove = User.data.WithContext(function ({
   closeToast,
@@ -18,6 +19,7 @@ export const UndoRemove = User.data.WithContext(function ({
           const u = user.setPurchases(purchases);
           const res = await User.api.put(u);
           setUser(user.from(res));
+          Tracking.api.action({ Name: "Click Undo Remove Purchase" })
         }}
       >
         Undo

@@ -10,6 +10,7 @@ import * as styles from "styles";
 import * as layout from "layout";
 import * as notifications from "notifications";
 import * as Product from "product";
+import * as Tracking from "tracking";
 
 import { UndoPurchase } from "./UndoPurchase";
 import { UndoRemove } from "./UndoRemove";
@@ -21,6 +22,7 @@ export const Edit = React.forwardRef(function ({ children, onClick }, ref) {
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
+        Tracking.api.action({ Name: "Open Purchase Menu" });
       }}
       style={styles.combine(styles.pointer, styles.zIndex)}
     >
@@ -46,6 +48,7 @@ export const Card = User.data.WithContext(function ({
     const u = user.setPurchases(purchases);
     setUser(u);
     User.api.put(u);
+    Tracking.api.action({ Name: "Remove Purchase" });
 
     notifications.show(<UndoRemove purchase={purchase} />);
   }
@@ -56,6 +59,7 @@ export const Card = User.data.WithContext(function ({
     const u = user.purchase(purchase);
     setUser(u);
     User.api.put(u);
+    Tracking.api.action({ Name: "Purchased Item" });
 
     notifications.show(<UndoPurchase purchase={purchase} />);
   }
@@ -63,6 +67,7 @@ export const Card = User.data.WithContext(function ({
   function onEdit(e, purchase) {
     e.preventDefault();
     setEditing(true);
+    Tracking.api.action({ Name: "Edit Purchase Start" });
   }
 
   function handleEditSubmit(e) {
@@ -73,11 +78,13 @@ export const Card = User.data.WithContext(function ({
     );
     setUser(u);
     User.api.put(u);
+    Tracking.api.action({ Name: "Edit Purchase Save" });
   }
 
   function handleEditCancel(e) {
     e.preventDefault();
     setEditing(false);
+    Tracking.api.action({ Name: "Edit Purchase Cancel" });
   }
 
   if (editing) {
@@ -102,6 +109,13 @@ export const Card = User.data.WithContext(function ({
         href={purchase.url()}
         target={purchase.product().url() ? "_blank" : ""}
         rel={purchase.product().url() ? "noopener noreferrer" : ""}
+        onClick={(e) => {
+          if (e.defaultPrevented) {
+            return;
+          }
+
+          Tracking.api.action({ Name: "Click product card link" });
+        }}
       >
         <Row>
           <Col xs={12} sm={5} md={4}>
@@ -130,6 +144,9 @@ export const Card = User.data.WithContext(function ({
                   onError={(e) => {
                     e.target.onError = null;
                     e.target.src = `${process.env.PUBLIC_URL}/404.png`;
+                    Tracking.api.error({
+                      Name: "Error Loading Product Image",
+                    });
                   }}
                 />
               ) : (
