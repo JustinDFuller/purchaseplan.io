@@ -15,9 +15,8 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/justindfuller/secretmanager v0.0.4
 	github.com/kelseyhightower/envconfig v1.4.0
-	github.com/kr/pretty v0.2.1 // indirect
 	github.com/magiclabs/magic-admin-go v0.1.0
 	github.com/oliveroneill/exponent-server-sdk-golang v0.0.0-20210813074212-6ad56db8bf5c
 	github.com/pkg/errors v0.9.1
-	google.golang.org/api v0.66.0
+	google.golang.org/api v0.75.0
 )
