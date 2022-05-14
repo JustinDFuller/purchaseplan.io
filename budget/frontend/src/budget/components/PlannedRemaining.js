@@ -1,6 +1,10 @@
 import { ReactComponent as Trophy } from "bootstrap-icons/icons/trophy-fill.svg";
 
 export function PlannedRemaining({ budget }) {
+  if (budget.isEmpty()) {
+    return null;
+  }
+
   if (budget.remainingToPlan() === 0) {
     return (
       <h5 style={{ fontWeight: "normal" }} className="mt-2 text-center">

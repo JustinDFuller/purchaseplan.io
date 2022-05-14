@@ -161,5 +161,8 @@ export function New(data = defaults) {
         Transactions: data.Transactions.setTransaction(transaction),
       });
     },
+    isEmpty() {
+      return data.Categories.isEmpty();
+    },
   };
 }
