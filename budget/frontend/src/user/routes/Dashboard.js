@@ -35,7 +35,7 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
           <User.components.SavingsOverview />
         ) : (
           <>
-            <div className="col-12 col-xl-4">
+            <div className="col-12 col-xl-4 px-0 px-xl-3">
               <Budget.components.Overview
                 budget={budget}
                 view={budget.View()}
@@ -47,7 +47,7 @@ export const Dashboard = Auth.context.With(function ({ auth }) {
                 user={user}
               />
             </div>
-            <div className="col-12 col-xl-8">
+            <div className="col-12 col-xl-8 px-0 px-xl-3">
               <Category.components.Groups
                 budget={budget}
                 view={budget.View()}
