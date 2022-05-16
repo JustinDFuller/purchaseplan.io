@@ -95,6 +95,12 @@ export function New(data = []) {
         arr.push({
           name: k,
           categories: v,
+          canDelete() {
+            return k !== "Income";
+          },
+          canEdit() {
+            return k !== "Income"
+          }
         });
       }
 
