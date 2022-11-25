@@ -4,6 +4,8 @@
 
 Plan your purchases.
 
+![Screenshot](https://image.thum.io/get/maxAge/12/width/1000/https://www.purchaseplan.io "Screenshot")
+
 ## Links
 
 - Prod https://purchaseplan.io
