@@ -1,1 +1,3 @@
-public/ linguist-vendored
+purchase/frontend/public/** linguist-vendored
+budget/frontend/public/** linguist-vendored
+backend/service/fixtures/** linguist-vendored
