@@ -95,6 +95,12 @@ export function New(data = []) {
         arr.push({
           name: k,
           categories: v,
+          canDelete() {
+            return k !== "Income";
+          },
+          canEdit() {
+            return k !== "Income"
+          }
         });
       }
 
@@ -110,6 +116,9 @@ export function New(data = []) {
     },
     deleteGroup(group) {
       return New(data.filter((c) => c.Group() !== group));
+    },
+    isEmpty() {
+      return data.every((c) => c.isEmpty());
     },
   };
 }

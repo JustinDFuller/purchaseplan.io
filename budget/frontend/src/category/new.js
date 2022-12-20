@@ -36,5 +36,8 @@ export function New(data = defaults) {
         PlannedInCents: Number(planned) * 100,
       });
     },
+    isEmpty() {
+      return data.PlannedInCents === 0;
+    },
   };
 }
