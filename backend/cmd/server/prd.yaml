@@ -1,5 +1,9 @@
-runtime: go116
+runtime: go119
 service: default
+
+automatic_scaling:
+  max_instances: 1
+  max_idle_instances: 1
 
 env_variables:
   PURCHASE_PLAN_IMAGE_BUCKET: "purchase-plan-images-prd"
